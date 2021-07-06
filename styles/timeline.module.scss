@@ -1,0 +1,38 @@
+.timeline {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 700px;
+  
+}
+
+.searchField {
+  display: flex;
+  flex-wrap: "wrap";
+  flex-direction: "row";
+  justify-content: "center";
+  align-items: "center";
+  width: 700px;
+}
+
+.searchFieldInput {
+  margin: 8px;
+  // width: "70%";
+  width: 500px;
+}
+
+.post {
+  background-color: rgb(229, 237, 250);
+  margin: 10px 20px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.imgPosition {
+  display: flex;
+}
+
+.imgSize {
+  width: 120px;
+  height: 120px;
+  margin: 10px 10px;
+}

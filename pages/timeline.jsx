@@ -1,4 +1,9 @@
 import fetch from 'isomorphic-unfetch'
+import style from '../styles/timeline.module.scss'
+
+import { TextField, Button } from '@material-ui/core';
+
+import { Post } from '../components/timeline/post/post';
 
 export async function getStaticProps(context) {
     const res = await fetch("http://localhost:3000/api/shopdatas");
@@ -15,16 +20,29 @@ const Timeline = ({shopdatas}) => {
     const shoplist = JSON.parse(JSON.stringify(shopdatas));
     console.log(shoplist);
     return (
-        <div>
-            <h1>店一覧</h1>
-            {/* <div>{shoplist[0]}</div> */}
+        <div className= {style.timeline}>
+            <h1>Dlink</h1>
+            <div className={style.searchField}>
+                <TextField
+                    id="outlined-full-width"
+                    label="Search"
+                    className={style.searchFieldInput}
+                    placeholder="検索条件を入力してください"
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    variant="outlined"
+                    type="text"
+                />
+            </div>
             {shoplist.map((shopdata) => (
-                <div key={shopdata.name}>
-                    <h2>店名:{shopdata.name}</h2>
-                    <div style={{display: 'flex'}}>
-                        <p>#{shopdata.tag.genre}</p>
-                        <p>#{shopdata.tag.purpose}</p>
-                    </div>
+                <div key={shopdata.name} className={style.post}>
+                    <Post 
+                        name={shopdata.name}
+                        genre={shopdata.tag.genre}
+                        purpose={shopdata.tag.purpose}
+                    />
                 </div>
             ))}
         </div>
