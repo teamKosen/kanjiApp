@@ -7,10 +7,8 @@ handler.use(middleware);
 
 handler.get(async (req, res) => {
 
-    // let doc = await req.db.collection('shopdatas').findOne()
     let doc = await req.db.collection('shopdatas').find({}).toArray();
     console.log(doc);
-    // res.doc;
     res.json(doc);
 });
 

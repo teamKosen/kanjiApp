@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-unfetch'
 import style from '../styles/timeline.module.scss'
-
 import { TextField } from '@material-ui/core';
 
 import { Post } from '../components/timeline/post/post';
@@ -17,15 +16,9 @@ export async function getStaticProps(context) {
 }
 
 const Timeline = ({shopdatas}) => {
-    // console.log(shopdatas);
+    
     const shoplist = JSON.parse(JSON.stringify(shopdatas));
-    // console.log(shoplist);
-
-    const shopdatasId = shopdatas.map((shopdata) => ({
-        params: { id: `${shopdata._id}` } 
-    }))
-
-   console.log(shopdatasId);
+    
     return (
         <div className= {style.timeline}>
             <h1>Dlink</h1>
