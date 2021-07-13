@@ -2,6 +2,7 @@ import style from './post.module.scss'
 import LocalBarIcon from '@material-ui/icons/LocalBar';
 import React, { useCallback, useState } from 'react';
 import { Button } from '@material-ui/core';
+import { UserComment } from './components/user-comment/user-comment';
 
 export const Post = (props) => {
     const { name , genre, purpose} = props;
@@ -38,10 +39,10 @@ export const Post = (props) => {
             </div>
             { anchorEl ? 
                 <div>
-                    <div className={style.imgPosition}>
-                        <img src="/asset/ebitiri.jpeg" className={style.imgSize} alt = "ebitiri"/>
-                        <img src="/asset/tenshinhan.jpeg" className={style.imgSize} alt = "tensinhan"/>
-                        <img src="/asset/seiro.jpeg" className={style.imgSize} alt = "seiro"/>  
+                    <div className={style.cardPosition}>
+                        <UserComment />
+                        <UserComment />
+                        <UserComment />
                     </div>
                     <div className={style.shopdetailCloseButton} onClick={handleClose}>閉じる↑</div>
                 </div>
