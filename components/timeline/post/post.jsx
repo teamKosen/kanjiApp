@@ -3,9 +3,11 @@ import LocalBarIcon from '@material-ui/icons/LocalBar';
 import React, { useCallback, useState } from 'react';
 import { Button } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment';
+import { Shop_Detail } from './components/shop_detail/shop_detail';
+import { getStaticProps } from '../../../pages/timeline';
 
 export const Post = (props) => {
-    const { name , genre, purpose} = props;
+    const { name, genre, purpose, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress } = props;
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = useCallback(() => {
@@ -41,8 +43,14 @@ export const Post = (props) => {
                 <div>
                     <div className={style.cardPosition}>
                         <UserComment />
-                        <UserComment />
-                        <UserComment />
+                        <Shop_Detail 
+                            park={park}
+                            payments={payments}
+                            seatTypes={seatTypes}
+                            notSmokingSeat={notSmokingSeat}
+                            phoneNumber={phoneNumber}
+                            adress={adress}
+                        />
                     </div>
                     <div className={style.shopdetailCloseButton} onClick={handleClose}>閉じる↑</div>
                 </div>
