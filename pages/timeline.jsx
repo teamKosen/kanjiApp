@@ -1,13 +1,13 @@
 import fetch from 'isomorphic-unfetch'
 import style from '../styles/timeline.module.scss'
-
-import { TextField, Button } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 
 import { Post } from '../components/timeline/post/post';
 
 export async function getStaticProps(context) {
     const res = await fetch("http://localhost:3000/api/shopdatas");
     const json = await res.json();
+
     return {
       props: {
         shopdatas: json,
@@ -16,9 +16,9 @@ export async function getStaticProps(context) {
 }
 
 const Timeline = ({shopdatas}) => {
-    console.log(shopdatas);
+    
     const shoplist = JSON.parse(JSON.stringify(shopdatas));
-    console.log(shoplist);
+    
     return (
         <div className= {style.timeline}>
             <h1>Dlink</h1>
