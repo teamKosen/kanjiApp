@@ -1,7 +1,7 @@
 import style from './shop_detail.module.scss';
 
 export const Shop_Detail = (props) => {
-    const {park, payments, seatTypes, notSmokingSeat, phoneNumber, adress} = props
+    const {open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress} = props
 
     return (
         <div className={style.shop_detail}>
@@ -9,7 +9,11 @@ export const Shop_Detail = (props) => {
             <div className={style.contents}>
                 <div>    
                     <b>営業時間</b><br />
-                    <div className={style.table_data}>月～木　16:00~0:00</div>
+                    {open.map((time) => (
+                        <div key={time} className={style.table_data}>
+                            {time}
+                        </div>
+                    ))}
                 </div>
                 <div>
                     <b>駐車場</b><br />

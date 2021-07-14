@@ -42,6 +42,7 @@ const Timeline = ({shopdatas}) => {
                         name={shopdata.name}
                         genre={shopdata.tag.genre}
                         purpose={shopdata.tag.purpose}
+                        open={shopdata.open}
                         park={shopdata.park}
                         payments={shopdata.payment}
                         seatTypes={shopdata.seatType}

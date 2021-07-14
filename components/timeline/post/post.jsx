@@ -7,7 +7,7 @@ import { Shop_Detail } from './components/shop_detail/shop_detail';
 import { getStaticProps } from '../../../pages/timeline';
 
 export const Post = (props) => {
-    const { name, genre, purpose, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress } = props;
+    const { name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress } = props;
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = useCallback(() => {
@@ -43,7 +43,8 @@ export const Post = (props) => {
                 <div>
                     <div className={style.cardPosition}>
                         <UserComment />
-                        <Shop_Detail 
+                        <Shop_Detail
+                            open={open}
                             park={park}
                             payments={payments}
                             seatTypes={seatTypes}
