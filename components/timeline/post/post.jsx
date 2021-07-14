@@ -41,9 +41,7 @@ export const Post = (props) => {
             { anchorEl ? 
                 <div>
                     <div className={style.cardPosition}>
-                        <UserComment />
                         <Map />
-                        <UserComment />
                     </div>
                     <div className={style.shopdetailCloseButton} onClick={handleClose}>閉じる↑</div>
                 </div>
