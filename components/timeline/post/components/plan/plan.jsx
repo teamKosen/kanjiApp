@@ -4,16 +4,35 @@ export const Plan = (props) => {
     const {plan}=props;
     return (
         <div /* className={style.userComment} */>
-            <h2 /* className={style.title} */>{plan[0].name}</h2>
+            <h2 /* className={style.title} */>プラン</h2>
             <div /* className={style.comment} */>
-                <div>
-                    <h3>すきあらば名無しさんのコメント</h3>
-                    <p>刺身めっちゃ美味しかったです！多分また来ます</p>
+            {plan.map((plandata) => {
+                const tags=[];
+                return <div /* key={shopdata.name} className={style.post} */>
+                    <h3><u>{plandata.name}</u></h3>
+                    {(function(tag,pl_tag){
+                        tag=[];
+                        let unit="";
+                        for (const [key, value] of Object.entries(pl_tag)){
+                            if(key=="numberOfPeople"){
+                                unit="人"
+                            }
+                            else if(key=="budjet"){
+                                unit="円"
+                            }
+                            else{
+                                unit=""
+                            }
+                            tag.push("#"+value+unit+"　");
+                        }
+                        return tag;
+                    }(tags,plandata.tag))}
+                    {tags.map((tagdata)=>(
+                        <p>{tagdata}</p>
+                    ))
+                    }
                 </div>
-                <div>
-                    <h3>七氏さんのコメント</h3>
-                    <p>焼き鳥美味しかったです！機会があればまた来ます。サービスはいまいちでした</p>
-                </div>
+            })}
             </div>
         </div>
     );
