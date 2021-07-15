@@ -1,14 +1,14 @@
-/* import style from './plan.module.scss'; */
+import style from './plan.module.scss';
 
 export const Plan = (props) => {
     const {plan}=props;
     return (
-        <div /* className={style.userComment} */>
-            <h2 /* className={style.title} */>プラン</h2>
-            <div /* className={style.comment} */>
+        <div className={style.detail_plan}>
+            <h2 className={style.title}>プラン</h2>
+            <div className={style.plan}>
             {plan.map((plandata) => {
                 const tags=[];
-                return <div /* key={shopdata.name} className={style.post} */>
+                return <div key={plandata.name} className={style.post}>
                     <h3><u>{plandata.name}</u></h3>
                     {(function(tag,pl_tag){
                         tag=[];
@@ -23,6 +23,9 @@ export const Plan = (props) => {
                             else{
                                 unit=""
                             }
+                            /* for(let step =0;0<value.length;step++){
+                                tag.push("#"+value[step]+unit+"　");
+                            } */
                             tag.push("#"+value+unit+"　");
                         }
                         return tag;
