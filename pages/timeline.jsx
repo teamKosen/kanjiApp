@@ -40,15 +40,18 @@ const Timeline = ({shopdatas,plandatas}) => {
                     type="text"
                 />
             </div>
-            {shoplist.map((shopdata) => (
-                <div key={shopdata.name} className={style.post}>
+            {shoplist.map((shopdata) => {
+                const pln=planlist.filter(v=>v.shopID==shopdata._id);
+
+                return <div key={shopdata.name} className={style.post}>
                     <Post 
                         name={shopdata.name}
                         genre={shopdata.tag.genre}
                         purpose={shopdata.tag.purpose}
+                        plan={pln}
                     />
                 </div>
-            ))}
+}           )}
         </div>
     );
 }

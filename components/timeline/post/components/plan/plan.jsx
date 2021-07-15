@@ -1,10 +1,11 @@
 /* import style from './plan.module.scss'; */
 
-export const Plan = () => {
+export const Plan = (props) => {
+    const {plan}=props;
     return (
-        <div className={style.userComment}>
-            <h2 className={style.title}>利用者のコメント</h2>
-            <div className={style.comment}>
+        <div /* className={style.userComment} */>
+            <h2 /* className={style.title} */>{plan[0].name}</h2>
+            <div /* className={style.comment} */>
                 <div>
                     <h3>すきあらば名無しさんのコメント</h3>
                     <p>刺身めっちゃ美味しかったです！多分また来ます</p>
