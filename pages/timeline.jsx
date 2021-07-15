@@ -7,17 +7,21 @@ import { Post } from '../components/timeline/post/post';
 export async function getStaticProps(context) {
     const res = await fetch("http://localhost:3000/api/shopdatas");
     const json = await res.json();
+    const res_pln=await await fetch("http://localhost:3000/api/plandatas");
+    const json_pln=await res_pln.json();
 
     return {
       props: {
         shopdatas: json,
+        plandatas: json_pln
       },
     };
 }
 
-const Timeline = ({shopdatas}) => {
+const Timeline = ({shopdatas,plandatas}) => {
     
     const shoplist = JSON.parse(JSON.stringify(shopdatas));
+    const planlist= JSON.parse(JSON.stringify(plandatas));
     
     return (
         <div className= {style.timeline}>

@@ -3,6 +3,7 @@ import LocalBarIcon from '@material-ui/icons/LocalBar';
 import React, { useCallback, useState } from 'react';
 import { Button } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment';
+/* import {plan} from './components/plan/plan'; */
 
 export const Post = (props) => {
     const { name , genre, purpose} = props;
@@ -43,6 +44,7 @@ export const Post = (props) => {
                         <UserComment />
                         <UserComment />
                         <UserComment />
+                        {/* <plan /> */}
                     </div>
                     <div className={style.shopdetailCloseButton} onClick={handleClose}>閉じる↑</div>
                 </div>
