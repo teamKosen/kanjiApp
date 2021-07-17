@@ -5,19 +5,23 @@ import { TextField } from '@material-ui/core';
 import { Post } from '../components/timeline/post/post';
 
 export async function getStaticProps(context) {
-    const res = await fetch("http://localhost:3000/api/shopdatas");
-    const json = await res.json();
+    const res_shopdatas = await fetch("http://localhost:3000/api/shopdatas");
+    const res_picturedatas = await fetch("http://localhost:3000/api/picturedatas");
+    const json_shopdatas = await res_shopdatas.json();
+    const json_picturedatas = await res_picturedatas.json();
 
     return {
       props: {
-        shopdatas: json,
+        shopdatas: json_shopdatas,
+        picturedatas: json_picturedatas,
       },
     };
 }
 
-const Timeline = ({shopdatas}) => {
+const Timeline = ({shopdatas}, {picturedatas}) => {
     
     const shoplist = JSON.parse(JSON.stringify(shopdatas));
+    const picturelist = JSON.parse(JSON.stringify(picturedatas));
     
     return (
         <div className= {style.timeline}>
@@ -39,9 +43,11 @@ const Timeline = ({shopdatas}) => {
             {shoplist.map((shopdata) => (
                 <div key={shopdata.name} className={style.post}>
                     <Post 
+                        shopid={shopdata.id}
                         name={shopdata.name}
                         genre={shopdata.tag.genre}
                         purpose={shopdata.tag.purpose}
+                        pictures={picturelist}
                     />
                 </div>
             ))}

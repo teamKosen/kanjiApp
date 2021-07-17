@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment';
 
 export const Post = (props) => {
-    const { name , genre, purpose} = props;
+    const {shopid, name , genre, purpose, pictures} = props;
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = useCallback(() => {
@@ -24,9 +24,10 @@ export const Post = (props) => {
                 <p>#{purpose}</p>
             </div>
             <div className={style.imgPosition}>
-                <img src="/asset/ebitiri.jpeg" className={style.imgSize} alt = "ebitiri"/>
-                <img src="/asset/tenshinhan.jpeg" className={style.imgSize} alt = "tensinhan"/>
-                <img src="/asset/seiro.jpeg" className={style.imgSize} alt = "seiro"/>  
+                <Picuter
+                    shopid={shopid}
+                    pictures={pictures}
+                />
             </div>
             <div className={style.nomalBottom}>
                 <div className={style.good}>
@@ -40,8 +41,6 @@ export const Post = (props) => {
             { anchorEl ? 
                 <div>
                     <div className={style.cardPosition}>
-                        <UserComment />
-                        <UserComment />
                         <UserComment />
                     </div>
                     <div className={style.shopdetailCloseButton} onClick={handleClose}>閉じる↑</div>
