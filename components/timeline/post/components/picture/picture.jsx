@@ -1,9 +1,11 @@
+import style from './picture.module.scss'
+
 export const Picture = (props) => {
-    const { shopid, pictures } = props;
+    const { pictures } = props;
     return (
-        <div>
+        <div className={style.imgPosition}>
             {pictures.map((picture)=>(
-                {picture}
+                <img src={picture.picturePath} className={style.imgSize}/>
             ))}
         </div>
     );

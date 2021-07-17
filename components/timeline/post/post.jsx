@@ -3,9 +3,10 @@ import LocalBarIcon from '@material-ui/icons/LocalBar';
 import React, { useCallback, useState } from 'react';
 import { Button } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment';
+import { Picture } from './components/picture/picture'
 
 export const Post = (props) => {
-    const {shopid, name , genre, purpose, pictures} = props;
+    const { name , genre, purpose, pictures} = props;
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = useCallback(() => {
@@ -24,8 +25,7 @@ export const Post = (props) => {
                 <p>#{purpose}</p>
             </div>
             <div className={style.imgPosition}>
-                <Picuter
-                    shopid={shopid}
+                <Picture
                     pictures={pictures}
                 />
             </div>

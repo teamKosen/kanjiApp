@@ -5,20 +5,20 @@ import { TextField } from '@material-ui/core';
 import { Post } from '../components/timeline/post/post';
 
 export async function getStaticProps(context) {
-    const res_shopdatas = await fetch("http://localhost:3000/api/shopdatas");
-    const res_picturedatas = await fetch("http://localhost:3000/api/picturedatas");
-    const json_shopdatas = await res_shopdatas.json();
-    const json_picturedatas = await res_picturedatas.json();
+    const res = await fetch("http://localhost:3000/api/shopdatas");
+    const json = await res.json();
+    const res_pict = await fetch("http://localhost:3000/api/picturedatas");
+    const json_pict = await res_pict.json();
 
     return {
       props: {
-        shopdatas: json_shopdatas,
-        picturedatas: json_picturedatas,
+        shopdatas: json,
+        picturedatas: json_pict,
       },
     };
 }
 
-const Timeline = ({shopdatas}, {picturedatas}) => {
+const Timeline = ({shopdatas, picturedatas}) => {
     
     const shoplist = JSON.parse(JSON.stringify(shopdatas));
     const picturelist = JSON.parse(JSON.stringify(picturedatas));
@@ -40,17 +40,19 @@ const Timeline = ({shopdatas}, {picturedatas}) => {
                     type="text"
                 />
             </div>
-            {shoplist.map((shopdata) => (
+            {shoplist.map((shopdata) => {
+                const pict = picturelist.filter(v=>v.shopId==shopdata._id);
+                return(
                 <div key={shopdata.name} className={style.post}>
-                    <Post 
-                        shopid={shopdata.id}
+                    <Post
                         name={shopdata.name}
                         genre={shopdata.tag.genre}
                         purpose={shopdata.tag.purpose}
-                        pictures={picturelist}
+                        pictures={pict}
                     />
                 </div>
-            ))}
+                );
+            })}
         </div>
     );
 }
