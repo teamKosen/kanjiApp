@@ -8,6 +8,7 @@ import { getStaticProps } from '../../../pages/timeline';
 import { Picture } from './components/picture/picture'
 import { Menu } from './components/menu/menu';
 import {Plan} from './components/plan/plan';
+import { Map } from './components/map/map';
 
 export const Post = (props) => {
     const { pictures,name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress,plan,comment,menu } = props;
@@ -46,11 +47,12 @@ export const Post = (props) => {
             { anchorEl ? 
                 <div>
                     <div className={style.cardPosition}>
+                         <UserComment comment={comment}/>
+                         <Plan plan={plan} />
                          <Menu 
                             menu={menu}
                         />
-                        <Plan plan={plan} />
-                        <UserComment comment={comment}/>
+                        <Map />                        
                         <Shop_Detail
                             open={open}
                             park={park}

@@ -35,7 +35,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
 
     return (
         <div className= {style.timeline}>
-            <h1>Dlink</h1>
+            <h1>DLink</h1>
             <div className={style.searchField}>
                 <TextField
                     id="outlined-full-width"
