@@ -53,7 +53,7 @@ const Timeline = ({shopdatas}) => {
             <h1>Dlink</h1>
             <div className={style.searchField}>
                 <form onSubmit={handlerOnSubmitSearch}>
-                    <input
+                    <InputBase 
                         type="search"
                         name="query"
                         className={style.searchFieldInput}
