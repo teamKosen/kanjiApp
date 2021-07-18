@@ -6,8 +6,12 @@ import { UserComment } from './components/user-comment/user-comment';
 import { Shop_Detail } from './components/shop_detail/shop_detail';
 import { getStaticProps } from '../../../pages/timeline';
 
+import { Menu } from './components/menu/menu';
+import {Plan} from './components/plan/plan';
+
 export const Post = (props) => {
-    const { name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress } = props;
+    const { name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress,plan,comment,menu } = props;
+
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = useCallback(() => {
@@ -42,7 +46,11 @@ export const Post = (props) => {
             { anchorEl ? 
                 <div>
                     <div className={style.cardPosition}>
-                        <UserComment />
+                         <Menu 
+                            menu={menu}
+                        />
+                        <Plan plan={plan} />
+                        <UserComment comment={comment}/>
                         <Shop_Detail
                             open={open}
                             park={park}

@@ -8,17 +8,27 @@ export async function getStaticProps(context) {
     const res = await fetch("http://localhost:3000/api/shopdatas");
     const json = await res.json();
 
+    const res_pln=await await fetch("http://localhost:3000/api/plandatas");
+    const json_pln=await res_pln.json();
+    const res_cmnt = await fetch("http://localhost:3000/api/commentdatas");
+    const json_cmnt = await res_cmnt.json();
+
+
     return {
       props: {
         shopdatas: json,
+        plandatas: json_pln,
+        commentdatas:json_cmnt,
       },
     };
 }
 
-const Timeline = ({shopdatas}) => {
+const Timeline = ({shopdatas,plandatas,commentdatas}) => {
     
     const shoplist = JSON.parse(JSON.stringify(shopdatas));
-    
+    const planlist= JSON.parse(JSON.stringify(plandatas));
+    const commentlist=JSON.parse(JSON.stringify(commentdatas));
+
     return (
         <div className= {style.timeline}>
             <h1>Dlink</h1>
@@ -36,8 +46,11 @@ const Timeline = ({shopdatas}) => {
                     type="text"
                 />
             </div>
-            {shoplist.map((shopdata) => (
-                <div key={shopdata.name} className={style.post}>
+            {shoplist.map((shopdata) => {
+                const pln=planlist.filter(v=>v.shopID==shopdata._id);
+                const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
+
+                return <div key={shopdata.name} className={style.post}>
                     <Post 
                         name={shopdata.name}
                         genre={shopdata.tag.genre}
@@ -49,9 +62,14 @@ const Timeline = ({shopdatas}) => {
                         notSmokingSeat={shopdata.notSmokingSeat}
                         phoneNumber={shopdata.phoneNumber}
                         adress={shopdata.adress}
+                        menu={shopdata.menu}
+                        plan={pln}
+                        comment={cmnt}
+
                     />
                 </div>
-            ))}
+}           )}
+
         </div>
     );
 }
