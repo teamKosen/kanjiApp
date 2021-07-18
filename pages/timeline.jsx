@@ -10,19 +10,30 @@ export async function getStaticProps(context) {
     const res_pict = await fetch("http://localhost:3000/api/picturedatas");
     const json_pict = await res_pict.json();
 
+    const res_pln=await await fetch("http://localhost:3000/api/plandatas");
+    const json_pln=await res_pln.json();
+    const res_cmnt = await fetch("http://localhost:3000/api/commentdatas");
+    const json_cmnt = await res_cmnt.json();
+
+
     return {
       props: {
         shopdatas: json,
         picturedatas: json_pict,
+        plandatas: json_pln,
+        commentdatas:json_cmnt,
       },
     };
 }
 
-const Timeline = ({shopdatas, picturedatas}) => {
+
+const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     
     const shoplist = JSON.parse(JSON.stringify(shopdatas));
+    const planlist= JSON.parse(JSON.stringify(plandatas));
+    const commentlist=JSON.parse(JSON.stringify(commentdatas));
     const picturelist = JSON.parse(JSON.stringify(picturedatas));
-    
+
     return (
         <div className= {style.timeline}>
             <h1>Dlink</h1>
@@ -41,18 +52,31 @@ const Timeline = ({shopdatas, picturedatas}) => {
                 />
             </div>
             {shoplist.map((shopdata) => {
+
+                const pln=planlist.filter(v=>v.shopID==shopdata._id);
+                const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
                 const pict = picturelist.filter(v=>v.shopId==shopdata._id);
-                return(
-                <div key={shopdata.name} className={style.post}>
-                    <Post
+
+                return <div key={shopdata.name} className={style.post}>
+                    <Post 
                         name={shopdata.name}
                         genre={shopdata.tag.genre}
                         purpose={shopdata.tag.purpose}
-                        pictures={pict}
+                        open={shopdata.open}
+                        park={shopdata.park}
+                        payments={shopdata.payment}
+                        seatTypes={shopdata.seatType}
+                        notSmokingSeat={shopdata.notSmokingSeat}
+                        phoneNumber={shopdata.phoneNumber}
+                        adress={shopdata.adress}
+                        menu={shopdata.menu}
+                        plan={pln}
+                        comment={cmnt}
+
                     />
                 </div>
-                );
-            })}
+                })}
+
         </div>
     );
 }
