@@ -72,7 +72,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                         menu={shopdata.menu}
                         plan={pln}
                         comment={cmnt}
-
+                        pictures={pict}
                     />
                 </div>
                 })}
