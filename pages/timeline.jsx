@@ -7,24 +7,28 @@ import { Post } from '../components/timeline/post/post';
 export async function getStaticProps(context) {
     const res = await fetch("http://localhost:3000/api/shopdatas");
     const json = await res.json();
+
+    const res_pln=await await fetch("http://localhost:3000/api/plandatas");
+    const json_pln=await res_pln.json();
     const res_cmnt = await fetch("http://localhost:3000/api/commentdatas");
     const json_cmnt = await res_cmnt.json();
-    /* const res_plan = await fetch("http://localhost:3000/api/plandatas");
-    const json_plan = await res_plan.json(); */
+
 
     return {
       props: {
         shopdatas: json,
+        plandatas: json_pln
         commentdatas:json_cmnt,
       },
     };
 }
 
-const Timeline = ({shopdatas,commentdatas}) => {
+const Timeline = ({shopdatas,plandatas,commentdatas}) => {
     
     const shoplist = JSON.parse(JSON.stringify(shopdatas));
+    const planlist= JSON.parse(JSON.stringify(plandatas));
     const commentlist=JSON.parse(JSON.stringify(commentdatas));
-    
+
     return (
         <div className= {style.timeline}>
             <h1>Dlink</h1>
@@ -42,19 +46,21 @@ const Timeline = ({shopdatas,commentdatas}) => {
                     type="text"
                 />
             </div>
-            {shoplist.map((shopdata) =>{ 
-                /* const cmnt=commentlist.find((v)=>v._id==shopdata._id); */
+            {shoplist.map((shopdata) => {
+                const pln=planlist.filter(v=>v.shopID==shopdata._id);
                 const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
-                return  <div key={shopdata.name} className={style.post}>
-                    {/* あ{cmnt[1].comment} */}
-                            <Post 
-                                name={shopdata.name}
-                                genre={shopdata.tag.genre}
-                                purpose={shopdata.tag.purpose}
-                                comment={cmnt}
-                            />
-                       </div>
-                 })}
+
+                return <div key={shopdata.name} className={style.post}>
+                    <Post 
+                        name={shopdata.name}
+                        genre={shopdata.tag.genre}
+                        purpose={shopdata.tag.purpose}
+                        plan={pln}
+                        comment={cmnt}
+                    />
+                </div>
+}           )}
+
         </div>
     );
 }
