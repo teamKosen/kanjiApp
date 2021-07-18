@@ -10,7 +10,7 @@ import { Menu } from './components/menu/menu';
 import {Plan} from './components/plan/plan';
 
 export const Post = (props) => {
-    const { picture,name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress,plan,comment,menu } = props;
+    const { pictures,name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress,plan,comment,menu } = props;
 
     const [anchorEl, setAnchorEl] = useState(null);
 

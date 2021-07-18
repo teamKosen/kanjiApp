@@ -53,6 +53,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
             {shoplist.map((shopdata) => {
                 const pln=planlist.filter(v=>v.shopID==shopdata._id);
                 const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
+                const pict = picturelist.filter(v=>v.shopId==shopdata._id);
 
                 return <div key={shopdata.name} className={style.post}>
                     <Post 
@@ -72,7 +73,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                         pictures={pict}
                     />
                 </div>
-}           )}
+                })}
 
         </div>
     );
