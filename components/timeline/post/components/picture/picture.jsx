@@ -5,7 +5,7 @@ export const Picture = (props) => {
     return (
         <div className={style.imgPosition}>
             {pictures.map((picture)=>(
-                <img src={picture.picturePath} className={style.imgSize}/>
+                <img src={picture.picturePath} className={style.imgSize} key={picture.picturePath} alt={"shopPhoto"}></img>
             ))}
         </div>
     );
