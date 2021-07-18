@@ -5,12 +5,12 @@ import { Button } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment';
 import { Shop_Detail } from './components/shop_detail/shop_detail';
 import { getStaticProps } from '../../../pages/timeline';
-
+import { Picture } from './components/picture/picture'
 import { Menu } from './components/menu/menu';
 import {Plan} from './components/plan/plan';
 
 export const Post = (props) => {
-    const { name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress,plan,comment,menu } = props;
+    const { picture,name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress,plan,comment,menu } = props;
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -30,9 +30,9 @@ export const Post = (props) => {
                 <p>#{purpose}</p>
             </div>
             <div className={style.imgPosition}>
-                <img src="/asset/ebitiri.jpeg" className={style.imgSize} alt = "ebitiri"/>
-                <img src="/asset/tenshinhan.jpeg" className={style.imgSize} alt = "tensinhan"/>
-                <img src="/asset/seiro.jpeg" className={style.imgSize} alt = "seiro"/>  
+                <Picture
+                    pictures={pictures}
+                />
             </div>
             <div className={style.nomalBottom}>
                 <div className={style.good}>
