@@ -55,6 +55,8 @@ const Timeline = ({shopdatas,plandatas,commentdatas}) => {
                         name={shopdata.name}
                         genre={shopdata.tag.genre}
                         purpose={shopdata.tag.purpose}
+
+                        menu={shopdata.menu}
                         plan={pln}
                         comment={cmnt}
                     />

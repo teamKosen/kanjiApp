@@ -3,10 +3,12 @@ import LocalBarIcon from '@material-ui/icons/LocalBar';
 import React, { useCallback, useState } from 'react';
 import { Button } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment';
+
+import { Menu } from './components/menu/menu';
 import {Plan} from './components/plan/plan';
 
 export const Post = (props) => {
-    const { name , genre, purpose,plan,comment} = props;
+    const { name , genre, purpose,plan,comment,menu} = props;
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -42,7 +44,9 @@ export const Post = (props) => {
             { anchorEl ? 
                 <div>
                     <div className={style.cardPosition}>
-                        
+                         <Menu 
+                            menu={menu}
+                        />
                         <Plan plan={plan} />
                         <UserComment comment={comment}/>
                     </div>
