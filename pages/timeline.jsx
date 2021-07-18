@@ -55,10 +55,17 @@ const Timeline = ({shopdatas,plandatas,commentdatas}) => {
                         name={shopdata.name}
                         genre={shopdata.tag.genre}
                         purpose={shopdata.tag.purpose}
-
+                        open={shopdata.open}
+                        park={shopdata.park}
+                        payments={shopdata.payment}
+                        seatTypes={shopdata.seatType}
+                        notSmokingSeat={shopdata.notSmokingSeat}
+                        phoneNumber={shopdata.phoneNumber}
+                        adress={shopdata.adress}
                         menu={shopdata.menu}
                         plan={pln}
                         comment={cmnt}
+
                     />
                 </div>
 }           )}
