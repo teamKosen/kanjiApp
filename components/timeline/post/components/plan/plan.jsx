@@ -23,15 +23,12 @@ export const Plan = (props) => {
                             else{
                                 unit=""
                             }
-                            /* for(let step =0;0<value.length;step++){
-                                tag.push("#"+value[step]+unit+"　");
-                            } */
                             tag.push("#"+value+unit+"　");
                         }
                         return tag;
                     }(tags,plandata.tag))}
                     {tags.map((tagdata)=>(
-                        <p>{tagdata}</p>
+                        <p key={tagdata}>{tagdata}</p>
                     ))
                     }
                 </div>

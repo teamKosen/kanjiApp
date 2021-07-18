@@ -17,7 +17,7 @@ export async function getStaticProps(context) {
     return {
       props: {
         shopdatas: json,
-        plandatas: json_pln
+        plandatas: json_pln,
         commentdatas:json_cmnt,
       },
     };
