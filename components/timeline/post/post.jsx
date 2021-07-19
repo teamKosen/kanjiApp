@@ -3,6 +3,7 @@ import LocalBarIcon from '@material-ui/icons/LocalBar';
 import React, { useCallback, useState } from 'react';
 import { Button } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment';
+import { Map } from './components/map/map';
 
 import { Shop_Detail } from './components/shop_detail/shop_detail';
 import { getStaticProps } from '../../../pages/timeline';
@@ -48,11 +49,14 @@ export const Post = (props) => {
             { anchorEl ? 
                 <div>
                     <div className={style.cardPosition}>
-                         <Menu 
+
+                        <UserComment comment={comment}/>
+                        <Plan plan={plan} />
+                      　<Menu 
                             menu={menu}
                         />
                         <Plan plan={plan} />
-                        <UserComment comment={comment}/>
+                        <Map />
                         <Shop_Detail
                             open={open}
                             park={park}
