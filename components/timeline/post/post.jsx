@@ -55,7 +55,6 @@ export const Post = (props) => {
                       　<Menu 
                             menu={menu}
                         />
-                        <Plan plan={plan} />
                         <Map />
                         <Shop_Detail
                             open={open}
