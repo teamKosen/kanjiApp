@@ -1,10 +1,11 @@
 import fetch from 'isomorphic-unfetch'
 import style from '../styles/timeline.module.scss'
 import { TextField } from '@material-ui/core';
+import Drawer from '@material-ui/core/Drawer';
 
 import { Post } from '../components/timeline/post/post';
 import { Button , InputBase } from '@material-ui/core';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export async function getStaticProps(context) {
     const res = await fetch("http://localhost:3000/api/shopdatas");
@@ -22,6 +23,17 @@ const Timeline = ({shopdatas}) => {
     const [shops, updateShops] = useState(shopdatas);
     const shoplist = JSON.parse(JSON.stringify(shopdatas));
 
+    const [budjet, setBudjet] = useState();
+    const [numberOfPeople, setNumberOfPeople] = useState();
+    const [genre, setGenre] = useState();
+    const [purpose, setPurpose] = useState();
+    const [isOpenDrawer, setDrawerState] = useState(false);
+
+    const budjetList = [1000, 2000, 3000, 4000];
+    const numberOfPeopleList = [2,4,6,8];
+    const genreList = ["中華","和食","イタリアン","エスニック"];
+    const purposeList = ["打ち上げ","会食","合コン","同窓会"];
+
     useEffect(() => {
         if (keyword === '') return
     
@@ -36,22 +48,39 @@ const Timeline = ({shopdatas}) => {
         request()
       }, [keyword])
 
-    const handlerOnSubmitSearch = (e) => {
-        e.preventDefault()
-    
-        const { currentTarget = {} } = e
-        const fields = Array.from(currentTarget?.elements)
-        const fieldQuery = fields.find((field) => field.name === 'query')
-    
-        const value = fieldQuery.value || ''
-        setKeyword(value);
-        console.log(keyword);
-    }    
+    const handleOpenDrawer = useCallback(
+        () => {
+            setDrawerState(true);
+    },[]);
+
+    const handleCloseDrawer = useCallback(
+        () => {
+            setDrawerState(false);
+    },[]);
+
+    const handlerOnSubmitSearch = useCallback(
+        (e) => {
+            e.preventDefault()
+        
+            const { currentTarget = {} } = e
+            const fields = Array.from(currentTarget?.elements)
+            const fieldQuery = fields.find((field) => field.name === 'query')
+        
+            const value = fieldQuery.value || ''
+            setKeyword(value);
+    },[]);    
     
     return (
         <div className= {style.timeline}>
             <h1>Dlink</h1>
             <div className={style.searchField}>
+                <Drawer
+                    anchor="top"
+                    open={isOpenDrawer}
+                    onClose={() => handleCloseDrawer(false)}
+                >
+                    <h1>Haaaaaaaaa</h1>
+                </Drawer>
                 <form onSubmit={handlerOnSubmitSearch}>
                     <InputBase 
                         type="search"
@@ -59,7 +88,7 @@ const Timeline = ({shopdatas}) => {
                         className={style.searchFieldInput}
                         placeholder="キーワードを入力して下さい"
                     />
-                    <Button>Search</Button>
+                    <Button onClick={handleOpenDrawer}>タグ検索</Button>
                 </form>
             </div>
             {shops.map((shopdata) => (
