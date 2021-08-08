@@ -10,7 +10,6 @@ handler.get(async (req, res) => {
     const { id } = req.query;
 
     let doc = await req.db.collection('shopdatas').findOne({_id: ObjectId(`${id}`)});
-    console.log(doc);
     res.json(doc);
 });
 

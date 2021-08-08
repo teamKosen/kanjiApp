@@ -11,7 +11,6 @@ handler.get(async (req, res) => {
 
     // let doc = await req.db.collection('shopdatas').find(search).toArray();
     let doc = await req.db.collection('shopdatas').find({}).toArray();
-    console.log(doc);
     res.json(doc);
 });
 
