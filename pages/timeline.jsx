@@ -3,6 +3,7 @@ import style from '../styles/timeline.module.scss'
 import { TextField } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 
+import { DrawerContent } from '../components/timeline/drawer-content/drawer-content.tsx';
 import { Post } from '../components/timeline/post/post';
 import { Button , InputBase } from '@material-ui/core';
 import { useState, useEffect, useCallback } from 'react';
@@ -10,7 +11,6 @@ import { useState, useEffect, useCallback } from 'react';
 export async function getStaticProps(context) {
     const res = await fetch("http://localhost:3000/api/shopdatas");
     const json = await res.json();
-
     return {
       props: {
         shopdatas: json,
@@ -118,127 +118,26 @@ const Timeline = ({shopdatas}) => {
                     open={isOpenDrawer}
                     onClose={() => handleCloseDrawer(false)}
                 >
-                    <div className={style.drawerContentPosition}> 
-                        <div>
-                            <TextField id="outlined-basic" label="Outlined" variant="outlined" className={style.searchFieldInput}/>
-                        </div>
-                        <Button onClick={searchTag}>たぐけんさく</Button>
-                        <div className={style.cardPosition}>
-                            <div className={style.card}>
-                                <h2>予算</h2>
-                                <div>
-                                    <ui className={style.lists}>
-                                        {budjetList.map((budjet) => (
-                                            <li key={budjet} >
-                                                {
-                                                    (budjet === currentBudjet) ? (
-                                                        <div 
-                                                            className={style.currentTag}
-                                                            onClick={() => selectBudjetClear()}
-                                                        >
-                                                            ＃{budjet}円
-                                                        </div>
-                                                    ) : (  
-                                                        <div 
-                                                            className={style.anotherTag} 
-                                                            onClick={() => selectCurrentBudjet(budjet)}
-                                                        >
-                                                            #{budjet}円
-                                                        </div>
-                                                    )
-                                                }
-                                            </li>   
-                                        ))}
-                                    </ui>
-                                </div>
-                            </div>
-                            <div className={style.card}>
-                                <h2>人数</h2>
-                                <div>
-                                    <ui className={style.lists}>
-                                        {numberOfPeopleList.map((numberOfPeople) => (
-                                            <li key={numberOfPeople}>
-                                                {
-                                                    (numberOfPeople === currentNumberOfPeople) ? (
-                                                        <div 
-                                                            className={style.currentTag}
-                                                            onClick={() => selectNumberOfPeopleClear()}
-                                                        >
-                                                            ＃{numberOfPeople}人
-                                                        </div>
-                                                    ) : (  
-                                                        <div 
-                                                            className={style.anotherTag} 
-                                                            onClick={() => selectCurrentNumberOfPeople(numberOfPeople)}
-                                                        >
-                                                            #{numberOfPeople}人
-                                                        </div>
-                                                    )
-                                                }
-                                            </li>  
-                                        ))}
-                                    </ui>
-                                </div>
-                            </div>
-                            <div className={style.card}>
-                                <h2>ジャンル</h2>
-                                <div>
-                                    <ui className={style.lists}>
-                                        {genreList.map((genre) => (
-                                            <li key={genre}>
-                                                {
-                                                    (genre === currentGenre) ? (
-                                                        <div 
-                                                            className={style.currentTag}
-                                                            onClick={() => selectGenreClear()}
-                                                        >
-                                                            ＃{genre}
-                                                        </div>
-                                                    ) : (  
-                                                        <div 
-                                                            className={style.anotherTag} 
-                                                            onClick={() => selectCurrentGenre(genre)}
-                                                        >
-                                                            #{genre}
-                                                        </div>
-                                                    )
-                                                }
-                                            </li>  
-                                        ))}
-                                    </ui>
-                                </div>
-                            </div>
-                            <div className={style.card}>
-                                <h2>利用目的</h2>
-                                <div>
-                                    <ui className={style.lists}>
-                                        {purposeList.map((purpose) => (
-                                            <li key={purpose}>
-                                                {
-                                                    (purpose === currentPurpose) ? (
-                                                        <div 
-                                                            className={style.currentTag}
-                                                            onClick={() => selectPurposeClear()}
-                                                        >
-                                                            ＃{purpose}
-                                                        </div>
-                                                    ) : (  
-                                                        <div 
-                                                            className={style.anotherTag} 
-                                                            onClick={() => selectCurrentPurpose(purpose)}
-                                                        >
-                                                            #{purpose}
-                                                        </div>
-                                                    )
-                                                }
-                                            </li>
-                                        ))}
-                                    </ui>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={style.drawerCloseButton} onClick={() => handleCloseDrawer(false)}>閉じる↑</div>
-                    </div>
+                    <DrawerContent
+                        searchTag={searchTag}
+                        budjetList={budjetList}
+                        currentBudjet={currentBudjet}
+                        selectBudjetClear={selectBudjetClear}
+                        selectCurrentBudjet={selectCurrentBudjet}
+                        numberOfPeopleList={numberOfPeopleList}
+                        currentNumberOfPeople={currentNumberOfPeople}
+                        selectNumberOfPeopleClear={selectNumberOfPeopleClear}
+                        selectCurrentNumberOfPeople={selectCurrentNumberOfPeople}
+                        genreList={genreList}
+                        currentGenre={currentGenre}
+                        selectGenreClear={selectGenreClear}
+                        selectCurrentGenre={selectCurrentGenre}
+                        purposeList={purposeList}
+                        currentPurpose={currentPurpose}
+                        selectPurposeClear={selectPurposeClear}
+                        selectCurrentPurpose={selectCurrentPurpose}
+                        handleCloseDrawer={handleCloseDrawer}
+                    />
                 </Drawer>
                 <form onSubmit={handlerOnSubmitSearch}>
                     <InputBase 
