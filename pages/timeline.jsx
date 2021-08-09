@@ -11,17 +11,32 @@ import { useState, useEffect, useCallback } from 'react';
 export async function getStaticProps(context) {
     const res = await fetch("http://localhost:3000/api/shopdatas");
     const json = await res.json();
+
+    const res_pict = await fetch("http://localhost:3000/api/picturedatas");
+    const json_pict = await res_pict.json();
+
+    const res_pln= await fetch("http://localhost:3000/api/plandatas");
+    const json_pln=await res_pln.json();
+    const res_cmnt = await fetch("http://localhost:3000/api/commentdatas");
+    const json_cmnt = await res_cmnt.json();
+
     return {
       props: {
         shopdatas: json,
+        picturedatas: json_pict,
+        plandatas: json_pln,
+        commentdatas:json_cmnt,
       },
     };
 }
 
-const Timeline = ({shopdatas}) => {
+const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     const [keyword, setKeyword] = useState('');
     const [shops, updateShops] = useState(shopdatas);
-    const shoplist = JSON.parse(JSON.stringify(shopdatas));
+    
+    const planlist= JSON.parse(JSON.stringify(plandatas));
+    const commentlist=JSON.parse(JSON.stringify(commentdatas));
+    const picturelist = JSON.parse(JSON.stringify(picturedatas));
 
     const [currentBudjet, setcurrentBudjet] = useState();
     const [currentNumberOfPeople, setcurrentNumberOfPeople] = useState();
@@ -111,7 +126,7 @@ const Timeline = ({shopdatas}) => {
     
     return (
         <div className= {style.timeline}>
-            <h1>Dlink</h1>
+            <h1>DLink</h1>
             <div className={style.searchField}>
                 <Drawer
                     anchor="top"
@@ -149,15 +164,33 @@ const Timeline = ({shopdatas}) => {
                     <Button onClick={handleOpenDrawer}>タグ検索</Button>
                 </form>
             </div>
-            {shops.map((shopdata) => (
+
+            {shops.map((shopdata) => {
+
+                const pln=planlist.filter(v=>v.shopID==shopdata._id);
+                const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
+                const pict = picturelist.filter(v=>v.shopId==shopdata._id);
+                
                 <div key={shopdata.name} className={style.post}>
                     <Post 
                         name={shopdata.name}
                         genre={shopdata.tag.genre}
                         purpose={shopdata.tag.purpose}
+                        open={shopdata.open}
+                        park={shopdata.park}
+                        payments={shopdata.payment}
+                        seatTypes={shopdata.seatType}
+                        notSmokingSeat={shopdata.notSmokingSeat}
+                        phoneNumber={shopdata.phoneNumber}
+                        adress={shopdata.adress}
+                        menu={shopdata.menu}
+                        plan={pln}
+                        comment={cmnt}
+                        pictures={pict}
                     />
                 </div>
-            ))}
+                })}
+
         </div>
     );
 }
