@@ -171,7 +171,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                 const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
                 const pict = picturelist.filter(v=>v.shopId==shopdata._id);
                 
-                <div key={shopdata.name} className={style.post}>
+                return <div key={shopdata.name} className={style.post}>
                     <Post 
                         name={shopdata.name}
                         genre={shopdata.tag.genre}
