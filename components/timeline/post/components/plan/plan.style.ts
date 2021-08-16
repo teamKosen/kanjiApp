@@ -1,7 +1,11 @@
 import { makeStyles } from "@material-ui/core";
 
+type Props={
+    menu:any;
+};
+
 export const useStyles = makeStyles((theme) => ({
-    menu :{
+    detail_plan :{
         width: "45%",
     },
     
@@ -9,7 +13,7 @@ export const useStyles = makeStyles((theme) => ({
       marginLeft: "30px",
     },
     
-    contents:{
+    plan :{
       backgroundColor: "rgba(253, 255, 130, 0.755)",
       marginTop: "10px",
       marginBottom: "20px",
