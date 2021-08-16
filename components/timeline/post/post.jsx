@@ -3,7 +3,7 @@ import LocalBarIcon from '@material-ui/icons/LocalBar';
 import React, { useCallback, useState } from 'react';
 import { Button } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment.tsx';
-import { Shop_Detail } from './components/shop_detail/shop_detail';
+import { Shop_Detail } from './components/shop_detail/shop_detail.tsx';
 import { getStaticProps } from '../../../pages/timeline';
 import { Picture } from './components/picture/picture'
 import { Menu } from './components/menu/menu.tsx';
