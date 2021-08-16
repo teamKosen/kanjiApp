@@ -8,7 +8,7 @@ import { getStaticProps } from '../../../pages/timeline';
 import { Picture } from './components/picture/picture'
 import { Menu } from './components/menu/menu';
 import {Plan} from './components/plan/plan';
-import { Map } from './components/map/map';
+import { Map } from './components/map/map.tsx';
 
 export const Post = (props) => {
     const { pictures,name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress,plan,comment,menu } = props;
