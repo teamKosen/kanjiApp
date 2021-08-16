@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment.tsx';
 import { Shop_Detail } from './components/shop_detail/shop_detail.tsx';
 import { getStaticProps } from '../../../pages/timeline';
-import { Picture } from './components/picture/picture'
+import { Picture } from './components/picture/picture.tsx'
 import { Menu } from './components/menu/menu.tsx';
 import {Plan} from './components/plan/plan.tsx';
 import { Map } from './components/map/map.tsx';
