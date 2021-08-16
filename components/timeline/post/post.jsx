@@ -6,8 +6,8 @@ import { UserComment } from './components/user-comment/user-comment.tsx';
 import { Shop_Detail } from './components/shop_detail/shop_detail';
 import { getStaticProps } from '../../../pages/timeline';
 import { Picture } from './components/picture/picture'
-import { Menu } from './components/menu/menu';
-import {Plan} from './components/plan/plan';
+import { Menu } from './components/menu/menu.tsx';
+import {Plan} from './components/plan/plan.tsx';
 import { Map } from './components/map/map.tsx';
 
 export const Post = (props) => {
