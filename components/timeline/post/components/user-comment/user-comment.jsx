@@ -8,8 +8,8 @@ export const UserComment = (props) => {
             <div className={style.comment}>
             {comment.map((commentdata) =>{ 
                 /* const cmnt=commentlist.find((v)=>v._id==shopdata._id); */
-                return  <div>
-                    <h3><u>{commentdata.name}さんのコメント</u></h3>
+                return  <div key={commentdata.name}>
+                    <h3><u >{commentdata.name}さんのコメント</u></h3>
                     <p>{commentdata.comment}</p>
                 </div>
                  })}
