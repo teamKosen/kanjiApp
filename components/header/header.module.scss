@@ -1,0 +1,35 @@
+.header {
+    z-index: 600;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+}
+
+.logo {
+    cursor: pointer;
+}
+
+.headerContent {
+    display: flex;
+}
+
+.searchFieldInput {
+    margin: 8px;
+    width: 30%;
+    // width: 500px;
+}
+
+.headerLinks {
+    margin: 0 0 0 auto;
+}
+
+.insidePageLinks {
+    display: flex;
+    list-style: none;
+}
+
+.insidePageLink {
+    margin-right: 20px;
+}

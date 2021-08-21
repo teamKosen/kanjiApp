@@ -1,5 +1,5 @@
 import { TextField, Button } from '@material-ui/core';
-import { useStyles } from './drawer-content.style.ts';
+import { useStyles } from './drawer-content.style';
 import { FunctionComponent } from "react";
 
 type Props = {
