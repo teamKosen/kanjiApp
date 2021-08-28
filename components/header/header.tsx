@@ -83,7 +83,6 @@ export const Header:FunctionComponent = () => {
         mutate(null);
     };
 
-
     return (
         <header className={style.header}>
             <Drawer
@@ -127,21 +126,29 @@ export const Header:FunctionComponent = () => {
                 <Button onClick={handleOpenDrawer}>タグ検索</Button>
                 <div className={style.headerLinks}>
                     <ul className={style.insidePageLinks}>
-                        <li className={style.insidePageLink}>
-                            <Button variant="contained" color="primary">
-                                <Link　href="./signup">新規登録</Link>
-                            </Button>
-                        </li>
-                        <li className={style.insidePageLink}>
-                            <Button variant="outlined" color="primary">
-                                <Link href="./signin">ログイン</Link>
-                            </Button>
-                        </li>
-                        <li className={style.insidePageLink}>
-                            <Button variant="outlined" color="primary" onClick={handleLogout}>
-                                <Link href="./signin">ログアウト</Link>
-                            </Button>
-                        </li>
+                        {user ? (
+                            <>
+                                <li>{user.name}</li>
+                                <li className={style.insidePageLink}>
+                                    <Button variant="outlined" color="primary" onClick={handleLogout}>
+                                        <Link href="./signin">ログアウト</Link>
+                                    </Button>
+                                </li>
+                            </>
+                        ) :(
+                            <>
+                                <li className={style.insidePageLink}>
+                                    <Button variant="contained" color="primary">
+                                        <Link　href="./signup">新規登録</Link>
+                                    </Button>
+                                </li>
+                                <li className={style.insidePageLink}>
+                                    <Button variant="outlined" color="primary">
+                                        <Link href="./signin">ログイン</Link>
+                                    </Button>
+                                </li>
+                            </>
+                        )}
                     </ul>
                 </div>
             </div>
