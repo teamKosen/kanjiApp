@@ -129,6 +129,8 @@ export const Header:FunctionComponent = () => {
                         {user ? (
                             <>
                                 <li>{user.name}</li>
+                                <li>{user.userType}</li>
+                                {/* <li>{user._id}</li> */}
                                 <li className={style.insidePageLink}>
                                     <Button variant="outlined" color="primary" onClick={handleLogout}>
                                         <Link href="./signin">ログアウト</Link>

@@ -17,6 +17,7 @@ export const Signup = () => {
     const body = {
       email: e.currentTarget.email.value,
       name: e.currentTarget.name.value,
+      userType: e.currentTarget.userType.value,
       password: e.currentTarget.password.value,
     };
     const res = await fetch("/api/users", {
@@ -39,15 +40,23 @@ export const Signup = () => {
         <h2>Sign up</h2>
         <form onSubmit={handleSubmit}>
           {errorMsg ? <p style={{ color: "red" }}>{errorMsg}</p> : null}
-          <label htmlFor="name">
-            <input id="name" name="name" type="text" placeholder="Your name" />
-          </label>
           <label htmlFor="email">
             <input
               id="email"
               name="email"
               type="email"
               placeholder="Email address"
+            />
+          </label>
+          <label htmlFor="name">
+            <input id="name" name="name" type="text" placeholder="Your name" />
+          </label>
+          <label htmlFor="userType">
+            <input
+                id="userType"
+                type="text"
+                name="userType"
+                placeholder="幹事orshop"
             />
           </label>
           <label htmlFor="password">
