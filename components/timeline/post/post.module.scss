@@ -1,46 +1,47 @@
 .post {
-  padding: 5px;
-}
-
-.imgPosition {
+    padding: 5px;
+    z-index: 100;
+  }
+  
+  .imgPosition {
+      display: flex;
+  }
+    
+  .imgSize {
+    width: 120px;
+    height: 120px;
+    margin: 10px 10px;
+  }
+  
+  .nomalBottom {
     display: flex;
   }
   
-.imgSize {
-  width: 120px;
-  height: 120px;
-  margin: 10px 10px;
-}
-
-.nomalBottom {
-  display: flex;
-}
-
-.cardPosition {
-  display: flex; 
-  flex-wrap: wrap;
-}
-
-.good {
-  display: flex;
-}
-
-.drinkIcon {
-  margin: 0 10px 0 20px;
-}
-
-.shopdetailOpenButton {
-  margin: 0 0 0 auto;
-}
-
-.shopdetailOpenButton:hover {
-  cursor: pointer;
-}
-
-.shopdetailCloseButton {
-  text-align:right;
-}
-
-.shopdetailCloseButton:hover {
-  cursor: pointer;
-}
+  .cardPosition {
+    display: flex; 
+    flex-wrap: wrap;
+  }
+  
+  .good {
+    display: flex;
+  }
+  
+  .drinkIcon {
+    margin: 0 10px 0 20px;
+  }
+  
+  .shopdetailOpenButton {
+    margin: 0 0 0 auto;
+  }
+  
+  .shopdetailOpenButton:hover {
+    cursor: pointer;
+  }
+  
+  .shopdetailCloseButton {
+    text-align:right;
+  }
+  
+  .shopdetailCloseButton:hover {
+    cursor: pointer;
+  }

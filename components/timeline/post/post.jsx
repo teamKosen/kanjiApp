@@ -1,17 +1,20 @@
+  
 import style from './post.module.scss'
 import LocalBarIcon from '@material-ui/icons/LocalBar';
 import React, { useCallback, useState } from 'react';
 import { Button } from '@material-ui/core';
-import { UserComment } from './components/user-comment/user-comment.tsx';
-import { Shop_Detail } from './components/shop_detail/shop_detail.tsx';
+import { UserComment } from './components/user-comment/user-comment';
+import { Map } from './components/map/map';
+
+import { Shop_Detail } from './components/shop_detail/shop_detail';
 import { getStaticProps } from '../../../pages/timeline';
-import { Picture } from './components/picture/picture.tsx'
-import { Menu } from './components/menu/menu.tsx';
-import {Plan} from './components/plan/plan.tsx';
-import { Map } from './components/map/map.tsx';
+
+import { Menu } from './components/menu/menu';
+import {Plan} from './components/plan/plan';
+import { Picture } from './components/picture/picture'
 
 export const Post = (props) => {
-    const { pictures,name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress,plan,comment,menu } = props;
+    const { name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress,plan,comment,menu,pictures } = props;
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -47,12 +50,13 @@ export const Post = (props) => {
             { anchorEl ? 
                 <div>
                     <div className={style.cardPosition}>
-                         <UserComment comment={comment}/>
-                         <Plan plan={plan} />
-                         <Menu 
+
+                        <UserComment comment={comment}/>
+                        <Plan plan={plan} />
+                      　<Menu 
                             menu={menu}
                         />
-                        <Map />                        
+                        <Map />
                         <Shop_Detail
                             open={open}
                             park={park}

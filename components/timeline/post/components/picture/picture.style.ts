@@ -7,4 +7,7 @@ export const useStyles = makeStyles((theme) => ({
         marginTop: "10px",
         marginBottom: "10px",
     },
+    imgPosition :{
+        display: "flex",
+      },
 }));

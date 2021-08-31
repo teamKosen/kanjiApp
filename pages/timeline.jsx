@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch'
 import style from '../styles/timeline.module.scss'
 import { TextField } from '@material-ui/core';
 
-import { Post } from '../components/timeline/post/post.tsx';
+import { Post } from '../components/timeline/post/post';
 
 export async function getStaticProps(context) {
     const res = await fetch("http://localhost:3000/api/shopdatas");
