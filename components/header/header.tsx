@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { DrawerContent } from '../timeline/drawer-content/drawer-content';
+import { useUser } from '../../lib/hooks';
 
 export const Header:FunctionComponent = () => {
 
@@ -15,6 +16,8 @@ export const Header:FunctionComponent = () => {
     const [currentGenre, setcurrentGenre] = useState();
     const [currentPurpose, setcurrentPurpose] = useState();
     const [isOpenDrawer, setDrawerState] = useState(false);
+
+    const [user, { mutate }] = useUser();
 
     const budjetList = [1000,2000,3000,4000];
     const numberOfPeopleList = [2,4,6,8];
@@ -70,8 +73,15 @@ export const Header:FunctionComponent = () => {
             query: { apiUrl: apiUrl}
         });
         setDrawerState(false);
-    },[currentBudjet,currentGenre,currentNumberOfPeople,currentPurpose])
+    },[currentBudjet,currentGenre,currentNumberOfPeople,currentPurpose,router])
 
+    const handleLogout = async () => {
+        await fetch("/api/auth", {
+            method: "DELETE",
+        });
+        // set the user state to null
+        mutate(null);
+    };
 
     return (
         <header className={style.header}>
@@ -104,7 +114,7 @@ export const Header:FunctionComponent = () => {
             <div className={style.headerContent}>
                 <div className={style.logo}>
                     <Link href="./" >
-                        <Image src="/asset/Dlink(Black).png" width={160} height={70}/>
+                        <Image src="/asset/Dlink(Black).png" alt="ロゴ" width={160} height={70}/>
                     </Link>
                 </div>
                 <InputBase　
@@ -116,12 +126,31 @@ export const Header:FunctionComponent = () => {
                 <Button onClick={handleOpenDrawer}>タグ検索</Button>
                 <div className={style.headerLinks}>
                     <ul className={style.insidePageLinks}>
-                        <li className={style.insidePageLink}>
-                            <Button variant="contained" color="primary">新規登録</Button>
-                        </li>
-                        <li className={style.insidePageLink}>
-                            <Button variant="outlined" color="primary">ログイン</Button>
-                        </li>
+                        {user ? (
+                            <>
+                                <li>{user.name}</li>
+                                <li>{user.userType}</li>
+                                {/* <li>{user._id}</li> */}
+                                <li className={style.insidePageLink}>
+                                    <Button variant="outlined" color="primary" onClick={handleLogout}>
+                                        <Link href="./signin">ログアウト</Link>
+                                    </Button>
+                                </li>
+                            </>
+                        ) :(
+                            <>
+                                <li className={style.insidePageLink}>
+                                    <Button variant="contained" color="primary">
+                                        <Link　href="./signup">新規登録</Link>
+                                    </Button>
+                                </li>
+                                <li className={style.insidePageLink}>
+                                    <Button variant="outlined" color="primary">
+                                        <Link href="./signin">ログイン</Link>
+                                    </Button>
+                                </li>
+                            </>
+                        )}
                     </ul>
                 </div>
             </div>
