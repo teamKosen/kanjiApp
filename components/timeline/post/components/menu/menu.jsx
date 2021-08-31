@@ -10,7 +10,7 @@ export const Menu = (props) => {
                     <div key={category}>
                         <h3>{category.category}</h3>
                         {category.cuisine.map((cuisine) => (
-                            <div key={cuisine.name}>
+                            <div>
                                 {cuisine.name} {cuisine.price}円
                             </div>
                         ))}
