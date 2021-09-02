@@ -1,7 +1,28 @@
 import style from './shop_detail.module.scss';
+import { FunctionComponent } from "react";
 
-export const Shop_Detail = (props) => {
-    const {open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress} = props
+type Props = {
+    open:string[];
+    park:number;
+    payments:string[];
+    seatTypes:string[];
+    notSmokingSeat:string;
+    phoneNumber:string;
+    adress:string;
+};
+
+
+
+export const Shop_Detail:FunctionComponent<Props> = (props) => {
+    const {
+        open,
+        park,
+        payments,
+        seatTypes,
+        notSmokingSeat,
+        phoneNumber,
+        adress
+    } = props;
 
     return (
         <div className={style.shop_detail}>
