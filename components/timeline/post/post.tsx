@@ -8,9 +8,60 @@ import { getStaticProps } from '../../../pages/timeline';
 
 import { Menu } from './components/menu/menu';
 import {Plan} from './components/plan/plan';
+import { FunctionComponent } from 'react-transition-group/node_modules/@types/react';
 
-export const Post = (props) => {
-    const { name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress,plan,comment,menu } = props;
+type Props = {
+    name:string;
+    genre:string;
+    purpose:string;
+    open:string[];
+    park:number;
+    payments:string[];
+    seatTypes:string[];
+    notSmokingSeat:string;
+    phoneNumber:string;
+    adress:string;
+    plan:{
+        name:string;
+        tag:{
+            genre:string;
+            nemberOfPeople:number;
+            budjet:string;
+        };
+        shopID:string;
+    }[];
+    comment:{
+        comment:string;
+        name:string;
+        date:string;
+        userID:string;
+        shopID:string;
+    }[];
+    menu:{
+        category:string;
+        cuisine:{
+            name:string;
+            price:number;
+        }[];
+    }[];
+}
+
+export const Post:FunctionComponent<Props> = (props) => {
+    const {
+        name,
+        genre, 
+        purpose, 
+        open, 
+        park, 
+        payments, 
+        seatTypes, 
+        notSmokingSeat, 
+        phoneNumber, 
+        adress,
+        plan,
+        comment,
+        menu 
+    } = props;
 
     const [anchorEl, setAnchorEl] = useState(null);
 
