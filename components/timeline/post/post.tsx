@@ -63,7 +63,7 @@ export const Post:FunctionComponent<Props> = (props) => {
         menu 
     } = props;
 
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorEl, setAnchorEl] = useState<boolean>(false);
 
     const handleClick = useCallback(() => {
         setAnchorEl(true);
