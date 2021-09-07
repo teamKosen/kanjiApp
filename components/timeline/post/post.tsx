@@ -1,6 +1,6 @@
-import style from './post.module.scss'
+import style from './post.module.scss';
 import LocalBarIcon from '@material-ui/icons/LocalBar';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, FunctionComponent } from 'react';
 import { Button } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment';
 import { Shop_Detail } from './components/shop_detail/shop_detail';
@@ -8,7 +8,6 @@ import { getStaticProps } from '../../../pages/timeline';
 
 import { Menu } from './components/menu/menu';
 import {Plan} from './components/plan/plan';
-import { FunctionComponent } from 'react-transition-group/node_modules/@types/react';
 
 type Props = {
     name:string;
