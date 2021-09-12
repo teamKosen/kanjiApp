@@ -8,6 +8,9 @@ export const useStyles = makeStyles((theme) => ({
     detail_plan :{
         width: "45%",
     },
+
+    post: {
+    },
     
     title :{
       marginLeft: "30px",

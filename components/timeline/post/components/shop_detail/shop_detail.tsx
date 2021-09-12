@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import {useStyles} from './shop_detail.style.ts';
+import {useStyles} from './shop_detail.style';
 
 type Props={
     open:string[];
