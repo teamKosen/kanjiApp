@@ -10,25 +10,25 @@ import { useRouter } from 'next/router';
 
 export async function getStaticProps(context) {
 
-    const res = await fetch("http://localhost:3000/api/shopdatas");
-    const json = await res.json();
+    // const res = await fetch("http://localhost:3000/api/shopdatas");
+    // const json = await res.json();
 
-    const res_pict = await fetch("http://localhost:3000/api/picturedatas");
-    const json_pict = await res_pict.json();
+    // const res_pict = await fetch("http://localhost:3000/api/picturedatas");
+    // const json_pict = await res_pict.json();
 
-    const res_pln= await fetch("http://localhost:3000/api/plandatas");
-    const json_pln=await res_pln.json();
-    const res_cmnt = await fetch("http://localhost:3000/api/commentdatas");
-    const json_cmnt = await res_cmnt.json();
+    // const res_pln= await fetch("http://localhost:3000/api/plandatas");
+    // const json_pln=await res_pln.json();
+    // const res_cmnt = await fetch("http://localhost:3000/api/commentdatas");
+    // const json_cmnt = await res_cmnt.json();
 
-    return {
-      props: {
-        shopdatas: json,
-        picturedatas: json_pict,
-        plandatas: json_pln,
-        commentdatas:json_cmnt,
-      },
-    };
+    // return {
+    //   props: {
+    //     shopdatas: json,
+    //     picturedatas: json_pict,
+    //     plandatas: json_pln,
+    //     commentdatas:json_cmnt,
+    //   },
+    // };
 }
 
 const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
