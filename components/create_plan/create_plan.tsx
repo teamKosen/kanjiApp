@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useStyles } from "./create_plan.style";
+import TextFeild from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import { useUser } from "../../lib/hooks";
 
 export const Create_Plan = () => {
+    const style = useStyles();
     const [user, { mutate }] = useUser();
     const [errorMsg, setErrorMsg] = useState("");
 
@@ -12,7 +16,7 @@ export const Create_Plan = () => {
             tag: e.currentTarget.tag.value,
             place: e.currentTarget.place.value,
             people: e.currentTarget.people.value,
-            buget: e.currentTarget.buget.value,
+            budget: e.currentTarget.budget.value,
             open_date: e.currentTarget.open_date.value,
             deadline: e.currentTarget.deadline.value,
             comment: e.currentTarget.comment.value,
@@ -30,71 +34,38 @@ export const Create_Plan = () => {
             <h2>Create Plan</h2>
             <form onSubmit={handleSubmit}>
                 {errorMsg ? <p style={{color: "red"}}>{errorMsg}</p> : null}
-                <label htmlFor="title">
-                    <input
-                        id="title"
-                        name="title"
-                        type="title"
-                        placeholder="Plan Title"
-                    />
+                <label htmlFor="title" className={style.root}>
+                    <TextFeild id="title" name="title" type="text" placeholder="Plan Title"/>
                 </label>
-                <label htmlFor="tag">
-                    <input
-                        id="tag"
-                        name="tag"
-                        type="tag"
-                        placeholder="Tag"
-                    />
+                <br/>
+                <label htmlFor="tag" className={style.root}>
+                    <TextFeild id="tag" name="tag" type="text" placeholder="Tag"/>
                 </label>
-                <label htmlFor="place">
-                    <input
-                        id="place"
-                        name="place"
-                        type="place"
-                        placeholder="Place"
-                    />
+                <br/>
+                <label htmlFor="place" className={style.root}>
+                    <TextFeild id="place" name="place" type="text" placeholder="Place"/>
                 </label>
-                <label htmlFor="people">
-                    <input
-                        id="people"
-                        name="people"
-                        type="people"
-                        placeholder="People"
-                    />
+                <br/>
+                <label htmlFor="people" className={style.root}>
+                    <TextFeild id="people" name="people" type="Number" placeholder="People"/>
                 </label>
-                <label htmlFor="buget">
-                    <input
-                        id="buget"
-                        name="buget"
-                        type="buget"
-                        placeholder="Buget"
-                    />
+                <label htmlFor="budget" className={style.root}>
+                    <TextFeild id="budget" name="budget" type="Number" placeholder="Budget"/>
                 </label>
-                <label htmlFor="open_date">
-                    <input
-                        id="open_date"
-                        name="open_date"
-                        type="open_date"
-                        placeholder="Open Date"
-                    />
+                <br/>
+                <label htmlFor="open_date" className={style.root}>
+                    <TextFeild id="open_date" name="open_date" type="date" placeholder="Open Date"/>
                 </label>
-                <label htmlFor="deadline">
-                    <input
-                        id="deadline"
-                        name="deadline"
-                        type="deadline"
-                        placeholder="Deadline"
-                    />
+                <br/>
+                <label htmlFor="deadline" className={style.root}>
+                    <TextFeild id="deadline" name="deadline" type="date" placeholder="Deadline"/>
                 </label>
-                <label htmlFor="comment">
-                    <input
-                        id="comment"
-                        name="comment"
-                        type="comment"
-                        placeholder="Comment"
-                    />
+                <br/>
+                <label htmlFor="comment" className={style.root}>
+                    <TextFeild id="comment" name="comment" type="text" placeholder="Comment"/>
                 </label>
-                <button type="submit">confirm</button>
+                <br/>
+                <Button type="submit">confirm</Button>
             </form>
         </div>
     );
