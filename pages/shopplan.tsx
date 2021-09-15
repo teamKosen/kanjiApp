@@ -1,9 +1,7 @@
-
-import { Userplan } from "../components/userplan/userplan";
 import { NextPage } from "next";
 import fetch from 'isomorphic-unfetch'
-import {useStyles} from '../styles/shopplan.style'
 import {Shopplan} from "../components/shopplan/shopplan"
+import React from 'react';
 
 export async function getStaticProps(context) {
 
@@ -24,8 +22,13 @@ type Props={
 
 
 const Page:NextPage<Props> = (props) => {
-    const {userplandatas}=props;
-
+     const {userplandatas}=props;
+    React.useEffect(() => {
+        const jssStyles = document.querySelector('#jss-server-side');
+        if (jssStyles) {
+          jssStyles.parentElement?.removeChild(jssStyles);
+        }
+      }, []);
     return (
         <div style={{paddingTop: "50px"}}>
             <Shopplan

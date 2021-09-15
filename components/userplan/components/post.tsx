@@ -1,6 +1,6 @@
 import React, { useState, useEffect,FunctionComponent } from "react";
 import Router from "next/router";
-import {useStyles} from './userplan.style.ts';
+import {useStyles} from './up_post.style';
 
 type Props={
     plan:any;
