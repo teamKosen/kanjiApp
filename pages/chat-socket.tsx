@@ -1,13 +1,12 @@
 import { NextPage } from "next";
-import React, { useState, useEffect } from 'react'
-import  { Chat } from '../components/chat/chat';
+import React from 'react'
+import { Chat } from "../components/chat/chat";
 
 
 const Page:NextPage = () => {
     return (
         <>
-            <div　style={{paddingTop: "50px"}}>
-                <h1>チャット</h1>
+            <div　style={{paddingTop: "76px"}}>
                 <Chat />
             </div>
         </>
