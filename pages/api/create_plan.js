@@ -14,24 +14,32 @@ handler.post(async (req, res) => {
     title,
     tag,
     place,
-    people,
+    numberOfPeople,
     budget,
-    open_date,
-    deadline,
+    openDate,
+    openTime,
+    closeDate,
+    closeTime,
+    deadlineDate,
+    deadlineTime,
     comment,
   } = req.body;
 
-  if (!title || !tag || !place || !people || !budget || !open_date || !deadline ) {
+  if (!title || !tag || !place || !numberOfPeople || !budget || !openDate || !openTime || !closeDate || !closeTime || !deadlineDate || !deadlineTime ) {
     res.status(400).send("Missing field(s)");
     return;
   }
 
-  const numberOfPeople = Number(people);
-  const numberOfBudget = Number(budget);
+  const iPeople = Number(numberOfPeople);
+  const iBudget = Number(budget);
+
+  const open = openDate + " " + openTime;
+  const close = closeDate + " " + openTime;
+  const deadline = deadlineDate + " " + deadlineTime;
 
   const userplandatas = await req.db
     .collection("userplandatas")
-    .insertOne({ title, tag, place, numberOfPeople, numberOfBudget, open_date, deadline, comment })
+    .insertOne({ title, tag, place, numberOfPeople:iPeople, budget:iBudget, openTime:open, closeTime:close, deadlineTime:deadline, comment })
     .then(({ ops }) => ops[0]);
   req.logIn(userplandatas, (err) => {
     if (err) throw err;

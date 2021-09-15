@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useStyles } from "./create_plan.style";
-import TextFeild from "@material-ui/core/TextField";
+import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useUser } from "../../lib/hooks";
 
@@ -15,10 +15,14 @@ export const Create_Plan = () => {
             title: e.currentTarget.title.value,
             tag: e.currentTarget.tag.value,
             place: e.currentTarget.place.value,
-            people: e.currentTarget.people.value,
+            numberOfPeople: e.currentTarget.numberOfPeople.value,
             budget: e.currentTarget.budget.value,
-            open_date: e.currentTarget.open_date.value,
-            deadline: e.currentTarget.deadline.value,
+            openDate: e.currentTarget.openDate.value,
+            openTime: e.currentTarget.openTime.value,
+            closeDate: e.currentTarget.closeDate.value,
+            closeTime: e.currentTarget.closeTime.value,
+            deadlineDate: e.currentTarget.deadlineDate.value,
+            deadlineTime: e.currentTarget.deadlineTime.value,
             comment: e.currentTarget.comment.value,
         };
         const res = await fetch("api/create_plan", {
@@ -34,38 +38,76 @@ export const Create_Plan = () => {
             <h2>Create Plan</h2>
             <form onSubmit={handleSubmit}>
                 {errorMsg ? <p style={{color: "red"}}>{errorMsg}</p> : null}
+                プランタイトル:
                 <label htmlFor="title" className={style.root}>
-                    <TextFeild id="title" name="title" type="text" placeholder="Plan Title"/>
+                    <TextField id="title" name="title" type="text" placeholder="Plan Title"/>
                 </label>
+
                 <br/>
+
+                タグ:
                 <label htmlFor="tag" className={style.root}>
-                    <TextFeild id="tag" name="tag" type="text" placeholder="Tag"/>
+                    <TextField id="tag" name="tag" type="text" placeholder="Tag"/>
                 </label>
+                
                 <br/>
+                
+                場所:
                 <label htmlFor="place" className={style.root}>
-                    <TextFeild id="place" name="place" type="text" placeholder="Place"/>
+                    <TextField id="place" name="place" type="text" placeholder="Place"/>
                 </label>
+                
                 <br/>
-                <label htmlFor="people" className={style.root}>
-                    <TextFeild id="people" name="people" type="Number" placeholder="People"/>
+                
+                人数:
+                <label htmlFor="numberOfPeople" className={style.root}>
+                    <TextField id="numberOfPeople" name="numberOfPeople" type="Number" placeholder="Number of People"/>
                 </label>
+                予算:
                 <label htmlFor="budget" className={style.root}>
-                    <TextFeild id="budget" name="budget" type="Number" placeholder="Budget"/>
+                    <TextField id="budget" name="budget" type="Number" placeholder="Budget"/>
                 </label>
+                
                 <br/>
-                <label htmlFor="open_date" className={style.root}>
-                    <TextFeild id="open_date" name="open_date" type="date" placeholder="Open Date"/>
+                
+                開催日時:
+                <label htmlFor="openDate" className={style.root}>
+                    <TextField id="openDate" name="openDate" type="date" placeholder="Open Date"/>
                 </label>
-                <br/>
-                <label htmlFor="deadline" className={style.root}>
-                    <TextFeild id="deadline" name="deadline" type="date" placeholder="Deadline"/>
+                <label htmlFor="openTime" className={style.root}>
+                    <TextField id="openTime" name="openTime" type="time" placeholder="Open Time"/>
                 </label>
+                
                 <br/>
+                
+                終了日時:
+                <label htmlFor="closeDate" className={style.root}>
+                    <TextField id="closeDate" name="closeDate" type="date" placeholder="Close Date"/>
+                </label>
+                <label htmlFor="closeTime" className={style.root}>
+                    <TextField id="closeTime" name="closeTime" type="time" placeholder="Close Time"/>
+                </label>
+                
+                <br/>
+                
+                締切日時:
+                <label htmlFor="deadlineDate" className={style.root}>
+                    <TextField id="deadlineDate" name="deadlineDate" type="date" placeholder="Deadline Date"/>
+                </label>
+                <label htmlFor="deadlineTime" className={style.root}>
+                    <TextField id="deadlineTime" name="deadlineTime" type="time" placeholder="Deadline Time"/>
+                </label>
+                
+                <br/>
+                
+                コメント:
                 <label htmlFor="comment" className={style.root}>
-                    <TextFeild id="comment" name="comment" type="text" placeholder="Comment"/>
+                    <TextField id="comment" name="comment" type="text" placeholder="Comment"/>
                 </label>
+                
                 <br/>
-                <Button type="submit">confirm</Button>
+                
+                <Button type="submit">確定</Button>
             </form>
         </div>
     );
