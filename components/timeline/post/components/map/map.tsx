@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import {useStyles} from './map.style.ts';
+import {useStyles} from './map.style';
 
 export const Map = () => {
     const classes = useStyles();
