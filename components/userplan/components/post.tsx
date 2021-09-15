@@ -12,10 +12,16 @@ export const Post:FunctionComponent<Props> = (props) => {
     
     return(
         <div className={classes.plan}>
-            <p className={classes.title}><u>{plan.title}</u></p>
-            <p className={classes.numberOfPeople}>{plan.numberOfPeople}人</p>
-            <p className={classes.time}>{plan.openTime}～{plan.closeTime}</p>
-            <p className={classes.budget}>{plan.budget}</p>
+            <p className={classes.line}>
+                <span className={classes.title}><u>{plan.title}</u></span>
+            </p>
+            <p className={classes.line}>
+                <span className={classes.numberOfPeople}>{plan.numberOfPeople}人</span>
+                <span className={classes.time}>{plan.openTime}～{plan.closeTime}</span>
+            </p>
+            <p className={classes.line}>
+                <span className={classes.budget}>{plan.budget}</span>
+            </p>
         </div>
     );
 }

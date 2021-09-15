@@ -2,6 +2,9 @@ import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
 
+    name:{ 
+        
+    },
     line:{
         width:"100em",
         //display:"inline-block",
@@ -17,5 +20,10 @@ export const useStyles = makeStyles((theme) => ({
     itemr:{
         textAlign: "right",
         display:"inline-block",
+    },
+    plan:{
+        margin:"30px auto",
+        backgroundColor: "rgb(229, 237, 250)",
+        width:"40em",
     },
 }));

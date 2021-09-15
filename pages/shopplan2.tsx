@@ -29,3 +29,34 @@ const Page:NextPage=() => {
 };
 
 export default Page;
+
+// return (
+//   <>
+//       <div style={{paddingTop: "100px"}}>
+//           {user ? (
+//               <>
+//                   <p>{user.name}さんのプラン一覧</ p>
+
+//                   {planlist.map((plandata) => {
+
+//                   return(
+//                       <>
+//                       {plandata.userId===user._id ? (
+//                           <div key={plandata.title}>
+//                           <Link href="./" >
+//                               <a><Post plan={plandata}/></a>
+//                           </Link>
+//                           </div>):(
+//                               <></>
+//                           )}   
+//                       </>
+                      
+//                   )
+//                   })}
+//               </>
+//           ):(
+//               <p>ログインしてください</p>
+//           )}
+//       </div>
+//   </>
+// );
