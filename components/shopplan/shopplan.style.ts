@@ -2,26 +2,20 @@ import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
 
-    plan: {
-        marginTop:"10px",
-        marginBottom:"10px",
-        backgroundColor: "rgba(0,0,255, 0.5)",
+    line:{
+        width:"100em",
+        //display:"inline-block",
     },
-    title:{
-        
-    },
-    numberOfPeople:{
-        marginRight:"10px",
+    iteml:{
+        textAlign: "left",
         display:"inline-block",
     },
-    time:{
-        marginRight:"10px",
+    itemc:{
+        textAlign: "center",
         display:"inline-block",
     },
-    deadline:{
+    itemr:{
+        textAlign: "right",
         display:"inline-block",
-    },
-    budget:{
-
     },
 }));
