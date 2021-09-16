@@ -28,8 +28,38 @@
 .insidePageLinks {
     display: flex;
     list-style: none;
+    padding: 5px 0px;
 }
 
 .insidePageLink {
     margin-right: 20px;
 }
+
+.insideFunctionLinks {
+    display: flex;
+    list-style: none;
+    padding: 5px 0px;
+}
+
+.insideFunctionLink {
+    margin-right: 20px;
+}
+
+.insideFunctionLink::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    display: block;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-black);
+}
+
+.insideFunctionLink:hover::after{
+    content: '';
+    left: 0;
+    width: 100%;
+    transition: inherit;
+}
+
