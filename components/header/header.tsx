@@ -128,7 +128,28 @@ export const Header:FunctionComponent = () => {
                     <ul className={style.insidePageLinks}>
                         {user ? (
                             <>
-                                <li>{user.name}</li>
+                                <li className={style.insidePageLink}>
+                                    <ul className={style.insideFunctionLinks}>
+                                        <li className={style.insideFunctionLink}>
+                                            <Link href="/timeline">お店一覧</Link>
+                                        </li>
+                                        { user.userType === "幹事" ? (
+                                            <>
+                                                <li className={style.insideFunctionLink}>
+                                                <Link href="/userplan">自分のプラン一覧</Link>
+                                                </li>
+                                                <li className={style.insideFunctionLink}>
+                                                    <Link href="./">飲み会プランを作成</Link>
+                                                </li>
+                                            </>
+                                        ) : (
+                                            <li className={style.insideFunctionLink}>
+                                                <Link href="/shopplan">投稿プラン一覧</Link>
+                                            </li>
+                                        )}
+                                        <li className={style.insideFunctionLink}>{user.name}</li>
+                                    </ul>
+                                </li>
                                 <li className={style.insidePageLink}>
                                     <Button variant="outlined" color="primary" onClick={handleLogout}>
                                         <Link href="./signin">ログアウト</Link>
@@ -137,6 +158,13 @@ export const Header:FunctionComponent = () => {
                             </>
                         ) :(
                             <>
+                                <li className={style.insidePageLink}>
+                                    <ul className={style.insideFunctionLinks}>
+                                        <li className={style.insideFunctionLink}>
+                                            <Link href="/timeline">お店一覧</Link>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li className={style.insidePageLink}>
                                     <Button variant="contained" color="primary">
                                         <Link　href="./signup">新規登録</Link>
