@@ -1,8 +1,8 @@
 import { useStyles } from "./offer-tab.style";
-import React, { useState, useEffect,FunctionComponent, useCallback } from 'react'
+import React, { FunctionComponent } from 'react'
 import { Card, CardContent, CardActions, Button,Typography,CardMedia } from "@material-ui/core";
 
-export const OfferTab = () => {
+export const OfferTab:FunctionComponent = () => {
     const classes = useStyles();
     return (
         <div className = {classes.offerTab}>
