@@ -2,7 +2,9 @@ import style from './chat-tab.module.scss';
 import React, { useState, useEffect,FunctionComponent, useCallback } from 'react'
 import io from 'socket.io-client'
 import dayjs from 'dayjs'
-import { Container, Button, InputBase, Box, Avatar, Paper, Typography } from '@material-ui/core'
+import { Container, Button, InputBase, Box, Chip } from '@material-ui/core'
+import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
+import { InsertEmoticon } from '@material-ui/icons';
 import { Send } from '@material-ui/icons'
 import { useUser } from '../../../../lib/hooks';
 
@@ -19,14 +21,25 @@ export const ChatTab:FunctionComponent = () => {
     const [user, { mutate }] = useUser();
 
     const [newChat, setNewChat] = useState<ChatType>({
-        userName: '',
-        message: '',
+        userName: 'Dlink運営',
+        message: '気軽にオファーして見ましょう！',
         datetime: '',
     })
     const [chats, setChats] = useState<ChatType[]>([])
 
     const [userName, setUserName] = useState<string>('')
     const [message, setMessage] = useState<string>('')
+
+    const templateMessages = {
+        shop: {
+            casual: "はじめまして！お客様の投稿をお見受けしぜひ当店をご利用していただけないかと考えご連絡させていただきました！",
+            coupon: "当店では様々なプランをご用意できます！さらにお客様限定特別クーポンなども発行させていただくことが可能です！！",
+        },
+        secretary: {
+            casual: "こんいちは！メッセージありがとうございます。とても気に入ったのでぜひ飲み会の会場として検討させていただきます。予約する際は追って連絡差し上げます。",
+            coupon: "ご連絡ありがとうございます！半額割引などのクーポンなどは発行していただくことは可能でしょうか？"
+        }
+    }
 
     useEffect(() => {
         if(user){
@@ -79,11 +92,15 @@ export const ChatTab:FunctionComponent = () => {
         console.log(chats);
         setMessage('')
     }
+
+    const setTemplateMessage = (message) => {
+        setMessage(message);
+    };
     
     return (
         <>
             <div className={style.chatForm}>
-                <h3>本番</h3>
+                <h3>お店からのメッセージ</h3>
                 <div>
                     {chats.map((chat, index) => {
                         return (
@@ -119,6 +136,53 @@ export const ChatTab:FunctionComponent = () => {
                         );
                     })}
                 </div>
+            <div>
+                {user ? (
+                    <div>
+                        { user.userType === "幹事" ? (
+                            <div>
+                                <div className={style.chatSuggestMessages}>
+                                    <div className={style.chatSuggestMessage}>テンプレート:</div>
+                                    <Chip 
+                                        icon={<InsertEmoticon  />}
+                                        label="お店にあいさつ"
+                                        onClick={() => setTemplateMessage(templateMessages.secretary.casual)} 
+                                        className={style.chatSuggestMessage}
+                                    />
+                                    <Chip 
+                                        icon={<ConfirmationNumberIcon/>}
+                                        label="クーポンをお願いする" 
+                                        color="primary"
+                                        onClick={() => setTemplateMessage(templateMessages.secretary.coupon)}  
+                                        className={style.chatSuggestMessage}
+                                    />
+                                </div>
+                            </div>
+                        ) : (
+                            <div>
+                                <div className={style.chatSuggestMessages}>
+                                    <div className={style.chatSuggestMessage}>テンプレート:</div>
+                                    <Chip 
+                                        icon={<InsertEmoticon  />}
+                                        label="カジュアルあいさつ"
+                                        onClick={() => setTemplateMessage(templateMessages.shop.casual)} 
+                                        className={style.chatSuggestMessage}
+                                    />
+                                    <Chip 
+                                        icon={<ConfirmationNumberIcon/>}
+                                        label="クーポン提案" 
+                                        color="primary"
+                                        onClick={() => setTemplateMessage(templateMessages.shop.coupon)}  
+                                        className={style.chatSuggestMessage}
+                                    />
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    <div></div>
+                )}
+            </div>
             </div>
             <Container maxWidth="sm" >
                 <Box height="100vh" display="flex" flexDirection="column">

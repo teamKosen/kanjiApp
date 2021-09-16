@@ -4,6 +4,17 @@
     width: 500px;
 }
 
+.chatSuggestMessages {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.chatSuggestMessage {
+    margin: 3px;
+    padding: 3px 0px;
+}
+
 .kaiwaImgLeft {
     width: 14%;
     display: inline-block;
