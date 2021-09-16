@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import React from 'react'
-import { Chat } from "../components/chat/chat";
+import { Chat } from "../components/chat-test/chat";
 
 
 const Page:NextPage = () => {

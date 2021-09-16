@@ -41,7 +41,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
 
             return(
                 <div key={plandata.title} className={classes.plan}>
-                    <Link href="./" >
+                    <Link href={`/negotiation/${plandata._id}`} >
                         <a><Post plan={plandata}/></a>
                     </Link>
                 </div>

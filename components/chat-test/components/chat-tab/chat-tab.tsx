@@ -23,7 +23,13 @@ export const ChatTab:FunctionComponent = () => {
         message: '',
         datetime: '',
     })
-    const [chats, setChats] = useState<ChatType[]>([])
+    const [chats, setChats] = useState<ChatType[]>([
+        {
+        userName: 'TEST BOT',
+        message: 'Hello World',
+        datetime: '2020-09-01 12:00:00',
+        }
+    ])
 
     const [userName, setUserName] = useState<string>('')
     const [message, setMessage] = useState<string>('')
@@ -63,7 +69,7 @@ export const ChatTab:FunctionComponent = () => {
 
     const handleSubmit = async () => {
         const datetime = dayjs().format('YYYY-MM-DD HH:mm:ss')
-        await fetch("http://localhost:3000/chat-socket", {
+        await fetch(location.href, {
             method: 'POST',
             mode: 'cors',
             headers: {

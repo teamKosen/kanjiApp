@@ -7,6 +7,14 @@ import { TabPanel } from "./components/tabPanel/tabPanel"
 export const Chat:FunctionComponent = () => {
     const [value, setValue] = useState(0);
 
+
+    // const a11yProps = useCallback((index) => {
+    //     return {
+    //         id: `simple-tab-${index}`,
+    //         'aria-controls': `simple-tabpanel-${index}`,
+    //       };
+    // },[]);
+
     const a11yProps = (index) => {
         console.log(index);
         return {
