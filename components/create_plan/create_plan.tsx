@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useStyles } from "./create_plan.style";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Tag from "./components/tag";
 import { useUser } from "../../lib/hooks";
 
 export const Create_Plan = () => {
     const style = useStyles();
     const [user, { mutate }] = useUser();
     const [errorMsg, setErrorMsg] = useState("");
+    const [tag, setTags] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const body = {
             title: e.currentTarget.title.value,
-            tag: e.currentTarget.tag.value,
+            tag: tag,
             place: e.currentTarget.place.value,
             numberOfPeople: e.currentTarget.numberOfPeople.value,
             budget: e.currentTarget.budget.value,
@@ -47,7 +49,7 @@ export const Create_Plan = () => {
 
                 タグ:
                 <label htmlFor="tag" className={style.root}>
-                    <TextField id="tag" name="tag" type="text" placeholder="Tag"/>
+                    <Tag setValue={setTags}/>
                 </label>
                 
                 <br/>

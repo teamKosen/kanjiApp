@@ -4,16 +4,15 @@ import TextField from '@material-ui/core/TextField';
 
 const filter = createFilterOptions();
 
-export default function TaskCreateForm(props) {
-  const [tags, setTags] = useState([]);
+export default function Tagyarn(props) {
+  const { setValue } = props;
 
   return (
     <div>
-      <br/><br/><br/><br/>
       <form noValidate autoComplete="off">
         <div>
           <Autocomplete
-            id="tags"
+            id="tag"
             size="small"
             options={[]}
             getOptionLabel={(option) => {
@@ -42,7 +41,7 @@ export default function TaskCreateForm(props) {
               }
               return filtered;
             }}
-            onChange={(e,v) => setTags(v.map(tag=>tag.title ? tag.title : tag))}
+            onChange={(e,v) => setValue(v.map(tag=>tag.title ? tag.title : tag))}
             renderInput={(params) => (
               <TextField
                 {...params}
