@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import {useStyles} from './menu.style.ts';
+import {useStyles} from './menu.style';
 
 type Props={
     menu:any;

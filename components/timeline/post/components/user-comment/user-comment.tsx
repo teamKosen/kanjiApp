@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import {useStyles} from './user-comment.style.ts';
+import {useStyles} from './user-comment.style';
 
 type Props={
     comment:any;

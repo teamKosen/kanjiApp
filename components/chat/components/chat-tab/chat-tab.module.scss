@@ -1,0 +1,110 @@
+.chatForm {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+
+.chatSuggestMessages {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.chatSuggestMessage {
+    margin: 3px;
+    padding: 3px 0px;
+}
+
+.kaiwaImgLeft {
+    width: 14%;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    text-align: right;
+    padding-top: 14px;
+}
+.kaiwaImgLeft img{
+    width: 100%;
+    max-width: 40px!important;
+    border-radius: 50%;
+}
+.kaiwaNameLeft{
+    font-size: small;
+    position: relative;
+    width: 62%;
+    display:inline-block;
+    vertical-align:  top;
+    margin-left: 4%;
+    margin-right: 18%;
+    margin-bottom: 10px;
+    box-sizing: border-box;}
+.kaiwaTextLeft{
+    display:inline-block; 
+    background-color: #e0edff;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: medium;
+}
+.kaiwaTextLeft:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 15px 7px 0;
+    border-color: transparent #e0edff transparent transparent;
+    top:30px;
+    left: -15px;
+}
+
+.kaiwaNameRight {
+    font-size: small;
+    position: relative;
+    width: 62%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 4%;
+    margin-left: 18%;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    text-align: right;
+}
+.kaiwaImgRight {
+    width: 14%;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    padding-top: 14px;
+    text-align: left;
+}
+.kaiwaImgRight img{
+    width: 100%;
+    max-width: 40px!important;
+    border-radius: 50%;
+} 
+.kaiwaImgRight p{
+    text-align: left;
+    padding:0px;
+    margin:0px;
+}
+.kaiwaTextRight{
+    display: inline-block;
+    text-align:left;
+    background-color: #ffeda5;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: medium;
+}
+.kaiwaTextRight:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 0 7px 15px;
+    border-color: transparent transparent transparent #ffeda5;
+    top: 30px;
+    right: -15px;
+}
