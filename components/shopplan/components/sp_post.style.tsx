@@ -11,7 +11,25 @@ export const useStyles = makeStyles((theme) => ({
         marginRight:"10px",
         fontSize:"18px",   
     },
-    deadline:{
+    deadlineWeek:{
+        display:"inline-block",
+        fontSize:"18px",
+    },
+    deadlineDay:{
+        display:"inline-block",
+        fontSize:"18px",
+    },
+    deadlineHour:{
+        display:"inline-block",
+        color:"red",
+        fontSize:"18px",
+    },
+    deadlineMinute:{
+        display:"inline-block",
+        color:"red",
+        fontSize:"18px",
+    },
+    deadlineSecond:{
         display:"inline-block",
         color:"red",
         fontSize:"18px",

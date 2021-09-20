@@ -18,24 +18,34 @@ export const useStyles = makeStyles((theme) => ({
         //display:"inline-block",
         margin:"10px 0",
     },
-    iteml:{
+    itemTag:{
         textAlign: "start",
         padding:"0 10px",
         //display:"inline-block",
     },
-    itemc:{
+    itemNumberOfPeople:{
         //textAlign: "center",
         padding:"0 10px",
         //display:"inline-block",
     },
-    itemr:{
+    itemPlace:{
         //textAlign: "right",
         padding:"0 10px",
         //display:"inline-block",
     },
-    itemr2:{
-        textAlign: "center",
-        //padding:"0 10px",
+    itemDate:{
+        textAlign: "start",
+        padding:"0 10px",
+        //display:"inline-block",
+    },
+    itemSort:{
+        //textAlign: "center",
+        padding:"0 10px",
+        //display:"inline-block",
+    },
+    itemButton:{
+        //textAlign: "right",
+        padding:"0 10px",
         //display:"inline-block",
     },
     plan:{

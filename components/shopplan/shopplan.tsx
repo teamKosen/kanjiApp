@@ -2,6 +2,7 @@ import {useStyles} from './shopplan.style'
 import {Post} from "./components/post"
 import React,{FunctionComponent } from "react";
 import Link from 'next/link';
+import { TextField, Button } from '@material-ui/core';
 
 type Props={
     userplandatas:JSON;
@@ -24,23 +25,24 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
             <p>絞り込み条件</ p>
 
             <div className={classes.line}>
-                <span className={classes.iteml}>タグ<input id="tag"></input></span>
-                <span className={classes.itemc}>人数<input id="numberOfPeople_min"></input>～<input id="numberOfPeople_max"></input></span>
-                <span className={classes.itemr}>場所<input id="place"></input></span>
+                <span className={classes.itemTag}>タグ<input id="tag"></input></span>
+                <span className={classes.itemNumberOfPeople}>人数<input id="numberOfPeople_min"></input>～<input id="numberOfPeople_max"></input></span>
+                <span className={classes.itemPlace}>場所<input id="place"></input></span>
             </div>
             <div className={classes.line}>
-                <span className={classes.iteml}>日付<input id="date"></input></span>
-                <span className={classes.itemr2}>ソート
+                <span className={classes.itemDate}>日付<input id="date"></input></span>
+                <span className={classes.itemSort}>ソート
                     <select>
                         <option>- - - - - - - -</option>
                     </select>
                 </span>
+                <Button className={classes.itemButton} >適用</Button>
             </div>
 
             {planlist.map((plandata) => {
 
             return(
-                <div key={plandata.title} className={classes.plan}>
+                <div key={plandata._id} className={classes.plan}>
                     <Link href={`/negotiation/${plandata._id}`} >
                         <a><Post plan={plandata}/></a>
                     </Link>
