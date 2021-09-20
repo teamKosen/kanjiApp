@@ -1,8 +1,9 @@
 import {useStyles} from './shopplan.style'
 import {Post} from "./components/post"
-import React,{FunctionComponent } from "react";
+import React,{FunctionComponent, useState, useCallback } from "react";
 import Link from 'next/link';
 import { TextField, Button } from '@material-ui/core';
+import { useRouter } from 'next/router';
 
 type Props={
     userplandatas:JSON;
@@ -19,6 +20,33 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
           jssStyles.parentElement?.removeChild(jssStyles);
         }
       }, []);
+      const [currentMonth, setcurrentMonth] = useState("");
+      const [currentDay, setcurrentDay] = useState("");
+      const router = useRouter();
+      const ApplyConditions = useCallback(() => {
+        const apiUrl = `http://localhost:3000/api/plansearch?month=${currentMonth}&day=${currentDay}`;
+        router.push({
+            pathname: "./shopplan",
+            query: { apiUrl: apiUrl}
+        });
+    },[currentMonth,currentDay,router])
+    
+    const months:any=[""];
+    var i:number;
+    for(i=1;i<=12;i++){
+        months.push(i);
+    }
+    const SelectCurrentMonth=async(e)=> {
+        setcurrentMonth(e.currentTarget.Month)
+    }
+    const days:any=[""];
+    for(i=1;i<=31;i++){
+        days.push(i);
+    }
+    const SelectCurrentDay=async(e)=> {
+        setcurrentDay(e.currentTarget.Day)
+    }
+
     return (
 
         <div className={classes.shopplan}>
@@ -30,13 +58,26 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                 <span className={classes.itemPlace}>場所<input id="place"></input></span>
             </div>
             <div className={classes.line}>
-                <span className={classes.itemDate}>日付<input id="date"></input></span>
+                <span className={classes.itemDate}>日付：
+                <select id="Month" value={currentMonth} onChange={SelectCurrentMonth}>
+                {days.map((month)=>{
+                        return <option key={month} value={month} >{month}</option>
+                    })}
+                </select>
+                月
+                <select id="Day" value={currentDay} onChange={SelectCurrentDay}>
+                {days.map((day)=>{
+                        return <option key={day} value={day} >{day}</option>
+                    })}
+                </select>
+                日
+                </span>
                 <span className={classes.itemSort}>ソート
-                    <select>
+                    <select id="Sort">
                         <option>- - - - - - - -</option>
                     </select>
                 </span>
-                <Button className={classes.itemButton} >適用</Button>
+                <Button className={classes.itemButton} onClick={ApplyConditions}>適用</Button>
             </div>
 
             {planlist.map((plandata) => {
