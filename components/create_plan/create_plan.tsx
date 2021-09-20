@@ -12,6 +12,7 @@ export const Create_Plan = () => {
     const [tag, setTags] = useState([]);
 
     const handleSubmit = async (e) => {
+        const today = new Date();
         e.preventDefault();
         const body = {
             title: e.currentTarget.title.value,
@@ -25,8 +26,12 @@ export const Create_Plan = () => {
             closeTime: e.currentTarget.closeTime.value,
             deadlineDate: e.currentTarget.deadlineDate.value,
             deadlineTime: e.currentTarget.deadlineTime.value,
+            create_at: today,
             comment: e.currentTarget.comment.value,
+            user: user,
         };
+        console.log(user);
+        console.log(mutate);
         const res = await fetch("api/create_plan", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
