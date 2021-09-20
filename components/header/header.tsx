@@ -139,7 +139,7 @@ export const Header:FunctionComponent = () => {
                                                 <Link href="/userplan">自分のプラン一覧</Link>
                                                 </li>
                                                 <li className={style.insideFunctionLink}>
-                                                    <Link href="./">飲み会プランを作成</Link>
+                                                    <Link href="./create_plan">飲み会プランを作成</Link>
                                                 </li>
                                             </>
                                         ) : (
