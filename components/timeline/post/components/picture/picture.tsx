@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import {useStyles} from './picture.style.ts';
+import {useStyles} from './picture.style';
 
 type Props={
     pictures:string;

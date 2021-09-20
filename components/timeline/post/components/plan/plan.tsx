@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import {useStyles} from './plan.style.ts';
+import {useStyles} from './plan.style';
 
 type Props={
     plan:any;

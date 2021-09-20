@@ -66,7 +66,6 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
         if (keyword === '') return
         const purpose = keyword;
         const request = async () => {
-        //   const res = await fetch("http://localhost:3000/api/testshopdatas?purpose=" + purpose)
           const res = await fetch(`http://localhost:3000/api/testshopdatas?purpose=${purpose}`)
           const shopdatas= await res.json()
           updateShops(shopdatas);

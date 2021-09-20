@@ -13,7 +13,7 @@ export const Signin:FunctionComponent = () => {
 
     useEffect(() => {
         // redirect to home if user is authenticated
-        if (user) router.replace("/");
+        if (user) router.replace("/timeline");
     }, [user,router]);
 
     async function onSubmit(e) {
