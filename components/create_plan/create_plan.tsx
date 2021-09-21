@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FunctionComponent } from "react";
+import Router from "next/router";
 import { useStyles } from "./create_plan.style";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -6,7 +7,7 @@ import Tag from "./components/tag";
 import { useUser } from "../../lib/hooks";
 import { InputAdornment, InputAdornmentProps, OutlinedInput } from "@material-ui/core";
 
-export const Create_Plan = () => {
+export const Create_Plan:FunctionComponent = () => {
     const style = useStyles();
     const [user, { mutate }] = useUser();
     const [errorMsg, setErrorMsg] = useState("");
