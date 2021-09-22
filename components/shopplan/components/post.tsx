@@ -32,8 +32,13 @@ export const Post:FunctionComponent<Props> = (props) => {
                 (<></>)}
             </p>
             <p className={classes.line}>
+                {plan.tag.map((tags)=>{
+                    return<span key={tags}　className={classes.tag}>#{tags}</span>
+                })}
+            </p>
+            <p className={classes.line}>
                 <span className={classes.numberOfPeople}>人数：{plan.numberOfPeople}人</span>
-                <span className={classes.time}>日時：{openTime.getMonth()}月{openTime.getDate()}日　{('00'+openTime.getHours()).slice(-2)}:{('00'+openTime.getMinutes()).slice(-2)}～{('00'+closeTime.getHours()).slice(-2)}:{('00'+closeTime.getMinutes()).slice(-2)}</span>
+                <span className={classes.time}>日時：{openTime.getMonth()+1}月{openTime.getDate()}日　{('00'+openTime.getHours()).slice(-2)}:{('00'+openTime.getMinutes()).slice(-2)}～{('00'+closeTime.getHours()).slice(-2)}:{('00'+closeTime.getMinutes()).slice(-2)}</span>
             </p>
             <p className={classes.line}>
                 <span className={classes.budget}>予算：～{plan.budget}円</span>

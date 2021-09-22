@@ -3,7 +3,6 @@ import {Post} from "./components/post"
 import React,{FunctionComponent, useState, useCallback } from "react";
 import Link from 'next/link';
 import { TextField, Button } from '@material-ui/core';
-import { useRouter } from 'next/router';
 
 type Props={
     userplandatas:JSON;
@@ -12,73 +11,52 @@ type Props={
 export const Shopplan:FunctionComponent<Props> = (props) => {
 
     const {userplandatas}=props;
-    const planlist=JSON.parse(JSON.stringify(userplandatas));
+    const planlist_pre=JSON.parse(JSON.stringify(userplandatas));
+    const [planlist,updatePlanlist]=useState(planlist_pre);
     const classes = useStyles();
+    const [openDate, setopenDate] = useState();
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles) {
           jssStyles.parentElement?.removeChild(jssStyles);
         }
       }, []);
-      const [currentMonth, setcurrentMonth] = useState("");
-      const [currentDay, setcurrentDay] = useState("");
-      const router = useRouter();
       const ApplyConditions = useCallback(() => {
-        const apiUrl = `http://localhost:3000/api/plansearch?month=${currentMonth}&day=${currentDay}`;
-        router.push({
-            pathname: "./shopplan",
-            query: { apiUrl: apiUrl}
-        });
-    },[currentMonth,currentDay,router])
-    
-    const months:any=[""];
-    var i:number;
-    for(i=1;i<=12;i++){
-        months.push(i);
+        const request = async () => {
+            const res = await fetch(`http://localhost:3000/api/plansearch?date=`+openDate);
+            const plandatas= await res.json()
+            updatePlanlist(plandatas);
+        }
+          request()
+        },[openDate])
+    const SelectOpenDate=async(e)=>{
+        setopenDate(e.target.value);
     }
-    const SelectCurrentMonth=async(e)=> {
-        setcurrentMonth(e.currentTarget.Month)
-    }
-    const days:any=[""];
-    for(i=1;i<=31;i++){
-        days.push(i);
-    }
-    const SelectCurrentDay=async(e)=> {
-        setcurrentDay(e.currentTarget.Day)
-    }
-
     return (
 
         <div className={classes.shopplan}>
             <p>絞り込み条件</ p>
-
+            {/* <form onSubmit={handleSubmit}> */}
             <div className={classes.line}>
-                <span className={classes.itemTag}>タグ<input id="tag"></input></span>
+                <span className={classes.itemTag} >タグ<TextField id="tag" type="text" className="inputTag"></TextField></span>
                 <span className={classes.itemNumberOfPeople}>人数<input id="numberOfPeople_min"></input>～<input id="numberOfPeople_max"></input></span>
                 <span className={classes.itemPlace}>場所<input id="place"></input></span>
             </div>
             <div className={classes.line}>
                 <span className={classes.itemDate}>日付：
-                <select id="Month" value={currentMonth} onChange={SelectCurrentMonth}>
-                {days.map((month)=>{
-                        return <option key={month} value={month} >{month}</option>
-                    })}
-                </select>
-                月
-                <select id="Day" value={currentDay} onChange={SelectCurrentDay}>
-                {days.map((day)=>{
-                        return <option key={day} value={day} >{day}</option>
-                    })}
-                </select>
-                日
+                <label htmlFor="openDate">
+                    <TextField id="opendate" name="opendate" type="date" value={openDate}onInput={SelectOpenDate}/>
+                </label>
                 </span>
-                <span className={classes.itemSort}>ソート
+                <span className={classes.itemSort}>ソート{openDate}
                     <select id="Sort">
                         <option>- - - - - - - -</option>
                     </select>
                 </span>
+                {/* <Button className={classes.itemButton} onClick={ApplyConditions}>適用</Button> */}
                 <Button className={classes.itemButton} onClick={ApplyConditions}>適用</Button>
             </div>
+            {/* </form> */}
 
             {planlist.map((plandata) => {
 

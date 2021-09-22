@@ -10,7 +10,7 @@ export const useStyles = makeStyles((theme) => ({
         width:"90%",
         margin:"0 auto",
         maxWidth:"1000px",
-        paddingTop:"30px",
+        paddingTop:"60px",
         //paddingLeft:"30px",
         whiteSpace: "nowrap",
     },
@@ -22,6 +22,12 @@ export const useStyles = makeStyles((theme) => ({
         textAlign: "start",
         padding:"0 10px",
         //display:"inline-block",
+    },
+    inputTag:{
+        // width:"200px",
+        // height:"30px",
+        label:"Filled",
+         variant:"filled",
     },
     itemNumberOfPeople:{
         //textAlign: "center",

@@ -35,9 +35,12 @@ handler.post(async (req, res) => {
   const iPeople = Number(numberOfPeople);
   const iBudget = Number(budget);
 
-  const open = openDate + " " + openTime;
-  const close = closeDate + " " + openTime;
-  const deadline = deadlineDate + " " + deadlineTime;
+  const open_str = openDate + " " + openTime;
+  const open=new Date(open_str);
+  const close_str = closeDate + " " + closeTime;
+  const close=new Date(close_str);
+  const deadline_str = deadlineDate + " " + deadlineTime;
+  const deadline=new Date(deadline_str);
 
   const userplandatas = await req.db
     .collection("userplandatas")

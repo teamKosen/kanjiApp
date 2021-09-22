@@ -34,6 +34,10 @@ export const useStyles = makeStyles((theme) => ({
         color:"red",
         fontSize:"18px",
     },
+    tag:{
+        marginRight:"10px",
+        display:"inline-block",
+    },
     numberOfPeople:{
         marginRight:"10px",
         display:"inline-block",

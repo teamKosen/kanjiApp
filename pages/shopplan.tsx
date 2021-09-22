@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import fetch from 'isomorphic-unfetch'
 import {Shopplan} from "../components/shopplan/shopplan"
-import React from 'react';
+import React from "react";
 
 export async function getStaticProps(context) {
 
@@ -22,7 +22,9 @@ type Props={
 
 
 const Page:NextPage<Props> = (props) => {
+
      const {userplandatas}=props;
+
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles) {
