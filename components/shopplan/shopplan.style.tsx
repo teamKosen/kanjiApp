@@ -1,11 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
-     //width: 80%;
-    // margin: 0 auto;
-    // max-width: 800px;
-    // z-index: 100;
-    // padding-top: 80px;
     shopplan:{
         width:"90%",
         margin:"0 auto",
@@ -13,6 +8,10 @@ export const useStyles = makeStyles((theme) => ({
         paddingTop:"60px",
         //paddingLeft:"30px",
         whiteSpace: "nowrap",
+    },
+    tops:{
+        fontWeight:"bold",
+        fontSize:"18px",
     },
     line:{
         //display:"inline-block",

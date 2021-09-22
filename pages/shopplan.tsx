@@ -32,7 +32,7 @@ const Page:NextPage<Props> = (props) => {
         }
       }, []);
     return (
-        <div style={{paddingTop: "50px"}}>
+        <div>
             <Shopplan
                 userplandatas={userplandatas}
             />

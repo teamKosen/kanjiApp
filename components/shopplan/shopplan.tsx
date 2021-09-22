@@ -15,12 +15,12 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const [planlist,updatePlanlist]=useState(planlist_pre);
     const classes = useStyles();
     const [openDate, setopenDate] = useState();
-    React.useEffect(() => {
-        const jssStyles = document.querySelector('#jss-server-side');
-        if (jssStyles) {
-          jssStyles.parentElement?.removeChild(jssStyles);
-        }
-      }, []);
+    // React.useEffect(() => {
+    //     const jssStyles = document.querySelector('#jss-server-side');
+    //     if (jssStyles) {
+    //       jssStyles.parentElement?.removeChild(jssStyles);
+    //     }
+    //   }, []);
       const ApplyConditions = useCallback(() => {
         const request = async () => {
             const res = await fetch(`http://localhost:3000/api/plansearch?date=`+openDate);
@@ -35,15 +35,15 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     return (
 
         <div className={classes.shopplan}>
-            <p>絞り込み条件</ p>
+            <p className={classes.tops}>絞り込み条件</ p>
             {/* <form onSubmit={handleSubmit}> */}
             <div className={classes.line}>
-                <span className={classes.itemTag} >タグ<TextField id="tag" type="text" className="inputTag"></TextField></span>
+                <span className={classes.itemTag}>タグ<TextField id="tag" type="text" className="inputTag"></TextField></span>
                 <span className={classes.itemNumberOfPeople}>人数<input id="numberOfPeople_min"></input>～<input id="numberOfPeople_max"></input></span>
                 <span className={classes.itemPlace}>場所<input id="place"></input></span>
             </div>
             <div className={classes.line}>
-                <span className={classes.itemDate}>日付：
+                <span className={classes.itemDate}>日付
                 <label htmlFor="openDate">
                     <TextField id="opendate" name="opendate" type="date" value={openDate}onInput={SelectOpenDate}/>
                 </label>
