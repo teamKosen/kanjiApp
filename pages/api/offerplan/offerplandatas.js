@@ -6,17 +6,10 @@ const handler = nextConnect();
 handler.use(middleware);
 
 handler.get(async (req, res) => {
+    const { userPlanId } = req.query;
 
-    let doc = await req.db.collection('offerplandatas').find({}).toArray();
+    let doc = await req.db.collection('offerplandatas').find({userPlanId: userPlanId}).toArray();
     res.json(doc);
 });
-
-// handler.post(async (req, res) => {
-//     let data = req.body;
-//     data = JSON.parse(data);
-//     data.date = new Date(data.date);
-//     let doc = await req.db.collection('daily').updateOne({date: new Date(data.date)}, {$set:data}, {upsert: true})
-//     res.json({message: 'ok'});
-// })
 
 export default handler;

@@ -2,58 +2,53 @@ import { useStyles } from "./offer-tab.style";
 import React, { FunctionComponent } from 'react'
 import { Card, CardContent, CardActions, Button,Typography,CardMedia } from "@material-ui/core";
 
-export const OfferTab:FunctionComponent = () => {
+type Props = {
+    userPlandatas: JSON;
+}
+
+export const OfferTab:FunctionComponent<Props> = (props) => {
+    const { userPlandatas } = props;
+    const userPlanlist = JSON.parse(JSON.stringify(userPlandatas));
     const classes = useStyles();
     return (
         <div className = {classes.offerTab}>
-            <Card className={classes.offer}>
-                <CardContent>
-                    <div>
-                        <div className={classes.offerTitle}>
-                            近江屋
-                        </div>
-                        <CardMedia 
-                            className={classes.offerImage}
-                            image="/asset/yos0023-054.jpg"
-                            title="shopimg"
-                        />
+            {userPlanlist.map((userPlandata) => {
+                 const openTime:Date = new Date(userPlandata.openTime);
+                 const closeTime:Date = new Date(userPlandata.closeTime);
+                 console.log(openTime);
+                return (
+                    <Card className={classes.offer} key={userPlandata._id}>
+                        <CardContent>
+                            <div>
+                                <div className={classes.offerTitle}>{userPlandata.shopname}</div>
+                                <ul className={classes.offerStatus}>
+                                    <li className={classes.offerStatusItem}>
+                                        <p>予算: {userPlandata.budjet}円</p>
+                                    </li>
+                                    <li className={classes.offerStatusItem}>
+                                        <p>人数: {userPlandata.numberOfPeople}人</p>
+                                    </li>
+                                    <li className={classes.offerStatusItem}>
+                                        <p>
+                                            日時：{openTime.getMonth() +1}月{openTime.getDate()}日　{('00'+openTime.getHours()).slice(-2)}:{('00'+openTime.getMinutes()).slice(-2)}～{('00'+closeTime.getHours()).slice(-2)}:{('00'+closeTime.getMinutes()).slice(-2)}
+                                        </p>
+                                    </li>
+                                </ul>
+                                <Typography variant="body2" color="textSecondary" component="p">{userPlandata.comment}</Typography>
+                                <CardActions>
+                                    <Button size="small" color="primary">
+                                        詳細をみる
+                                    </Button>
+                                    <Button size="small" color="primary">
+                                        断る
+                                    </Button>
+                                </CardActions>
 
-                        <ul className={classes.offerStatus}>
-                            <li className={classes.offerStatusItem}>
-                                <p>予算: 3000円</p>
-                            </li>
-                            <li className={classes.offerStatusItem}>
-                                <p>人数: 6人</p>
-                            </li>
-                            <li className={classes.offerStatusItem}>
-                                <p>日時: 9月15日 18時〜23時</p>
-                            </li>
-                        </ul>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            こんにちは！近江屋と申します。霜月殿の投稿を拝見しぜひとも我々のお店を紹介したくご連絡差し上げました。いろいろとプランを用意しているので是非とも参考にしていただきたいです。
-                        </Typography>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                                詳細をみる
-                            </Button>
-                            <Button size="small" color="primary">
-                                断る
-                            </Button>
-                        </CardActions>
-
-                    </div>
-                </CardContent>
-            </Card>
-            <Card className={classes.offer}>
-                <CardContent>
-                    <h3>池田屋</h3>
-                </CardContent>
-            </Card>
-            <Card className={classes.offer}>
-                <CardContent>
-                    <h3>寺田屋</h3>
-                </CardContent>
-            </Card>
+                            </div>
+                        </CardContent>
+                    </Card>
+                )
+            })}
         </div>
     );
 };

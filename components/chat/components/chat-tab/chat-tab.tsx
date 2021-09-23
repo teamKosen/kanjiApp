@@ -71,7 +71,6 @@ export const ChatTab:FunctionComponent = () => {
           setChats([ ...chats, newChat])
         }
         console.log(isConnected);
-        console.log(message);
     }, [newChat])
 
     const handleSubmit = async () => {
@@ -88,8 +87,6 @@ export const ChatTab:FunctionComponent = () => {
             datetime,
             })
         })
-        console.log(location.href);
-        console.log(chats);
         setMessage('')
     }
 

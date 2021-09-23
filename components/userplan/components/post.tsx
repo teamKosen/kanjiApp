@@ -13,6 +13,7 @@ export const Post:FunctionComponent<Props> = (props) => {
     const limit:number=Math.floor((deadline-today)/1000);
     const openTime:Date=new Date(plan.openTime);
     const closeTime:Date=new Date(plan.closeTime);
+
     return(
         <div className={classes.plan}>  
             <p className={classes.line}>
