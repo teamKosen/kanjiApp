@@ -3,7 +3,7 @@ import { NextPage } from "next";
 
 const Page:NextPage = () => {
     return(
-        <div style={{paddingTop: "50px"}}>
+        <div style={{paddingTop: "65px"}}>
             <Create_Plan />
         </div>
     );

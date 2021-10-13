@@ -51,7 +51,7 @@ export const DrawerContent:FunctionComponent<Props> = (props) => {
             <div>
                 <TextField id="outlined-basic" label="Outlined" variant="outlined" className={classes.searchFieldInput}/>
             </div>
-            <Button onClick={searchTag}>たぐけんさく</Button>
+            <Button onClick={searchTag}>タグ検索</Button>
             <div className={classes.cardPosition}>
                 <div className={classes.card}>
                     <h2>予算</h2>
