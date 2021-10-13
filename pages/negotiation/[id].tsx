@@ -16,14 +16,15 @@ const Page:NextPage<Props> = (props) => {
 }
 
 export const getStaticPaths = async () =>{
-    const res = await fetch("http://localhost:3000/api/offerplan/offerplanalldatas");
+    // const res = await fetch("http://localhost:3000/api/offerplan/offerplanalldatas");
+    const res = await fetch("http://localhost:3000/api/userplandatas");
     const json = await res.json();
 
-    const offerplanId = json.map((offerplan) => ({
-         params: { id: `${offerplan.userPlanId}` } 
+    const userplanId = json.map((userplan) => ({
+         params: { id: `${userplan._id}` } 
     }))
     return {
-        paths: offerplanId,
+        paths: userplanId,
         fallback: false
     }
 }
