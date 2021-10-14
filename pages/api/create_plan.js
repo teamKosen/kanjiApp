@@ -35,13 +35,17 @@ handler.post(async (req, res) => {
   const iPeople = Number(numberOfPeople);
   const iBudget = Number(budget);
 
-  const open = openDate + " " + openTime;
-  const close = closeDate + " " + openTime;
-  const deadline = deadlineDate + " " + deadlineTime;
+  const open_str = openDate + " " + openTime;
+  const open=new Date(open_str);
+  const close_str = closeDate + " " + closeTime;
+  const close=new Date(close_str);
+  const deadline_str = deadlineDate + " " + deadlineTime;
+  const deadline=new Date(deadline_str);
+  const create_at_date=new Date(create_at);
 
   const userplandatas = await req.db
     .collection("userplandatas")
-    .insertOne({ title, tag, place, numberOfPeople:iPeople, budget:iBudget, openTime:open, closeTime:close, deadlineTime:deadline, create_at, comment, userName:user.name, userID:user._id })
+    .insertOne({ title, tag, place, numberOfPeople:iPeople, budget:iBudget, openTime:open, closeTime:close, deadlineTime:deadline, create_at:create_at_date, comment, userName:user.name, userID:user._id })
     .then(({ ops }) => ops[0]);
   req.logIn(userplandatas, (err) => {
     if (err) throw err;

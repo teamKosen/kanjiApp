@@ -1,56 +1,47 @@
 import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
-     //width: 80%;
-    // margin: 0 auto;
-    // max-width: 800px;
-    // z-index: 100;
-    // padding-top: 80px;
-    shopplan:{
-        width:"90%",
-        margin:"0 auto",
-        maxWidth:"1000px",
-        paddingTop:"30px",
-        //paddingLeft:"30px",
-        whiteSpace: "nowrap",
+    tops:{
+        fontWeight:"bold",
+        fontSize:"18px",
     },
     line:{
-        //display:"inline-block",
-        margin:"10px 0",
+        whiteSpace:"nowrap",
+        paddingTop:"15px",
     },
-    itemTag:{
-        textAlign: "start",
-        padding:"0 10px",
-        //display:"inline-block",
-    },
-    itemNumberOfPeople:{
-        //textAlign: "center",
-        padding:"0 10px",
-        //display:"inline-block",
-    },
-    itemPlace:{
-        //textAlign: "right",
-        padding:"0 10px",
-        //display:"inline-block",
-    },
-    itemDate:{
-        textAlign: "start",
-        padding:"0 10px",
-        //display:"inline-block",
-    },
-    itemSort:{
-        //textAlign: "center",
-        padding:"0 10px",
-        //display:"inline-block",
+    line2:{
+        paddingTop:"15px",
+        whiteSpace:"nowrap",
     },
     itemButton:{
-        //textAlign: "right",
-        padding:"0 10px",
-        //display:"inline-block",
     },
     plan:{
-        margin:"30px auto",
-        backgroundColor: "rgb(229, 237, 250)",
-        width:"40em",
+        marginRight: "auto",
+        //marginLeft: "auto",
+        width: theme.spacing(60),
+        // backgroundColor: "green",
+        padding: theme.spacing(2, 5),
+        border: "solid 1px",
+        BorderColor: "black",
     },
+    planContent:{
+        marginBottom: theme.spacing(2),
+    },
+    root:{
+        width:"70%",
+        margin: "auto",
+      },
+      form:{
+        padding:"10px",
+      },
+      form2:{
+        padding:"0px",
+      },
+      space:{
+          pdding:"0px 10px"
+      },
+      button:{
+        paddingLeft:"200px",
+        textAlign:"left",
+      },
 }));

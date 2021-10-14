@@ -12,7 +12,6 @@ handler.get(async (req, res) => {
     const genreTag = { "tag.genre": genre};
     const purposeTag = {"tag.purpose": purpose};
     const numberOfPeopleTag = {"tag.numberOfPeople": Number(numberOfPeople)};
-
     let search = {};
 
     if (!isNaN(budjet)){
@@ -30,7 +29,6 @@ handler.get(async (req, res) => {
     if (!isNaN(numberOfPeople)){
         search = Object.assign(search,numberOfPeopleTag);
     }
-    
 //------最終的にこんなのを生成
     // const search = {
     //     "tag.budjet.max": Number(budjet),
@@ -38,7 +36,7 @@ handler.get(async (req, res) => {
     //     "tag.purpose": purpose,
     //     "tag.numberOfPeople": Number(numberOfPeople)
     // };
-
+    console.log(search);
     let doc = await req.db.collection('shopdatas').find(search).toArray();
     
     res.json(doc);

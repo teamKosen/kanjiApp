@@ -27,7 +27,8 @@ export const Userplan:FunctionComponent<Props> = (props) => {
                   return(
                       <>
                       {plandata.userID===user._id ? (
-                          <div key={plandata.title} className={classes.plan}>
+
+                          <div key={plandata._id} className={classes.plan}>
                             <Link href={`/negotiation/${plandata._id}`}>
                                 <a><Post plan={plandata}/></a>
                             </Link>

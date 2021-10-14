@@ -1,8 +1,9 @@
 import {useStyles} from './shopplan.style'
 import {Post} from "./components/post"
-import React,{FunctionComponent } from "react";
+import React,{FunctionComponent, useState, useCallback } from "react";
 import Link from 'next/link';
-import { TextField, Button } from '@material-ui/core';
+import Tag from "./components/tag";
+import { Card, CardContent,FormControl,InputLabel,Select,MenuItem,TextField, Button , InputAdornment, InputAdornmentProps, OutlinedInput } from '@material-ui/core';
 
 type Props={
     userplandatas:JSON;
@@ -11,46 +12,93 @@ type Props={
 export const Shopplan:FunctionComponent<Props> = (props) => {
 
     const {userplandatas}=props;
-    const planlist = JSON.parse(JSON.stringify(userplandatas));
+    const planlist_pre=JSON.parse(JSON.stringify(userplandatas));
+    const [planlist,updatePlanlist]=useState(planlist_pre);
     const classes = useStyles();
-
-    React.useEffect(() => {
-        const jssStyles = document.querySelector('#jss-server-side');
-        if (jssStyles) {
-          jssStyles.parentElement?.removeChild(jssStyles);
+    const [openDate, setopenDate] = useState();
+    const [maxNumberOfPeople,setmaxNumberOfPeople]=useState();
+    const [minNumberOfPeople,setminNumberOfPeople]=useState();
+    const [tag, setTags] = useState([]);
+    const [selectedSort,setSelectedSort]=useState(0);
+      const ApplyConditions = useCallback(() => {
+        const request = async () => {
+            const res = await fetch(`http://localhost:3000/api/plansearch?tag=${tag}&date=${openDate}&maxnumberofpeople=${maxNumberOfPeople}&minnumberofpeople=${minNumberOfPeople}`);
+            const plandatas= await res.json()
+            updatePlanlist(plandatas);
         }
-      }, []);
+          request()
+        },[openDate,minNumberOfPeople,maxNumberOfPeople,tag])
+    const SelectOpenDate=async(e)=>{
+        setopenDate(e.target.value);
+    }
+    const SelectMaxNumberOfPeople=async(e)=>{
+        setmaxNumberOfPeople(e.target.value);
+    }
+    const SelectMinNumberOfPeople=async(e)=>{
+        setminNumberOfPeople(e.target.value);
+    }
+    const SelectSort=async(e)=>{
+        setSelectedSort(e.target.value);
+    }
     return (
-
-        <div className={classes.shopplan}>
-            <p>絞り込み条件</ p>
-
+        <div style={{paddingTop:"60px",width:"80%",marginRight:"auto",marginLeft:"auto",}}>
+            <div style={{marginRight:"auto",marginLeft:"auto",}}>
+            <p className={classes.tops}>絞り込み条件</ p>
             <div className={classes.line}>
-                <span className={classes.itemTag}>タグ<input id="tag"></input></span>
-                <span className={classes.itemNumberOfPeople}>人数<input id="numberOfPeople_min"></input>～<input id="numberOfPeople_max"></input></span>
-                <span className={classes.itemPlace}>場所<input id="place"></input></span>
+                <label htmlFor="tag" className={classes.form}>
+                    <Tag setValue={setTags}/>
+                </label>
             </div>
             <div className={classes.line}>
-                <span className={classes.itemDate}>日付<input id="date"></input></span>
-                <span className={classes.itemSort}>ソート
-                    <select>
-                        <option>- - - - - - - -</option>
-                    </select>
+                <span className={classes.form}>
+                    <TextField id="numberOfPeople_min" InputProps={{ inputProps: { min: 1} }} onInput={SelectMinNumberOfPeople} value={minNumberOfPeople} style={{width:"11%"}} size="small" variant="outlined" name="numberOfPeople" type="Number" label="最低人数" />
+                    <TextField id="numberOfPeople_max" InputProps={{ inputProps: { min: 1} }} onInput={SelectMaxNumberOfPeople} value={maxNumberOfPeople} style={{width:"11%"}} size="small" variant="outlined" name="numberOfPeople" type="Number" label="最大人数"/></span>
+                <span className={classes.form}>
+                    <TextField id="place" type="text" label="場所" style={{width:"26%"}} size="small" variant="outlined" />
                 </span>
-                <Button className={classes.itemButton} >適用</Button>
             </div>
-
+            <div className={classes.line}>
+                <span className={classes.form}>
+                <label htmlFor="openDate">
+                    <TextField id="opendate" name="opendate" type="date" value={openDate} onInput={SelectOpenDate} label="日付" size="small" variant="outlined" InputLabelProps={{shrink: true}}/>
+                </label>
+                </span>
+            </div>
+            <div className={classes.line2}>
+                <span className={classes.form2}>
+                <InputLabel id="sortLabel">ソート条件</InputLabel>
+                <Select labelId="sortLabel" id="sort" value={selectedSort} onChange={SelectSort} label="ソート" style={{width:"20%"}}>
+                        <MenuItem value={1}>
+                            〆切が近い順
+                        </MenuItem>
+                        <MenuItem　value={2}>
+                            〆切が遠い順
+                        </MenuItem>
+                </Select>
+                </span>
+                <span className={classes.button}>
+                    <Button size="large" className={classes.itemButton} onClick={ApplyConditions} variant="contained" >適用</Button>
+                </span>
+            </div>
+            <div>
+                 <br/> 
+            </div>
+            </div>
+            {/* </form> */}
+            <div className={classes.plan}>
             {planlist.map((plandata) => {
-                return(
-                    <div key={plandata._id} className={classes.plan}>
-                        <Link href={`/negotiation/${plandata._id}`} >
-                            <a><Post plan={plandata}/></a>
-                        </Link>
-                    </div>
-                )
-            })}
-            
-        </div>
+                
+            return(
+                <Card key={plandata._id} className={classes.planContent}>
+                    <Link href={`/negotiation/${plandata._id}`} >
+                        <a><CardContent><Post plan={plandata}/></CardContent></a>
+                    </Link>
+                </Card>
+            )
 
+            })}
+            </div>
+        </div>
+        
     );
 };
