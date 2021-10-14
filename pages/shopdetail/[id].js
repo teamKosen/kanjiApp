@@ -1,8 +1,7 @@
 
 const Shopdetail = ({shopdata}) => {
-    console.log(shopdata);
     return (
-        <div>
+        <div style={{paddingTop: "100px"}}>
             <div>{shopdata.name}</div>
             <h1></h1>
         </div>

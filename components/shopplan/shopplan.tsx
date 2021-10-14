@@ -20,12 +20,6 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const [minNumberOfPeople,setminNumberOfPeople]=useState();
     const [tag, setTags] = useState([]);
     const [selectedSort,setSelectedSort]=useState(0);
-    // React.useEffect(() => {
-    //     const jssStyles = document.querySelector('#jss-server-side');
-    //     if (jssStyles) {
-    //       jssStyles.parentElement?.removeChild(jssStyles);
-    //     }
-    //   }, []);
       const ApplyConditions = useCallback(() => {
         const request = async () => {
             const res = await fetch(`http://localhost:3000/api/plansearch?tag=${tag}&date=${openDate}&maxnumberofpeople=${maxNumberOfPeople}&minnumberofpeople=${minNumberOfPeople}`);
@@ -50,11 +44,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
         <div style={{paddingTop:"60px",width:"80%",marginRight:"auto",marginLeft:"auto",}}>
             <div style={{marginRight:"auto",marginLeft:"auto",}}>
             <p className={classes.tops}>絞り込み条件</ p>
-            {/* <form onSubmit={handleSubmit}> */}
             <div className={classes.line}>
-                {/* <span className={classes.form}>
-                    <TextField id="tag" type="text" label="タグ" style={{width:"50%"}} size="small" variant="outlined" />
-                </span> */}
                 <label htmlFor="tag" className={classes.form}>
                     <Tag setValue={setTags}/>
                 </label>
@@ -97,7 +87,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
             {/* </form> */}
             <div className={classes.plan}>
             {planlist.map((plandata) => {
-
+                
             return(
                 <Card key={plandata._id} className={classes.planContent}>
                     <Link href={`/negotiation/${plandata._id}`} >
@@ -105,6 +95,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                     </Link>
                 </Card>
             )
+
             })}
             </div>
         </div>

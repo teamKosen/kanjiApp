@@ -8,8 +8,6 @@ export async function getStaticProps(context) {
     const res = await fetch("http://localhost:3000/api/userplandatas_kanji");
     const json = await res.json();
 
-    
-
     return {
       props: {
         userplandatas: json,

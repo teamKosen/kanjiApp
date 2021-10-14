@@ -7,9 +7,11 @@ type Props={
 export const useStyles = makeStyles((theme) => ({
     detail_plan :{
         width: "45%",
+        marginLeft: "20px",
     },
 
     post: {
+      padding: "4px",
     },
     
     title :{

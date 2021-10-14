@@ -49,13 +49,12 @@ export const Post = (props) => {
             { anchorEl ? 
                 <div>
                     <div className={style.cardPosition}>
-
                         <UserComment comment={comment}/>
-                        <Plan plan={plan} />
+                        <Plan plan={plan}/>
                       　<Menu 
                             menu={menu}
                         />
-                        <Map />
+                        {/* <Map /> */}
                         <Shop_Detail
                             open={open}
                             park={park}

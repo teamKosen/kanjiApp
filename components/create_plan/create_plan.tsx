@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FunctionComponent } from "react";
+import Router from "next/router";
 import { useStyles } from "./create_plan.style";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Tag from "./components/tag";
 import { useUser } from "../../lib/hooks";
+import { InputAdornment } from "@material-ui/core";
 
-export const Create_Plan = () => {
+export const Create_Plan:FunctionComponent = () => {
     const style = useStyles();
     const [user, { mutate }] = useUser();
     const [errorMsg, setErrorMsg] = useState("");
@@ -30,8 +32,6 @@ export const Create_Plan = () => {
             comment: e.currentTarget.comment.value,
             user: user,
         };
-        console.log(user);
-        console.log(mutate);
         const res = await fetch("api/create_plan", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -41,80 +41,52 @@ export const Create_Plan = () => {
     }
 
     return(
-        <div>
+        <div className={style.root}>
             <h2>Create Plan</h2>
             <form onSubmit={handleSubmit}>
                 {errorMsg ? <p style={{color: "red"}}>{errorMsg}</p> : null}
-                プランタイトル:
-                <label htmlFor="title" className={style.root}>
-                    <TextField id="title" name="title" type="text" placeholder="Plan Title"/>
-                </label>
+                <div className={style.form}>
+                    <TextField style={{width:"80%"}} size="small" variant="outlined" id="title" name="title" type="text" label="タイトル"/>
+                </div>
 
-                <br/>
+                <div className={style.form}>
+                    <Tag style={{width:"80%"}} size="small" variant="outlined" setValue={setTags}/>
+                </div>
 
-                タグ:
-                <label htmlFor="tag" className={style.root}>
-                    <Tag setValue={setTags}/>
-                </label>
+                <div className={style.form}>
+                    <TextField size="small" variant="outlined" id="place" name="place" type="text" label="場所"/>
+                </div> 
+
+                <div className={style.form}>
+                    <TextField size="small" variant="outlined" id="numberOfPeople" name="numberOfPeople" type="Number" label="人数" InputProps={{endAdornment:<InputAdornment position="end">人</InputAdornment>}}/>
+                    <TextField size="small" variant="outlined" id="budget" name="budget" type="Number" label="予算" InputProps={{endAdornment:<InputAdornment position="end">円</InputAdornment>}}/>
+                </div>
                 
-                <br/>
+                <div className={style.form}>
+                    <div style={{paddingBottom:"5px"}}>開催日時</div>
+                    <TextField label="日付" size="small" variant="outlined" id="openDate" name="openDate" type="date" InputLabelProps={{shrink: true}}/>
+                    <TextField label="時間" size="small" variant="outlined" id="openTime" name="openTime" type="time" InputLabelProps={{shrink: true}}/>
+                </div>
                 
-                場所:
-                <label htmlFor="place" className={style.root}>
-                    <TextField id="place" name="place" type="text" placeholder="Place"/>
-                </label>
+                <div className={style.form}>
+                    <div style={{paddingBottom:"5px"}}>終了日時</div>
+                    <TextField label="日付" size="small" variant="outlined" id="closeDate" name="closeDate" type="date" InputLabelProps={{shrink: true}}/>
+                    <TextField label="時間" size="small" variant="outlined" id="closeTime" name="closeTime" type="time" InputLabelProps={{shrink: true}}/>
+                </div>
                 
-                <br/>
+                <div className={style.form}>
+                    <div style={{paddingBottom:"5px"}}>締切日時</div>
+                    <TextField label="日付" size="small" variant="outlined" id="deadlineDate" name="deadlineDate" type="date" InputLabelProps={{shrink: true}}/>
+                    <TextField label="時間" size="small" variant="outlined" id="deadlineTime" name="deadlineTime" type="time" InputLabelProps={{shrink: true}}/>
+                </div>
                 
-                人数:
-                <label htmlFor="numberOfPeople" className={style.root}>
-                    <TextField id="numberOfPeople" name="numberOfPeople" type="Number" placeholder="Number of People"/>
-                </label>
-                予算:
-                <label htmlFor="budget" className={style.root}>
-                    <TextField id="budget" name="budget" type="Number" placeholder="Budget"/>
-                </label>
-                
-                <br/>
-                
-                開催日時:
-                <label htmlFor="openDate" className={style.root}>
-                    <TextField id="openDate" name="openDate" type="date" placeholder="Open Date"/>
-                </label>
-                <label htmlFor="openTime" className={style.root}>
-                    <TextField id="openTime" name="openTime" type="time" placeholder="Open Time"/>
-                </label>
-                
-                <br/>
-                
-                終了日時:
-                <label htmlFor="closeDate" className={style.root}>
-                    <TextField id="closeDate" name="closeDate" type="date" placeholder="Close Date"/>
-                </label>
-                <label htmlFor="closeTime" className={style.root}>
-                    <TextField id="closeTime" name="closeTime" type="time" placeholder="Close Time"/>
-                </label>
-                
-                <br/>
-                
-                締切日時:
-                <label htmlFor="deadlineDate" className={style.root}>
-                    <TextField id="deadlineDate" name="deadlineDate" type="date" placeholder="Deadline Date"/>
-                </label>
-                <label htmlFor="deadlineTime" className={style.root}>
-                    <TextField id="deadlineTime" name="deadlineTime" type="time" placeholder="Deadline Time"/>
-                </label>
-                
-                <br/>
-                
-                コメント:
-                <label htmlFor="comment" className={style.root}>
-                    <TextField id="comment" name="comment" type="text" placeholder="Comment"/>
-                </label>
-                
-                <br/>
-                
-                <Button type="submit">確定</Button>
+                <div className={style.form}>
+                    <TextField style={{width:"100%"}} size="small" variant="outlined" multiline rows={5} id="comment" name="comment" type="text" label="コメント"/>
+                </div>
+
+                <div className={style.button}>
+                    <Button variant="contained" type="submit">確定</Button>
+                </div>
             </form>
         </div>
     );
