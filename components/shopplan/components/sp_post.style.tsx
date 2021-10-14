@@ -3,13 +3,13 @@ import { makeStyles } from "@material-ui/core";
 export const useStyles = makeStyles((theme) => ({
 //background-color: rgb(229, 237, 250);
     plan: {
-        padding:"6px",
-        fontWeight:"bold",
+        
     },
     title:{
         display:"inline-block",
         marginRight:"10px",
-        fontSize:"18px",   
+        fontSize:"18px",
+        fontWeight:500,   
     },
     deadlineWeek:{
         display:"inline-block",
@@ -18,21 +18,25 @@ export const useStyles = makeStyles((theme) => ({
     deadlineDay:{
         display:"inline-block",
         fontSize:"18px",
+        fontWeight:500, 
     },
     deadlineHour:{
         display:"inline-block",
         color:"red",
         fontSize:"18px",
+        fontWeight:500, 
     },
     deadlineMinute:{
         display:"inline-block",
         color:"red",
         fontSize:"18px",
+        fontWeight:500, 
     },
     deadlineSecond:{
         display:"inline-block",
         color:"red",
         fontSize:"18px",
+        fontWeight:500, 
     },
     tag:{
         marginRight:"10px",
@@ -52,4 +56,5 @@ export const useStyles = makeStyles((theme) => ({
     line:{
         //padding:"0 0 1px 0",
     },
+    
 }));
