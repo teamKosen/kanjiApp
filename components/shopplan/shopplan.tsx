@@ -11,8 +11,9 @@ type Props={
 export const Shopplan:FunctionComponent<Props> = (props) => {
 
     const {userplandatas}=props;
-    const planlist=JSON.parse(JSON.stringify(userplandatas));
+    const planlist = JSON.parse(JSON.stringify(userplandatas));
     const classes = useStyles();
+
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles) {
@@ -40,14 +41,13 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
             </div>
 
             {planlist.map((plandata) => {
-
-            return(
-                <div key={plandata._id} className={classes.plan}>
-                    <Link href={`/negotiation/${plandata._id}`} >
-                        <a><Post plan={plandata}/></a>
-                    </Link>
-                </div>
-            )
+                return(
+                    <div key={plandata._id} className={classes.plan}>
+                        <Link href={`/negotiation/${plandata._id}`} >
+                            <a><Post plan={plandata}/></a>
+                        </Link>
+                    </div>
+                )
             })}
             
         </div>

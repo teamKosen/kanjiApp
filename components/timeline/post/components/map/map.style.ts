@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core";
 export const useStyles = makeStyles((theme) => ({
     map:{
         width:"45%",
+        marginLeft: "20px",
     },
     
     title :{

@@ -14,6 +14,6 @@ export const useStyles = makeStyles((theme) => ({
       marginTop: "10px",
       marginBottom: "20px",
       borderRadius: "10px",
-      padding: "5px",
+      padding: "8px",
     },
 }));

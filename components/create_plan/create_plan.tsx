@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Tag from "./components/tag";
 import { useUser } from "../../lib/hooks";
-import { InputAdornment, InputAdornmentProps, OutlinedInput } from "@material-ui/core";
+import { InputAdornment } from "@material-ui/core";
 
 export const Create_Plan:FunctionComponent = () => {
     const style = useStyles();

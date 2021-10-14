@@ -4,11 +4,15 @@ import React, { useState, useEffect,FunctionComponent, useCallback } from 'react
 import { Tabs, Tab,AppBar} from '@material-ui/core'
 import { TabPanel } from "./components/tabPanel/tabPanel"
 
-export const Chat:FunctionComponent = () => {
+type Props = {
+    userPlandatas: JSON;
+}
+
+export const Chat:FunctionComponent<Props> = (props) => {
+    const { userPlandatas } = props;
     const [value, setValue] = useState(0);
 
     const a11yProps = (index) => {
-        console.log(index);
         return {
             id: `simple-tab-${index}`,
             'aria-controls': `simple-tabpanel-${index}`,
@@ -38,7 +42,7 @@ export const Chat:FunctionComponent = () => {
                 <ChatTab />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <OfferTab />
+                <OfferTab userPlandatas={userPlandatas}/>
             </TabPanel>
         </div>
     )

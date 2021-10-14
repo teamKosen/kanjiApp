@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core";
 export const useStyles = makeStyles((theme) => ({
     shop_detail :{
         width: "45%",
+        marginLeft: "18px",
     },
     
     title :{
@@ -14,7 +15,7 @@ export const useStyles = makeStyles((theme) => ({
       marginTop: "10px",
       marginBottom: "20px",
       borderRadius: "10px",
-      padding: "5px",
+      padding: "8px",
     },
     
     table_data:{

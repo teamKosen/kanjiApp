@@ -2,11 +2,12 @@ import style from './chat-tab.module.scss';
 import React, { useState, useEffect,FunctionComponent, useCallback } from 'react'
 import io from 'socket.io-client'
 import dayjs from 'dayjs'
-import { Container, Button, InputBase, Box, Chip } from '@material-ui/core'
+import { Container, Button, InputBase, Box, Chip, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core'
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import { InsertEmoticon } from '@material-ui/icons';
 import { Send } from '@material-ui/icons'
 import { useUser } from '../../../../lib/hooks';
+import { CreateOfferModal }from '../create-offer-modal/create-offer-modal';
 
 type ChatType = {
     userName: string
@@ -17,6 +18,7 @@ type ChatType = {
 export const ChatTab:FunctionComponent = () => {
 
     const [socket, _] = useState(() => io())
+    const [isOpenCreatePlan, setisOpenCreatePlan] = useState(false);
     const [isConnected, setIsConnected] = useState(false)
     const [user, { mutate }] = useUser();
 
@@ -71,7 +73,6 @@ export const ChatTab:FunctionComponent = () => {
           setChats([ ...chats, newChat])
         }
         console.log(isConnected);
-        console.log(message);
     }, [newChat])
 
     const handleSubmit = async () => {
@@ -88,14 +89,20 @@ export const ChatTab:FunctionComponent = () => {
             datetime,
             })
         })
-        console.log(location.href);
-        console.log(chats);
         setMessage('')
     }
 
     const setTemplateMessage = (message) => {
         setMessage(message);
     };
+
+    const handleCreatePlanOpen = () => {
+        setisOpenCreatePlan(true);
+    }
+
+    const handleCreatePlanClose = () => {
+        setisOpenCreatePlan(false);
+    }
     
     return (
         <>
@@ -204,7 +211,21 @@ export const ChatTab:FunctionComponent = () => {
                         rows={3}
                     />
                     </Box>
-                    <Box display="flex" justifyContent="flex-end">
+                </Box>
+                <Box display="flex" justifyContent="flex-end">
+                    {user ? (
+                        <div>
+                            {user.userType === "shop" ? (
+                                <div className={style.buttonPosition}>
+                                    <Button color="secondary" variant="contained" onClick={handleCreatePlanOpen}>オファーする</Button>
+                                </div>
+                            ) : (
+                                <></>
+                            )}
+                        </div>
+                    ) : (
+                        <></>
+                    ) }
                     <Button
                         type="submit"
                         variant="contained"
@@ -216,10 +237,14 @@ export const ChatTab:FunctionComponent = () => {
                     >
                         <Send />
                     </Button>
-                    </Box>
                 </Box>
                 </Box>
             </Container>
+            <CreateOfferModal 
+                handleCreatePlanClose={handleCreatePlanClose} 
+                handleCreatePlanOpen={handleCreatePlanOpen} 
+                isOpenCreatePlan={isOpenCreatePlan}
+            />
         </>
     );
 };
