@@ -9,19 +9,8 @@ handler.use(middleware);
 
 
 handler.get(async (req, res) => {
-    const {date,maxnumberofpeople,minnumberofpeople,tag}=req.query;
-    // if(!date && maxnumberofpeople && minnumberofpeople){
-    //     console.log('null_back');
-    //     return;
-    // }
-    // if(date == 'undefined' && isNaN(maxnumberofpeople) && isNaN(minnumberofpeople)){
-    //     console.log('undefined_back');
-    //     return;
-    // }
-    console.log(date);
-    console.log(maxnumberofpeople);
-    console.log(minnumberofpeople);
-    console.log(tag);
+    const {date,maxnumberofpeople,minnumberofpeople,tag,sortcondition}=req.query;
+
     let search={};
 
     if(tag !== 'undefined' && tag){
@@ -37,64 +26,22 @@ handler.get(async (req, res) => {
     }
     
     if((isNaN(maxnumberofpeople) || !maxnumberofpeople) && (isNaN(minnumberofpeople) || !minnumberofpeople)){
-        console.log('isNaN1');
     }
     else if(isNaN(maxnumberofpeople) || !maxnumberofpeople){
-        console.log('isNaN2');
         const people={"numberOfPeople":{"$gte":Number(minnumberofpeople)}};
         search = Object.assign(search,people);
     }
     else if(isNaN(minnumberofpeople) || !minnumberofpeople){
-        console.log('isNaN3');
         const people={"numberOfPeople":{"$lte":Number(maxnumberofpeople)}};
         search = Object.assign(search,people);
     }
     else if(minnumberofpeople<=maxnumberofpeople){
-        console.log('isNaN4');
         const people={"numberOfPeople":{"$gte":Number(minnumberofpeople),"$lte":Number(maxnumberofpeople)}};
         search = Object.assign(search,people);
     }
     else{
-        console.log('isNaN5');
         return;
     }
-
-    // if(isNaN(maxnumberofpeople) && isNaN(minnumberofpeople)){
-    //     console.log('isNaN1');
-    // }
-    // else if(!isNaN(maxnumberofpeople) && isNaN(minnumberofpeople) && maxnumberofpeople){
-    //     console.log('isNaN2');
-    //     const people={"numberOfPeople":{"$lte":Number(maxnumberofpeople)}};
-    //     search = Object.assign(search,people);
-    // }
-    // else if(isNaN(maxnumberofpeople) && !isNaN(minnumberofpeople) && minnumberofpeople){
-    //     console.log('isNaN3');
-    //     const people={"numberOfPeople":{"$gte":Number(minnumberofpeople)}};
-    //     search = Object.assign(search,people);
-    // }
-    // else if(maxnumberofpeople && minnumberofpeople && maxnumberofpeople>=minnumberofpeople){
-    //     console.log('isNaN4');
-    //     const people={"numberOfPeople":{"$gte":Number(minnumberofpeople),"$lte":Number(maxnumberofpeople)}};
-    //     search = Object.assign(search,people);
-    // }
-    // else if(maxnumberofpeople && minnumberofpeople){
-    //     console.log('isNaN5');
-    //     console.log('reverse');
-    //     return;
-    // }
-    // else if(maxnumberofpeople && !minnumberofpeople){
-    //     console.log('isNaN6');
-    //     const people={"numberOfPeople":{"$lte":Number(maxnumberofpeople)}};
-    //     search = Object.assign(search,people);
-    // }
-    // else if(minnumberofpeople && !maxnumberofpeople){
-    //     console.log('isNaN7');
-    //     const people={"numberOfPeople":{"$gte":Number(minnumberofpeople)}};
-    //     search = Object.assign(search,people);
-    // }
-    // else{
-    //     console.log('isNaN8');
-    // }
 
     if(date !== 'undefined' && date){
         const start = new Date(String(date)+" "+"00:00");
@@ -102,8 +49,43 @@ handler.get(async (req, res) => {
         const time = {"openTime":{"$gte":start,"$lte":end}};
         search = Object.assign(search,time);
     }
-    console.log(search);
-    let doc = await req.db.collection('userplandatas').find(search).toArray();
+
+    let sort={};
+    switch(Number(sortcondition)){
+        case 1:
+            sort={"budget":-1};
+            break;
+        case 2:
+            sort={"budget":1}
+            break;
+        case 3:
+            sort={"numberOfPeople":-1};
+            break;
+        case 4:
+            sort={"numberOfPeople":1}
+            break;
+        case 5:
+            sort={"openTime":1};
+            break;
+        case 6:
+            sort={"openTime":-1}
+            break;
+        case 7:
+            sort={"deadlineTime":1};
+            break;
+        case 8:
+            sort={"deadlineTime":-1}
+            break;
+        case 9:
+            sort={"create_at":1};
+            break;
+        case 10:
+            sort={"create_at":-1}
+            break;
+        default:
+
+    }
+    let doc = await req.db.collection('userplandatas').find(search).sort(sort).toArray();
     
     res.json(doc);
 });
