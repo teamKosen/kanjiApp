@@ -22,12 +22,12 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const [selectedSort,setSelectedSort]=useState(0);
       const ApplyConditions = useCallback(() => {
         const request = async () => {
-            const res = await fetch(`http://localhost:3000/api/plansearch?tag=${tag}&date=${openDate}&maxnumberofpeople=${maxNumberOfPeople}&minnumberofpeople=${minNumberOfPeople}`);
+            const res = await fetch(`http://localhost:3000/api/plansearch?tag=${tag}&date=${openDate}&maxnumberofpeople=${maxNumberOfPeople}&minnumberofpeople=${minNumberOfPeople}&sortcondition=${selectedSort}`);
             const plandatas= await res.json()
             updatePlanlist(plandatas);
         }
           request()
-        },[openDate,minNumberOfPeople,maxNumberOfPeople,tag])
+        },[openDate,minNumberOfPeople,maxNumberOfPeople,tag,selectedSort])
     const SelectOpenDate=async(e)=>{
         setopenDate(e.target.value);
     }
@@ -37,9 +37,12 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const SelectMinNumberOfPeople=async(e)=>{
         setminNumberOfPeople(e.target.value);
     }
-    const SelectSort=async(e)=>{
-        setSelectedSort(e.target.value);
-    }
+    // const SelectSort=async(e)=>{
+    //     setSelectedSort(e.target.value);
+    // }
+    const SelectSort = (event: React.ChangeEvent<{ value: unknown }>) => {
+        setSelectedSort(event.target.value as number);
+    };
     return (
         <div style={{paddingTop:"60px",width:"80%",marginRight:"auto",marginLeft:"auto",}}>
             <div style={{marginRight:"auto",marginLeft:"auto",}}>
@@ -67,12 +70,36 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
             <div className={classes.line2}>
                 <span className={classes.form2}>
                 <InputLabel id="sortLabel">ソート条件</InputLabel>
-                <Select labelId="sortLabel" id="sort" value={selectedSort} onChange={SelectSort} label="ソート" style={{width:"20%"}}>
+                <Select labelId="sortLabel" id="sort"  value={selectedSort} onChange={SelectSort} label="ソート" style={{width:"20%"}}>
                         <MenuItem value={1}>
-                            〆切が近い順
+                            予算が高い順
                         </MenuItem>
                         <MenuItem　value={2}>
+                            予算が低い順
+                        </MenuItem>
+                        <MenuItem value={3}>
+                            人数が多い順
+                        </MenuItem>
+                        <MenuItem　value={4}>
+                            人数が少ない順
+                        </MenuItem>
+                        <MenuItem value={5}>
+                            開催日時が近い順
+                        </MenuItem>
+                        <MenuItem　value={6}>
+                            開催日時が遠い順
+                        </MenuItem>
+                        <MenuItem value={7}>
+                            〆切が近い順
+                        </MenuItem>
+                        <MenuItem　value={8}>
                             〆切が遠い順
+                        </MenuItem>
+                        <MenuItem value={9}>
+                            投稿日時が早い順
+                        </MenuItem>
+                        <MenuItem　value={10}>
+                            投稿日時が遅い順
                         </MenuItem>
                 </Select>
                 </span>
