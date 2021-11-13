@@ -1,6 +1,7 @@
 import { useStyles } from "./offer-tab.style";
 import React, { FunctionComponent,useState } from 'react'
 import { Card, CardContent, CardActions, Button,Typography,CardMedia } from "@material-ui/core";
+import Link from 'next/link'
 
 type Props = {
     userPlandatas: JSON;
@@ -44,9 +45,9 @@ export const OfferTab:FunctionComponent<Props> = (props) => {
                                             </ul>
                                             <Typography variant="body2" color="textSecondary" component="p">{userPlandata.comment}</Typography>
                                             <CardActions>
-                                                <Button size="small" color="primary">
-                                                    詳細をみる
-                                                </Button>
+                                                <Link href={`/mypage/${userPlandata._id}`}>
+                                                    詳細を見る
+                                                </Link>
                                                 <Button size="small" color="primary">
                                                     断る
                                                 </Button>
