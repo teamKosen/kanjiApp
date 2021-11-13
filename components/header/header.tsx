@@ -147,6 +147,9 @@ export const Header:FunctionComponent = () => {
                                                 <Link href="/shopplan">投稿プラン一覧</Link>
                                             </li>
                                         )}
+                                        <li className={style.insideFunctionLink}>
+                                            <Link　href="/mypage/detail">マイページ</Link>
+                                        </li>
                                         <li className={style.insideFunctionLink}>{user.name}</li>
                                     </ul>
                                 </li>

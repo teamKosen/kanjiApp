@@ -13,6 +13,7 @@
     "@material-ui/icons": "^5.0.0-beta.5",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@pathofdev/react-tag-input": "^1.0.7",
+    "@types/mongodb": "^4.0.7",
     "@zeit/next-sass": "^1.0.1",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.1.2",

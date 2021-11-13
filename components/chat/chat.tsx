@@ -1,6 +1,6 @@
 import { OfferTab } from "./components/offer-tab/offer-tab"
 import { ChatTab } from "./components/chat-tab/chat-tab"
-import React, { useState, useEffect,FunctionComponent, useCallback } from 'react'
+import React, { useState,FunctionComponent } from 'react'
 import { Tabs, Tab,AppBar} from '@material-ui/core'
 import { TabPanel } from "./components/tabPanel/tabPanel"
 

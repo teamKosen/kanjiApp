@@ -17,6 +17,7 @@ export const Post:FunctionComponent<Props> = (props) => {
       }, []);
       const today:Date=new Date('2021-09-17 14:56:29');
       const deadline:Date=new Date(plan.deadlineTime);
+
       const limit:number=Math.floor((deadline-today)/1000);
       const openTime:Date=new Date(plan.openTime);
       const closeTime:Date=new Date(plan.closeTime);
