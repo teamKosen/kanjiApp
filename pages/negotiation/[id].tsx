@@ -16,7 +16,6 @@ const Page:NextPage<Props> = (props) => {
 }
 
 export const getStaticPaths = async () =>{
-    // const res = await fetch("http://localhost:3000/api/offerplan/offerplanalldatas");
     const res = await fetch("http://localhost:3000/api/userplandatas");
     const json = await res.json();
 
