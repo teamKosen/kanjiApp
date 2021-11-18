@@ -39,7 +39,7 @@ export const Chat:FunctionComponent<Props> = (props) => {
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <ChatTab />
+                {/* <ChatTab /> */}
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <OfferTab userPlandatas={userPlandatas}/>
