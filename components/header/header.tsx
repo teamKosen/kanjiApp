@@ -79,7 +79,6 @@ export const Header:FunctionComponent = () => {
         await fetch("/api/auth", {
             method: "DELETE",
         });
-        // set the user state to null
         mutate(null);
     };
 
