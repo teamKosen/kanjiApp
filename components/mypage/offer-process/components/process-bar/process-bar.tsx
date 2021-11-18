@@ -19,7 +19,6 @@ export const ProcessBar:FunctionComponent<Props> = (props) => {
             <div className={classes.progressBackground} style={{width: width}}>
                 <div style={{width: `${progress}px`}} className={classes.progress} />
             </div>
-            <p className={classes.test}>こんちは</p>
         </div>
     )
 }

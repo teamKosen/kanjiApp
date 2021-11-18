@@ -1,6 +1,32 @@
 import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
+
+    circle: {
+      width: "30px",
+      height: "30px",
+      marginRight: "auto",
+      marginLeft: "auto",
+      borderRadius: "50%",
+      background: "#FFD700",
+    },
+
+    partsPosition: {
+      display: "flex",
+    },
+
+    processbarPosition: {
+      marginRight: "-23px",
+      marginLeft: "-23px",
+      paddingTop: "10px",
+      paddingBottom: "10px",
+      height: "30px"
+    },
+
+    processbarTitle: {
+      marginTop: "7px",
+      fontSize: "25px",
+    },
     tops:{
         fontWeight:"bold",
         fontSize:"18px",
@@ -27,21 +53,4 @@ export const useStyles = makeStyles((theme) => ({
     planContent:{
         marginBottom: theme.spacing(2),
     },
-    root:{
-        width:"70%",
-        margin: "auto",
-      },
-      form:{
-        padding:"10px",
-      },
-      form2:{
-        padding:"0px",
-      },
-      space:{
-          pdding:"0px 10px"
-      },
-      button:{
-        paddingLeft:"200px",
-        textAlign:"left",
-      },
 }));

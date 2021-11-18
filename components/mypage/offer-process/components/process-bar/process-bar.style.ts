@@ -6,13 +6,9 @@ export const useStyles = makeStyles((theme) => ({
         borderRadius: "5rem",
     },
     progress: {
-        backgroundColor: "rgb(62, 122, 235)",
+        backgroundColor: "#FFD700",
         height: "10px",
         borderRadius: "1rem"
     },
-
-    test: {
-        fontSize: "30px"
-    }
     
 }));
