@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core";
 export const useStyles = makeStyles((theme) => ({
 
     offerProcessPosition: {
-      marginTop: theme.spacing(7),
       width: theme.spacing(80),
       marginRight: "auto",
       marginLeft: "auto",
@@ -25,30 +24,33 @@ export const useStyles = makeStyles((theme) => ({
       borderRadius: "50%",
       background: "#E5E5E5",
     },
-    partsPosition: {
-      display: "flex",
+
+    table: {
+        width: "70%",
+        marginRight: "auto",
+        marginLeft: "auto",
+        borderCollapse: "collapse",
     },
 
-    processbarPosition: {
-      marginRight: "-23px",
-      marginLeft: "-23px",
-      paddingTop: "10px",
-      paddingBottom: "10px",
-      height: "30px"
+    tableTr: {
+        borderBottom: "solid 2px white",
     },
-    processbarTitle: {
-      marginTop: "7px",
-      fontSize: "25px",
+
+    tableTh: {
+        position: "relative",
+        // textAlign: "left",
+        width: "30%",
+        backgroundColor:"#FFD700",
+        color: "white",
+        textAlign: "center",
+        padding: "10px 0",
     },
-    tops:{
-        fontWeight:"bold",
-        fontSize:"18px",
-    },
-    line:{
-        whiteSpace:"nowrap",
-        paddingTop:"15px",
-    },
-    planContent:{
-        marginBottom: theme.spacing(2),
+
+    tableTd: {
+        // textAlign: "left",
+        width: "70%",
+        textAlign: "center",
+        backgroundColor:" #eee",
+        padding: "10px 0",
     },
 }));
