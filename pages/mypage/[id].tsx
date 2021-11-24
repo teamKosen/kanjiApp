@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { ObjectId } from 'mongodb';
 
-import { OfferProcess } from '../../components/mypage/offer-process/offer-process'
+import { OfferProcess } from '../../components/mypage/offer-process/offer-process';
 
 type Props = {
     offerplandetail: {

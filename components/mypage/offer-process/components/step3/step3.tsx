@@ -1,5 +1,5 @@
-import React, { useState,useEffect,FunctionComponent } from 'react'
-import { useStyles } from './step1.style'
+import React, { FunctionComponent } from 'react'
+import { useStyles } from './step3.style'
 import { ObjectId } from 'mongodb';
 
 type Props = {
@@ -15,14 +15,12 @@ type Props = {
         shopEmail: string;
     }
 }
-export const Step1:FunctionComponent<Props> = (props) => {
+export const Step3:FunctionComponent<Props> = (props) => {
     const { offerplandetail } = props;
     const classes = useStyles();
 
     return (
-        <div className={classes.step1Position}>
-            <h1>オファーされました！</h1>
-            <h1>オファーを確認してみましょう</h1>
+        <div className={classes.step3Position}>
             <p>オファー内容</p>
             <table className={classes.table}>
                 <tr className={classes.tableTr}>
@@ -46,6 +44,12 @@ export const Step1:FunctionComponent<Props> = (props) => {
                     <td className={classes.tableTd}>{offerplandetail.budjet}円</td>
                 </tr>
             </table>
+            <div className={classes.approve}>
+                <h1>オファーを承認しますか？</h1>
+                <div className={classes.approveButton}>
+                    <div className={classes.approveButtonText}>オファーを承認する</div>
+                </div>
+            </div>
         </div>
     )
 }

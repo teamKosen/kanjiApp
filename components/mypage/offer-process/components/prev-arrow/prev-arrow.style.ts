@@ -18,7 +18,8 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: theme.spacing(2.2),
       "&:hover": {
         background:" #b3e1ff",
-      }
+        cursor: "pointer",
+      },
    },
 
 }));

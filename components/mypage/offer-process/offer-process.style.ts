@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) => ({
 
     offerProcessPosition: {
       marginTop: theme.spacing(7),
-      width: theme.spacing(76),
+      width: theme.spacing(100),
       marginRight: "auto",
       marginLeft: "auto",
     },
@@ -27,6 +27,9 @@ export const useStyles = makeStyles((theme) => ({
     },
     partsPosition: {
       display: "flex",
+      width: theme.spacing(77),
+      marginRight: "auto",
+      marginLeft: "auto",
     },
 
     processbarPosition: {
