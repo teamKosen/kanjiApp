@@ -1,10 +1,13 @@
 import { NextPage } from "next";
 import { ObjectId } from 'mongodb';
 
+import { OfferProcess } from '../../components/mypage/offer-process/offer-process'
+
 type Props = {
     offerplandetail: {
         _id: ObjectId;
         budjet: number;
+        numberOfPeople: number;
         shopname: string;
         place: string;
         shopId: string;
@@ -18,7 +21,7 @@ const Page:NextPage<Props> = (props) => {
     const { offerplandetail } = props;
     return (
         <div style={{paddingTop: "76px"}}>
-            <h1>{offerplandetail.shopname}</h1>
+            <OfferProcess offerplandetail={offerplandetail}/>
         </div>
     )
 }
