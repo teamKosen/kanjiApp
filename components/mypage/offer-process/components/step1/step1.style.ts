@@ -26,7 +26,7 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     table: {
-        width: "70%",
+        width: "80%",
         marginRight: "auto",
         marginLeft: "auto",
         borderCollapse: "collapse",

@@ -6,6 +6,7 @@ type Props = {
     offerplandetail: {
         _id: ObjectId;
         budjet: number;
+        numberOfPeople: number;
         shopname: string;
         place: string;
         shopId: string;
@@ -35,7 +36,7 @@ export const Step1:FunctionComponent<Props> = (props) => {
                 </tr>
                 <tr className={classes.tableTr}>
                     <th className={classes.tableTh}>人数</th>
-                    <td className={classes.tableTd}>-人</td>
+                    <td className={classes.tableTd}>{offerplandetail.numberOfPeople}人</td>
                 </tr>
                 <tr className={classes.tableTr}>
                     <th className={classes.tableTh}>時間</th>
@@ -43,7 +44,7 @@ export const Step1:FunctionComponent<Props> = (props) => {
                 </tr>
                 <tr className={classes.tableTr}>
                     <th className={classes.tableTh}>金額</th>
-                    <td className={classes.tableTd}>{offerplandetail.budjet}</td>
+                    <td className={classes.tableTd}>{offerplandetail.budjet}円</td>
                 </tr>
             </table>
         </div>

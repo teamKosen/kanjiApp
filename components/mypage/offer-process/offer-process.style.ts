@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) => ({
 
     offerProcessPosition: {
       marginTop: theme.spacing(7),
-      width: theme.spacing(80),
+      width: theme.spacing(76),
       marginRight: "auto",
       marginLeft: "auto",
     },
