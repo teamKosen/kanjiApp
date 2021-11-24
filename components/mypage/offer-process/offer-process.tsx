@@ -4,6 +4,11 @@ import { ProcessBar } from './components/process-bar/process-bar';
 import { useStyles } from './offer-process.style';
 import { Button } from "@material-ui/core";
 import { Step1 } from "./components/step1/step1";
+import { NextArrow } from './components/next-arrow/next-arrow';
+import { PrevArrow } from './components/prev-arrow/prev-arrow';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 type Props = {
     offerplandetail: {
@@ -49,6 +54,14 @@ export const OfferProcess:FunctionComponent<Props> = (props) => {
         }
     },[currentProcess])
 
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
+
     return (
         <div className={classes.offerProcessPosition}>
             <div className={classes.partsPosition}> 
@@ -79,8 +92,19 @@ export const OfferProcess:FunctionComponent<Props> = (props) => {
                 <Step1 offerplandetail={offerplandetail}/>
             </div>
             <h3>{currentProcess}</h3>
-            <Button onClick={handleProcessUP}>plus</Button>
-            <Button onClick={handleProcessDown}>minus</Button>
+            <PrevArrow handleProcessDown={handleProcessDown}/>
+            <NextArrow handleProcessUP={handleProcessUP}/>
+            <Slider {...settings}>
+                <div>
+                    <h3>1</h3>
+                </div>
+                <div>
+                    <h3>2</h3>
+                </div>
+                <div>
+                    <h3>3</h3>
+                </div>
+            </Slider>
         </div>
     )
 }
