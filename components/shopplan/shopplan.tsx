@@ -14,6 +14,19 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const {userplandatas}=props;
     const planlist_pre=JSON.parse(JSON.stringify(userplandatas));
     const [planlist,updatePlanlist]=useState(planlist_pre);
+    var i:number=0;
+    const leftList=[];
+    const rightList=[];
+    planlist.map((plandata) => {
+        i++;
+        if(i%2==1){
+            leftList.push(plandata);
+        }
+        else{
+            rightList.push(plandata);
+            i=0;
+        }
+    })
     const classes = useStyles();
     const [openDate, setopenDate] = useState();
     const [maxNumberOfPeople,setmaxNumberOfPeople]=useState();
@@ -113,17 +126,28 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
             </div>
             {/* </form> */}
             <div className={classes.plan}>
-            {planlist.map((plandata) => {
-                
-            return(
-                <Card key={plandata._id} className={classes.planContent}>
-                    <Link href={`/negotiation/${plandata._id}`} >
-                        <a><CardContent><Post plan={plandata}/></CardContent></a>
-                    </Link>
-                </Card>
-            )
-
-            })}
+                <div className={classes.planUnit}>
+                    {leftList.map((plandata) => {             
+                        return(
+                            <Card key={plandata._id} className={classes.planContent}>
+                                <Link href={`/negotiation/${plandata._id}`} >
+                                    <a><CardContent><Post plan={plandata}/></CardContent></a>
+                                </Link>
+                            </Card>
+                        )
+                    })}
+                </div>
+                <div className={classes.planUnit}>
+                    {rightList.map((plandata) => {    
+                        return(
+                            <Card key={plandata._id} className={classes.planContent}>
+                                <Link href={`/negotiation/${plandata._id}`} >
+                                    <a><CardContent><Post plan={plandata}/></CardContent></a>
+                                </Link>
+                            </Card>
+                        )    
+                    })}
+                </div>
             </div>
         </div>
         
