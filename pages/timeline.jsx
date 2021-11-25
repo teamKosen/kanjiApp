@@ -36,7 +36,9 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     const router = useRouter();
     const [keyword, setKeyword] = useState('');
     const [shops, updateShops] = useState(shopdatas);
-    
+    var i=0;
+    const leftShops=[];
+    const rightShops=[];
     const planlist= JSON.parse(JSON.stringify(plandatas));
     const commentlist=JSON.parse(JSON.stringify(commentdatas));
     const picturelist = JSON.parse(JSON.stringify(picturedatas));
@@ -176,33 +178,71 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                         <Button onClick={handleOpenDrawer}>タグ検索</Button>
                     </form>
                 </div>
-
                 {shops.map((shopdata) => {
+                    i++;
+                    if(i%2==1){
+                        leftShops.push(shopdata);
+                    }
+                    else{
+                        rightShops.push(shopdata);
+                        i=0;
+                    }
+                })}
+                <div className={style.post}>
+                    <div className={style.postLine}>
+                        {leftShops.map((shopdata) => {
 
-                    const pln=planlist.filter(v=>v.shopID==shopdata._id);
-                    const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
-                    const pict = picturelist.filter(v=>v.shopId==shopdata._id);
-                    
-                    return <div key={shopdata.name} className={style.post}>
-                        <Post 
-                            name={shopdata.name}
-                            genre={shopdata.tag.genre}
-                            purpose={shopdata.tag.purpose}
-                            open={shopdata.open}
-                            park={shopdata.park}
-                            payments={shopdata.payment}
-                            seatTypes={shopdata.seatType}
-                            notSmokingSeat={shopdata.notSmokingSeat}
-                            phoneNumber={shopdata.phoneNumber}
-                            adress={shopdata.adress}
-                            menu={shopdata.menu}
-                            plan={pln}
-                            comment={cmnt}
-                            pictures={pict}
-                        />
+                            const pln=planlist.filter(v=>v.shopID==shopdata._id);
+                            const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
+                            const pict = picturelist.filter(v=>v.shopId==shopdata._id);
+                            
+                            return <div key={shopdata.name} className={style.unitPost}>
+                                <Post 
+                                    name={shopdata.name}
+                                    genre={shopdata.tag.genre}
+                                    purpose={shopdata.tag.purpose}
+                                    open={shopdata.open}
+                                    park={shopdata.park}
+                                    payments={shopdata.payment}
+                                    seatTypes={shopdata.seatType}
+                                    notSmokingSeat={shopdata.notSmokingSeat}
+                                    phoneNumber={shopdata.phoneNumber}
+                                    adress={shopdata.adress}
+                                    menu={shopdata.menu}
+                                    plan={pln}
+                                    comment={cmnt}
+                                    pictures={pict}
+                                />
+                            </div>
+                        })}
                     </div>
-                    })}
+                    <div className={style.postLine}>
+                        {rightShops.map((shopdata) => {
+                            const pln=planlist.filter(v=>v.shopID==shopdata._id);
+                            const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
+                            const pict = picturelist.filter(v=>v.shopId==shopdata._id);
 
+                            return <div key={shopdata.name} className={style.unitPost}>
+                                <Post 
+                                    name={shopdata.name}
+                                    genre={shopdata.tag.genre}
+                                    purpose={shopdata.tag.purpose}
+                                    open={shopdata.open}
+                                    park={shopdata.park}
+                                    payments={shopdata.payment}
+                                    seatTypes={shopdata.seatType}
+                                    notSmokingSeat={shopdata.notSmokingSeat}
+                                    phoneNumber={shopdata.phoneNumber}
+                                    adress={shopdata.adress}
+                                    menu={shopdata.menu}
+                                    plan={pln}
+                                    comment={cmnt}
+                                    pictures={pict}
+                                />
+                            </div>
+                        })}
+                    </div>
+                </div>
             </div>
         </main>
         </>
