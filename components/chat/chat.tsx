@@ -1,4 +1,7 @@
+import { useStyles } from "./chat.style";
 import { OfferTab } from "./components/offer-tab/offer-tab"
+import { OfferTabtest } from "./components/offer-tab/offer-tab-test"
+import { PlanDetail } from "./components/plandetail/plandetail"
 import { ChatTab } from "./components/chat-tab/chat-tab"
 import React, { useState, useEffect,FunctionComponent, useCallback } from 'react'
 import { Tabs, Tab,AppBar} from '@material-ui/core'
@@ -6,11 +9,13 @@ import { TabPanel } from "./components/tabPanel/tabPanel"
 
 type Props = {
     userPlandatas: JSON;
+    userPlandatas_detail: JSON;
 }
 
 export const Chat:FunctionComponent<Props> = (props) => {
-    const { userPlandatas } = props;
+    const { userPlandatas , userPlandatas_detail} = props;
     const [value, setValue] = useState(0);
+    const style = useStyles();
 
     const a11yProps = (index) => {
         return {
@@ -42,7 +47,12 @@ export const Chat:FunctionComponent<Props> = (props) => {
                 <ChatTab />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <OfferTab userPlandatas={userPlandatas}/>
+                <div className={style.plandetail}>
+                    <PlanDetail userPlandatas_detail={userPlandatas_detail}/>
+                </div>
+                <div className={style.offertab}>
+                    <OfferTab userPlandatas={userPlandatas}/>
+                </div>
             </TabPanel>
         </div>
     )
