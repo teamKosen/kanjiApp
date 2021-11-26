@@ -22,6 +22,9 @@ type Props = {
         tel: string;
         URL: string;
         shopEmail: string;
+        comment: string;
+        openTime: string;
+        closeTime: string;
     }
 }
   
@@ -63,7 +66,7 @@ export const OfferProcess:FunctionComponent<Props> = (props) => {
             style={{ ...style,}}
             onClick={onClick}
           >
-               <PrevArrow handleProcessDown={handleProcessDown}/>
+               <PrevArrow handleProcessDown={handleProcessDown} currentProcess={currentProcess}/>
          </div>
         );
     }
@@ -76,7 +79,7 @@ export const OfferProcess:FunctionComponent<Props> = (props) => {
         style={{ ...style}}
         onClick={onClick}
         >
-            <NextArrow handleProcessUP={handleProcessUP} />
+            <NextArrow handleProcessUP={handleProcessUP} currentProcess={currentProcess}/>
         </div>
     );
     }

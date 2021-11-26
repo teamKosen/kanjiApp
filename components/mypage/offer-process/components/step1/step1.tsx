@@ -13,11 +13,17 @@ type Props = {
         tel: string;
         URL: string;
         shopEmail: string;
+        comment: string;
+        openTime: string;
+        closeTime: string;
     }
 }
 export const Step1:FunctionComponent<Props> = (props) => {
     const { offerplandetail } = props;
     const classes = useStyles();
+
+    const openTime:Date=new Date(offerplandetail.openTime);
+    const closeTime:Date=new Date(offerplandetail.closeTime);
 
     return (
         <div className={classes.step1Position}>
@@ -39,7 +45,9 @@ export const Step1:FunctionComponent<Props> = (props) => {
                 </tr>
                 <tr className={classes.tableTr}>
                     <th className={classes.tableTh}>時間</th>
-                    <td className={classes.tableTd}>-</td>
+                    <td className={classes.tableTd}>
+                        {openTime.getMonth()+1}月{openTime.getDate()}日　{('00'+openTime.getHours()).slice(-2)}:{('00'+openTime.getMinutes()).slice(-2)}～{('00'+closeTime.getHours()).slice(-2)}:{('00'+closeTime.getMinutes()).slice(-2)}
+                    </td>
                 </tr>
                 <tr className={classes.tableTr}>
                     <th className={classes.tableTh}>金額</th>

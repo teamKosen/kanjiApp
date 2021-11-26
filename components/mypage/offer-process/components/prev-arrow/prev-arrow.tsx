@@ -2,16 +2,22 @@ import React, { FunctionComponent } from 'react'
 import { useStyles } from './prev-arrow.style'
 
 type Props = {
-    handleProcessDown: () => void
+    handleProcessDown: () => void;
+    currentProcess: number;
 }
 
 export const PrevArrow:FunctionComponent<Props> = (props) => {
-    const { handleProcessDown } = props;
+    const { handleProcessDown,currentProcess } = props;
     const classes = useStyles();
 
     return (
-        <div className={classes.prevButton} onClick={handleProcessDown}>
-            ＜戻る
+        <div>
+            { currentProcess !== 1
+                ? <div className={classes.prevButton} onClick={handleProcessDown}>
+                    ＜戻る
+                 </div>
+                 : ""
+            }
         </div>
     )
 }

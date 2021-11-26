@@ -25,7 +25,7 @@ export const useStyles = makeStyles((theme) => ({
         // textAlign: "left",
         width: "30%",
         backgroundColor:"#FFD700",
-        color: "white",
+        color: "black",
         textAlign: "center",
         padding: "10px 0",
     },

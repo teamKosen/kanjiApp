@@ -14,6 +14,9 @@ type Props = {
         tel: string;
         URL: string;
         shopEmail: string;
+        comment: string;
+        openTime: string;
+        closeTime: string;
     }
 }
 
