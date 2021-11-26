@@ -7,7 +7,8 @@ handler.use(middleware);
 
 handler.get(async (req, res) => {
 
-    let doc = await req.db.collection('userplandatas').find({}).toArray();
+    const { userPlanId } = req.query;
+    let doc = await req.db.collection('userplandatas').find().toArray();
     res.json(doc);
 });
 
