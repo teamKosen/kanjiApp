@@ -4,13 +4,14 @@ import { Chat } from "../../components/chat/chat";
 
 type Props = {
     userPlandatas: JSON;
+    userPlandatas_detail: JSON;
 }
 
 const Page:NextPage<Props> = (props) => {
-    const { userPlandatas } = props;
+    const { userPlandatas , userPlandatas_detail} = props;
     return (
         <div style={{paddingTop: "76px"}}>
-            <Chat userPlandatas={userPlandatas}/>
+            <Chat userPlandatas={userPlandatas} userPlandatas_detail={userPlandatas_detail}/>
         </div>
     )
 }
@@ -33,9 +34,14 @@ export const getStaticProps = async (context) => {
     const { id } = context.params
     const res = await fetch("http://localhost:3000/api/offerplan/offerplandatas?userPlanId=" + id);
     const json = await res.json();
+    //追記
+    const res_up = await fetch("http://localhost:3000/api/userplandatas_kanji?userPlanId=" + id);
+    const json_up = await res_up.json();
+
     return {
         props: {
             userPlandatas: json,
+            userPlandatas_detail: json_up,
         }
     }
 }

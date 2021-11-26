@@ -88,6 +88,6 @@ export const Create_Plan:FunctionComponent = () => {
                     <Button variant="contained" type="submit">確定</Button>
                 </div>
             </form>
-        </div>
-    );
+       </div>
+    ); 
 };

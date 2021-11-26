@@ -8,8 +8,9 @@ handler.use(middleware);
 handler.get(async (req, res) => {
     //const [user, { mutate }] = useUser();
     //const budjetTag = { "userID": String(user._id)};
-    let doc = await req.db.collection('userplandatas').find({}).toArray();
-    console.log(doc);
+    var ObjectId = require('mongodb').ObjectID;
+    const { userPlanId } = req.query;
+    let doc = await req.db.collection('userplandatas').find({"_id":ObjectId(userPlanId)}).toArray();
     res.json(doc);
 });
 
