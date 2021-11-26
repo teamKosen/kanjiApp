@@ -1,6 +1,5 @@
 import { useStyles } from "./chat.style";
 import { OfferTab } from "./components/offer-tab/offer-tab"
-import { OfferTabtest } from "./components/offer-tab/offer-tab-test"
 import { PlanDetail } from "./components/plandetail/plandetail"
 import { ChatTab } from "./components/chat-tab/chat-tab"
 import React, { useState, useEffect,FunctionComponent, useCallback } from 'react'
