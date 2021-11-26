@@ -2,8 +2,14 @@ import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
 
-    offerTab: {
-        backgroundColor: "green",
+    plandetail: {
+        display: "inline-block",
+        width: "25%",
+    },
+
+    offertab: {
+        display: "inline-block",
+        width: "70%",
     },
 
     haderContent: {
