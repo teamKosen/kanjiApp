@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import { BorderColor } from "@material-ui/icons";
+import { Block, BorderColor } from "@material-ui/icons";
 
 export const useStyles = makeStyles((theme) => ({
 
@@ -44,5 +44,10 @@ export const useStyles = makeStyles((theme) => ({
     headerLinks: {
         float: "right",
         backgroundColor: "rgba(253, 255, 130, 0.755)",
+    },
+
+    button:{
+        padding:"5px",
+        //textAlign:"right",
     },
  }));
