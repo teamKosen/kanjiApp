@@ -44,6 +44,10 @@ export const useStyles = makeStyles((theme) => ({
         width: theme.spacing(45)
     },
 
+    approveHeight: {
+        margin: theme.spacing(12,0),
+    },
+
     approveButton: {
         color: "#fff",
         backgroundColor: "#eb6100",

@@ -15,6 +15,7 @@ type Props = {
         URL: string;
         shopEmail: string;
         comment: string;
+        offerState: number;
         openTime: string;
         closeTime: string;
     }

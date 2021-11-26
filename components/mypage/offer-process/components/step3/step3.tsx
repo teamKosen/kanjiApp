@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent,useState } from 'react'
 import { useStyles } from './step3.style'
 import { ObjectId } from 'mongodb';
 
@@ -14,6 +14,7 @@ type Props = {
         URL: string;
         shopEmail: string;
         comment: string;
+        offerState: number;
         openTime: string;
         closeTime: string;
     }
@@ -22,11 +23,21 @@ export const Step3:FunctionComponent<Props> = (props) => {
     const { offerplandetail } = props;
     const classes = useStyles();
 
+    const [ currentOfferState,setcurrentOfferState ] = useState(offerplandetail.offerState);
+
     const openTime:Date=new Date(offerplandetail.openTime);
     const closeTime:Date=new Date(offerplandetail.closeTime);
 
     return (
         <div className={classes.step3Position}>
+            <div>
+                { currentOfferState === 2 
+                    ? <div className={classes.approveHeight}>
+                        <h1 className={classes.approve}>オファーを承認しました！</h1>
+                      </div> 
+                    : ""
+                }
+            </div>
             <p>オファー内容</p>
             <table className={classes.table}>
                 <tr className={classes.tableTr}>
@@ -52,11 +63,16 @@ export const Step3:FunctionComponent<Props> = (props) => {
                     <td className={classes.tableTd}>{offerplandetail.budjet}円</td>
                 </tr>
             </table>
-            <div className={classes.approve}>
-                <h1>オファーを承認しますか？</h1>
-                <div className={classes.approveButton}>
-                    <div className={classes.approveButtonText}>オファーを承認する</div>
-                </div>
+            <div>
+                { currentOfferState === 1
+                    ?  <div className={classes.approve}>
+                            <h1>オファーを承認しますか？</h1>
+                            <div className={classes.approveButton}>
+                                <div className={classes.approveButtonText}>オファーを承認する</div>
+                            </div>
+                        </div>
+                    : ""
+                }
             </div>
         </div>
     )
