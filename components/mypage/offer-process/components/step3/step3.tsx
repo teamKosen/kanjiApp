@@ -1,4 +1,4 @@
-import React, { FunctionComponent,useState } from 'react'
+import React, { FunctionComponent,useState,useCallback,useEffect } from 'react'
 import { useStyles } from './step3.style'
 import { ObjectId } from 'mongodb';
 
@@ -23,10 +23,36 @@ export const Step3:FunctionComponent<Props> = (props) => {
     const { offerplandetail } = props;
     const classes = useStyles();
 
-    const [ currentOfferState,setcurrentOfferState ] = useState(offerplandetail.offerState);
+    const [ currentOfferState,setcurrentOfferState ] = useState<number>(offerplandetail.offerState);
+    const [errorMsg, setErrorMsg] = useState("");
 
     const openTime:Date=new Date(offerplandetail.openTime);
     const closeTime:Date=new Date(offerplandetail.closeTime);
+
+    const handleApprove = useCallback( async () => {
+        setcurrentOfferState(2)
+    },[]);
+
+    useEffect(() => {
+        const approve = async () => {
+            try {
+                const body = {
+                    id: offerplandetail._id,
+                    offerState: currentOfferState,
+                }
+                const res = await fetch("/api/offerplan/offerplandetail",{
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body),
+                })
+                setErrorMsg(await res.text());
+            }catch(e){
+                console.error(e.message)
+            }
+        };
+        approve();
+    },[currentOfferState]);
+    
 
     return (
         <div className={classes.step3Position}>
@@ -68,7 +94,7 @@ export const Step3:FunctionComponent<Props> = (props) => {
                     ?  <div className={classes.approve}>
                             <h1>オファーを承認しますか？</h1>
                             <div className={classes.approveButton}>
-                                <div className={classes.approveButtonText}>オファーを承認する</div>
+                                <div className={classes.approveButtonText} onClick={handleApprove}>オファーを承認する</div>
                             </div>
                         </div>
                     : ""
