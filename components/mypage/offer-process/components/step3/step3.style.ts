@@ -2,9 +2,10 @@ import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
 
-    step1Position: {
+    step3Position: {
       width: theme.spacing(80),
       height: theme.spacing(60),
+      marginTop: theme.spacing(8),
       marginRight: "auto",
       marginLeft: "auto",
     },
@@ -22,7 +23,6 @@ export const useStyles = makeStyles((theme) => ({
 
     tableTh: {
         position: "relative",
-        // textAlign: "left",
         width: "30%",
         backgroundColor:"#FFD700",
         color: "black",
@@ -31,10 +31,39 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     tableTd: {
-        // textAlign: "left",
         width: "70%",
         textAlign: "center",
         backgroundColor:" #eee",
         padding: "10px 0",
     },
+
+    approve: {
+        marginTop: theme.spacing(8),
+        marginRight: "auto",
+        marginLeft: "auto",
+        width: theme.spacing(45)
+    },
+
+    approveHeight: {
+        margin: theme.spacing(12,0),
+    },
+
+    approveButton: {
+        color: "#fff",
+        backgroundColor: "#eb6100",
+        borderRadius: "100vh",
+        width: theme.spacing(47),
+        height: theme.spacing(6),
+        fontSize: theme.spacing(4),
+        marginRight: "auto",
+        marginLeft: "auto",
+        "&:hover": {
+            backgroundColor:"#994000",
+            cursor: "pointer",
+        },
+    },
+    approveButtonText: {
+        margin: theme.spacing(4,5),
+    }
+
 }));

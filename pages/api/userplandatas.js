@@ -12,12 +12,4 @@ handler.get(async (req, res) => {
     res.json(doc);
 });
 
-// handler.post(async (req, res) => {
-//     let data = req.body;
-//     data = JSON.parse(data);
-//     data.date = new Date(data.date);
-//     let doc = await req.db.collection('daily').updateOne({date: new Date(data.date)}, {$set:data}, {upsert: true})
-//     res.json({message: 'ok'});
-// })
-
 export default handler;
