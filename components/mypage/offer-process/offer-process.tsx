@@ -2,8 +2,14 @@ import React, { useState,useCallback,FunctionComponent } from 'react';
 import { ObjectId } from 'mongodb';
 import { ProcessBar } from './components/process-bar/process-bar';
 import { useStyles } from './offer-process.style';
-import { Button } from "@material-ui/core";
-import { Step1 } from "./components/step1/step1";
+import { Step1 } from "./components/step1/step1"; 
+import { Step2 } from "./components/step2/step2";
+import { Step3 } from './components/step3/step3';
+import { NextArrow } from './components/next-arrow/next-arrow';
+import { PrevArrow } from './components/prev-arrow/prev-arrow';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 type Props = {
     offerplandetail: {
@@ -16,9 +22,13 @@ type Props = {
         tel: string;
         URL: string;
         shopEmail: string;
+        comment: string;
+        offerState: number;
+        openTime: string;
+        closeTime: string;
     }
 }
-
+  
 export const OfferProcess:FunctionComponent<Props> = (props) => {
     const { offerplandetail } = props;
     const classes = useStyles();
@@ -49,6 +59,43 @@ export const OfferProcess:FunctionComponent<Props> = (props) => {
         }
     },[currentProcess])
 
+    function Prev(props) {
+        const { className, style, onClick } = props;
+        return (
+          <div
+            className={className}
+            style={{ ...style,}}
+            onClick={onClick}
+          >
+               <PrevArrow handleProcessDown={handleProcessDown} currentProcess={currentProcess}/>
+         </div>
+        );
+    }
+    
+    function Next(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+        className={className}
+        style={{ ...style}}
+        onClick={onClick}
+        >
+            <NextArrow handleProcessUP={handleProcessUP} currentProcess={currentProcess}/>
+        </div>
+    );
+    }
+
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 800,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        nextArrow: <Next />,
+        prevArrow: <Prev />
+    };
+
     return (
         <div className={classes.offerProcessPosition}>
             <div className={classes.partsPosition}> 
@@ -75,12 +122,17 @@ export const OfferProcess:FunctionComponent<Props> = (props) => {
                     <div className={classes.processbarTitle}>3.決定</div>
                 </div>
             </div>
-            <div>
-                <Step1 offerplandetail={offerplandetail}/>
-            </div>
-            <h3>{currentProcess}</h3>
-            <Button onClick={handleProcessUP}>plus</Button>
-            <Button onClick={handleProcessDown}>minus</Button>
+            <Slider {...settings}>
+                <div>
+                    <Step1 offerplandetail={offerplandetail}/>
+                </div>
+                <div>
+                    <Step2 offerplandetail={offerplandetail}/>
+                </div>
+                <div>
+                    <Step3 offerplandetail={offerplandetail}/>
+                </div>
+            </Slider>
         </div>
     )
 }
