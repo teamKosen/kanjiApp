@@ -7,12 +7,17 @@ type Props={
 
 export const Picture = (props) => {
     const { pictures } = props;
+    var i:Boolean=true;
     const classes = useStyles();
     return (
         <div className={classes.imgPosition}>
-            {pictures.map((picture)=>(
-                <img key={picture.picturePath} src={picture.picturePath} className={classes.imgSize}/>
-            ))}
+            {pictures.map((picture) => {
+                if(i){
+                    i=false;
+                    return(<img key={picture.picturePath} src={picture.picturePath} className={classes.imgSize}/>)
+                }
+                else{}
+            })}            
         </div>
     );
 };

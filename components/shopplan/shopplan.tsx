@@ -14,6 +14,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const {userplandatas}=props;
     const planlist_pre=JSON.parse(JSON.stringify(userplandatas));
     const [planlist,updatePlanlist]=useState(planlist_pre);
+
     const classes = useStyles();
     const [openDate, setopenDate] = useState();
     const [maxNumberOfPeople,setmaxNumberOfPeople]=useState();
@@ -113,17 +114,15 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
             </div>
             {/* </form> */}
             <div className={classes.plan}>
-            {planlist.map((plandata) => {
-                
-            return(
-                <Card key={plandata._id} className={classes.planContent}>
-                    <Link href={`/negotiation/${plandata._id}`} >
-                        <a><CardContent><Post plan={plandata}/></CardContent></a>
-                    </Link>
-                </Card>
-            )
-
-            })}
+                    {planlist.map((plandata) => {             
+                        return(
+                            <Card key={plandata._id} className={classes.planContent}>
+                                <Link href={`/negotiation/${plandata._id}`} >
+                                    <a><CardContent><Post plan={plandata}/></CardContent></a>
+                                </Link>
+                            </Card>
+                        )
+                    })}
             </div>
         </div>
         

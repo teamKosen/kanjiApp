@@ -23,6 +23,12 @@ export const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2, 5),
         border: "solid 1px",
         BorderColor: "black",
+        display:"flex",
+        flexWrap:"wrap",
+    },
+    planUnit:{
+      width:"50%",
+      boxSizing:"border-box",
     },
     planContent:{
         marginBottom: theme.spacing(2),

@@ -2,7 +2,27 @@
   padding: 5px;
   z-index: 100;
 }
-
+.postColumn{
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+}
+.postLeft{
+  width:40%;
+  box-sizing:"border-box";
+}
+.postRight{
+  width:60%;
+  box-sizing:"border-box";
+  text-align: left;
+}
+.locationIcon {
+  margin: 0 10px 0 20px;
+}
+.tagChip{
+  background-color: transparent;
+  border-color: blue;
+}
 .imgPosition {
     display: flex;
 }
