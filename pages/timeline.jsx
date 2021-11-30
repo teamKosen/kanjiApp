@@ -43,13 +43,13 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     const commentlist=JSON.parse(JSON.stringify(commentdatas));
     const picturelist = JSON.parse(JSON.stringify(picturedatas));
 
-    const [currentBudjet, setcurrentBudjet] = useState();
+    const [currentbudget, setcurrentbudget] = useState();
     const [currentNumberOfPeople, setcurrentNumberOfPeople] = useState();
     const [currentGenre, setcurrentGenre] = useState();
     const [currentPurpose, setcurrentPurpose] = useState();
     const [isOpenDrawer, setDrawerState] = useState(false);
 
-    const budjetList = [1000,2000,3000,4000];
+    const budgetList = [1000,2000,3000,4000];
     const numberOfPeopleList = [2,4,6,8];
     const genreList = ["中華","和食","イタリアン","エスニック"];
     const purposeList = ["打ち上げ","会食","合コン","同窓会"];
@@ -75,12 +75,12 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
         request()
     }, [keyword])
 
-    const selectCurrentBudjet = useCallback((budjet) => {
-        setcurrentBudjet(budjet)
+    const selectCurrentbudget = useCallback((budget) => {
+        setcurrentbudget(budget)
     },[]);
 
-    const selectBudjetClear = useCallback(() => {
-        setcurrentBudjet(undefined)
+    const selectbudgetClear = useCallback(() => {
+        setcurrentbudget(undefined)
     },[]); 
 
     const selectCurrentNumberOfPeople = useCallback((numberOfPeople) => {
@@ -109,13 +109,13 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
 
     const searchTag = useCallback(() => {
         const request = async () => {
-            const res = await fetch(`http://localhost:3000/api/tagsearch?budjet=${currentBudjet}&genre=${currentGenre}&numberOfPeople=${currentNumberOfPeople}&purpose=${currentPurpose}`);
+            const res = await fetch(`http://localhost:3000/api/tagsearch?budget=${currentbudget}&genre=${currentGenre}&numberOfPeople=${currentNumberOfPeople}&purpose=${currentPurpose}`);
             const shopdatas= await res.json()
             updateShops(shopdatas);
         }
           request()
           setDrawerState(false);
-    },[currentBudjet,currentGenre,currentNumberOfPeople,currentPurpose]);
+    },[currentbudget,currentGenre,currentNumberOfPeople,currentPurpose]);
 
     const handleOpenDrawer = useCallback(
         () => {
@@ -149,10 +149,10 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                     >
                         <DrawerContent
                             searchTag={searchTag}
-                            budjetList={budjetList}
-                            currentBudjet={currentBudjet}
-                            selectBudjetClear={selectBudjetClear}
-                            selectCurrentBudjet={selectCurrentBudjet}
+                            budgetList={budgetList}
+                            currentbudget={currentbudget}
+                            selectbudgetClear={selectbudgetClear}
+                            selectCurrentbudget={selectCurrentbudget}
                             numberOfPeopleList={numberOfPeopleList}
                             currentNumberOfPeople={currentNumberOfPeople}
                             selectNumberOfPeopleClear={selectNumberOfPeopleClear}

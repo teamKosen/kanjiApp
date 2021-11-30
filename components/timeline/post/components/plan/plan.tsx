@@ -23,7 +23,7 @@ export const Plan:FunctionComponent<Props> = (props) => {
                             if(key=="numberOfPeople"){
                                 unit="人"
                             }
-                            else if(key=="budjet"){
+                            else if(key=="budget"){
                                 unit="円"
                             }
                             else{

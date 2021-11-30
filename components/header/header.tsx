@@ -11,7 +11,7 @@ export const Header:FunctionComponent = () => {
 
     const router = useRouter();
 
-    const [currentBudjet, setcurrentBudjet] = useState();
+    const [currentbudget, setcurrentbudget] = useState();
     const [currentNumberOfPeople, setcurrentNumberOfPeople] = useState();
     const [currentGenre, setcurrentGenre] = useState();
     const [currentPurpose, setcurrentPurpose] = useState();
@@ -19,17 +19,17 @@ export const Header:FunctionComponent = () => {
 
     const [user, { mutate }] = useUser();
 
-    const budjetList = [1000,2000,3000,4000];
+    const budgetList = [1000,2000,3000,4000];
     const numberOfPeopleList = [2,4,6,8];
     const genreList = ["中華","和食","イタリアン","エスニック"];
     const purposeList = ["打ち上げ","会食","合コン","同窓会"];
 
-    const selectCurrentBudjet = useCallback((budjet) => {
-        setcurrentBudjet(budjet)
+    const selectCurrentbudget = useCallback((budget) => {
+        setcurrentbudget(budget)
     },[]);
 
-    const selectBudjetClear = useCallback(() => {
-        setcurrentBudjet(undefined)
+    const selectbudgetClear = useCallback(() => {
+        setcurrentbudget(undefined)
     },[]); 
 
     const selectCurrentNumberOfPeople = useCallback((numberOfPeople) => {
@@ -67,13 +67,13 @@ export const Header:FunctionComponent = () => {
     },[]);
 
     const SearchTag = useCallback(() => {
-        const apiUrl = `http://localhost:3000/api/tagsearch?budjet=${currentBudjet}&genre=${currentGenre}&numberOfPeople=${currentNumberOfPeople}&purpose=${currentPurpose}`;
+        const apiUrl = `http://localhost:3000/api/tagsearch?budget=${currentbudget}&genre=${currentGenre}&numberOfPeople=${currentNumberOfPeople}&purpose=${currentPurpose}`;
         router.push({
             pathname: "./timeline",
             query: { apiUrl: apiUrl}
         });
         setDrawerState(false);
-    },[currentBudjet,currentGenre,currentNumberOfPeople,currentPurpose,router])
+    },[currentbudget,currentGenre,currentNumberOfPeople,currentPurpose,router])
 
     const handleLogout = async () => {
         await fetch("/api/auth", {
@@ -91,10 +91,10 @@ export const Header:FunctionComponent = () => {
             >
                 <DrawerContent
                     searchTag={SearchTag}
-                    budjetList={budjetList}
-                    currentBudjet={currentBudjet}
-                    selectBudjetClear={selectBudjetClear}
-                    selectCurrentBudjet={selectCurrentBudjet}
+                    budgetList={budgetList}
+                    currentbudget={currentbudget}
+                    selectbudgetClear={selectbudgetClear}
+                    selectCurrentbudget={selectCurrentbudget}
                     numberOfPeopleList={numberOfPeopleList}
                     currentNumberOfPeople={currentNumberOfPeople}
                     selectNumberOfPeopleClear={selectNumberOfPeopleClear}

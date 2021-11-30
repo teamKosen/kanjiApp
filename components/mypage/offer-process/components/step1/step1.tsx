@@ -5,7 +5,7 @@ import { ObjectId } from 'mongodb';
 type Props = {
     offerplandetail: {
         _id: ObjectId;
-        budjet: number;
+        budget: number;
         numberOfPeople: number;
         shopname: string;
         place: string;
@@ -51,7 +51,7 @@ export const Step1:FunctionComponent<Props> = (props) => {
                 </tr>
                 <tr className={classes.tableTr}>
                     <th className={classes.tableTh}>金額</th>
-                    <td className={classes.tableTd}>{offerplandetail.budjet}円</td>
+                    <td className={classes.tableTd}>{offerplandetail.budget}円</td>
                 </tr>
             </table>
         </div>

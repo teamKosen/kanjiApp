@@ -14,7 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 type Props = {
     offerplandetail: {
         _id: ObjectId;
-        budjet: number;
+        budget: number;
         numberOfPeople: number;
         shopname: string;
         place: string;
