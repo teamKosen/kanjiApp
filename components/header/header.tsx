@@ -111,18 +111,6 @@ export const Header:FunctionComponent = () => {
                 />
             </Drawer> 
             <div className={style.headerContent}>
-                <div className={style.logo}>
-                    <Link href="./" >
-                        <Image src="/asset/Dlink(Black).png" alt="ロゴ" width={160} height={70}/>
-                    </Link>
-                </div>
-                <InputBase　
-                    type="search"
-                    name="query"
-                    className={style.searchFieldInput}
-                    placeholder="キーワードを入力して下さい"
-                />
-                <Button onClick={handleOpenDrawer}>タグ検索</Button>
                 <div className={style.headerLinks}>
                     <ul className={style.insidePageLinks}>
                         {user ? (
@@ -130,26 +118,30 @@ export const Header:FunctionComponent = () => {
                                 <li className={style.insidePageLink}>
                                     <ul className={style.insideFunctionLinks}>
                                         <li className={style.insideFunctionLink}>
-                                            <Link href="/timeline">お店一覧</Link>
+                                            <Button onClick={handleOpenDrawer}>タグ検索</Button>
+                                        </li>
+                                        
+                                        <li className={style.insideFunctionLink}>
+                                            <Button href="/timeline">お店一覧</Button>
                                         </li>
                                         { user.userType === "幹事" ? (
                                             <>
                                                 <li className={style.insideFunctionLink}>
-                                                <Link href="/userplan">自分のプラン一覧</Link>
+                                                <Button href="/userplan">自分のプラン一覧</Button>
                                                 </li>
                                                 <li className={style.insideFunctionLink}>
-                                                    <Link href="./create_plan">飲み会プランを作成</Link>
+                                                    <Button href="./create_plan">飲み会プランを作成</Button>
                                                 </li>
                                             </>
                                         ) : (
                                             <li className={style.insideFunctionLink}>
-                                                <Link href="/shopplan">投稿プラン一覧</Link>
+                                                <Button href="/shopplan">投稿プラン一覧</Button>
                                             </li>
                                         )}
                                         <li className={style.insideFunctionLink}>
-                                            <Link　href="/mypage/detail">マイページ</Link>
+                                            <Button　href="/mypage/detail">マイページ</Button>
                                         </li>
-                                        <li className={style.insideFunctionLink}>{user.name}</li>
+                                        <li className={style.insideFunctionLink_username}>{user.name}</li>
                                     </ul>
                                 </li>
                                 <li className={style.insidePageLink}>
@@ -181,6 +173,23 @@ export const Header:FunctionComponent = () => {
                         )}
                     </ul>
                 </div>
+                <div className={style.headermain}>
+                    <div className={style.logo}>
+                        <Link href="./" >
+                            <Image src="/asset/Dlink(Black).png" alt="ロゴ" width={214} height={95}/>
+                        </Link>
+                    </div>
+                    <div className={style.searchField}>
+                        <InputBase　
+                            type="search"
+                            name="query"
+                            className={style.searchFieldInput}
+                            inputProps={{style: {fontSize: 36} }} 
+                            placeholder="キーワードを入力"
+                        />
+                    </div>
+                </div>
+                
             </div>
         </header>
     );

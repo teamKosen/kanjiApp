@@ -27,7 +27,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header />
-        <Component {...pageProps} />
+        <div style={{paddingTop: '80px'}}>
+          <Component {...pageProps} />
+        </div>
       </ThemeProvider>
     </>
   )
