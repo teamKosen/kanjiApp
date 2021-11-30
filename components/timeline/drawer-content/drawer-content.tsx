@@ -4,10 +4,10 @@ import { FunctionComponent } from "react";
 
 type Props = {
     searchTag: () => void;
-    budjetList: number[];
-    currentBudjet: any;
-    selectBudjetClear: () => void;
-    selectCurrentBudjet: (budjet: any) => void;
+    budgetList: number[];
+    currentbudget: any;
+    selectbudgetClear: () => void;
+    selectCurrentbudget: (budget: any) => void;
     numberOfPeopleList: number[];
     currentNumberOfPeople: any;
     selectNumberOfPeopleClear: () => void;
@@ -26,10 +26,10 @@ type Props = {
 export const DrawerContent:FunctionComponent<Props> = (props) => {
     const {
         searchTag,
-        budjetList,
-        currentBudjet,
-        selectBudjetClear,
-        selectCurrentBudjet,
+        budgetList,
+        currentbudget,
+        selectbudgetClear,
+        selectCurrentbudget,
         numberOfPeopleList,
         currentNumberOfPeople,
         selectNumberOfPeopleClear,
@@ -57,22 +57,22 @@ export const DrawerContent:FunctionComponent<Props> = (props) => {
                     <h2>予算</h2>
                     <div>
                         <ul className={classes.lists}>
-                            {budjetList.map((budjet) => (
-                                <li key={budjet} >
+                            {budgetList.map((budget) => (
+                                <li key={budget} >
                                     {
-                                        (budjet === currentBudjet) ? (
+                                        (budget === currentbudget) ? (
                                             <div 
                                                 className={classes.currentTag}
-                                                onClick={() => selectBudjetClear()}
+                                                onClick={() => selectbudgetClear()}
                                             >
-                                                ＃{budjet}円
+                                                ＃{budget}円
                                             </div>
                                         ) : (  
                                             <div 
                                                 className={classes.anotherTag} 
-                                                onClick={() => selectCurrentBudjet(budjet)}
+                                                onClick={() => selectCurrentbudget(budget)}
                                             >
-                                                #{budjet}円
+                                                #{budget}円
                                             </div>
                                         )
                                     }

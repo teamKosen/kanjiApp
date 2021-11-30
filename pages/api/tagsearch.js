@@ -6,16 +6,16 @@ const handler = nextConnect();
 handler.use(middleware);
 
 handler.get(async (req, res) => {
-    const { budjet,genre,numberOfPeople,purpose } = req.query;
+    const { budget,genre,numberOfPeople,purpose } = req.query;
 
-    const budjetTag = { "tag.budjet.max": Number(budjet)};
+    const budgetTag = { "tag.budget.max": Number(budget)};
     const genreTag = { "tag.genre": genre};
     const purposeTag = {"tag.purpose": purpose};
     const numberOfPeopleTag = {"tag.numberOfPeople": Number(numberOfPeople)};
     let search = {};
 
-    if (!isNaN(budjet)){
-        search = Object.assign(search,budjetTag);
+    if (!isNaN(budget)){
+        search = Object.assign(search,budgetTag);
     }
 
     if(genre !== 'undefined'){
@@ -31,7 +31,7 @@ handler.get(async (req, res) => {
     }
 //------最終的にこんなのを生成
     // const search = {
-    //     "tag.budjet.max": Number(budjet),
+    //     "tag.budget.max": Number(budget),
     //     "tag.genre": genre,
     //     "tag.purpose": purpose,
     //     "tag.numberOfPeople": Number(numberOfPeople)
