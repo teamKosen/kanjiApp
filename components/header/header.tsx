@@ -6,8 +6,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { DrawerContent } from '../timeline/drawer-content/drawer-content';
 import { useUser } from '../../lib/hooks';
+import { useStyles } from './header.style';
 
 export const Header:FunctionComponent = () => {
+    const classes = useStyles();
 
     const router = useRouter();
 
@@ -83,7 +85,7 @@ export const Header:FunctionComponent = () => {
     };
 
     return (
-        <header className={style.header}>
+        <header className={classes.header}>
             <Drawer
                 anchor="top"
                 open={isOpenDrawer}
