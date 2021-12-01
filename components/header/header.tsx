@@ -1,5 +1,6 @@
 import { FunctionComponent, useState, useCallback } from 'react';
 import style from './header.module.scss';
+import { useStyles } from "./header.style";
 import { Button, InputBase, Drawer } from '@material-ui/core';
 import Image from 'next/image'
 import Link from 'next/link';
@@ -16,6 +17,7 @@ export const Header:FunctionComponent = () => {
     const [currentGenre, setcurrentGenre] = useState();
     const [currentPurpose, setcurrentPurpose] = useState();
     const [isOpenDrawer, setDrawerState] = useState(false);
+    const tsstyle = useStyles();
 
     const [user, { mutate }] = useUser();
 
@@ -144,11 +146,6 @@ export const Header:FunctionComponent = () => {
                                         <li className={style.insideFunctionLink_username}>{user.name}</li>
                                     </ul>
                                 </li>
-                                <li className={style.insidePageLink}>
-                                    <Button variant="outlined" color="primary" onClick={handleLogout}>
-                                        <Link href="./signin">ログアウト</Link>
-                                    </Button>
-                                </li>
                             </>
                         ) :(
                             <>
@@ -184,10 +181,18 @@ export const Header:FunctionComponent = () => {
                             type="search"
                             name="query"
                             className={style.searchFieldInput}
-                            inputProps={{style: {fontSize: 36} }} 
-                            placeholder="キーワードを入力"
+                            inputProps={{style: {fontSize: 36, color: '#DCDCDC' }  }} 
+                            placeholder=" キーワードを入力"
                         />
+                        <Button 
+                            className={tsstyle.searchButton}
+                        >検索</Button>
                     </div>
+                    <Button  
+                        onClick={handleLogout} 
+                        href="./signin"
+                        className={tsstyle.logout}
+                    >ログアウト</Button>
                 </div>
                 
             </div>
