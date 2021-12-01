@@ -45,7 +45,7 @@ export default function Tagyarn(props) {
             renderInput={(params) => (
               <TextField
                 {...params}
-                style={{width:"50em"}}
+                style={{width:"90%"}}
                 label="tag"
                 variant="standard"
               />

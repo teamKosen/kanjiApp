@@ -9,34 +9,47 @@ export const useStyles = makeStyles((theme) => ({
     title:{
         display:"inline-block",
         marginRight:"10px",
-        fontSize:"18px",   
-    },
-    deadlineWeek:{
-        display:"inline-block",
-        fontSize:"18px",
+        fontSize:"18px",  
+        width:"90%",
+        borderBottom:"solid",
     },
     deadlineDay:{
         display:"inline-block",
-        fontSize:"18px",
+        fontSize:"12px",
+        textAlign:"center",
+        width:"90%",
     },
     deadlineHour:{
         display:"inline-block",
         color:"red",
+        fontSize:"12px",
+        textAlign:"center",
+        width:"90%",
+    },
+    deadlineLimit:{
+        display:"inline-block",
         fontSize:"18px",
     },
-    deadlineMinute:{
-        display:"inline-block",
-        color:"red",
-        fontSize:"18px",
+    icon:{
+        height:"2em",
     },
-    deadlineSecond:{
+    iconSpace:{
         display:"inline-block",
-        color:"red",
-        fontSize:"18px",
+        alignItems:"flex-end",
+    },
+    lineUnit:{
+        display:"inline-block",
     },
     tag:{
         marginRight:"10px",
         display:"inline-block",
+        padding:"0.6em",
+        lineHeight:"1",
+        textDecoration:"none",
+        color:"$0000ee",
+        backgroundColor:"#fff",
+        border:"1px solid #0000ee",
+        borderRadius:"2em",
     },
     numberOfPeople:{
         marginRight:"10px",
@@ -50,6 +63,9 @@ export const useStyles = makeStyles((theme) => ({
 
     },
     line:{
-        //padding:"0 0 1px 0",
+        verticalAlign:"middle",
+        display:"flex",
+        alignItems:"center",
+        height:"2em",
     },
 }));

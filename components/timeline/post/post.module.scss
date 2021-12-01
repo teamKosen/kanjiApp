@@ -12,16 +12,30 @@
   box-sizing:"border-box";
 }
 .postRight{
-  width:60%;
+  margin-left: 1em;
+  width:50%;
   box-sizing:"border-box";
   text-align: left;
 }
-.locationIcon {
+.postDetail{
+  margin-left:-20px;
+}
+.icon {
   margin: 0 10px 0 20px;
 }
 .tagChip{
-  background-color: transparent;
-  border-color: blue;
+	display: inline-block;
+	margin: 0 .1em .6em 0;
+	padding: .6em;
+	line-height: 1;
+	text-decoration: none;
+	color: #0000ee;
+	background-color: #fff;
+	border: 1px solid #0000ee;
+	border-radius: 2em;
+}
+.tagUnit{
+  
 }
 .imgPosition {
     display: flex;
