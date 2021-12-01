@@ -130,7 +130,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
             <div className={classes.sidebar}>
                 <div className={classes.box}>
                     <p>タグ</p>
-                    <label htmlFor="tag" className={classes.form}>
+                    <label htmlFor="tag" style={{width:"100%"}}>
                         <Tag setValue={setTags}/>
                     </label>
                 </div>
@@ -153,14 +153,16 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                 <div className={classes.box}>
                     <p>人数</p>
                     <span className={classes.form}>
-                        <TextField id="numberOfPeople_min" InputProps={{ inputProps: { min: 1} }} onInput={SelectMinNumberOfPeople} value={minNumberOfPeople} style={{width:"11%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
-                        <span style={{fontWeight:"bold",fontSize:"18px"}}>~</span>
-                        <TextField id="numberOfPeople_max" InputProps={{ inputProps: { min: 1} }} onInput={SelectMaxNumberOfPeople} value={maxNumberOfPeople} style={{width:"11%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
+                        <TextField id="numberOfPeople_min" InputProps={{ inputProps: { min: 1} }} onInput={SelectMinNumberOfPeople} value={minNumberOfPeople} style={{width:"20%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
+                        <span style={{fontWeight:"normal",fontSize:"30px"}}>~</span>
+                        <TextField id="numberOfPeople_max" InputProps={{ inputProps: { min: 1} }} onInput={SelectMaxNumberOfPeople} value={maxNumberOfPeople} style={{width:"20%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
                     </span>
                 </div>
                 <div className={classes.box}>
                     <p>日付</p>
-                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} style={{width:"90%"}} size="small" variant="outlined" name="budget" />
+                    <label htmlFor="openDate">
+                        <TextField id="opendate" name="opendate" type="date" value={openDate} onInput={SelectOpenDate} label="日付" size="small" variant="outlined" InputLabelProps={{shrink: true}}/>
+                    </label>
                 </div>
             </div>
             <div className={classes.table}>
