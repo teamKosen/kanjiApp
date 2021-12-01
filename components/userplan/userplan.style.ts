@@ -22,8 +22,13 @@ export const useStyles = makeStyles((theme) => ({
         display:"inline-block",
     },
     plan:{
-        margin:"30px auto",
-        backgroundColor: "rgb(229, 237, 250)",
-        width:"40em",
+        margin:"10px 20px",
+        width:"16em",
+        borderRadius:"10px",
+        padding:"5px",
     },
+    planLine:{
+        width:"17em",
+        display:"inline-block",
+    }
 }));
