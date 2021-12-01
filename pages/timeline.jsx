@@ -4,7 +4,7 @@ import Drawer from '@material-ui/core/Drawer';
 
 import { DrawerContent } from '../components/timeline/drawer-content/drawer-content.tsx';
 import { Post } from '../components/timeline/post/post';
-import { Button , InputBase } from '@material-ui/core';
+import { Button , InputBase,Card } from '@material-ui/core';
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 
@@ -196,7 +196,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                             const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
                             const pict = picturelist.filter(v=>v.shopId==shopdata._id);
                             
-                            return <div key={shopdata.name} className={style.unitPost}>
+                            return <Card key={shopdata.name} className={style.unitPost}>
                                 <Post 
                                     name={shopdata.name}
                                     genre={shopdata.tag.genre}
@@ -213,7 +213,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                                     comment={cmnt}
                                     pictures={pict}
                                 />
-                            </div>
+                            </Card>
                         })}
                     </div>
                     <div className={style.postLine}>
@@ -222,7 +222,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                             const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
                             const pict = picturelist.filter(v=>v.shopId==shopdata._id);
 
-                            return <div key={shopdata.name} className={style.unitPost}>
+                            return <Card key={shopdata.name} className={style.unitPost}>
                                 <Post 
                                     name={shopdata.name}
                                     genre={shopdata.tag.genre}
@@ -239,7 +239,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                                     comment={cmnt}
                                     pictures={pict}
                                 />
-                            </div>
+                            </Card>
                         })}
                     </div>
                 </div>
