@@ -19,11 +19,8 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     searchButton: {
-        // display: "flex",
-        // position: "absolute",
         width: "14%",
         height: "68px",
-        // marginLeft: "44%",
     
         backgroundColor: "#FFD700",
         boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
