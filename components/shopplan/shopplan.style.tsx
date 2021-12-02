@@ -67,9 +67,11 @@ export const useStyles = makeStyles((theme) => ({
 
       },
       box:{
+        pdding:"5px",
         height:"auto",
       },
       table:{
+        verticalAlign:"middle",
         width:"70%",
         display:"inline-block",
       }
