@@ -1,7 +1,8 @@
 import style from './post.module.scss'
 import LocalBarIcon from '@material-ui/icons/LocalBar';
+import AddLocationIcon from '@material-ui/icons/AddLocation';
 import React, { useCallback, useState } from 'react';
-import { Button } from '@material-ui/core';
+import { Button,Chip } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment';
 import { Map } from './components/map/map';
 
@@ -27,23 +28,26 @@ export const Post = (props) => {
 
     return(
         <div className={style.post}>
-            <h2>店名:{name}</h2>
-            <div style={{display: 'flex'}}>
-                <p>#{genre}</p>
-                <p>#{purpose}</p>
-            </div>
-            <div className={style.imgPosition}>
-                <Picture
-                    pictures={pictures}
-                />
+            <h2>{name}</h2>
+            <div className={style.postColumn}>
+                <div className={style.postLeft}>
+                    <div className={style.imgPosition}>
+                        <Picture
+                            pictures={pictures}
+                        />
+                    </div>
+                </div>
+                <div className={style.postRight}>
+                    <div className={style.postDetail}>
+                        <div><AddLocationIcon className={style.icon}/>博多駅</div>
+                    </div>
+                    <div style={{display: 'flex'},{marginTop:'1em'}}>
+                        <div className={style.tagChip}>#{genre}</div>
+                        <div className={style.tagChip}>#{purpose}</div>
+                    </div>
+                </div>
             </div>
             <div className={style.nomalBottom}>
-                <div className={style.good}>
-                    <Button >
-                        <LocalBarIcon className={style.drinkIcon}/>
-                        <div>0</div>
-                    </Button>
-                </div>
                 <div className={style.shopdetailOpenButton} onClick={handleClick}>詳しくはコチラ↓</div>
             </div>
             { anchorEl ? 

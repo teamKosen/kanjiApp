@@ -3,8 +3,9 @@ import {Post} from "./components/post"
 import React,{FunctionComponent, useState, useCallback } from "react";
 import Link from 'next/link';
 import Tag from "./components/tag";
-import { Card, CardContent,FormControl,InputLabel,Select,MenuItem,TextField, Button , InputAdornment, InputAdornmentProps, OutlinedInput } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Card, CardContent,FormControl,InputLabel,Select,MenuItem,TextField, Button , InputAdornment, InputAdornmentProps, OutlinedInput } from '@material-ui/core';
 import { CreateOfferModal } from "./components/create-offer-modal/create-offer-modal"
+
 
 type Props={
     userplandatas:JSON;
@@ -15,10 +16,12 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const {userplandatas}=props;
     const planlist_pre=JSON.parse(JSON.stringify(userplandatas));
     const [planlist,updatePlanlist]=useState(planlist_pre);
+
     const classes = useStyles();
     const [openDate, setopenDate] = useState();
     const [maxNumberOfPeople,setmaxNumberOfPeople]=useState();
     const [minNumberOfPeople,setminNumberOfPeople]=useState();
+    const [budget,setbudget]=useState();
     const [tag, setTags] = useState([]);
     const [selectedSort,setSelectedSort]=useState(0);
     const [isOpenCreatePlan, setIsOpenCreatePlan] = useState(false);
@@ -41,12 +44,10 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const SelectMinNumberOfPeople=async(e)=>{
         setminNumberOfPeople(e.target.value);
     }
-    // const SelectSort=async(e)=>{
-    //     setSelectedSort(e.target.value);
-    // }
     const SelectSort = (event: React.ChangeEvent<{ value: unknown }>) => {
         setSelectedSort(event.target.value as number);
     };
+
 
     const handleCreatePlanOpen = () => {
         setIsOpenCreatePlan(true);
@@ -55,6 +56,24 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const handleCreatePlanClose = () => {
         setIsOpenCreatePlan(false);
     }
+
+
+    const SelectBudget=async(e)=>{
+        setbudget(e.target.value);
+    }
+    // function createDate(
+    //     planName:string,
+    //     deadlineLimit:number,
+    //     place:string,
+    //     numberOfPeople:number,
+    //     date:Date,
+    //     budget:number,
+    //     offerState:number,
+    // ){
+    //     return{planName,deadlineLimit,place,numberOfPeople,date,budget,offerState}
+    // }
+    const today:Date=new Date('2021-09-17 14:56:29');
+    const dayOfWeek:string[]=["日","月","火","水","木","金","土"];
 
     return (
         <div style={{paddingTop:"60px",width:"80%",marginRight:"auto",marginLeft:"auto",}}>
@@ -68,7 +87,8 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
             <div className={classes.line}>
                 <span className={classes.form}>
                     <TextField id="numberOfPeople_min" InputProps={{ inputProps: { min: 1} }} onInput={SelectMinNumberOfPeople} value={minNumberOfPeople} style={{width:"11%"}} size="small" variant="outlined" name="numberOfPeople" type="Number" label="最低人数" />
-                    <TextField id="numberOfPeople_max" InputProps={{ inputProps: { min: 1} }} onInput={SelectMaxNumberOfPeople} value={maxNumberOfPeople} style={{width:"11%"}} size="small" variant="outlined" name="numberOfPeople" type="Number" label="最大人数"/></span>
+                    <TextField id="numberOfPeople_max" InputProps={{ inputProps: { min: 1} }} onInput={SelectMaxNumberOfPeople} value={maxNumberOfPeople} style={{width:"11%"}} size="small" variant="outlined" name="numberOfPeople" type="Number" label="最大人数"/>
+                </span>
                 <span className={classes.form}>
                     <TextField id="place" type="text" label="場所" style={{width:"26%"}} size="small" variant="outlined" />
                 </span>
@@ -124,7 +144,85 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                  <br/> 
             </div>
             </div>
-            {/* </form> */}
+            <div className={classes.sidebar}>
+                <div className={classes.box}>
+                    <p>タグ</p>
+                    <label htmlFor="tag" className={classes.form}>
+                        <Tag setValue={setTags}/>
+                    </label>
+                </div>
+                <div className={classes.box}>
+                    <p>予算</p>
+                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} onInput={SelectBudget} value={budget} style={{width:"90%"}} size="small" variant="outlined" name="budget" type="Number"/>
+                </div>
+                <div className={classes.box}>
+                    <p>場所</p>
+                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} style={{width:"90%"}} size="small" variant="outlined" name="budget" />
+                </div>
+                <div className={classes.box}>
+                    <p>目的</p>
+                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} style={{width:"90%"}} size="small" variant="outlined" name="budget" />
+                </div>
+                <div className={classes.box}>
+                    <p>ジャンル</p>
+                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} style={{width:"90%"}} size="small" variant="outlined" name="budget" />
+                </div>
+                <div className={classes.box}>
+                    <p>人数</p>
+                    <span className={classes.form}>
+                        <TextField id="numberOfPeople_min" InputProps={{ inputProps: { min: 1} }} onInput={SelectMinNumberOfPeople} value={minNumberOfPeople} style={{width:"11%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
+                        <span style={{fontWeight:"bold",fontSize:"18px"}}>~</span>
+                        <TextField id="numberOfPeople_max" InputProps={{ inputProps: { min: 1} }} onInput={SelectMaxNumberOfPeople} value={maxNumberOfPeople} style={{width:"11%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
+                    </span>
+                </div>
+                <div className={classes.box}>
+                    <p>日付</p>
+                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} style={{width:"90%"}} size="small" variant="outlined" name="budget" />
+                </div>
+            </div>
+            <div className={classes.table}>
+                <TableContainer component={Paper}>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>プラン名</TableCell>
+                                <TableCell>締切時間</TableCell>
+                                <TableCell>場所</TableCell>
+                                <TableCell>人数</TableCell>
+                                <TableCell>日時</TableCell>
+                                <TableCell>予算</TableCell>
+                                <TableCell>オファー</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {planlist.map((plandata)=>{
+                                const deadline:Date=new Date(plandata.deadlineTime);
+                                const limit:number=Math.floor((deadline.getTime()-today.getTime())/1000);
+                                const openTime:Date=new Date(plandata.openTime);
+                                const closeTime:Date=new Date(plandata.closeTime);
+                                return(
+                                    <TableRow key={plandata._id}>
+                                                <TableCell><Link href={`/negotiation/${plandata._id}`} ><a>{plandata.title}</a></Link></TableCell>
+                                                <TableCell>
+                                                {limit>=604800?(<span className={classes.deadlineDay}>あと{Math.floor(limit/604800)}週間</span>):
+                                                limit>=86400?(<span className={classes.deadlineDay}>あと{Math.floor(limit/86400)}日</span>):
+                                                limit>=3600?(<span className={classes.deadlineHour}>あと{Math.floor(limit/3600)}時間</span>):
+                                                limit>=60?(<span  className={classes.deadlineHour}>あと{Math.floor(limit/60)}分</span>):
+                                                limit>0?(<span  className={classes.deadlineHour}>あと{limit}秒</span>):
+                                                (<span></span>)}
+                                                </TableCell>
+                                                <TableCell>博多駅</TableCell>
+                                                <TableCell>{plandata.numberOfPeople}人</TableCell>
+                                                <TableCell>{openTime.getMonth()+1}月{openTime.getDate()}日({dayOfWeek[openTime.getDay()]}) {('00'+openTime.getHours()).slice(-2)}:{('00'+openTime.getMinutes()).slice(-2)}～{('00'+closeTime.getHours()).slice(-2)}:{('00'+closeTime.getMinutes()).slice(-2)}</TableCell>
+                                                <TableCell>{plandata.budget}円</TableCell>
+                                                <TableCell>オファーする</TableCell>
+                                    </TableRow>
+                                )
+                            })}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </div>
             <div className={classes.plan}>
             {planlist.map((plandata) => {
                 return(
@@ -138,6 +236,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                     </Card>
                 )
             })}
+
             </div>
             <CreateOfferModal
                 handleCreatePlanClose={handleCreatePlanClose} 

@@ -2,7 +2,41 @@
   padding: 5px;
   z-index: 100;
 }
-
+.postColumn{
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+}
+.postLeft{
+  width:40%;
+  box-sizing:"border-box";
+}
+.postRight{
+  margin-left: 1em;
+  width:50%;
+  box-sizing:"border-box";
+  text-align: left;
+}
+.postDetail{
+  margin-left:-20px;
+}
+.icon {
+  margin: 0 10px 0 20px;
+}
+.tagChip{
+	display: inline-block;
+	margin: 0 .1em .6em 0;
+	padding: .6em;
+	line-height: 1;
+	text-decoration: none;
+	color: #0000ee;
+	background-color: #fff;
+	border: 1px solid #0000ee;
+	border-radius: 2em;
+}
+.tagUnit{
+  
+}
 .imgPosition {
     display: flex;
 }

@@ -1,4 +1,5 @@
 .timeline {
+  position: relative;
   width: 80%;
   margin: 0 auto;
   max-width: 800px;
@@ -60,11 +61,21 @@
   // width: "70%";
   width: 500px;
 }
-
 .post {
-  background-color: rgb(229, 237, 250);
   margin: 10px 20px;
   border-radius: 10px;
   padding: 5px;
+  display:flex;
+  flex-wrap:wrap;
+}
+.postLine{
+  width: 25em;
+  box-sizing: border-box;
+}
+.unitPost {
+  background-color: rgb(229, 237, 250);
+  margin: 10px 20px;
+  border-radius: 10px;
+  padding: 5px; 
 }
 

@@ -6,7 +6,7 @@ import { OfferProcess } from '../../components/mypage/offer-process/offer-proces
 type Props = {
     offerplandetail: {
         _id: ObjectId;
-        budjet: number;
+        budget: number;
         numberOfPeople: number;
         shopname: string;
         place: string;

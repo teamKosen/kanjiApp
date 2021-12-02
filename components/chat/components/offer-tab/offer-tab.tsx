@@ -32,7 +32,7 @@ export const OfferTab:FunctionComponent<Props> = (props) => {
                                             <div className={classes.offerTitle}>{userPlandata.shopname}</div>
                                             <ul className={classes.offerStatus}>
                                                 <li className={classes.offerStatusItem}>
-                                                    <p>予算: {userPlandata.budjet}円</p>
+                                                    <p>予算: {userPlandata.budget}円</p>
                                                 </li>
                                                 <li className={classes.offerStatusItem}>
                                                     <p>人数: {userPlandata.numberOfPeople}人</p>
