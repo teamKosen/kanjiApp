@@ -3,7 +3,13 @@ import { List,Divider,ListItem,ListItemIcon,ListItemText,Collapse } from "@mater
 import { ExpandLess,ExpandMore,StarRate,AccountCircle,Feed } from "@material-ui/icons";
 import { useStyles } from './detail.style'
 
-export const Detail:FunctionComponent = () => {
+type Props = {
+    offerdatas: JSON;
+};
+
+export const Detail:FunctionComponent<Props> = (props) => {
+    const { offerdatas } = props;
+
     const [ offerIndex,setOfferIndex] = useState(true);
     const [ currentOfferState, setCurrentOfferState] = useState<number>(2);
     const classes = useStyles();
@@ -11,6 +17,8 @@ export const Detail:FunctionComponent = () => {
     const handleOfferIndex = useCallback(() => {
         setOfferIndex(!offerIndex);
     },[offerIndex])
+
+    console.log(offerdatas)
 
     return (
         <div className={classes.detailForm}>
