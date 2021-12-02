@@ -9,7 +9,7 @@ handler.use(middleware);
 
 
 handler.get(async (req, res) => {
-    const {date,maxnumberofpeople,minnumberofpeople,tag,sortcondition}=req.query;
+    const {date,maxnumberofpeople,minnumberofpeople,tag,sortcondition,sortswitch}=req.query;
 
     let search={};
 
@@ -49,38 +49,22 @@ handler.get(async (req, res) => {
         const time = {"openTime":{"$gte":start,"$lte":end}};
         search = Object.assign(search,time);
     }
-
     let sort={};
     switch(Number(sortcondition)){
         case 1:
-            sort={"budget":-1};
+            sort={"budget":Number(sortswitch)};
             break;
         case 2:
-            sort={"budget":1}
+            sort={"numberOfPeople":Number(sortswitch)};
             break;
         case 3:
-            sort={"numberOfPeople":-1};
+            sort={"openTime":Number(sortswitch)};
             break;
         case 4:
-            sort={"numberOfPeople":1}
+            sort={"deadlineTime":Number(sortswitch)};
             break;
         case 5:
-            sort={"openTime":1};
-            break;
-        case 6:
-            sort={"openTime":-1}
-            break;
-        case 7:
-            sort={"deadlineTime":1};
-            break;
-        case 8:
-            sort={"deadlineTime":-1}
-            break;
-        case 9:
-            sort={"create_at":1};
-            break;
-        case 10:
-            sort={"create_at":-1}
+            sort={"create_at":Number(sortswitch)};
             break;
         default:
 
