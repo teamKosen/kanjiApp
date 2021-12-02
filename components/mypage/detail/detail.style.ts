@@ -5,14 +5,15 @@ export const useStyles = makeStyles((theme) => ({
   detailForm: {
     display: 'flex',
     zIndex: 20,
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    width: "85%",
   },
   negotiation: {
     zIndex: 30,
   },
-  yellowbar: {
-    width: "1px",
-    height: "100%",
-    backgroundColor: "#FFD700",
+  iconColor: {
+    color: "#FFD700",
   },
   drawer: {
     width: theme.spacing(30),
