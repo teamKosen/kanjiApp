@@ -3,7 +3,9 @@ import {Post} from "./components/post"
 import React,{FunctionComponent, useState, useCallback } from "react";
 import Link from 'next/link';
 import Tag from "./components/tag";
-import { Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Paper,Card, CardContent,FormControl,InputLabel,Select,MenuItem,TextField, Button , InputAdornment, InputAdornmentProps, OutlinedInput } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Card, CardContent,FormControl,InputLabel,Select,MenuItem,TextField, Button , InputAdornment, InputAdornmentProps, OutlinedInput } from '@material-ui/core';
+import { CreateOfferModal } from "./components/create-offer-modal/create-offer-modal"
+
 
 type Props={
     userplandatas:JSON;
@@ -22,7 +24,10 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const [budget,setbudget]=useState();
     const [tag, setTags] = useState([]);
     const [selectedSort,setSelectedSort]=useState(0);
-      const ApplyConditions = useCallback(() => {
+    const [isOpenCreatePlan, setIsOpenCreatePlan] = useState(false);
+    const [selectPlandata, setSelectPlandata] = useState();
+
+    const ApplyConditions = useCallback(() => {
         const request = async () => {
             const res = await fetch(`http://localhost:3000/api/plansearch?tag=${tag}&date=${openDate}&maxnumberofpeople=${maxNumberOfPeople}&minnumberofpeople=${minNumberOfPeople}&sortcondition=${selectedSort}`);
             const plandatas= await res.json()
@@ -42,6 +47,17 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const SelectSort = (event: React.ChangeEvent<{ value: unknown }>) => {
         setSelectedSort(event.target.value as number);
     };
+
+
+    const handleCreatePlanOpen = () => {
+        setIsOpenCreatePlan(true);
+    }
+
+    const handleCreatePlanClose = () => {
+        setIsOpenCreatePlan(false);
+    }
+
+
     const SelectBudget=async(e)=>{
         setbudget(e.target.value);
     }
@@ -58,6 +74,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     // }
     const today:Date=new Date('2021-09-17 14:56:29');
     const dayOfWeek:string[]=["日","月","火","水","木","金","土"];
+
     return (
         <div style={{paddingTop:"60px",width:"80%",marginRight:"auto",marginLeft:"auto",}}>
             {/* <div style={{marginRight:"auto",marginLeft:"auto",}}>
@@ -211,18 +228,28 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                     </Table>
                 </TableContainer>
             </div>
-            {/* <div className={classes.plan}>
-                    {planlist.map((plandata) => {             
-                        return(
-                            <Card key={plandata._id} className={classes.planContent}>
-                                <Link href={`/negotiation/${plandata._id}`} >
-                                    <a><CardContent><Post plan={plandata}/></CardContent></a>
-                                </Link>
-                            </Card>
-                        )
-                    })}
-            </div> */}
+            <div className={classes.plan}>
+            {planlist.map((plandata) => {
+                return(
+                    <Card key={plandata._id} className={classes.planContent}>
+                        <Button onClick={() => {
+                            handleCreatePlanOpen();
+                            setSelectPlandata(plandata);
+                        }}>
+                            <CardContent><Post plan={plandata}/></CardContent>
+                        </Button>
+                    </Card>
+                )
+            })}
+
+            </div>
+            <CreateOfferModal
+                handleCreatePlanClose={handleCreatePlanClose} 
+                handleCreatePlanOpen={handleCreatePlanOpen} 
+                isOpenCreatePlan={isOpenCreatePlan}
+                plandata={selectPlandata}
+            />
+
         </div>
-        
     );
 };
