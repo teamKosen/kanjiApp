@@ -2,7 +2,7 @@
   position: relative;
   width: 80%;
   margin: 0 auto;
-  max-width: 800px;
+  //max-width: 800px;
   z-index: 100;
   padding-top: 80px;
 }
@@ -65,12 +65,14 @@
   margin: 10px 20px;
   border-radius: 10px;
   padding: 5px;
-  display:flex;
+  display:inline-block;
   flex-wrap:wrap;
+  width:70%;
 }
 .postLine{
   width: 25em;
   box-sizing: border-box;
+  display: inline-block;
 }
 .unitPost {
   background-color: rgb(229, 237, 250);
@@ -78,4 +80,33 @@
   border-radius: 10px;
   padding: 5px; 
 }
+.sidebar{
+  width:25%;
+  display:inline-block;
+}
+// .item{
 
+// }
+// .itemButton{
+
+// }
+.form{
+  padding:10px 0px;
+  //vertical-align: middle;
+  display: flex;
+  align-items: center;
+  height: 2em;
+}
+.button{
+  padding-left: 200px;
+  text-align: left;
+}
+.box{
+  padding: 5px;
+  height:auto
+}
+.table{
+  vertical-align: middle;
+  width: 70%;
+  display:inline-block;
+}
