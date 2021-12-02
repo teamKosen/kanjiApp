@@ -60,7 +60,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const dayOfWeek:string[]=["日","月","火","水","木","金","土"];
     return (
         <div style={{paddingTop:"60px",width:"80%",marginRight:"auto",marginLeft:"auto",}}>
-            <div style={{marginRight:"auto",marginLeft:"auto",}}>
+            {/* <div style={{marginRight:"auto",marginLeft:"auto",}}>
             <p className={classes.tops}>絞り込み条件</ p>
             <div className={classes.line}>
                 <label htmlFor="tag" className={classes.form}>
@@ -126,7 +126,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
             <div>
                  <br/> 
             </div>
-            </div>
+            </div> */}
             <div className={classes.sidebar}>
                 <div className={classes.box}>
                     <p>タグ</p>
@@ -211,7 +211,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                     </Table>
                 </TableContainer>
             </div>
-            <div className={classes.plan}>
+            {/* <div className={classes.plan}>
                     {planlist.map((plandata) => {             
                         return(
                             <Card key={plandata._id} className={classes.planContent}>
@@ -221,7 +221,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                             </Card>
                         )
                     })}
-            </div>
+            </div> */}
         </div>
         
     );
