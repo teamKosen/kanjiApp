@@ -25,7 +25,6 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
         const today = new Date();
         e.preventDefault();
         const body = {
-            title: e.currentTarget.title.value,
             budget: e.currentTarget.budget.value,
             numberOfPeople: e.currentTarget.numberOfPeople.value,
             tag: tag,
@@ -65,35 +64,60 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
                 <DialogContent>
                     <form onSubmit={handleSubmit}>
                         {errorMsg != "ok" ? <p style={{color: "red"}}>{errorMsg}</p> : null}
-                        <div className={style.form}>
-                            <TextField style={{width:"80%"}} size="small" variant="outlined" id="title" name="title" type="text" label="タイトル"/>
+                        {/* タグ */}
+                        <div className={style.formtitle}>
+                            <div>タグを設定してください</div>
+                            <div className={style.formtitleAnnotation}><span style={{color: "red"}}>*</span>必須</div>
                         </div>
-
                         <div className={style.form}>
                             <Tag style={{width:"80%"}} size="small" variant="outlined" setValue={setTags}/>
                         </div>
-
+                        
+                        {/* 場所 */}
+                        <div className={style.formtitle}>
+                            <div>お店の場所を入力してください</div>
+                            <div className={style.formtitleAnnotation}><span style={{color: "red"}}>*</span>必須</div>
+                        </div>
                         <div className={style.form}>
                             <TextField size="small" variant="outlined" id="place" name="place" type="text" label="場所"/>
                         </div> 
 
+                        {/* 人数/予算 */}
+                        <div className={style.formtitle}>
+                            <div>人数/予算を入力してください</div>
+                            <div className={style.formtitleAnnotation}><span style={{color: "red"}}>*</span>必須</div>
+                        </div>
                         <div className={style.form}>
                             <TextField size="small" variant="outlined" id="numberOfPeople" name="numberOfPeople" type="Number" label="人数" InputProps={{endAdornment:<InputAdornment position="end">人</InputAdornment>}}/>
                             <TextField size="small" variant="outlined" id="budget" name="budget" type="Number" label="予算" InputProps={{endAdornment:<InputAdornment position="end">円</InputAdornment>}}/>
                         </div>
                         
+                        {/* 開始時間 */}
+                        <div className={style.formtitle}>
+                            <div>開催日時を設定してください</div>
+                            <div className={style.formtitleAnnotation}><span style={{color: "red"}}>*</span>必須</div>
+                        </div>
                         <div className={style.form}>
-                            <div style={{paddingBottom:"5px"}}>開催日時</div>
+                            {/*<div style={{paddingBottom:"5px"}}>開催日時</div>*/}
                             <TextField label="日付" size="small" variant="outlined" id="openDate" name="openDate" type="date" InputLabelProps={{shrink: true}}/>
                             <TextField label="時間" size="small" variant="outlined" id="openTime" name="openTime" type="time" InputLabelProps={{shrink: true}}/>
                         </div>
                         
+                        {/* 終了日時 */}
+                        <div className={style.formtitle}>
+                            <div>終了日時を設定してください</div>
+                            <div className={style.formtitleAnnotation}><span style={{color: "red"}}>*</span>必須</div>
+                        </div>
                         <div className={style.form}>
-                            <div style={{paddingBottom:"5px"}}>終了日時</div>
+                            {/*<div style={{paddingBottom:"5px"}}>終了日時</div>*/}
                             <TextField label="日付" size="small" variant="outlined" id="closeDate" name="closeDate" type="date" InputLabelProps={{shrink: true}}/>
                             <TextField label="時間" size="small" variant="outlined" id="closeTime" name="closeTime" type="time" InputLabelProps={{shrink: true}}/>
                         </div>
                         
+                        {/* コメント */}
+                        <div className={style.formtitle}>
+                            <div>コメントを設定してください</div>
+                        </div>
                         <div className={style.form}>
                             <TextField style={{width:"100%"}} size="small" variant="outlined" multiline rows={5} id="comment" name="comment" type="text" label="コメント"/>
                         </div>
