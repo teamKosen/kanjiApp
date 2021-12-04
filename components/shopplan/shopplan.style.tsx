@@ -26,6 +26,11 @@ export const useStyles = makeStyles((theme) => ({
         display:"flex",
         flexWrap:"wrap",
     },
+    deadlineDay:{ 
+  },
+  deadlineHour:{
+      color:"red", 
+  },
     planUnit:{
       width:"50%",
       boxSizing:"border-box",
@@ -38,7 +43,11 @@ export const useStyles = makeStyles((theme) => ({
         margin: "auto",
       },
       form:{
-        padding:"10px",
+        padding:"10px 0",
+        //verticalAlign:"middle",
+        display:"flex",
+        alignItems:"center",
+        height:"2em",
       },
       form2:{
         padding:"0px",
@@ -50,4 +59,20 @@ export const useStyles = makeStyles((theme) => ({
         paddingLeft:"200px",
         textAlign:"left",
       },
+      sidebar:{
+        width:"25%",
+        display:"inline-block",
+      },
+      item:{
+
+      },
+      box:{
+        pdding:"5px",
+        height:"auto",
+      },
+      table:{
+        verticalAlign:"middle",
+        width:"70%",
+        display:"inline-block",
+      }
 }));

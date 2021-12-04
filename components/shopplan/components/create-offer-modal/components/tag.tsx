@@ -45,8 +45,8 @@ export default function Tagyarn(props) {
           <TextField
             {...params}
             className={className}
+            label="タグ"
             variant={variant}
-            InputProps={{placeholder: "未入力"}}
           />
         )}
       />

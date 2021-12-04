@@ -1,10 +1,10 @@
 import fetch from 'isomorphic-unfetch'
 import style from '../styles/timeline.module.scss'
 import Drawer from '@material-ui/core/Drawer';
-
+import Tag from "../components/shopplan/components/tag";
 import { DrawerContent } from '../components/timeline/drawer-content/drawer-content.tsx';
 import { Post } from '../components/timeline/post/post';
-import { Button , InputBase } from '@material-ui/core';
+import { Button , InputBase,Card,TextField } from '@material-ui/core';
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 
@@ -53,7 +53,39 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     const numberOfPeopleList = [2,4,6,8];
     const genreList = ["中華","和食","イタリアン","エスニック"];
     const purposeList = ["打ち上げ","会食","合コン","同窓会"];
-
+    const [tag, setTags] = useState([]);
+    const [openDate, setopenDate] = useState();
+    const [maxNumberOfPeople,setmaxNumberOfPeople]=useState();
+    const [minNumberOfPeople,setminNumberOfPeople]=useState();
+    const [budget,setbudget]=useState();
+    const [genre,setgenre]=useState();
+    const [purpose,setpurpose]=useState();
+    const SelectGenre=async(e)=>{
+        setgenre(e.target.value);
+    }
+    const SelectPurpose=async(e)=>{
+        setpurpose(e.target.value);
+    }
+    const SelectOpenDate=async(e)=>{
+        setopenDate(e.target.value);
+    }
+    const SelectMaxNumberOfPeople=async(e)=>{
+        setmaxNumberOfPeople(e.target.value);
+    }
+    const SelectMinNumberOfPeople=async(e)=>{
+        setminNumberOfPeople(e.target.value);
+    }
+    const SelectBudget=async(e)=>{
+        setbudget(e.target.value);
+    }
+      const ApplyConditions = useCallback(() => {
+        const request = async () => {
+            const res = await fetch(`http://localhost:3000/api/shopsearch?tag=${tag}&date=${openDate}&maxnumberofpeople=${maxNumberOfPeople}&minnumberofpeople=${minNumberOfPeople}&budget=${budget}&purpose=${purpose}&genre=${genre}`);
+            const shops_pre= await res.json()
+            updateShops(shops_pre);
+        }
+          request()
+        },[openDate,minNumberOfPeople,maxNumberOfPeople,tag,budget,purpose,genre])
     useEffect(() => {
         const request = async () => {
             const res = await fetch(router.query.apiUrl);
@@ -141,7 +173,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
         <>
         <main>
             <div className= {style.timeline}>
-                <div className={style.searchField}>
+                {/* <div className={style.searchField}>
                     <Drawer
                         anchor="top"
                         open={isOpenDrawer}
@@ -177,7 +209,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                         />
                         <Button onClick={handleOpenDrawer}>タグ検索</Button>
                     </form>
-                </div>
+                </div> */}
                 {shops.map((shopdata) => {
                     i++;
                     if(i%2==1){
@@ -188,6 +220,47 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                         i=0;
                     }
                 })}
+                <div className={style.sidebar}>
+                <div className={style.box}>
+                    <p>タグ</p>
+                    <label htmlFor="tag" style={{width:"100%"}}>
+                        <Tag setValue={setTags}/>
+                    </label>
+                </div>
+                <div className={style.box}>
+                    <p>予算</p>
+                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} onInput={SelectBudget} value={budget} style={{width:"90%"}} size="small" variant="outlined" name="budget" type="Number"/>
+                </div>
+                <div className={style.box}>
+                    <p>場所</p>
+                    <TextField id="place" style={{width:"90%"}} size="small" variant="outlined" name="place" />
+                </div>
+                <div className={style.box}>
+                    <p>目的</p>
+                    <TextField id="purpose" onInput={SelectPurpose} value={purpose} style={{width:"90%"}} size="small" variant="outlined" name="purpose" />
+                </div>
+                <div className={style.box}>
+                    <p>ジャンル</p>
+                    <TextField id="genre" onInput={SelectGenre} value={genre} style={{width:"90%"}} size="small" variant="outlined" name="genre" />
+                </div>
+                <div className={style.box}>
+                    <p>人数</p>
+                    <span className={style.form}>
+                        <TextField id="numberOfPeople_min" InputProps={{ inputProps: { min: 1} }} onInput={SelectMinNumberOfPeople} value={minNumberOfPeople} style={{width:"30%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
+                        <span style={{fontWeight:"normal",fontSize:"30px"}}>~</span>
+                        <TextField id="numberOfPeople_max" InputProps={{ inputProps: { min: 1} }} onInput={SelectMaxNumberOfPeople} value={maxNumberOfPeople} style={{width:"30%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
+                    </span>
+                </div>
+                <div className={style.box}>
+                    <p>日付</p>
+                    <label htmlFor="openDate">
+                        <TextField id="opendate" name="opendate" type="date" value={openDate} onInput={SelectOpenDate} label="日付" size="small" variant="outlined" InputLabelProps={{shrink: true}}/>
+                    </label>
+                </div>
+                <span className={style.button}>
+                    <Button size="large" className={style.itemButton} onClick={ApplyConditions} variant="contained" >適用</Button>
+                </span>
+            </div>
                 <div className={style.post}>
                     <div className={style.postLine}>
                         {leftShops.map((shopdata) => {
@@ -196,7 +269,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                             const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
                             const pict = picturelist.filter(v=>v.shopId==shopdata._id);
                             
-                            return <div key={shopdata.name} className={style.unitPost}>
+                            return <Card key={shopdata.name} className={style.unitPost}>
                                 <Post 
                                     name={shopdata.name}
                                     genre={shopdata.tag.genre}
@@ -213,7 +286,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                                     comment={cmnt}
                                     pictures={pict}
                                 />
-                            </div>
+                            </Card>
                         })}
                     </div>
                     <div className={style.postLine}>
@@ -222,7 +295,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                             const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
                             const pict = picturelist.filter(v=>v.shopId==shopdata._id);
 
-                            return <div key={shopdata.name} className={style.unitPost}>
+                            return <Card key={shopdata.name} className={style.unitPost}>
                                 <Post 
                                     name={shopdata.name}
                                     genre={shopdata.tag.genre}
@@ -239,7 +312,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                                     comment={cmnt}
                                     pictures={pict}
                                 />
-                            </div>
+                            </Card>
                         })}
                     </div>
                 </div>

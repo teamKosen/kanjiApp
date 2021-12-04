@@ -5,6 +5,13 @@ import TextField from "@material-ui/core/TextField";
 import Tag from "../../../create_plan/components/tag";
 import { useUser } from "../../../../lib/hooks";
 import { InputAdornment } from "@material-ui/core";
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import MoneyIcon from '@material-ui/icons/Money';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import PeopleIcon from '@material-ui/icons/People';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+
 
 type Props = {
     userPlandatas_detail: JSON;
@@ -53,7 +60,6 @@ export const PlanDetail:FunctionComponent<Props> = (props) => {
         return (
             <div>
                 <div>
-                    <h2>Plan detail</h2>
                     
                     {userPlandetaillist.map((userPlandetaildata) => {
                         var date_open = new Date(userPlandetaildata.openTime)
@@ -61,46 +67,82 @@ export const PlanDetail:FunctionComponent<Props> = (props) => {
                         var date_deadline = new Date(userPlandetaildata.deadlineTime)
 
                         return (
-                            <form >
+                            <form key={userPlandetaildata._id}>
                                 {errorMsg ? <p style={{color: "red"}}>{errorMsg}</p> : null}
+
                                 <div className={style.form}>
-                                    <TextField  size="small" variant="outlined" id="title" name="title" type="text" label="タイトル" value={userPlandetaildata.title}/>
+                                    <div className={style.label}>
+                                        <LocalOfferIcon className={style.icon} />
+                                        タグ
+                                    </div>
+                                    <div className={style.tagbox}>
+                                        {userPlandetaildata.tag.map((tags)=>{
+                                            return<span key={tags}　className={style.tag}>#{tags}</span>
+                                        })}
+                                    </div>
+                                    {/* <TextField className={style.boxdesign} inputProps={{style: {fontSize: 14} }}  size="small" variant="outlined" type="text" value={userPlandetaildata.tag}/> */}
                                 </div>
 
                                 <div className={style.form}>
-                                    <TextField  size="small" variant="outlined" type="text" label="タグ" value={userPlandetaildata.tag}/>
-                                </div>
-
-                                <div className={style.form}>
-                                    <TextField  size="small" variant="outlined" id="place" name="place" type="text" label="場所" value={userPlandetaildata.place}/>
+                                    <div className={style.label}>
+                                        <MoneyIcon className={style.icon} />
+                                        予算
+                                    </div>
+                                    <TextField className={style.boxdesign} inputProps={{style: {fontSize: 14} }} size="small" variant="outlined" id="budget" name="budget" type="Number" value={userPlandetaildata.budget} InputProps={{endAdornment:<InputAdornment position="end">円</InputAdornment>}}/>
                                 </div> 
 
                                 <div className={style.form}>
-                                    <TextField  style={{width:"20%"}} size="small" variant="outlined" id="numberOfPeople" name="numberOfPeople" type="Number" label="人数"  value={userPlandetaildata.numberOfPeople}/>
-                                    <TextField  style={{width:"30%"}} size="small" variant="outlined" id="budget" name="budget" type="Number" label="予算" value={userPlandetaildata.budget}/>
+                                    <div className={style.label}>
+                                        <LocationOnIcon className={style.icon} />
+                                        場所
+                                    </div>
+                                    <TextField className={style.boxdesign} inputProps={{style: {fontSize: 14} }} size="small" variant="outlined" id="place" name="place" type="text" value={userPlandetaildata.place}/>
+                                </div> 
+
+                                <div className={style.form}>
+                                    <div className={style.label}>
+                                        <PeopleIcon className={style.icon} />
+                                        人数
+                                    </div>
+                                    <TextField　className={style.boxdesign} inputProps={{style: {fontSize: 14} }} size="small" variant="outlined" id="numberOfPeople" name="numberOfPeople" type="Number"  value={userPlandetaildata.numberOfPeople}　InputProps={{endAdornment:<InputAdornment position="end">人</InputAdornment>}}/>
                                 </div>
 
                                 <div className={style.form}>
-                                    <div style={{paddingBottom:"5px"}}>開催日時</div>
-                                    <TextField label="日付・時間" size="small" variant="outlined" id="openDate" name="openDate" type="text"  value={date_open.toLocaleString()}/>
+                                    <div className={style.label}>
+                                        <AccessTimeIcon className={style.icon} />
+                                        開催日時
+                                    </div>
+                                    <TextField className={style.boxdesigndate} size="small" variant="outlined" id="openDate" name="openDate" type="text"  value={date_open.toLocaleDateString()} inputProps={{style: {fontSize: 14} }} InputProps={{endAdornment:<InputAdornment position="end"><DateRangeIcon className={style.dateicon} /></InputAdornment>}}/>
+                                    <TextField className={style.boxdesigntime} size="small" variant="outlined" id="openTime" name="openTime" type="text"  value={date_open.getHours() +":" + ("0" + date_open.getMinutes()).slice(-2)} inputProps={{style: {fontSize: 14} }} InputProps={{endAdornment:<InputAdornment position="end"><AccessTimeIcon className={style.dateicon} /></InputAdornment>}}/>
                                 </div>
                                 
                                 <div className={style.form}>
-                                    <div style={{paddingBottom:"5px"}}>終了日時</div>
-                                    <TextField label="日付・時間" size="small" variant="outlined" id="closeDate" name="closeDate" type="text"  value={date_close.toLocaleString()}/>
+                                    <div className={style.label}>
+                                        <AccessTimeIcon className={style.icon} />
+                                        終了日時
+                                    </div>
+                                    <TextField className={style.boxdesigndate} size="small" variant="outlined" id="closeDate" name="closeDate" type="text"  value={date_close.toLocaleDateString()} inputProps={{style: {fontSize: 14} }} InputProps={{endAdornment:<InputAdornment position="end"><DateRangeIcon className={style.dateicon} /></InputAdornment>}}/>
+                                    <TextField className={style.boxdesigntime} size="small" variant="outlined" id="closeTime" name="closeTime" type="text"  value={date_close.getHours() +":" + ("0" + date_close.getMinutes()).slice(-2)} inputProps={{style: {fontSize: 14} }} InputProps={{endAdornment:<InputAdornment position="end"><AccessTimeIcon className={style.dateicon} /></InputAdornment>}}/>
                                 </div>
                                 
                                 <div className={style.form}>
-                                    <div style={{paddingBottom:"5px"}}>締切日時</div>
-                                    <TextField label="日付・時間" size="small" variant="outlined" id="deadlineDate" name="deadlineDate" type="text"  value={date_deadline.toLocaleString()}/>
+                                    <div className={style.label}>
+                                        <AccessTimeIcon className={style.icon} />
+                                        オファー受付締切日時
+                                    </div>
+                                    <TextField className={style.boxdesigndate} size="small" variant="outlined" id="deadlineDate" name="deadlineDate" type="text"  value={date_deadline.toLocaleDateString()} inputProps={{style: {fontSize: 14} }} InputProps={{endAdornment:<InputAdornment position="end"><DateRangeIcon className={style.dateicon} /></InputAdornment>}}/>
+                                    <TextField className={style.boxdesigntime} size="small" variant="outlined" id="deadlineTime" name="deadlineTime" type="text"  value={date_deadline.getHours() +":" + ("0" + date_deadline.getMinutes()).slice(-2)} inputProps={{style: {fontSize: 14} }} InputProps={{endAdornment:<InputAdornment position="end"><AccessTimeIcon className={style.dateicon} /></InputAdornment>}}/>
                                 </div>
                                 
                                 <div className={style.form}>
-                                    <TextField size="small" variant="outlined" multiline rows={5} id="comment" name="comment" type="text" label="コメント" value={userPlandetaildata.comment}/>
+                                    <div className={style.label}>
+                                        　コメント
+                                    </div>
+                                    <TextField className={style.boxdesigncomment} size="small" variant="outlined" multiline rows={5} id="comment" name="comment" type="text" value={userPlandetaildata.comment}/>
                                 </div>
 
-                                <div className={style.button}>
-                                    <Button onClick={() => setPower(prevState => !prevState)} variant="contained" type="submit">編集</Button>
+                                <div>
+                                    <Button className={style.button} onClick={() => setPower(prevState => !prevState)} type="submit">プランを編集する</Button>
                                 </div>
 
                             </form>
@@ -126,7 +168,7 @@ export const PlanDetail:FunctionComponent<Props> = (props) => {
                         var date_deadline = new Date(userPlandetaildata.deadlineTime)
 
                         return (
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmit} key={userPlandetaildata._id}>
                                 {errorMsg ? <p style={{color: "red"}}>{errorMsg}</p> : null}
                                 <div className={style.form}>
                                     <TextField size="small" variant="outlined" id="title" name="title" type="text" label="タイトル"/>

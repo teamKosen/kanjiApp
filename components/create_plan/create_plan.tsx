@@ -6,6 +6,11 @@ import Button from "@material-ui/core/Button";
 import Tag from "./components/tag";
 import { useUser } from "../../lib/hooks";
 import { InputAdornment } from "@material-ui/core";
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import MoneyIcon from '@material-ui/icons/Money';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import PeopleIcon from '@material-ui/icons/People';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 export const Create_Plan:FunctionComponent = () => {
     const style = useStyles();
@@ -42,50 +47,74 @@ export const Create_Plan:FunctionComponent = () => {
 
     return(
         <div className={style.root}>
-            <h2>Create Plan</h2>
+            <h1>プラン作成</h1>
             <form onSubmit={handleSubmit}>
                 {errorMsg ? <p style={{color: "red"}}>{errorMsg}</p> : null}
                 <div className={style.form}>
-                    <TextField style={{width:"80%"}} size="small" variant="outlined" id="title" name="title" type="text" label="タイトル"/>
+                    <div className={style.label}>タイトル</div>
+                    <div className={style.indispensable}>必須</div>
+                    <TextField className={style.boxdesign}  size="small" variant="outlined" id="title" name="title" type="text" InputProps={{placeholder: "未入力"}}/>
                 </div>
 
                 <div className={style.form}>
-                    <Tag style={{width:"80%"}} size="small" variant="outlined" setValue={setTags}/>
+                    <LocalOfferIcon className={style.icon} />
+                    <div className={style.label}>タグ</div>
+                    <div className={style.indispensable}>必須</div>
+                    <Tag className={style.boxdesign} size="small" variant="outlined" setValue={setTags}/>
                 </div>
 
                 <div className={style.form}>
-                    <TextField size="small" variant="outlined" id="place" name="place" type="text" label="場所"/>
+                    <MoneyIcon className={style.icon} />
+                    <div className={style.label}>予算</div>
+                    <div className={style.indispensable}>必須</div>
+                    <TextField className={style.boxdesign}　size="small" variant="outlined" id="budget" name="budget" type="Number" InputProps={{placeholder: "未入力", endAdornment:<InputAdornment position="end">円</InputAdornment>}}/>
                 </div> 
 
                 <div className={style.form}>
-                    <TextField size="small" variant="outlined" id="numberOfPeople" name="numberOfPeople" type="Number" label="人数" InputProps={{endAdornment:<InputAdornment position="end">人</InputAdornment>}}/>
-                    <TextField size="small" variant="outlined" id="budget" name="budget" type="Number" label="予算" InputProps={{endAdornment:<InputAdornment position="end">円</InputAdornment>}}/>
+                    <LocationOnIcon className={style.icon} />
+                    <div className={style.label}>場所</div>
+                    <div className={style.indispensable}>必須</div>
+                    <TextField　className={style.boxdesign} size="small" variant="outlined" id="place" name="place" type="text" InputProps={{placeholder: "未入力"}}/>
+                </div> 
+
+                <div className={style.form}>
+                    <PeopleIcon className={style.icon} />
+                    <div className={style.label}>人数</div>
+                    <div className={style.indispensable}>必須</div>
+                    <TextField　className={style.boxdesign} size="small" variant="outlined" id="numberOfPeople" name="numberOfPeople" type="Number" InputProps={{placeholder: "未入力", endAdornment:<InputAdornment position="end">人</InputAdornment>}}/>
                 </div>
                 
                 <div className={style.form}>
-                    <div style={{paddingBottom:"5px"}}>開催日時</div>
-                    <TextField label="日付" size="small" variant="outlined" id="openDate" name="openDate" type="date" InputLabelProps={{shrink: true}}/>
-                    <TextField label="時間" size="small" variant="outlined" id="openTime" name="openTime" type="time" InputLabelProps={{shrink: true}}/>
+                    <AccessTimeIcon className={style.icon} />
+                    <div className={style.label}>開催日時</div>
+                    <div className={style.indispensable}>必須</div>
+                    <TextField className={style.boxdesigndate} label="日付" size="small" variant="outlined" id="openDate" name="openDate" type="date" InputLabelProps={{shrink: true}}/>
+                    <TextField className={style.boxdesigntime} label="時間" size="small" variant="outlined" id="openTime" name="openTime" type="time" InputLabelProps={{shrink: true}}/>
                 </div>
                 
                 <div className={style.form}>
-                    <div style={{paddingBottom:"5px"}}>終了日時</div>
-                    <TextField label="日付" size="small" variant="outlined" id="closeDate" name="closeDate" type="date" InputLabelProps={{shrink: true}}/>
-                    <TextField label="時間" size="small" variant="outlined" id="closeTime" name="closeTime" type="time" InputLabelProps={{shrink: true}}/>
+                    <AccessTimeIcon className={style.icon} />
+                    <div className={style.label}>終了日時</div>
+                    <div className={style.indispensable}>必須</div>
+                    <TextField className={style.boxdesigndate} label="日付" size="small" variant="outlined" id="closeDate" name="closeDate" type="date" InputLabelProps={{shrink: true}}/>
+                    <TextField className={style.boxdesigntime} label="時間" size="small" variant="outlined" id="closeTime" name="closeTime" type="time" InputLabelProps={{shrink: true}}/>
                 </div>
                 
                 <div className={style.form}>
-                    <div style={{paddingBottom:"5px"}}>締切日時</div>
-                    <TextField label="日付" size="small" variant="outlined" id="deadlineDate" name="deadlineDate" type="date" InputLabelProps={{shrink: true}}/>
-                    <TextField label="時間" size="small" variant="outlined" id="deadlineTime" name="deadlineTime" type="time" InputLabelProps={{shrink: true}}/>
+                    <AccessTimeIcon className={style.icon} />
+                    <div className={style.label}>締切日時</div>
+                    <div className={style.indispensable}>必須</div>
+                    <TextField className={style.boxdesigndate} label="日付" size="small" variant="outlined" id="deadlineDate" name="deadlineDate" type="date" InputLabelProps={{shrink: true}}/>
+                    <TextField className={style.boxdesigntime} label="時間" size="small" variant="outlined" id="deadlineTime" name="deadlineTime" type="time" InputLabelProps={{shrink: true}}/>
                 </div>
                 
                 <div className={style.form}>
-                    <TextField style={{width:"100%"}} size="small" variant="outlined" multiline rows={5} id="comment" name="comment" type="text" label="コメント"/>
+                    <div className={style.label}>コメント</div>
+                    <TextField className={style.boxdesigncomment} size="small" variant="outlined" multiline rows={5} id="comment" name="comment" type="text" InputProps={{placeholder: "未入力"}}/>
                 </div>
 
-                <div className={style.button}>
-                    <Button variant="contained" type="submit">確定</Button>
+                <div>
+                    <Button className={style.button} type="submit">プランを作成する</Button>
                 </div>
             </form>
        </div>

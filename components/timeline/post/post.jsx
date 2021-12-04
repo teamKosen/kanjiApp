@@ -38,29 +38,16 @@ export const Post = (props) => {
                     </div>
                 </div>
                 <div className={style.postRight}>
-                    <p><AddLocationIcon className={style.locationIcon}/>博多駅</p>
-                    <div style={{display: 'flex'}}>
-                        <Chip label={'#'+genre} color="red"/>
-                        <Chip label={'#'+purpose} />
+                    <div className={style.postDetail}>
+                        <div><AddLocationIcon className={style.icon}/>博多駅</div>
+                    </div>
+                    <div style={{display: 'flex'},{marginTop:'1em'}}>
+                        <div className={style.tagChip}>#{genre}</div>
+                        <div className={style.tagChip}>#{purpose}</div>
                     </div>
                 </div>
             </div>
-            <div style={{display: 'flex'}}>
-                <p>#{genre}</p>
-                <p>#{purpose}</p>
-            </div>
-            <div className={style.imgPosition}>
-                <Picture
-                    pictures={pictures}
-                />
-            </div>
             <div className={style.nomalBottom}>
-                <div className={style.good}>
-                    <Button >
-                        <LocalBarIcon className={style.drinkIcon}/>
-                        <div>0</div>
-                    </Button>
-                </div>
                 <div className={style.shopdetailOpenButton} onClick={handleClick}>詳しくはコチラ↓</div>
             </div>
             { anchorEl ? 
