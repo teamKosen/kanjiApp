@@ -1,7 +1,8 @@
-import React, { useState,useCallback,FunctionComponent } from 'react';
+import React, { useState,useEffect,FunctionComponent } from 'react';
 import { ObjectId } from 'mongodb';
 import { useStyles } from './offer-process-shop.style';
 import { ProcessBar } from '../offer-process-kanji/components/process-bar/process-bar';
+import { Step2 } from './components/step2/step2';
 
 type Props = {
     offerplandetail: {
@@ -23,7 +24,14 @@ type Props = {
 
 export const OfferProcessShop:FunctionComponent<Props> = (props) => {
     const { offerplandetail } = props;
+    const [ currentProcess,setCurrentProcess] = useState(0);
     const classes = useStyles();
+
+    useEffect(() => {
+        if( offerplandetail.offerState === 2){
+            setCurrentProcess(1)
+        }
+    },[offerplandetail])
     
     return (
         <div className={classes.offerProcessPosition}>
@@ -33,16 +41,17 @@ export const OfferProcessShop:FunctionComponent<Props> = (props) => {
                     <div className={classes.processbarTitle}>1.交渉</div>
                 </div>
                 <div className={classes.processbarPosition}>
-                    <ProcessBar width={500} percent={1} />
+                    <ProcessBar width={500} percent={currentProcess} />
                 </div>
                 <div>
                     <div className={classes.circleOff}>
-                        <div className={classes.circle} style={{width: `${30 * 1}px`}}></div>
+                        <div className={classes.circle} style={{width: `${30 * currentProcess}px`}}></div>
                     </div>
                     <div className={classes.processbarTitle}>2.決定</div>
                 </div>
             </div>
-            <div>{offerplandetail.shopname}</div>
+            <div>{offerplandetail.offerState === 1 ? <div>ほこたて</div> : ""}</div>
+            <div>{offerplandetail.offerState === 2 ? <Step2 offerplandetail={offerplandetail}/> : ""}</div>
         </div>
     )
 }
