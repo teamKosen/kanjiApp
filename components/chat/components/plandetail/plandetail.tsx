@@ -61,7 +61,7 @@ export const PlanDetail:FunctionComponent<Props> = (props) => {
                         var date_deadline = new Date(userPlandetaildata.deadlineTime)
 
                         return (
-                            <form >
+                            <form key={userPlandetaildata._id}>
                                 {errorMsg ? <p style={{color: "red"}}>{errorMsg}</p> : null}
                                 <div className={style.form}>
                                     <TextField  size="small" variant="outlined" id="title" name="title" type="text" label="タイトル" value={userPlandetaildata.title}/>
@@ -126,7 +126,7 @@ export const PlanDetail:FunctionComponent<Props> = (props) => {
                         var date_deadline = new Date(userPlandetaildata.deadlineTime)
 
                         return (
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmit} key={userPlandetaildata._id}>
                                 {errorMsg ? <p style={{color: "red"}}>{errorMsg}</p> : null}
                                 <div className={style.form}>
                                     <TextField size="small" variant="outlined" id="title" name="title" type="text" label="タイトル"/>
