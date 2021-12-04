@@ -6,7 +6,7 @@ export const useStyles = makeStyles((theme) => ({
         zIndex: 600,
         position: "fixed",
         width: "100%",
-        backgroundColor: "var(--color-white)",
+        backgroundColor: "#f0efef",
         boxSizing: "border-box",
     },
 

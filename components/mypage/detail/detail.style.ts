@@ -12,9 +12,6 @@ export const useStyles = makeStyles((theme) => ({
   negotiation: {
     zIndex: 30,
   },
-  iconColor: {
-    color: "#FFD700",
-  },
   drawer: {
     width: theme.spacing(30),
     flexShrink: 0,
@@ -32,11 +29,8 @@ export const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
-  list: {
-    borderLeft: "6px solid",
-    borderColor: '#FFD700',
-  },
-  subtitle: {
-    paddingLeft: theme.spacing(4),
+  table: {
+    width: "80%",
+    marginLeft: theme.spacing(5),
   }
 }));

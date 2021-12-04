@@ -21,7 +21,7 @@ const Page:NextPage<Props> = (props) => {
     const { offerdatas } = props;
 
     return (
-        <div style={{paddingTop: "76px"}}>
+        <div style={{paddingTop: "96px"}}>
             <Detail offerdatas={offerdatas}/>
         </div>
     )
