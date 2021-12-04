@@ -3,7 +3,9 @@ import {Post} from "./components/post"
 import React,{FunctionComponent, useState, useCallback } from "react";
 import Link from 'next/link';
 import Tag from "./components/tag";
-import { Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Paper,Card, CardContent,FormControl,InputLabel,Select,MenuItem,TextField, Button , InputAdornment, InputAdornmentProps, OutlinedInput } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Card, CardContent,FormControl,InputLabel,Select,MenuItem,TextField, Button , InputAdornment, InputAdornmentProps, OutlinedInput } from '@material-ui/core';
+import { CreateOfferModal } from "./components/create-offer-modal/create-offer-modal"
+
 
 type Props={
     userplandatas:JSON;
@@ -22,7 +24,10 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const [budget,setbudget]=useState();
     const [tag, setTags] = useState([]);
     const [selectedSort,setSelectedSort]=useState(0);
-      const ApplyConditions = useCallback(() => {
+    const [isOpenCreatePlan, setIsOpenCreatePlan] = useState(false);
+    const [selectPlandata, setSelectPlandata] = useState();
+
+    const ApplyConditions = useCallback(() => {
         const request = async () => {
             const res = await fetch(`http://localhost:3000/api/plansearch?tag=${tag}&date=${openDate}&maxnumberofpeople=${maxNumberOfPeople}&minnumberofpeople=${minNumberOfPeople}&sortcondition=${selectedSort}`);
             const plandatas= await res.json()
@@ -42,6 +47,17 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const SelectSort = (event: React.ChangeEvent<{ value: unknown }>) => {
         setSelectedSort(event.target.value as number);
     };
+
+
+    const handleCreatePlanOpen = () => {
+        setIsOpenCreatePlan(true);
+    }
+
+    const handleCreatePlanClose = () => {
+        setIsOpenCreatePlan(false);
+    }
+
+
     const SelectBudget=async(e)=>{
         setbudget(e.target.value);
     }
@@ -58,9 +74,10 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     // }
     const today:Date=new Date('2021-09-17 14:56:29');
     const dayOfWeek:string[]=["日","月","火","水","木","金","土"];
+
     return (
         <div style={{paddingTop:"60px",width:"80%",marginRight:"auto",marginLeft:"auto",}}>
-            <div style={{marginRight:"auto",marginLeft:"auto",}}>
+            {/* <div style={{marginRight:"auto",marginLeft:"auto",}}>
             <p className={classes.tops}>絞り込み条件</ p>
             <div className={classes.line}>
                 <label htmlFor="tag" className={classes.form}>
@@ -126,11 +143,11 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
             <div>
                  <br/> 
             </div>
-            </div>
+            </div> */}
             <div className={classes.sidebar}>
                 <div className={classes.box}>
                     <p>タグ</p>
-                    <label htmlFor="tag" className={classes.form}>
+                    <label htmlFor="tag" style={{width:"100%"}}>
                         <Tag setValue={setTags}/>
                     </label>
                 </div>
@@ -153,15 +170,20 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                 <div className={classes.box}>
                     <p>人数</p>
                     <span className={classes.form}>
-                        <TextField id="numberOfPeople_min" InputProps={{ inputProps: { min: 1} }} onInput={SelectMinNumberOfPeople} value={minNumberOfPeople} style={{width:"11%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
-                        <span style={{fontWeight:"bold",fontSize:"18px"}}>~</span>
-                        <TextField id="numberOfPeople_max" InputProps={{ inputProps: { min: 1} }} onInput={SelectMaxNumberOfPeople} value={maxNumberOfPeople} style={{width:"11%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
+                        <TextField id="numberOfPeople_min" InputProps={{ inputProps: { min: 1} }} onInput={SelectMinNumberOfPeople} value={minNumberOfPeople} style={{width:"30%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
+                        <span style={{fontWeight:"normal",fontSize:"30px"}}>~</span>
+                        <TextField id="numberOfPeople_max" InputProps={{ inputProps: { min: 1} }} onInput={SelectMaxNumberOfPeople} value={maxNumberOfPeople} style={{width:"30%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
                     </span>
                 </div>
                 <div className={classes.box}>
                     <p>日付</p>
-                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} style={{width:"90%"}} size="small" variant="outlined" name="budget" />
+                    <label htmlFor="openDate">
+                        <TextField id="opendate" name="opendate" type="date" value={openDate} onInput={SelectOpenDate} label="日付" size="small" variant="outlined" InputLabelProps={{shrink: true}}/>
+                    </label>
                 </div>
+                <span className={classes.button}>
+                    <Button size="large" className={classes.itemButton} onClick={ApplyConditions} variant="contained" >適用</Button>
+                </span>
             </div>
             <div className={classes.table}>
                 <TableContainer component={Paper}>
@@ -207,17 +229,27 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                 </TableContainer>
             </div>
             <div className={classes.plan}>
-                    {planlist.map((plandata) => {             
-                        return(
-                            <Card key={plandata._id} className={classes.planContent}>
-                                <Link href={`/negotiation/${plandata._id}`} >
-                                    <a><CardContent><Post plan={plandata}/></CardContent></a>
-                                </Link>
-                            </Card>
-                        )
-                    })}
+            {planlist.map((plandata) => {
+                return(
+                    <Card key={plandata._id} className={classes.planContent}>
+                        <Button onClick={() => {
+                            handleCreatePlanOpen();
+                            setSelectPlandata(plandata);
+                        }}>
+                            <CardContent><Post plan={plandata}/></CardContent>
+                        </Button>
+                    </Card>
+                )
+            })}
+
             </div>
+            <CreateOfferModal
+                handleCreatePlanClose={handleCreatePlanClose} 
+                handleCreatePlanOpen={handleCreatePlanOpen} 
+                isOpenCreatePlan={isOpenCreatePlan}
+                plandata={selectPlandata}
+            />
+
         </div>
-        
     );
 };
