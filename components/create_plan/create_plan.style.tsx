@@ -15,6 +15,7 @@ export const useStyles = makeStyles((theme) =>
       width: "400px",
       height: "70px",
       fontSize: "34px",
+      fontWeight: "bold",
       textAlign: "center",
       lineHeight: "60px",
       color: "#FFFFFF",
@@ -24,6 +25,7 @@ export const useStyles = makeStyles((theme) =>
       marginBottom: "300px",
       marginLeft: "auto",
       marginRight: "auto",
+      marginTop: "20px",
     },
 
     label: {
@@ -38,6 +40,7 @@ export const useStyles = makeStyles((theme) =>
       width:"35px",
       height: "22px",
       fontSize: "12px",
+      fontWeight: "bold",
       textAlign: "center",
       lineHeight: "22px",
       color: "#FFFFFF",
