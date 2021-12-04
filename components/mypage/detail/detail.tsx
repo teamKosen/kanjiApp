@@ -1,7 +1,8 @@
 import React,{ FunctionComponent,useState,useCallback} from "react";
-import { List,Divider,ListItem,ListItemIcon,ListItemText,Collapse } from "@material-ui/core";
+import { List,ListItem,ListItemIcon,ListItemText,Collapse } from "@material-ui/core";
 import { ExpandLess,ExpandMore,StarRate,AccountCircle,Feed } from "@material-ui/icons";
-import { useStyles } from './detail.style'
+import { useStyles } from './detail.style';
+import { useUser } from '../../../lib/hooks';
 
 type Props = {
     offerdatas: JSON;
@@ -9,6 +10,8 @@ type Props = {
 
 export const Detail:FunctionComponent<Props> = (props) => {
     const { offerdatas } = props;
+    const offerlist=JSON.parse(JSON.stringify(offerdatas));
+    const [user, { mutate }] = useUser();
 
     const [ offerIndex,setOfferIndex] = useState(true);
     const [ currentOfferState, setCurrentOfferState] = useState<number>(2);
@@ -17,8 +20,6 @@ export const Detail:FunctionComponent<Props> = (props) => {
     const handleOfferIndex = useCallback(() => {
         setOfferIndex(!offerIndex);
     },[offerIndex])
-
-    console.log(offerdatas)
 
     return (
         <div className={classes.detailForm}>
@@ -69,6 +70,28 @@ export const Detail:FunctionComponent<Props> = (props) => {
                 {currentOfferState === 1 ? <div>オファー中</div> : ""}
                 {currentOfferState === 2 ? <div>交渉中</div> : ""}
                 {currentOfferState === 3 ? <div>決定</div> : ""}
+                <div>
+                    {user ? (
+                        <>
+                            <div>{user.name}さんのオファー一覧</div>
+                            {offerlist.map((offerdata) => {
+                                return(
+                                    <>
+                                        {(offerdata.shopId === user._id) && (offerdata.offerState === currentOfferState) ? (
+                                            <>
+                                                {offerdata.shopname}
+                                            </>
+                                        ):(
+                                            <></>
+                                        )}
+                                    </>
+                                )
+                            })}
+                        </>
+                    ):(
+                        <p>ログインしてください</p>
+                    )}
+                </div>
             </div>
         </div>
     )
