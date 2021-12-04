@@ -7,6 +7,7 @@ import { Post } from '../components/timeline/post/post';
 import { Button , InputBase,Card,TextField } from '@material-ui/core';
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
+import Autocomplete from '@mui/material/Autocomplete';
 
 export async function getStaticProps(context) {
 
@@ -53,6 +54,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     const numberOfPeopleList = [2,4,6,8];
     const genreList = ["中華","和食","イタリアン","エスニック"];
     const purposeList = ["打ち上げ","会食","合コン","同窓会"];
+    const placeList=["博多","新飯塚","折尾","黒崎"];
     const [tag, setTags] = useState([]);
     const [openDate, setopenDate] = useState();
     const [maxNumberOfPeople,setmaxNumberOfPeople]=useState();
@@ -60,11 +62,17 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     const [budget,setbudget]=useState();
     const [genre,setgenre]=useState();
     const [purpose,setpurpose]=useState();
-    const SelectGenre=async(e)=>{
-        setgenre(e.target.value);
+    // const SelectGenre=async(e)=>{
+    //     setgenre(e.target.value);
+    // }
+    function SelectGenre(event,value){
+        setgenre(value);
     }
-    const SelectPurpose=async(e)=>{
-        setpurpose(e.target.value);
+    // const SelectPurpose=async(e)=>{
+    //     setpurpose(e.target.value);
+    // }
+    function SelectPurpose(event,value){
+        setpurpose(value);
     }
     const SelectOpenDate=async(e)=>{
         setopenDate(e.target.value);
@@ -173,43 +181,6 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
         <>
         <main>
             <div className= {style.timeline}>
-                {/* <div className={style.searchField}>
-                    <Drawer
-                        anchor="top"
-                        open={isOpenDrawer}
-                        onClose={() => handleCloseDrawer(false)}
-                    >
-                        <DrawerContent
-                            searchTag={searchTag}
-                            budgetList={budgetList}
-                            currentbudget={currentbudget}
-                            selectbudgetClear={selectbudgetClear}
-                            selectCurrentbudget={selectCurrentbudget}
-                            numberOfPeopleList={numberOfPeopleList}
-                            currentNumberOfPeople={currentNumberOfPeople}
-                            selectNumberOfPeopleClear={selectNumberOfPeopleClear}
-                            selectCurrentNumberOfPeople={selectCurrentNumberOfPeople}
-                            genreList={genreList}
-                            currentGenre={currentGenre}
-                            selectGenreClear={selectGenreClear}
-                            selectCurrentGenre={selectCurrentGenre}
-                            purposeList={purposeList}
-                            currentPurpose={currentPurpose}
-                            selectPurposeClear={selectPurposeClear}
-                            selectCurrentPurpose={selectCurrentPurpose}
-                            handleCloseDrawer={handleCloseDrawer}
-                        />
-                    </Drawer>
-                    <form onSubmit={handlerOnSubmitSearch}>
-                        <InputBase 
-                            type="search"
-                            name="query"
-                            className={style.searchFieldInput}
-                            placeholder="キーワードを入力して下さい"
-                        />
-                        <Button onClick={handleOpenDrawer}>タグ検索</Button>
-                    </form>
-                </div> */}
                 {shops.map((shopdata) => {
                     i++;
                     if(i%2==1){
@@ -233,15 +204,15 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                 </div>
                 <div className={style.box}>
                     <p>場所</p>
-                    <TextField id="place" style={{width:"90%"}} size="small" variant="outlined" name="place" />
+                    <Autocomplete disablePortal id="place" style={{width:"90%"}} options={placeList} renderInput={(params) => <TextField {...params} />} />
                 </div>
                 <div className={style.box}>
-                    <p>目的</p>
-                    <TextField id="purpose" onInput={SelectPurpose} value={purpose} style={{width:"90%"}} size="small" variant="outlined" name="purpose" />
+                    <p>目的{purpose}</p>
+                    <Autocomplete disablePortal id="purpose" onInputChange={SelectPurpose} value={purpose} style={{width:"90%"}} options={purposeList} renderInput={(params) => <TextField {...params} />} />
                 </div>
                 <div className={style.box}>
-                    <p>ジャンル</p>
-                    <TextField id="genre" onInput={SelectGenre} value={genre} style={{width:"90%"}} size="small" variant="outlined" name="genre" />
+                    <p>ジャンル{genre}</p>
+                    <Autocomplete disablePortal id="genre" style={{width:"90%"}} onInputChange={SelectGenre} value={genre} options={genreList} renderInput={(params) => <TextField {...params} />} />
                 </div>
                 <div className={style.box}>
                     <p>人数</p>

@@ -11,10 +11,12 @@ type Props = {
     handleCreatePlanClose: () => void;
     isOpenCreatePlan: boolean;
     plandata;
+    offerStateSwitch: (index: number) => void;
+    index:number;
 }
 
 export const CreateOfferModal:FunctionComponent<Props> = (props) => {
-    const { handleCreatePlanOpen, handleCreatePlanClose, isOpenCreatePlan, plandata } = props;
+    const { handleCreatePlanOpen, handleCreatePlanClose, isOpenCreatePlan, plandata,offerStateSwitch,index } = props;
     const style = useStyles();
 
     const [user, { mutate }] = useUser();
@@ -51,6 +53,7 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
 
     useEffect(()=>{
         if(errorMsg == "ok"){
+            offerStateSwitch(index);
             handleCreatePlanClose();
         }
     }, [errorMsg]);
