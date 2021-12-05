@@ -28,6 +28,7 @@ export const useStyles = makeStyles((theme) => ({
         marginRight: "20px",
         border:"1px solid #DCDCDC",
         borderRadius: "5px",
+        boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)",
     },
 
     offerCards: {
@@ -36,7 +37,7 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     cardsContent: {
-        padding: "5px 10px",
+        padding: "3px 10px",
     },
 
     offerTitle: {
@@ -53,12 +54,22 @@ export const useStyles = makeStyles((theme) => ({
     offerStatus: {
         display: "block",
         listStyle: "none",
-        marginTop: "5px",
+        // marginTop: "1px",
+        marginBottom: "10px",
+        marginBlockStart: "2px",
+        paddingInlineStart: "0px",
     },
 
     offerStatusItem: {
-        display: "block"
+        display: "block",
+        height: "22px",
+        fontSize: "18px",
         // marginRight: theme.spacing(1),
+    },
+
+    comment: {
+        fontSize: "14px",
+        letterSpacing: "normal",
     },
 
     haderContent: {
@@ -76,9 +87,9 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     icon: {
-        height: "24px",
-        width: "24px",
-        color: "#FFD700",
+        height: "20px",
+        width: "20px",
+        color: "black",
         marginBottom: "-5px",
         marginRight: "7px",
     },

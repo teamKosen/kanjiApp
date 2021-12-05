@@ -41,18 +41,20 @@ export const OfferTab:FunctionComponent<Props> = (props) => {
                                                     博多駅
                                                 </div>
                                                 <div className={classes.offerStatusItem}>
-                                                    人数: {userPlandata.numberOfPeople}人
+                                                    <PeopleIcon className={classes.icon} />
+                                                    {userPlandata.numberOfPeople}人
                                                 </div>
                                                 <div className={classes.offerStatusItem}>
-                                                    
-                                                    日時：{openTime.getMonth() +1}月{openTime.getDate()}日　{('00'+openTime.getHours()).slice(-2)}:{('00'+openTime.getMinutes()).slice(-2)}～{('00'+closeTime.getHours()).slice(-2)}:{('00'+closeTime.getMinutes()).slice(-2)}
+                                                    <AccessTimeIcon className={classes.icon} />
+                                                    {openTime.getMonth() +1}月{openTime.getDate()}日　{('00'+openTime.getHours()).slice(-2)}:{('00'+openTime.getMinutes()).slice(-2)}～{('00'+closeTime.getHours()).slice(-2)}:{('00'+closeTime.getMinutes()).slice(-2)}
                                                     
                                                 </div>
                                                 <div className={classes.offerStatusItem}>
-                                                    予算: {userPlandata.budget}円
+                                                    <MoneyIcon className={classes.icon} />
+                                                    {userPlandata.budget}円
                                                 </div>
                                             </ul>
-                                            <Typography variant="body2" color="textSecondary" component="p">{userPlandata.comment}</Typography>
+                                            <Typography className={classes.comment}>{userPlandata.comment}</Typography>
                                             <CardActions>
                                                 <Link href={`/mypage/${userPlandata._id}`}>
                                                     詳細を見る
