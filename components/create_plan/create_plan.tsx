@@ -114,7 +114,7 @@ export const Create_Plan:FunctionComponent = () => {
                 </div>
 
                 <div>
-                    <Button className={style.button} type="submit">オファーを募集する</Button>
+                    <Button className={style.button} type="submit">プランを作成する</Button>
                 </div>
             </form>
        </div>
