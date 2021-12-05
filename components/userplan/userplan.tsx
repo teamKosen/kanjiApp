@@ -3,7 +3,7 @@ import React, { useState, useEffect,FunctionComponent,useCallback } from "react"
 import { useUser } from "../../lib/hooks"
 import Link from 'next/link';
 import {useStyles} from './userplan.style'
-import Tag from "../shopplan/components/tag";
+import {Sidebar} from "./components/sidebar_search"
 import {Card,Select,MenuItem,Switch,TextField,Button} from '@material-ui/core'
 
 type Props={
@@ -68,45 +68,18 @@ export const Userplan:FunctionComponent<Props> = (props) => {
           {user ? (
               <>
               <div className={classes.sidebar}>
-                <div className={classes.box}>
-                    <p>タグ</p>
-                    <label htmlFor="tag" style={{width:"100%"}}>
-                        <Tag setValue={setTags}/>
-                    </label>
-                </div>
-                <div className={classes.box}>
-                    <p>予算</p>
-                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} onInput={SelectBudget} value={budget} style={{width:"90%"}} size="small" variant="outlined" name="budget" type="Number"/>
-                </div>
-                <div className={classes.box}>
-                    <p>場所</p>
-                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} style={{width:"90%"}} size="small" variant="outlined" name="budget" />
-                </div>
-                <div className={classes.box}>
-                    <p>目的</p>
-                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} style={{width:"90%"}} size="small" variant="outlined" name="budget" />
-                </div>
-                <div className={classes.box}>
-                    <p>ジャンル</p>
-                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} style={{width:"90%"}} size="small" variant="outlined" name="budget" />
-                </div>
-                <div className={classes.box}>
-                    <p>人数</p>
-                    <span className={classes.form}>
-                        <TextField id="numberOfPeople_min" InputProps={{ inputProps: { min: 1} }} onInput={SelectMinNumberOfPeople} value={minNumberOfPeople} style={{width:"30%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
-                        <span style={{fontWeight:"normal",fontSize:"30px"}}>~</span>
-                        <TextField id="numberOfPeople_max" InputProps={{ inputProps: { min: 1} }} onInput={SelectMaxNumberOfPeople} value={maxNumberOfPeople} style={{width:"30%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
-                    </span>
-                </div>
-                <div className={classes.box}>
-                    <p>日付</p>
-                    <label htmlFor="openDate">
-                        <TextField id="opendate" name="opendate" type="date" value={openDate} onInput={SelectOpenDate} label="日付" size="small" variant="outlined" InputLabelProps={{shrink: true}}/>
-                    </label>
-                </div>
-                <span className={classes.button}>
-                    <Button size="large" className={classes.itemButton} onClick={ApplyConditions} variant="contained" >適用</Button>
-                </span>
+              <Sidebar
+                    setTags={setTags}
+                    budget={budget}
+                    SelectBudget={SelectBudget}
+                    minNumberOfPeople={minNumberOfPeople}
+                    SelectMinNumberOfPeople={SelectMinNumberOfPeople}
+                    maxNumberOfPeople={maxNumberOfPeople}
+                    SelectMaxNumberOfPeople={SelectMaxNumberOfPeople}
+                    openDate={openDate}
+                    SelectOpenDate={SelectOpenDate}
+                    ApplyConditions={ApplyConditions}
+                 />
             </div>
             <div className={classes.table}>
                   <p className={classes.name}>プラン一覧</ p>

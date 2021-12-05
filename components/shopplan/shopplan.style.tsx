@@ -71,7 +71,7 @@ export const useStyles = makeStyles((theme) => ({
         height:"auto",
       },
       table:{
-        verticalAlign:"middle",
+        verticalAlign:"top",
         width:"70%",
         display:"inline-block",
       }

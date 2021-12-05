@@ -6,14 +6,15 @@
   width:100%;
   display:flex;
   flex-wrap:wrap;
+  font-size: 18px;
 }
 .postLeft{
-  width:40%;
+  width:auto;
   box-sizing:"border-box";
 }
 .postRight{
   margin-left: 1em;
-  width:50%;
+  width:auto;
   box-sizing:"border-box";
   text-align: left;
 }
@@ -21,7 +22,9 @@
   margin-left:-20px;
 }
 .icon {
-  margin: 0 10px 0 20px;
+  height: 18px;
+  width: 18px;
+  margin: 0 5px -3px 20px;
 }
 .tagChip{
 	display: inline-block;
@@ -29,9 +32,9 @@
 	padding: .6em;
 	line-height: 1;
 	text-decoration: none;
-	color: #0000ee;
-	background-color: #fff;
-	border: 1px solid #0000ee;
+	color: #FFFFFF;
+	background-color: #444444;
+	border: 1px solid #444444;
 	border-radius: 2em;
 }
 // .tagUnit{

@@ -17,9 +17,7 @@ handler.get(async (req, res) => {
         let tag_object_array=[];
         const tag_array=tag.split(',');
         {tag_array.map((tag_unit)=>{
-            console.log(tag_unit);
             tag_object_array.push({"tag":tag_unit});
-            console.log(tag_object_array);
         })}
         const tags={"$and":tag_object_array};
         search = Object.assign(search,tags);;
