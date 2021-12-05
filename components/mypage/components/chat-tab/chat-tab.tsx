@@ -7,7 +7,7 @@ import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import { InsertEmoticon } from '@material-ui/icons';
 import { Send } from '@material-ui/icons'
 import { useUser } from '../../../../lib/hooks';
-import { CreateOfferModal }from '../create-offer-modal/create-offer-modal';
+import { useStyles } from './chat-tab.style';
 
 type ChatType = {
     userName: string
@@ -18,9 +18,9 @@ type ChatType = {
 export const ChatTab:FunctionComponent = () => {
 
     const [socket, _] = useState(() => io())
-    const [isOpenCreatePlan, setisOpenCreatePlan] = useState(false);
     const [isConnected, setIsConnected] = useState(false)
     const [user, { mutate }] = useUser();
+    const classes = useStyles();
 
     const [newChat, setNewChat] = useState<ChatType>({
         userName: 'Dlink運営',
@@ -95,27 +95,18 @@ export const ChatTab:FunctionComponent = () => {
     const setTemplateMessage = (message) => {
         setMessage(message);
     };
-
-    const handleCreatePlanOpen = () => {
-        setisOpenCreatePlan(true);
-    }
-
-    const handleCreatePlanClose = () => {
-        setisOpenCreatePlan(false);
-    }
     
     return (
-        <>
-            <div className={style.chatForm}>
-                <h3>お店からのメッセージ</h3>
-                <div>
+        <div className={classes.chatBorder}>
+            <div className={style.chatFormBackGround}>
+                <div className={style.chatForm}>
                     {chats.map((chat, index) => {
                         return (
                             <div key={index}>
                                 { userName === chat.userName ? (
                                     <div>
                                         <div className={style.kaiwaImgLeft}>
-                                            <img src="/asset/defaultKanji.png" />
+                                            <img src="/asset/defaultKanji.jpeg" />
                                         </div>
                                         <div className={style.kaiwaNameLeft}>
                                             {chat.userName || 'TEST BOT'}
@@ -135,7 +126,7 @@ export const ChatTab:FunctionComponent = () => {
                                             </div>
                                         </div>
                                         <div className={style.kaiwaImgRight}>
-                                            <img src="/asset/defaultshop.png" />
+                                            <img src="/asset/defaultshop.jpeg" />
                                         </div>
                                     </div>
                                 )}
@@ -143,55 +134,55 @@ export const ChatTab:FunctionComponent = () => {
                         );
                     })}
                 </div>
-            <div>
-                {user ? (
-                    <div>
-                        { user.userType === "幹事" ? (
-                            <div>
-                                <div className={style.chatSuggestMessages}>
-                                    <div className={style.chatSuggestMessage}>テンプレート:</div>
-                                    <Chip 
-                                        icon={<InsertEmoticon  />}
-                                        label="お店にあいさつ"
-                                        onClick={() => setTemplateMessage(templateMessages.secretary.casual)} 
-                                        className={style.chatSuggestMessage}
-                                    />
-                                    <Chip 
-                                        icon={<ConfirmationNumberIcon/>}
-                                        label="クーポンをお願いする" 
-                                        color="primary"
-                                        onClick={() => setTemplateMessage(templateMessages.secretary.coupon)}  
-                                        className={style.chatSuggestMessage}
-                                    />
+                <div>
+                    {user ? (
+                        <div>
+                            { user.userType === "幹事" ? (
+                                <div>
+                                    <div className={style.chatSuggestMessages}>
+                                        <div className={style.chatSuggestMessage}>テンプレート:</div>
+                                        <Chip 
+                                            icon={<InsertEmoticon  />}
+                                            label="お店にあいさつ"
+                                            onClick={() => setTemplateMessage(templateMessages.secretary.casual)} 
+                                            className={style.chatSuggestMessage}
+                                        />
+                                        <Chip 
+                                            icon={<ConfirmationNumberIcon/>}
+                                            label="クーポンをお願いする" 
+                                            color="primary"
+                                            onClick={() => setTemplateMessage(templateMessages.secretary.coupon)}  
+                                            className={style.chatSuggestMessage}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        ) : (
-                            <div>
-                                <div className={style.chatSuggestMessages}>
-                                    <div className={style.chatSuggestMessage}>テンプレート:</div>
-                                    <Chip 
-                                        icon={<InsertEmoticon  />}
-                                        label="カジュアルあいさつ"
-                                        onClick={() => setTemplateMessage(templateMessages.shop.casual)} 
-                                        className={style.chatSuggestMessage}
-                                    />
-                                    <Chip 
-                                        icon={<ConfirmationNumberIcon/>}
-                                        label="クーポン提案" 
-                                        color="primary"
-                                        onClick={() => setTemplateMessage(templateMessages.shop.coupon)}  
-                                        className={style.chatSuggestMessage}
-                                    />
+                            ) : (
+                                <div>
+                                    <div className={style.chatSuggestMessages}>
+                                        <div className={style.chatSuggestMessage}>テンプレート:</div>
+                                        <Chip 
+                                            icon={<InsertEmoticon  />}
+                                            label="カジュアルあいさつ"
+                                            onClick={() => setTemplateMessage(templateMessages.shop.casual)} 
+                                            className={style.chatSuggestMessage}
+                                        />
+                                        <Chip 
+                                            icon={<ConfirmationNumberIcon/>}
+                                            label="クーポン提案" 
+                                            color="primary"
+                                            onClick={() => setTemplateMessage(templateMessages.shop.coupon)}  
+                                            className={style.chatSuggestMessage}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        )}
-                    </div>
-                ) : (
-                    <div></div>
-                )}
+                            )}
+                        </div>
+                    ) : (
+                        <div></div>
+                    )}
+                </div>
             </div>
-            </div>
-            <Container maxWidth="sm" >
+            <Container className={classes.inputPosition}>
                 <Box height="100vh" display="flex" flexDirection="column">
                 <Box border={1} borderRadius={5} borderColor="grey.500" mb={1}>
                     <Box px={2}>
@@ -213,19 +204,6 @@ export const ChatTab:FunctionComponent = () => {
                     </Box>
                 </Box>
                 <Box display="flex" justifyContent="flex-end">
-                    {user ? (
-                        <div>
-                            {user.userType === "shop" ? (
-                                <div className={style.buttonPosition}>
-                                    <Button color="secondary" variant="contained" onClick={handleCreatePlanOpen}>オファーする</Button>
-                                </div>
-                            ) : (
-                                <></>
-                            )}
-                        </div>
-                    ) : (
-                        <></>
-                    ) }
                     <Button
                         type="submit"
                         variant="contained"
@@ -240,11 +218,6 @@ export const ChatTab:FunctionComponent = () => {
                 </Box>
                 </Box>
             </Container>
-            <CreateOfferModal 
-                handleCreatePlanClose={handleCreatePlanClose} 
-                handleCreatePlanOpen={handleCreatePlanOpen} 
-                isOpenCreatePlan={isOpenCreatePlan}
-            />
-        </>
+        </div>
     );
 };

@@ -41,7 +41,7 @@ export const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(8),
         marginRight: "auto",
         marginLeft: "auto",
-        width: theme.spacing(45)
+        width: theme.spacing(50),
     },
 
     approveHeight: {

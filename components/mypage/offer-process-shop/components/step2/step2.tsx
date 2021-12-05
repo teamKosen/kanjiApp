@@ -30,7 +30,7 @@ export const Step2:FunctionComponent<Props> = (props) => {
     return (
         <div className={classes.step2Position}>
             <div className={classes.approveHeight}>
-                <h1 className={classes.approve}>オファーを承認しました！</h1>
+                <h1 className={classes.approve}>オファーが承認されました！</h1>
             </div>
             <p>オファー内容</p>
             <table className={classes.table}>

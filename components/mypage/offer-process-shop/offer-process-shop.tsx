@@ -1,8 +1,9 @@
 import React, { useState,useEffect,FunctionComponent } from 'react';
 import { ObjectId } from 'mongodb';
 import { useStyles } from './offer-process-shop.style';
-import { ProcessBar } from '../offer-process-kanji/components/process-bar/process-bar';
+import { ProcessBar } from '../components/process-bar/process-bar';
 import { Step2 } from './components/step2/step2';
+import { Step1 } from './components/step1/step1';
 
 type Props = {
     offerplandetail: {
@@ -50,7 +51,7 @@ export const OfferProcessShop:FunctionComponent<Props> = (props) => {
                     <div className={classes.processbarTitle}>2.決定</div>
                 </div>
             </div>
-            <div>{offerplandetail.offerState === 1 ? <div>ほこたて</div> : ""}</div>
+            <div>{offerplandetail.offerState === 1 ? <Step1 offerplandetail={offerplandetail}/> : ""}</div>
             <div>{offerplandetail.offerState === 2 ? <Step2 offerplandetail={offerplandetail}/> : ""}</div>
         </div>
     )
