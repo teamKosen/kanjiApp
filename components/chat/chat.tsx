@@ -46,11 +46,13 @@ export const Chat:FunctionComponent<Props> = (props) => {
                 {/* <ChatTab /> */}
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <div className={style.plandetail}>
-                    <PlanDetail userPlandatas_detail={userPlandatas_detail}/>
-                </div>
-                <div className={style.offertab}>
-                    <OfferTab userPlandatas={userPlandatas}/>
+                <div className={style.offer}>
+                    <div className={style.plandetail}>
+                        <PlanDetail userPlandatas_detail={userPlandatas_detail}/>
+                    </div>
+                    <div className={style.offertab}>
+                        <OfferTab userPlandatas={userPlandatas}/>
+                    </div>
                 </div>
             </TabPanel>
         </div>

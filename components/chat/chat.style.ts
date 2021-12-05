@@ -2,6 +2,9 @@ import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
 
+    offer: {
+        display: "flex",
+    },
     plandetail: {
         display: "inline-block",
         width: "25%",
@@ -9,7 +12,8 @@ export const useStyles = makeStyles((theme) => ({
 
     offertab: {
         display: "inline-block",
-        width: "70%",
+        width: "75%",
+        marginLeft: "5px",
     },
 
     haderContent: {

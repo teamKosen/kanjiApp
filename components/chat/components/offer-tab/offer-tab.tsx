@@ -2,6 +2,10 @@ import { useStyles } from "./offer-tab.style";
 import React, { FunctionComponent,useState } from 'react'
 import { Card, CardContent, CardActions, Button,Typography,CardMedia } from "@material-ui/core";
 import Link from 'next/link'
+import MoneyIcon from '@material-ui/icons/Money';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import PeopleIcon from '@material-ui/icons/People';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 type Props = {
     userPlandatas: JSON;
@@ -14,12 +18,13 @@ export const OfferTab:FunctionComponent<Props> = (props) => {
 
     return (
         <div className = {classes.offerTab}>
+            <div className={classes.title}>オファー一覧</div>
             { Object.keys(userPlandatas).length === 0 ? 
                 <div>
                     <p>まだオファーはありません</p>
                 </div>
                 :
-                <div>
+                <div className={classes.offerCards}>
                     {userPlanlist.map((userPlandata) => {
                         const openTime:Date = new Date(userPlandata.openTime);
                         const closeTime:Date = new Date(userPlandata.closeTime);
@@ -27,21 +32,25 @@ export const OfferTab:FunctionComponent<Props> = (props) => {
                         return (
                             <>
                                 <Card className={classes.offer} key={userPlandata._id}>
-                                    <CardContent>
+                                    <CardContent className={classes.cardsContent}>
                                         <div>
                                             <div className={classes.offerTitle}>{userPlandata.shopname}</div>
                                             <ul className={classes.offerStatus}>
-                                                <li className={classes.offerStatusItem}>
-                                                    <p>予算: {userPlandata.budget}円</p>
-                                                </li>
-                                                <li className={classes.offerStatusItem}>
-                                                    <p>人数: {userPlandata.numberOfPeople}人</p>
-                                                </li>
-                                                <li className={classes.offerStatusItem}>
-                                                    <p>
-                                                        日時：{openTime.getMonth() +1}月{openTime.getDate()}日　{('00'+openTime.getHours()).slice(-2)}:{('00'+openTime.getMinutes()).slice(-2)}～{('00'+closeTime.getHours()).slice(-2)}:{('00'+closeTime.getMinutes()).slice(-2)}
-                                                    </p>
-                                                </li>
+                                                <div className={classes.offerStatusItem}>
+                                                    <LocationOnIcon className={classes.icon} />
+                                                    博多駅
+                                                </div>
+                                                <div className={classes.offerStatusItem}>
+                                                    人数: {userPlandata.numberOfPeople}人
+                                                </div>
+                                                <div className={classes.offerStatusItem}>
+                                                    
+                                                    日時：{openTime.getMonth() +1}月{openTime.getDate()}日　{('00'+openTime.getHours()).slice(-2)}:{('00'+openTime.getMinutes()).slice(-2)}～{('00'+closeTime.getHours()).slice(-2)}:{('00'+closeTime.getMinutes()).slice(-2)}
+                                                    
+                                                </div>
+                                                <div className={classes.offerStatusItem}>
+                                                    予算: {userPlandata.budget}円
+                                                </div>
                                             </ul>
                                             <Typography variant="body2" color="textSecondary" component="p">{userPlandata.comment}</Typography>
                                             <CardActions>
