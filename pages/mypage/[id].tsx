@@ -1,7 +1,9 @@
 import { NextPage } from "next";
 import { ObjectId } from 'mongodb';
 
-import { OfferProcess } from '../../components/mypage/offer-process/offer-process';
+import { OfferProcessKanji } from '../../components/mypage/offer-process-kanji/offer-process-kanji';
+import { OfferProcessShop } from "../../components/mypage/offer-process-shop/offer-process-shop";
+import { useUser } from '../../lib/hooks';
 
 type Props = {
     offerplandetail: {
@@ -23,9 +25,19 @@ type Props = {
 
 const Page:NextPage<Props> = (props) => {
     const { offerplandetail } = props;
+    const [user, { mutate }] = useUser();
+
     return (
         <div style={{paddingTop: "76px"}}>
-            <OfferProcess offerplandetail={offerplandetail}/>
+            { user ? (
+                user.userType === "幹事" ? (
+                    <OfferProcessKanji offerplandetail={offerplandetail}/>
+                ) : (
+                    <OfferProcessShop offerplandetail={offerplandetail}/>
+                )
+            ):(
+                <div>ログインしてください</div>
+            )}
         </div>
     )
 }

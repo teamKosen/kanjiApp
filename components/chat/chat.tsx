@@ -1,7 +1,7 @@
 import { useStyles } from "./chat.style";
 import { OfferTab } from "./components/offer-tab/offer-tab"
 import { PlanDetail } from "./components/plandetail/plandetail"
-import { ChatTab } from "./components/chat-tab/chat-tab"
+import { ChatTab } from "../mypage/components/chat-tab/chat-tab"
 import React, { useState,FunctionComponent } from 'react'
 import { Tabs, Tab,AppBar} from '@material-ui/core'
 import { TabPanel } from "./components/tabPanel/tabPanel"

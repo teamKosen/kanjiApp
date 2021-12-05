@@ -1,7 +1,7 @@
 import React, { useState,useCallback,FunctionComponent } from 'react';
 import { ObjectId } from 'mongodb';
-import { ProcessBar } from './components/process-bar/process-bar';
-import { useStyles } from './offer-process.style';
+import { ProcessBar } from '../components/process-bar/process-bar';
+import { useStyles } from './offer-process-kanji.style';
 import { Step1 } from "./components/step1/step1"; 
 import { Step2 } from "./components/step2/step2";
 import { Step3 } from './components/step3/step3';
@@ -29,7 +29,7 @@ type Props = {
     }
 }
   
-export const OfferProcess:FunctionComponent<Props> = (props) => {
+export const OfferProcessKanji:FunctionComponent<Props> = (props) => {
     const { offerplandetail } = props;
     const classes = useStyles();
     const [currentProcess, setCurrentProcess] = useState<number>(1);

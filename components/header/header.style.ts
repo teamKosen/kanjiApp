@@ -5,8 +5,9 @@ export const useStyles = makeStyles((theme) => ({
     header: {
         zIndex: 600,
         position: "fixed",
-        width: theme.spacing(200),
-        backgroundColor: "var(--color-white)",
+        width: "100%",
+        backgroundColor: "#f0efef",
+        boxSizing: "border-box",
     },
 
     haderContent: {
