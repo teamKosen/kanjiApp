@@ -1,13 +1,23 @@
 import fetch from 'isomorphic-unfetch'
 import style from '../styles/timeline.module.scss'
 import Drawer from '@material-ui/core/Drawer';
-import Tag from "../components/shopplan/components/tag";
+import Tag from "../components/timeline/tag";
 import { DrawerContent } from '../components/timeline/drawer-content/drawer-content.tsx';
 import { Post } from '../components/timeline/post/post';
 import { Button , InputBase,Card,TextField } from '@material-ui/core';
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Autocomplete from '@mui/material/Autocomplete';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import MoneyIcon from '@material-ui/icons/Money';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import StoreIcon from '@material-ui/icons/Store';
+//import { Money,LocationOn,Store,Restaurant,People,DateRange } from '@material-ui/icons';
+import RestaurantIcon from '@material-ui/icons/Restaurant';
+import PeopleIcon from '@material-ui/icons/People';
+import SearchIcon from '@material-ui/icons/Search';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import DateRangeIcon from '@material-ui/icons/DateRange';
 
 export async function getStaticProps(context) {
 
@@ -193,29 +203,29 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                 })}
                 <div className={style.sidebar}>
                 <div className={style.box}>
-                    <p>タグ</p>
-                    <label htmlFor="tag" style={{width:"100%"}}>
+                    <div className={style.label}><LocalOfferIcon className={style.icon} />タグ</div>
+                    <label htmlFor="tag" style={{width:"90%"}}>
                         <Tag setValue={setTags}/>
                     </label>
                 </div>
                 <div className={style.box}>
-                    <p>予算</p>
-                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} onInput={SelectBudget} value={budget} style={{width:"90%"}} size="small" variant="outlined" name="budget" type="Number"/>
+                    <div className={style.label}><MoneyIcon className={style.icon} />予算</div>
+                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} onInput={SelectBudget} value={budget} style={{width:"90%",height:"45px",marginLeft:"5px"}} size="small" variant="outlined" name="budget" type="Number"/>
                 </div>
                 <div className={style.box}>
-                    <p>場所</p>
-                    <Autocomplete disablePortal id="place" style={{width:"90%"}} options={placeList} renderInput={(params) => <TextField {...params} />} />
+                    <div className={style.label}><LocationOnIcon className={style.icon} />場所</div>
+                    <Autocomplete disablePortal id="place" style={{width:"90%",height:"45px",paddingTop:"10px",marginLeft:"5px"}} options={placeList} renderInput={(params) => <TextField {...params} />} />
                 </div>
                 <div className={style.box}>
-                    <p>目的{purpose}</p>
-                    <Autocomplete disablePortal id="purpose" onInputChange={SelectPurpose} value={purpose} style={{width:"90%"}} options={purposeList} renderInput={(params) => <TextField {...params} />} />
+                    <div className={style.label}><StoreIcon className={style.icon} />目的</div>
+                    <Autocomplete disablePortal id="purpose" onInputChange={SelectPurpose} value={purpose} style={{width:"90%",height:"45px",paddingTop:"10px",marginLeft:"5px"}} options={purposeList} renderInput={(params) => <TextField {...params} />} />
                 </div>
                 <div className={style.box}>
-                    <p>ジャンル{genre}</p>
-                    <Autocomplete disablePortal id="genre" style={{width:"90%"}} onInputChange={SelectGenre} value={genre} options={genreList} renderInput={(params) => <TextField {...params} />} />
+                    <div className={style.label}><RestaurantIcon className={style.icon} />目的</div>
+                    <Autocomplete disablePortal id="genre" style={{width:"90%",height:"45px",paddingTop:"10px",marginLeft:"5px"}} onInputChange={SelectGenre} value={genre} options={genreList} renderInput={(params) => <TextField {...params} />} />
                 </div>
                 <div className={style.box}>
-                    <p>人数</p>
+                    <div className={style.label}><PeopleIcon className={style.icon} />人数</div>
                     <span className={style.form}>
                         <TextField id="numberOfPeople_min" InputProps={{ inputProps: { min: 1} }} onInput={SelectMinNumberOfPeople} value={minNumberOfPeople} style={{width:"30%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
                         <span style={{fontWeight:"normal",fontSize:"30px"}}>~</span>
@@ -223,14 +233,14 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                     </span>
                 </div>
                 <div className={style.box}>
-                    <p>日付</p>
+                    <div className={style.label}><DateRangeIcon className={style.icon} />日付</div>
                     <label htmlFor="openDate">
                         <TextField id="opendate" name="opendate" type="date" value={openDate} onInput={SelectOpenDate} label="日付" size="small" variant="outlined" InputLabelProps={{shrink: true}}/>
                     </label>
                 </div>
-                <span className={style.button}>
-                    <Button size="large" className={style.itemButton} onClick={ApplyConditions} variant="contained" >適用</Button>
-                </span>
+                <Button size="large" className={style.button} onClick={ApplyConditions} variant="text">
+                    <div className={style.itemButton}><SearchIcon className={style.icon_search} />検索する</div>
+                </Button>
             </div>
                 <div className={style.post}>
                     <div className={style.postLine}>

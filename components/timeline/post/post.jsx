@@ -1,6 +1,6 @@
 import style from './post.module.scss'
 import LocalBarIcon from '@material-ui/icons/LocalBar';
-import AddLocationIcon from '@material-ui/icons/AddLocation';
+import LocationIcon from '@material-ui/icons/LocationOn';
 import React, { useCallback, useState } from 'react';
 import { Button,Chip } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment';
@@ -28,7 +28,7 @@ export const Post = (props) => {
 
     return(
         <div className={style.post}>
-            <h2>{name}</h2>
+            <div style={{fontSize:"24px",fontWeight:"bold"}}>{name}</div>
             <div className={style.postColumn}>
                 <div className={style.postLeft}>
                     <div className={style.imgPosition}>
@@ -39,7 +39,7 @@ export const Post = (props) => {
                 </div>
                 <div className={style.postRight}>
                     <div className={style.postDetail}>
-                        <div><AddLocationIcon className={style.icon}/>博多駅</div>
+                        <div><LocationIcon className={style.icon}/>博多駅</div>
                     </div>
                     <div style={{display: 'flex'},{marginTop:'1em'}}>
                         <div className={style.tagChip}>#{genre}</div>
