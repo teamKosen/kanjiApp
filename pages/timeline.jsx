@@ -221,23 +221,23 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                     <Autocomplete disablePortal id="purpose" onInputChange={SelectPurpose} value={purpose} style={{width:"90%",height:"45px",paddingTop:"10px",marginLeft:"5px"}} options={purposeList} renderInput={(params) => <TextField {...params} />} />
                 </div>
                 <div className={style.box}>
-                    <div className={style.label}><RestaurantIcon className={style.icon} />目的</div>
+                    <div className={style.label}><RestaurantIcon className={style.icon} />ジャンル</div>
                     <Autocomplete disablePortal id="genre" style={{width:"90%",height:"45px",paddingTop:"10px",marginLeft:"5px"}} onInputChange={SelectGenre} value={genre} options={genreList} renderInput={(params) => <TextField {...params} />} />
                 </div>
                 <div className={style.box}>
                     <div className={style.label}><PeopleIcon className={style.icon} />人数</div>
                     <span className={style.form}>
                         <TextField id="numberOfPeople_min" InputProps={{ inputProps: { min: 1} }} onInput={SelectMinNumberOfPeople} value={minNumberOfPeople} style={{width:"30%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
-                        <span style={{fontWeight:"normal",fontSize:"30px"}}>~</span>
+                        <span style={{fontWeight:"100",fontSize:"30px"}}>~</span>
                         <TextField id="numberOfPeople_max" InputProps={{ inputProps: { min: 1} }} onInput={SelectMaxNumberOfPeople} value={maxNumberOfPeople} style={{width:"30%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
                     </span>
                 </div>
-                <div className={style.box}>
+                {/* <div className={style.box}>
                     <div className={style.label}><DateRangeIcon className={style.icon} />日付</div>
                     <label htmlFor="openDate">
                         <TextField id="opendate" name="opendate" type="date" value={openDate} onInput={SelectOpenDate} label="日付" size="small" variant="outlined" InputLabelProps={{shrink: true}}/>
                     </label>
-                </div>
+                </div> */}
                 <Button size="large" className={style.button} onClick={ApplyConditions} variant="text">
                     <div className={style.itemButton}><SearchIcon className={style.icon_search} />検索する</div>
                 </Button>
