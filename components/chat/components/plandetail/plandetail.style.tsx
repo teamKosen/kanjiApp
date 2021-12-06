@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme) => ({
 
     form:{
         paddingBottom:"25px",
-        paddingLeft: "110px",
+        paddingLeft: "120px",
     },
     button:{
         display: "flex",

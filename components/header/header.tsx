@@ -1,5 +1,5 @@
 import { FunctionComponent, useState, useCallback } from 'react';
-import style from './header.module.scss';
+// import style from './header.module.scss';
 import { useStyles } from "./header.style";
 import { Button, InputBase, Drawer } from '@material-ui/core';
 import Image from 'next/image'
@@ -9,7 +9,7 @@ import { DrawerContent } from '../timeline/drawer-content/drawer-content';
 import { useUser } from '../../lib/hooks';
 
 export const Header:FunctionComponent = () => {
-    const classes = useStyles();
+    const style = useStyles();
 
     const router = useRouter();
 
@@ -18,7 +18,6 @@ export const Header:FunctionComponent = () => {
     const [currentGenre, setcurrentGenre] = useState();
     const [currentPurpose, setcurrentPurpose] = useState();
     const [isOpenDrawer, setDrawerState] = useState(false);
-    const tsstyle = useStyles();
 
     const [user, { mutate }] = useUser();
 
@@ -86,7 +85,7 @@ export const Header:FunctionComponent = () => {
     };
 
     return (
-        <header className={classes.header}>
+        <header className={style.header}>
             <Drawer
                 anchor="top"
                 open={isOpenDrawer}
@@ -182,17 +181,17 @@ export const Header:FunctionComponent = () => {
                             type="search"
                             name="query"
                             className={style.searchFieldInput}
-                            inputProps={{style: {fontSize: 36, color: '#DCDCDC' }  }} 
-                            placeholder=" キーワードを入力"
+                            inputProps={{style: {fontSize: 36, padding: "12px 0 7px 10px", }  }} 
+                            placeholder="キーワードを入力"
                         />
                         <Button 
-                            className={tsstyle.searchButton}
+                            className={style.searchButton}
                         >検索</Button>
                     </div>
                     <Button  
                         onClick={handleLogout} 
                         href="./signin"
-                        className={tsstyle.logout}
+                        className={style.logout}
                     >ログアウト</Button>
                 </div>
                 
