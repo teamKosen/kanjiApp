@@ -8,12 +8,14 @@ export const useStyles = makeStyles((theme) => ({
     plandetail: {
         display: "inline-block",
         width: "25%",
+        marginTop: "20px",
     },
 
     offertab: {
         display: "inline-block",
         width: "75%",
         marginLeft: "5px",
+        marginTop: "15px",
     },
 
     haderContent: {

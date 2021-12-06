@@ -30,31 +30,14 @@ export const Chat:FunctionComponent<Props> = (props) => {
 
     return (
         <div>
-            <AppBar position="static" color="inherit">
-                <Tabs 
-                    value={value} 
-                    onChange={handleChange}  
-                    indicatorColor="primary" 
-                    aria-label="simple tabs example"
-                >
-                    <Tab label="チャット" {...a11yProps(0)} />
-                    <Tab label="オファー" {...a11yProps(1)} />
-                    <Tab label="取引画面" {...a11yProps(2)} />
-                </Tabs>
-            </AppBar>
-            <TabPanel value={value} index={0}>
-                {/* <ChatTab /> */}
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <div className={style.offer}>
-                    <div className={style.plandetail}>
-                        <PlanDetail userPlandatas_detail={userPlandatas_detail}/>
-                    </div>
-                    <div className={style.offertab}>
-                        <OfferTab userPlandatas={userPlandatas}/>
-                    </div>
+            <div className={style.offer}>
+                <div className={style.plandetail}>
+                    <PlanDetail userPlandatas_detail={userPlandatas_detail}/>
                 </div>
-            </TabPanel>
+                <div className={style.offertab}>
+                    <OfferTab userPlandatas={userPlandatas}/>
+                </div>
+            </div>
         </div>
     )
 }
