@@ -70,6 +70,7 @@ export const useStyles = makeStyles((theme) => ({
     comment: {
         fontSize: "14px",
         letterSpacing: "normal",
+        height: "90px",
     },
 
     haderContent: {
@@ -81,9 +82,36 @@ export const useStyles = makeStyles((theme) => ({
         backgroundColor: "rgba(253, 255, 130, 0.755)",
     },
 
-    button:{
+    detailButton:{
+        margin: "5px 10px 5px 145px",
+        minWidth: "47px",
+        height: "28px",
+    
+        border: "1px solid #000088",
+        borderRadius: "5px",
+
+        fontFamily: "Roboto",
+        fontStyle: "normal",
+        fontWeight: "normal",
+        fontSize: "18px",
+        color: "#000088",
+        lineHeight: "50px",
+    },
+
+    refuseButton:{
         padding:"5px",
-        //textAlign:"right",
+        minWidth: "65px",
+        height: "28px",
+    
+        border: "1px solid #BB0000",
+        borderRadius: "5px",
+
+        fontFamily: "Roboto",
+        fontStyle: "normal",
+        fontWeight: "normal",
+        fontSize: "18px",
+        color: "#BB0000",
+        lineHeight: "50px",
     },
 
     icon: {

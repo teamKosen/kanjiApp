@@ -55,14 +55,12 @@ export const OfferTab:FunctionComponent<Props> = (props) => {
                                                 </div>
                                             </ul>
                                             <Typography className={classes.comment}>{userPlandata.comment}</Typography>
-                                            <CardActions>
-                                                <Link href={`/mypage/${userPlandata._id}`}>
-                                                    詳細を見る
-                                                </Link>
-                                                <Button size="small" color="primary">
-                                                    断る
-                                                </Button>
-                                            </CardActions>
+                                            <Button className={classes.detailButton} href={`/mypage/${userPlandata._id}`}>
+                                                詳細
+                                            </Button>
+                                            <Button className={classes.refuseButton}>
+                                                お断り
+                                            </Button>
 
                                         </div>
                                     </CardContent>
