@@ -11,6 +11,21 @@ type Props={
     userplandatas:JSON;
 };
 
+type SelectPlandata={
+    title: string;
+    tag: string[];
+    place: string;
+    numberOfPeople: number;
+    budget: number;
+    openTime: Date;
+    closeTime: Date;
+    deadlineTime: Date;
+    create_at: Date;
+    comment: string;
+    userName: string;
+    userID: string;
+};
+
 export const Shopplan:FunctionComponent<Props> = (props) => {
 
     const {userplandatas}=props;
@@ -25,7 +40,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const [tag, setTags] = useState([]);
     const [selectedSort,setSelectedSort]=useState(0);
     const [isOpenCreatePlan, setIsOpenCreatePlan] = useState(false);
-    const [selectPlandata, setSelectPlandata] = useState();
+    const [selectPlandata, setSelectPlandata] = useState<SelectPlandata>();
 
     const offer_pre:boolean[]=[];
     let leng:number=0;
@@ -55,7 +70,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     }
 
 
-    const handleCreatePlanOpen = () => {
+    const handleCreatePlanOpen = async () => {
         setIsOpenCreatePlan(true);
     }
     const OfferStateSwitch=(index:number)=>{
@@ -141,7 +156,6 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                 offerStateSwitch={OfferStateSwitch}
                 index={offerIndex}
             />
-
         </div>
     );
 };

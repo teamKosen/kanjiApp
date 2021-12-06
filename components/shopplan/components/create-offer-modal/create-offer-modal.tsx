@@ -69,15 +69,8 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
                 <DialogContent>
                     <form onSubmit={handleSubmit}>
                         {errorMsg != "ok" ? <p style={{color: "red"}}>{errorMsg}</p> : null}
-<<<<<<< HEAD
                         <div className={style.form}>
                             <TextField style={{width:"80%"}} size="small" variant="outlined" id="title" name="title" type="text" label="タイトル" value={plandata?.title} />
-=======
-                        {/* タグ */}
-                        <div className={style.formtitle}>
-                            <div>タグを設定してください</div>
-                            <div className={style.formtitleAnnotation}><span style={{color: "red"}}>*</span>必須</div>
->>>>>>> オファー作成モーダルのデザイン調整
                         </div>
                         <div className={style.form}>
                             <Tag style={{width:"80%"}} size="small" variant="outlined" setValue={setTags}/>
@@ -108,15 +101,9 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
                             <div className={style.formtitleAnnotation}><span style={{color: "red"}}>*</span>必須</div>
                         </div>
                         <div className={style.form}>
-<<<<<<< HEAD
                             <div style={{paddingBottom:"5px"}}>開催日時</div>
                             <TextField label="日付" size="small" variant="outlined" id="openDate" name="openDate" type="date" defaultValue={plandata?.openTime.substring(0,10)} InputLabelProps={{shrink: true}}/>
                             <TextField label="時間" size="small" variant="outlined" id="openTime" name="openTime" type="time" defaultValue={plandata?.openTime.substring(11,16)} InputLabelProps={{shrink: true}}/>
-=======
-                            {/*<div style={{paddingBottom:"5px"}}>開催日時</div>*/}
-                            <TextField label="日付" size="small" variant="outlined" id="openDate" name="openDate" type="date" InputLabelProps={{shrink: true}}/>
-                            <TextField label="時間" size="small" variant="outlined" id="openTime" name="openTime" type="time" InputLabelProps={{shrink: true}}/>
->>>>>>> オファー作成モーダルのデザイン調整
                         </div>
                         
                         {/* 終了日時 */}
@@ -125,15 +112,9 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
                             <div className={style.formtitleAnnotation}><span style={{color: "red"}}>*</span>必須</div>
                         </div>
                         <div className={style.form}>
-<<<<<<< HEAD
                             <div style={{paddingBottom:"5px"}}>終了日時</div>
                             <TextField label="日付" size="small" variant="outlined" id="closeDate" name="closeDate" type="date" defaultValue={plandata?.closeTime.substring(0,10)} InputLabelProps={{shrink: true}}/>
                             <TextField label="時間" size="small" variant="outlined" id="closeTime" name="closeTime" type="time" defaultValue={plandata?.closeTime.substring(11,16)} InputLabelProps={{shrink: true}}/>
-=======
-                            {/*<div style={{paddingBottom:"5px"}}>終了日時</div>*/}
-                            <TextField label="日付" size="small" variant="outlined" id="closeDate" name="closeDate" type="date" InputLabelProps={{shrink: true}}/>
-                            <TextField label="時間" size="small" variant="outlined" id="closeTime" name="closeTime" type="time" InputLabelProps={{shrink: true}}/>
->>>>>>> オファー作成モーダルのデザイン調整
                         </div>
                         
                         {/* コメント */}
