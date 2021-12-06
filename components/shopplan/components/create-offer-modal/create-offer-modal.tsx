@@ -10,13 +10,13 @@ type Props = {
     handleCreatePlanOpen: () => void;
     handleCreatePlanClose: () => void;
     isOpenCreatePlan: boolean;
-    plandata;
+    plandata?;
 }
 
 export const CreateOfferModal:FunctionComponent<Props> = (props) => {
     const { handleCreatePlanOpen, handleCreatePlanClose, isOpenCreatePlan, plandata } = props;
     const style = useStyles();
-
+    
     const [user, { mutate }] = useUser();
     const [errorMsg, setErrorMsg] = useState("");
     const [tag, setTags] = useState([]);

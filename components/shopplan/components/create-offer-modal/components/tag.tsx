@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 const filter = createFilterOptions();
 
 export default function Tagyarn(props) {
-  const { size, style, variant, className, setValue } = props;
+  const { size, style, variant, className, setValue, value } = props;
 
   return (
     <div>
@@ -14,6 +14,7 @@ export default function Tagyarn(props) {
         size={size}
         style={style}
         options={[]}
+        defaultValue={value}
         getOptionLabel={(option) => {
           // Value selected with enter, right from the input
           if (typeof option === 'string') {

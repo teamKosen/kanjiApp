@@ -5,10 +5,26 @@ import Link from 'next/link';
 import Tag from "./components/tag";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Card, CardContent,FormControl,InputLabel,Select,MenuItem,TextField, Button , InputAdornment, InputAdornmentProps, OutlinedInput } from '@material-ui/core';
 import { CreateOfferModal } from "./components/create-offer-modal/create-offer-modal"
+import { useEffect } from 'react-transition-group/node_modules/@types/react';
 
 
 type Props={
     userplandatas:JSON;
+};
+
+type SelectPlandata={
+    title: string;
+    tag: string[];
+    place: string;
+    numberOfPeople: number;
+    budget: number;
+    openTime: Date;
+    closeTime: Date;
+    deadlineTime: Date;
+    create_at: Date;
+    comment: string;
+    userName: string;
+    userID: string;
 };
 
 export const Shopplan:FunctionComponent<Props> = (props) => {
@@ -25,7 +41,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const [tag, setTags] = useState([]);
     const [selectedSort,setSelectedSort]=useState(0);
     const [isOpenCreatePlan, setIsOpenCreatePlan] = useState(false);
-    const [selectPlandata, setSelectPlandata] = useState();
+    const [selectPlandata, setSelectPlandata] = useState<SelectPlandata>();
 
     const ApplyConditions = useCallback(() => {
         const request = async () => {
@@ -49,14 +65,13 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     };
 
 
-    const handleCreatePlanOpen = () => {
+    const handleCreatePlanOpen = async () => {
         setIsOpenCreatePlan(true);
     }
 
-    const handleCreatePlanClose = () => {
+    const handleCreatePlanClose = async () => {
         setIsOpenCreatePlan(false);
     }
-
 
     const SelectBudget=async(e)=>{
         setbudget(e.target.value);
@@ -235,6 +250,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                         <Button onClick={() => {
                             handleCreatePlanOpen();
                             setSelectPlandata(plandata);
+                            console.log(selectPlandata?.tag);
                         }}>
                             <CardContent><Post plan={plandata}/></CardContent>
                         </Button>
@@ -249,7 +265,6 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                 isOpenCreatePlan={isOpenCreatePlan}
                 plandata={selectPlandata}
             />
-
         </div>
     );
 };
