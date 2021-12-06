@@ -71,6 +71,9 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: "14px",
         letterSpacing: "normal",
         height: "90px",
+        lineHeight: "18px",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
     },
 
     haderContent: {
@@ -83,7 +86,7 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     detailButton:{
-        margin: "5px 10px 5px 145px",
+        margin: "10px 10px 5px 140px",
         minWidth: "47px",
         height: "28px",
     
@@ -100,6 +103,7 @@ export const useStyles = makeStyles((theme) => ({
 
     refuseButton:{
         padding:"5px",
+        marginTop: "5px",
         minWidth: "65px",
         height: "28px",
     
