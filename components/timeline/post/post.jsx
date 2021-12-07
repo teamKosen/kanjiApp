@@ -1,14 +1,9 @@
 import style from './post.module.scss'
-import LocalBarIcon from '@material-ui/icons/LocalBar';
 import LocationIcon from '@material-ui/icons/LocationOn';
 import React, { useCallback, useState } from 'react';
-import { Button,Chip } from '@material-ui/core';
 import { UserComment } from './components/user-comment/user-comment';
 import { Map } from './components/map/map';
-
 import { Shop_Detail } from './components/shop_detail/shop_detail';
-import { getStaticProps } from '../../../pages/timeline';
-
 import { Menu } from './components/menu/menu';
 import {Plan} from './components/plan/plan';
 import { Picture } from './components/picture/picture'
@@ -41,14 +36,14 @@ export const Post = (props) => {
                     <div className={style.postDetail}>
                         <div><LocationIcon className={style.icon}/>博多駅</div>
                     </div>
-                    <div style={{display: 'flex'},{marginTop:'1em'}}>
+                    <div style={{marginTop:'10px'}}>
                         <div className={style.tagChip}>#{genre}</div>
                         <div className={style.tagChip}>#{purpose}</div>
                     </div>
                 </div>
             </div>
             <div className={style.nomalBottom}>
-                <div className={style.shopdetailOpenButton} onClick={handleClick}>詳しくはコチラ↓</div>
+                <div className={style.shopdetailOpenButton} onClick={handleClick}>詳しくはコチラ</div>
             </div>
             { anchorEl ? 
                 <div>

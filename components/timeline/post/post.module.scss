@@ -1,6 +1,9 @@
 .post {
-  padding: 5px;
   z-index: 100;
+  position: relative;
+  width:auto;
+  height:auto;
+  padding: 10px;
 }
 .postColumn{
   width:100%;
@@ -9,27 +12,28 @@
   font-size: 18px;
 }
 .postLeft{
-  width:auto;
+  width:250px;
   box-sizing:"border-box";
 }
 .postRight{
-  margin-left: 1em;
-  width:auto;
+  margin-top:10px;
+  margin-left: 10px;
+  width:190px;
   box-sizing:"border-box";
   text-align: left;
 }
 .postDetail{
-  margin-left:-20px;
+  padding:0px;
 }
 .icon {
   height: 18px;
   width: 18px;
-  margin: 0 5px -3px 20px;
+  margin: 0 5px -3px 0px;
 }
 .tagChip{
 	display: inline-block;
-	margin: 0 .1em .6em 0;
-	padding: .6em;
+	margin: 0 5px 5px 0;
+	padding: 8px;
 	line-height: 1;
 	text-decoration: none;
 	color: #FFFFFF;
@@ -52,6 +56,8 @@
 
 .nomalBottom {
   display: flex;
+  font-size: 18px;
+  width:100%;
 }
 
 .cardPosition {
@@ -68,7 +74,7 @@
 }
 
 .shopdetailOpenButton {
-  margin: 0 0 0 auto;
+  margin: 0px 20px 0px auto;
 }
 
 .shopdetailOpenButton:hover {

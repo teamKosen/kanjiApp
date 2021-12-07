@@ -1,23 +1,19 @@
 import fetch from 'isomorphic-unfetch'
 import style from '../styles/timeline.module.scss'
-import Drawer from '@material-ui/core/Drawer';
 import Tag from "../components/timeline/tag";
-import { DrawerContent } from '../components/timeline/drawer-content/drawer-content.tsx';
 import { Post } from '../components/timeline/post/post';
-import { Button , InputBase,Card,TextField } from '@material-ui/core';
+import { Button ,Card,TextField } from '@material-ui/core';
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import Autocomplete from '@mui/material/Autocomplete';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import MoneyIcon from '@material-ui/icons/Money';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import StoreIcon from '@material-ui/icons/Store';
-//import { Money,LocationOn,Store,Restaurant,People,DateRange } from '@material-ui/icons';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import PeopleIcon from '@material-ui/icons/People';
 import SearchIcon from '@material-ui/icons/Search';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import DateRangeIcon from '@material-ui/icons/DateRange';
+import {TextField_number} from "../components/timeline/textfield_number"
+import {Autocomplete_text} from "../components/timeline/autocomplete_text"
 
 export async function getStaticProps(context) {
 
@@ -67,20 +63,19 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     const placeList=["博多","新飯塚","折尾","黒崎"];
     const [tag, setTags] = useState([]);
     const [openDate, setopenDate] = useState();
+    const [place,setplace]=useState()
     const [maxNumberOfPeople,setmaxNumberOfPeople]=useState();
     const [minNumberOfPeople,setminNumberOfPeople]=useState();
+    const [numberOfPeople,setnumberOfPeople]=useState();
     const [budget,setbudget]=useState();
     const [genre,setgenre]=useState();
     const [purpose,setpurpose]=useState();
-    // const SelectGenre=async(e)=>{
-    //     setgenre(e.target.value);
-    // }
+    function SelectPlace(event,value){
+        setplace(value);
+    }
     function SelectGenre(event,value){
         setgenre(value);
     }
-    // const SelectPurpose=async(e)=>{
-    //     setpurpose(e.target.value);
-    // }
     function SelectPurpose(event,value){
         setpurpose(value);
     }
@@ -93,17 +88,20 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     const SelectMinNumberOfPeople=async(e)=>{
         setminNumberOfPeople(e.target.value);
     }
+    const SelectNumberOfPeople=async(e)=>{
+        setNumberOfPeople(e.target.value);
+    }
     const SelectBudget=async(e)=>{
         setbudget(e.target.value);
     }
       const ApplyConditions = useCallback(() => {
         const request = async () => {
-            const res = await fetch(`http://localhost:3000/api/shopsearch?tag=${tag}&date=${openDate}&maxnumberofpeople=${maxNumberOfPeople}&minnumberofpeople=${minNumberOfPeople}&budget=${budget}&purpose=${purpose}&genre=${genre}`);
+            const res = await fetch(`http://localhost:3000/api/shopsearch?tag=${tag}&date=${openDate}&numberofpeople=${numberOfPeople}&budget=${budget}&purpose=${purpose}&genre=${genre}`);
             const shops_pre= await res.json()
             updateShops(shops_pre);
         }
           request()
-        },[openDate,minNumberOfPeople,maxNumberOfPeople,tag,budget,purpose,genre])
+        },[openDate,numberOfPeople,tag,budget,purpose,genre])
     useEffect(() => {
         const request = async () => {
             const res = await fetch(router.query.apiUrl);
@@ -125,68 +123,6 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
         request()
     }, [keyword])
 
-    const selectCurrentbudget = useCallback((budget) => {
-        setcurrentbudget(budget)
-    },[]);
-
-    const selectbudgetClear = useCallback(() => {
-        setcurrentbudget(undefined)
-    },[]); 
-
-    const selectCurrentNumberOfPeople = useCallback((numberOfPeople) => {
-        setcurrentNumberOfPeople(numberOfPeople)
-    },[]);
-
-    const selectNumberOfPeopleClear = useCallback(() => {
-        setcurrentNumberOfPeople(undefined)
-    },[]);
-
-    const selectCurrentGenre = useCallback((genre) => {
-        setcurrentGenre(genre)
-    },[]);
-
-    const selectGenreClear = useCallback(() => {
-        setcurrentGenre(undefined)
-    },[]);   
-
-    const selectCurrentPurpose = useCallback((purpose) => {
-        setcurrentPurpose(purpose)
-    },[]);
-
-    const selectPurposeClear = useCallback(() => {
-        setcurrentPurpose(undefined)
-    },[]); 
-
-    const searchTag = useCallback(() => {
-        const request = async () => {
-            const res = await fetch(`http://localhost:3000/api/tagsearch?budget=${currentbudget}&genre=${currentGenre}&numberOfPeople=${currentNumberOfPeople}&purpose=${currentPurpose}`);
-            const shopdatas= await res.json()
-            updateShops(shopdatas);
-        }
-          request()
-          setDrawerState(false);
-    },[currentbudget,currentGenre,currentNumberOfPeople,currentPurpose]);
-
-    const handleOpenDrawer = useCallback(
-        () => {
-            setDrawerState(true);
-    },[]);
-
-    const handleCloseDrawer = useCallback(
-        () => {
-            setDrawerState(false);
-    },[]);
-
-    const handlerOnSubmitSearch = useCallback(
-        (e) => {
-            e.preventDefault()
-            const { currentTarget = {} } = e
-            const fields = Array.from(currentTarget?.elements)
-            const fieldQuery = fields.find((field) => field.name === 'query')
-            const value = fieldQuery.value || ''
-            setKeyword(value);
-    },[]);    
-    
     return (
         <>
         <main>
@@ -204,41 +140,31 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                 <div className={style.sidebar}>
                 <div className={style.box}>
                     <div className={style.label}><LocalOfferIcon className={style.icon} />タグ</div>
-                    <label htmlFor="tag" style={{width:"90%"}}>
+                    <label htmlFor="tag" style={{width:"220px"}}>
                         <Tag setValue={setTags}/>
                     </label>
                 </div>
                 <div className={style.box}>
                     <div className={style.label}><MoneyIcon className={style.icon} />予算</div>
-                    <TextField id="budget" InputProps={{ inputProps: { min: 1} }} onInput={SelectBudget} value={budget} style={{width:"90%",height:"45px",marginLeft:"5px"}} size="small" variant="outlined" name="budget" type="Number"/>
+                    <TextField_number Select={SelectBudget} item={budget} id_str="budget" unit="円" size_w="220px" />
                 </div>
                 <div className={style.box}>
                     <div className={style.label}><LocationOnIcon className={style.icon} />場所</div>
-                    <Autocomplete disablePortal id="place" style={{width:"90%",height:"45px",paddingTop:"10px",marginLeft:"5px"}} options={placeList} renderInput={(params) => <TextField {...params} />} />
+                    <Autocomplete_text Select={SelectPlace} item={place} id_str="place" list={placeList} />
                 </div>
                 <div className={style.box}>
                     <div className={style.label}><StoreIcon className={style.icon} />目的</div>
-                    <Autocomplete disablePortal id="purpose" onInputChange={SelectPurpose} value={purpose} style={{width:"90%",height:"45px",paddingTop:"10px",marginLeft:"5px"}} options={purposeList} renderInput={(params) => <TextField {...params} />} />
+                    <Autocomplete_text Select={SelectPurpose} item={purpose} id_str="purpose" list={purposeList} />
                 </div>
                 <div className={style.box}>
                     <div className={style.label}><RestaurantIcon className={style.icon} />ジャンル</div>
-                    <Autocomplete disablePortal id="genre" style={{width:"90%",height:"45px",paddingTop:"10px",marginLeft:"5px"}} onInputChange={SelectGenre} value={genre} options={genreList} renderInput={(params) => <TextField {...params} />} />
+                    <Autocomplete_text Select={SelectGenre} item={genre} id_str="genre" list={genreList} />
                 </div>
                 <div className={style.box}>
                     <div className={style.label}><PeopleIcon className={style.icon} />人数</div>
-                    <span className={style.form}>
-                        <TextField id="numberOfPeople_min" InputProps={{ inputProps: { min: 1} }} onInput={SelectMinNumberOfPeople} value={minNumberOfPeople} style={{width:"30%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
-                        <span style={{fontWeight:"100",fontSize:"30px"}}>~</span>
-                        <TextField id="numberOfPeople_max" InputProps={{ inputProps: { min: 1} }} onInput={SelectMaxNumberOfPeople} value={maxNumberOfPeople} style={{width:"30%"}} size="small" variant="outlined" name="numberOfPeople" type="Number"/>
-                    </span>
+                    <TextField_number Select={SelectNumberOfPeople} item={numberOfPeople} id_str="numberOfPeople" unit="人" size_w="220px" />
                 </div>
-                {/* <div className={style.box}>
-                    <div className={style.label}><DateRangeIcon className={style.icon} />日付</div>
-                    <label htmlFor="openDate">
-                        <TextField id="opendate" name="opendate" type="date" value={openDate} onInput={SelectOpenDate} label="日付" size="small" variant="outlined" InputLabelProps={{shrink: true}}/>
-                    </label>
-                </div> */}
-                <Button size="large" className={style.button} onClick={ApplyConditions} variant="text">
+                <Button className={style.button} onClick={ApplyConditions} variant="text">
                     <div className={style.itemButton}><SearchIcon className={style.icon_search} />検索する</div>
                 </Button>
             </div>
@@ -249,25 +175,24 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                             const pln=planlist.filter(v=>v.shopID==shopdata._id);
                             const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
                             const pict = picturelist.filter(v=>v.shopId==shopdata._id);
-                            
                             return <Card key={shopdata.name} className={style.unitPost}>
-                                <Post 
-                                    name={shopdata.name}
-                                    genre={shopdata.tag.genre}
-                                    purpose={shopdata.tag.purpose}
-                                    open={shopdata.open}
-                                    park={shopdata.park}
-                                    payments={shopdata.payment}
-                                    seatTypes={shopdata.seatType}
-                                    notSmokingSeat={shopdata.notSmokingSeat}
-                                    phoneNumber={shopdata.phoneNumber}
-                                    adress={shopdata.adress}
-                                    menu={shopdata.menu}
-                                    plan={pln}
-                                    comment={cmnt}
-                                    pictures={pict}
-                                />
-                            </Card>
+                            <Post 
+                                name={shopdata.name}
+                                genre={shopdata.tag.genre}
+                                purpose={shopdata.tag.purpose}
+                                open={shopdata.open}
+                                park={shopdata.park}
+                                payments={shopdata.payment}
+                                seatTypes={shopdata.seatType}
+                                notSmokingSeat={shopdata.notSmokingSeat}
+                                phoneNumber={shopdata.phoneNumber}
+                                adress={shopdata.adress}
+                                menu={shopdata.menu}
+                                plan={pln}
+                                comment={cmnt}
+                                pictures={pict}
+                            />
+                        </Card>
                         })}
                     </div>
                     <div className={style.postLine}>
@@ -277,23 +202,23 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                             const pict = picturelist.filter(v=>v.shopId==shopdata._id);
 
                             return <Card key={shopdata.name} className={style.unitPost}>
-                                <Post 
-                                    name={shopdata.name}
-                                    genre={shopdata.tag.genre}
-                                    purpose={shopdata.tag.purpose}
-                                    open={shopdata.open}
-                                    park={shopdata.park}
-                                    payments={shopdata.payment}
-                                    seatTypes={shopdata.seatType}
-                                    notSmokingSeat={shopdata.notSmokingSeat}
-                                    phoneNumber={shopdata.phoneNumber}
-                                    adress={shopdata.adress}
-                                    menu={shopdata.menu}
-                                    plan={pln}
-                                    comment={cmnt}
-                                    pictures={pict}
-                                />
-                            </Card>
+                            <Post 
+                                name={shopdata.name}
+                                genre={shopdata.tag.genre}
+                                purpose={shopdata.tag.purpose}
+                                open={shopdata.open}
+                                park={shopdata.park}
+                                payments={shopdata.payment}
+                                seatTypes={shopdata.seatType}
+                                notSmokingSeat={shopdata.notSmokingSeat}
+                                phoneNumber={shopdata.phoneNumber}
+                                adress={shopdata.adress}
+                                menu={shopdata.menu}
+                                plan={pln}
+                                comment={cmnt}
+                                pictures={pict}
+                            />
+                        </Card>
                         })}
                     </div>
                 </div>

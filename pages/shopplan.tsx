@@ -5,7 +5,7 @@ import React from "react";
 
 export async function getStaticProps(context) {
 
-    const res = await fetch("http://localhost:3000/api/userplandatas");
+    const res = await fetch(`http://localhost:3000/api/plansearch?tag=${""}&date=${""}&maxnumberofpeople=${""}&minnumberofpeople=${""}&sortcondition=${5}$sortswitch=${1}`);
     const json = await res.json();
 
     return {

@@ -2,12 +2,11 @@ import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
     imgSize :{
-        width: "200px",
-        height: "200px",
-        marginTop: "10px",
-        marginBottom: "10px",
+        width: "250px",
+        height: "250px",
     },
     imgPosition :{
-        display: "flex",
+        width: "250px",
+        height: "250px",
       },
 }));

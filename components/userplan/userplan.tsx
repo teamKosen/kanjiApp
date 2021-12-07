@@ -1,10 +1,10 @@
 import { Post } from "./components/post";
-import React, { useState, useEffect,FunctionComponent,useCallback } from "react";
+import React, { useState, FunctionComponent,useCallback } from "react";
 import { useUser } from "../../lib/hooks"
 import Link from 'next/link';
 import {useStyles} from './userplan.style'
 import {Sidebar} from "./components/sidebar_search"
-import {Card,Select,MenuItem,Switch,TextField,Button} from '@material-ui/core'
+import {Card,Select,MenuItem,Switch} from '@material-ui/core'
 
 type Props={
     userplandatas:JSON;
@@ -28,14 +28,26 @@ export const Userplan:FunctionComponent<Props> = (props) => {
     const [minNumberOfPeople,setminNumberOfPeople]=useState();
     const [budget,setbudget]=useState();
     const [tag, setTags] = useState([]);
+    const [genre,setgenre]=useState();
+    const [purpose,setpurpose]=useState();
+    const [place,setplace]=useState()
       const ApplyConditions = useCallback(() => {
         const request = async () => {
-            const res = await fetch(`http://localhost:3000/api/plansearch?tag=${tag}&date=${openDate}&maxnumberofpeople=${maxNumberOfPeople}&minnumberofpeople=${minNumberOfPeople}&sortcondition=${selectedSort}&sortswitch=${switchedSort}`);
+            const res = await fetch(`http://localhost:3000/api/plansearch?tag=${tag}&date=${openDate}&maxnumberofpeople=${maxNumberOfPeople}&minnumberofpeople=${minNumberOfPeople}&sortcondition=${selectedSort}&sortswitch=${switchedSort}&budget=${budget}`);
             const plandatas= await res.json()
             updatePlanlist(plandatas);
         }
           request()
-        },[openDate,minNumberOfPeople,maxNumberOfPeople,tag,selectedSort,switchedSort])
+        },[openDate,minNumberOfPeople,maxNumberOfPeople,tag,selectedSort,switchedSort,budget])
+        function SelectPlace(event,value){
+            setplace(value);
+        }
+        function SelectGenre(event,value){
+            setgenre(value);
+        }
+        function SelectPurpose(event,value){
+            setpurpose(value);
+        }  
     const SelectOpenDate=async(e)=>{
         setopenDate(e.target.value);
     }
@@ -64,7 +76,7 @@ export const Userplan:FunctionComponent<Props> = (props) => {
     }
     return (
     <>
-      <div style={{paddingTop: "100px"}}>
+      <div style={{paddingTop: "100px",width:"1200px",marginLeft:"120px"}}>
           {user ? (
               <>
               <div className={classes.sidebar}>
@@ -79,27 +91,35 @@ export const Userplan:FunctionComponent<Props> = (props) => {
                     openDate={openDate}
                     SelectOpenDate={SelectOpenDate}
                     ApplyConditions={ApplyConditions}
+                    SelectPlace={SelectPlace}
+                    place={place}
+                    SelectPurpose={SelectPurpose}
+                    purpose={purpose}
+                    SelectGenre={SelectGenre}
+                    genre={genre}
                  />
             </div>
             <div className={classes.table}>
-                  <p className={classes.name}>プラン一覧</ p>
-                  <div><Select labelId="sortLabel" id="sort"  value={selectedSort} onChange={SelectSort} label="ソート" style={{width:"20%"}}>
-                        <MenuItem value={1}>
+                <div className={classes.sort_field}>
+                  <div className={classes.name}>プラン一覧</div>
+                  <Select labelId="sortLabel" id="sort" variant="outlined" value={selectedSort} onChange={SelectSort} label="ソート" style={{width:"150px",height:"48px",fontSize:"18px",lineHeight:"48px"}}>
+                        <MenuItem value={1} style={{fontSize:"18px"}}>
                             予算順
                         </MenuItem>
-                        <MenuItem value={2}>
+                        <MenuItem value={2} style={{fontSize:"18px"}}>
                             人数順
                         </MenuItem>
-                        <MenuItem value={3}>
+                        <MenuItem value={3} style={{fontSize:"18px"}}>
                             開催日時順
                         </MenuItem>
-                        <MenuItem value={4}>
+                        <MenuItem value={4} style={{fontSize:"18px"}}>
                             締め切り順
                         </MenuItem>
-                        <MenuItem value={5}>
+                        <MenuItem value={5} style={{fontSize:"18px"}}>
                             投稿日時順
                         </MenuItem>
-                </Select><div style={{display:"inline-block"}}>昇順<Switch color="default" onChange={SwitchSort}/>降順</div></div>
+                </Select><div className={classes.sort_switch} >昇順<Switch color="default" onChange={SwitchSort} />降順</div>
+                </div>
                   {planlist.map((plandata)=>{
                     if(plandata.userID==user._id){
                         i++;
@@ -141,11 +161,11 @@ export const Userplan:FunctionComponent<Props> = (props) => {
               <div  className={classes.planLine}>
                 {rightList.map((plandata) => {
                     return(
-                        <Card key={plandata._id} className={classes.plan}>
-                            <Link href={`/negotiation/${plandata._id}`}>
-                                <a><Post plan={plandata}/></a>
-                            </Link>
-                          </Card>
+                        <Link key={plandata._id} href={`/negotiation/${plandata._id}`}><a>
+                            <Card className={classes.plan}>
+                                <Post plan={plandata}/>                        
+                            </Card>
+                        </a></Link>
                     )
                 })}
               </div>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 
@@ -47,9 +46,8 @@ export default function Tagyarn(props) {
             renderInput={(params) => (
               <TextField
                 {...params}
-                style={{width:"90%"}}
-                label="tag"
-                variant="standard"
+                style={{width:"220px",marginLeft:"5px"}}
+                variant="outlined"
               />
             )}
           />

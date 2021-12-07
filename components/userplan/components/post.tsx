@@ -1,6 +1,6 @@
 import React, {FunctionComponent } from "react";
 import {useStyles} from './up_post.style';
-import AddLocationIcon from '@material-ui/icons/AddLocation';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 import GroupIcon from '@material-ui/icons/Group';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import MoneyIcon from '@material-ui/icons/Money';
@@ -27,11 +27,11 @@ export const Post:FunctionComponent<Props> = (props) => {
             limit>=60?(<div className={classes.deadlineHour}>締め切りまで<span className={classes.deadlineLimit}>あと{Math.floor(limit/60)}分</span></div>):
             limit>0?(<div className={classes.deadlineHour}>締め切りまで<span className={classes.deadlineLimit}>あと{limit}秒</span></div>):
             (<></>)}
-          <div className={classes.line}>
+          <div className={classes.line_title}>
             <div className={classes.title}>{plan.title}</div>
           </div>
           <div className={classes.line}>
-            <AddLocationIcon className={classes.icon} /><span>博多駅</span>
+            <LocationOnIcon className={classes.icon} /><span>博多駅</span>
           </div>
           <div className={classes.line}>
             <GroupIcon className={classes.icon} /><div className={classes.lineUnit}>{plan.numberOfPeople}人</div>
