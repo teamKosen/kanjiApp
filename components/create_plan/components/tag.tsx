@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Chip from "@material-ui/core/Chip";
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 
@@ -41,12 +42,25 @@ export default function Tagyarn(props) {
           return filtered;
         }}
         onChange={(e,v) => setValue(v.map(tag=>tag.title ? tag.title : tag))}
+        renderTags={(value:string[], getTagProps)=>(
+          <div>
+            {value.map((option: string, index: number)=>(
+              <Chip
+                key={index}
+                variant="outlined"
+                size="small"
+                label={option}
+                {...getTagProps({index})}
+              />
+            ))}
+          </div>
+        )}
         renderInput={(params) => (
           <TextField
             {...params}
             className={className}
             variant={variant}
-            InputProps={{placeholder: "未入力"}}
+            placeholder={"未入力"}
           />
         )}
       />
