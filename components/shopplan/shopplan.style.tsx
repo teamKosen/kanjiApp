@@ -27,8 +27,10 @@ export const useStyles = makeStyles((theme) => ({
         flexWrap:"wrap",
     },
     deadlineDay:{ 
+      fontSize:"18px",
   },
   deadlineHour:{
+    fontSize:"18px",
       color:"red", 
   },
     planUnit:{
@@ -60,7 +62,7 @@ export const useStyles = makeStyles((theme) => ({
         textAlign:"left",
       },
       sidebar:{
-        width:"25%",
+        width:"230px",
         display:"inline-block",
       },
       item:{
@@ -72,7 +74,43 @@ export const useStyles = makeStyles((theme) => ({
       },
       table:{
         verticalAlign:"top",
-        width:"70%",
+        width:"960px",
+        marginLeft:"10px",
         display:"inline-block",
-      }
+      },
+      tablecell:{
+        fontSize:"18px",
+      },
+      tablecell_plan:{
+        fontSize:"18px",
+      },
+      tablecell_deadline:{
+        fontSize:"18px",
+      },
+      tablecell_place:{
+        fontSize:"18px",
+      },
+      tablecell_numberOfPeople:{
+        fontSize:"18px",
+      },
+      tablecell_budget:{
+        fontSize:"18px",
+      },
+      tablecell_offer:{
+        fontSize:"18px",
+      },
+      button_wait:{
+        borderRadius:"2em",
+        backgroundColor:"#FFD700",
+        color:"#FFFFFF",
+        fontSize:"18px",
+        fontWeight:"bold",
+      },
+      button_comp:{
+        borderRadius:"2em",
+        backgroundColor:"#DCDCDC",
+        color:"#000000",
+        fontSize:"18px",
+        fontWeight:"bold",
+      },
 }));

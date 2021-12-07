@@ -5,7 +5,6 @@ import { Post } from '../components/timeline/post/post';
 import { Button ,Card,TextField } from '@material-ui/core';
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import MoneyIcon from '@material-ui/icons/Money';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -13,7 +12,6 @@ import StoreIcon from '@material-ui/icons/Store';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import PeopleIcon from '@material-ui/icons/People';
 import SearchIcon from '@material-ui/icons/Search';
-import { InputAdornment } from "@material-ui/core";
 import {TextField_number} from "../components/timeline/textfield_number"
 import {Autocomplete_text} from "../components/timeline/autocomplete_text"
 
@@ -75,15 +73,9 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     function SelectPlace(event,value){
         setplace(value);
     }
-    // const SelectGenre=async(e)=>{
-    //     setgenre(e.target.value);
-    // }
     function SelectGenre(event,value){
         setgenre(value);
     }
-    // const SelectPurpose=async(e)=>{
-    //     setpurpose(e.target.value);
-    // }
     function SelectPurpose(event,value){
         setpurpose(value);
     }
@@ -154,28 +146,23 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                 </div>
                 <div className={style.box}>
                     <div className={style.label}><MoneyIcon className={style.icon} />予算</div>
-                    {/* <TextField id="budget" InputProps={{ inputProps: { min: 1},endAdornment:<InputAdornment position="end">円</InputAdornment> }} onInput={SelectBudget} value={budget} style={{width:"220px",height:"45px",marginLeft:"5px"}} size="small" variant="outlined" name="budget" type="Number"/> */}
-                    <TextField_number Select={SelectBudget} item={budget} id_str="budget" />
+                    <TextField_number Select={SelectBudget} item={budget} id_str="budget" unit="円" size_w="220px" />
                 </div>
                 <div className={style.box}>
                     <div className={style.label}><LocationOnIcon className={style.icon} />場所</div>
-                    {/* <Autocomplete disablePortal id="place" size="small" style={{width:"220px",height:"45px",marginLeft:"5px"}} options={placeList} renderInput={(params) => <TextField {...params} variant="outlined"/>}/> */}
                     <Autocomplete_text Select={SelectPlace} item={place} id_str="place" list={placeList} />
                 </div>
                 <div className={style.box}>
                     <div className={style.label}><StoreIcon className={style.icon} />目的</div>
-                    {/* <Autocomplete disablePortal id="purpose" size="small" onInputChange={SelectPurpose} value={purpose} style={{width:"220px",height:"45px",marginLeft:"5px"}} options={purposeList} renderInput={(params) => <TextField {...params} variant="outlined"/>} /> */}
                     <Autocomplete_text Select={SelectPurpose} item={purpose} id_str="purpose" list={purposeList} />
                 </div>
                 <div className={style.box}>
                     <div className={style.label}><RestaurantIcon className={style.icon} />ジャンル</div>
-                    {/* <Autocomplete disablePortal id="genre" size="small" style={{width:"220px",height:"45px",marginLeft:"5px"}} onInputChange={SelectGenre} value={genre} options={genreList} renderInput={(params) => <TextField {...params} variant="outlined"/>} /> */}
-                    <Autocomplete_text Select={SelectGenre} item={genre} id_str="genre" list={genre} />
+                    <Autocomplete_text Select={SelectGenre} item={genre} id_str="genre" list={genreList} />
                 </div>
                 <div className={style.box}>
                     <div className={style.label}><PeopleIcon className={style.icon} />人数</div>
-                    <TextField_number Select={SelectNumberOfPeople} item={numberOfPeople} id_str="numberOfPeople" />
-                    {/* <TextField id="numberOfPeople" InputProps={{ inputProps: { min: 1},endAdornment:<InputAdornment position="end">人</InputAdornment> }} onInput={SelectNumberOfPeople} value={numberOfPeople} style={{width:"220px",height:"45px",marginLeft:"5px"}} size="small" variant="outlined" name="budget" type="Number"/> */}
+                    <TextField_number Select={SelectNumberOfPeople} item={numberOfPeople} id_str="numberOfPeople" unit="人" size_w="220px" />
                 </div>
                 <Button className={style.button} onClick={ApplyConditions} variant="text">
                     <div className={style.itemButton}><SearchIcon className={style.icon_search} />検索する</div>

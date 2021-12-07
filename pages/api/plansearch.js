@@ -9,7 +9,7 @@ handler.use(middleware);
 
 
 handler.get(async (req, res) => {
-    const {date,maxnumberofpeople,minnumberofpeople,tag,sortcondition,sortswitch}=req.query;
+    const {date,maxnumberofpeople,minnumberofpeople,tag,sortcondition,sortswitch,budget}=req.query;
 
     let search={};
 
@@ -20,9 +20,12 @@ handler.get(async (req, res) => {
             tag_object_array.push({"tag":tag_unit});
         })}
         const tags={"$and":tag_object_array};
-        search = Object.assign(search,tags);;
+        search = Object.assign(search,tags);
     }
-    
+    if(!isNaN(budget)){
+        const budget_str={"budget":{"$gte":Number(budget)}}
+        search = Object.assign(search,budget_str);
+    }
     if((isNaN(maxnumberofpeople) || !maxnumberofpeople) && (isNaN(minnumberofpeople) || !minnumberofpeople)){
     }
     else if(isNaN(maxnumberofpeople) || !maxnumberofpeople){
