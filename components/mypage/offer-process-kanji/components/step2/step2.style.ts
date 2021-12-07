@@ -4,7 +4,6 @@ export const useStyles = makeStyles((theme) => ({
 
     step2Position: {
       width: theme.spacing(80),
-      height: theme.spacing(60),
       marginRight: "auto",
       marginLeft: "auto",
     },

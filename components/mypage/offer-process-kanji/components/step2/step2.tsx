@@ -1,6 +1,8 @@
 import React, { useState,useEffect,FunctionComponent } from 'react'
 import { useStyles } from './step2.style'
 import { ObjectId } from 'mongodb';
+import { ChatTab } from '../../../components/chat-tab/chat-tab';
+import { Chat } from '@material-ui/icons';
 
 type Props = {
     offerplandetail: {
@@ -26,6 +28,7 @@ export const Step2:FunctionComponent<Props> = (props) => {
                 <h2>なければ「次へ」を押してください</h2>
             </div>
             <p>オファー内容</p>
+            <ChatTab />
         </div>
     )
 }
