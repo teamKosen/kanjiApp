@@ -33,6 +33,7 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
             tag: tag,
             place: e.currentTarget.place.value,
             userPlanId: plandata._id,
+            userName: plandata.userName,
             comment: e.currentTarget.comment.value,
             offerState: 1,
             openDate: e.currentTarget.openDate.value,
@@ -57,8 +58,6 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
             handleCreatePlanClose();
         }
     }, [errorMsg]);
-
-    console.log(plandata?.openTime.substring(11,16));
 
     return (
         <div>

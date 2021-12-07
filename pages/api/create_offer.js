@@ -17,6 +17,7 @@ handler.post(async (req, res) => {
     tag,
     place,
     userPlanId,
+    userName,
     comment,
     offerState,
     openDate,
@@ -28,7 +29,7 @@ handler.post(async (req, res) => {
     user
   } = req.body;
 
-  if ( !title || !budget || !numberOfPeople || !tag || !place || !userPlanId || !offerState || !openDate || !openTime || !closeDate || !closeTime || !create_at || !update_at || !user ) {
+  if ( !title || !budget || !numberOfPeople || !tag || !place || !userPlanId || !userName || !offerState || !openDate || !openTime || !closeDate || !closeTime || !create_at || !update_at || !user ) {
     res.status(400).send("Missing field(s)");
     return;
   }
@@ -45,7 +46,7 @@ handler.post(async (req, res) => {
 
   const offerplandatas = await req.db
     .collection("offerplandatas")
-    .insertOne({title, budget:iBudget, numberOfPeople:iPeople, tag, shopname:user.name, place, shopId:user._id, tel:"test", URL:"test", shopEmail:"test", userPlanId:userPlanId, comment, offerState:offerState, openTime:open, closeTime:close, create_at:create_at_date, update_at:update_at_date })
+    .insertOne({title, budget:iBudget, numberOfPeople:iPeople, tag, shopname:user.name, place, shopId:user._id, tel:"test", URL:"test", shopEmail:"test", userPlanId:userPlanId, userName:userName, comment, offerState:offerState, openTime:open, closeTime:close, create_at:create_at_date, update_at:update_at_date })
     .then(({ ops }) => ops[0])
     .then(()=>{res.send("ok")});
   req.logIn(offerplandatas, (err) => {
