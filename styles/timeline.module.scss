@@ -1,10 +1,10 @@
 .timeline {
   position: relative;
-  width: 90%;
-  margin: 0 0 0 auto;
+  width: 1200px;
+  margin: 0 0 0 120px;
   //max-width: 800px;
   z-index: 100;
-  padding-top: 80px;
+  padding-top: 90px;
   
 }
 
@@ -64,29 +64,29 @@
 }
 .post {
   vertical-align: top;
-  margin: 10px 20px;
-  border-radius: 10px;
-  padding: 5px;
   display:inline-block;
   flex-wrap:wrap;
-  width:70%;
+  width:auto;
+  max-width: 970px;
+  margin-top:-5px;
 }
 .postLine{
   vertical-align: top;
-  width: auto;
+  width: 485px;
   box-sizing: border-box;
   display: inline-block;
 }
 .unitPost {
-  background-color: rgb(229, 237, 250);
-  margin: 10px 10px;
-  border-radius: 10px;
-  padding: 5px; 
-  width: 450px;
-  height: 300px;
+  background-color: #FFFFFF;
+  margin: 15px 0 0 15px;
+  width: 470px;
+  height: 330px;
+  border-bottom:2px solid #DCDCDC;
+  border-radius: 2em;
 }
 .sidebar{
-  width:250px;
+  margin-top:10px;
+  width:230px;
   display:inline-block;
 }
 .icon{
@@ -107,8 +107,9 @@
 .itemButton{
   text-align: center;
   width: 100%;
-  height: 40px;
-  margin-bottom: 9px;
+  //height: 40px;
+  //margin-bottom: 9px;
+  border-color: #FFD700;
   background-color:#FFD700;
   font-family: Roboto;
   font-style: normal;
@@ -116,21 +117,23 @@
   font-size: 18px;
   color: #FFFFFF;
   line-height: 40px;
-  padding-right: 1em;
+  //padding-right: 1em;
 }
 .form{
   //width:"90%",height:"45px",paddingTop:"10px",marginLeft:"5px"
   padding-top:10px;
   display: flex;
   height: 45px;
-  width: 90%;
-  margin-left: 5px;
+  width: 220px;
+  margin: 0px auto;
 }
 .button{
-  width: 80%;
+  //margin-left: -10px;
+  width: 100%;
+  padding:0px;
 }
 .box{
-  padding-bottom: 25px;
+  padding-bottom: 20px;
   height:auto
 }
 .label{
@@ -144,9 +147,4 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 40px;
-}
-.table{
-  vertical-align: middle;
-  width: 70%;
-  display:inline-block;
 }

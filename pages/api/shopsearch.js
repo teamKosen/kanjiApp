@@ -6,21 +6,9 @@ const handler = nextConnect();
 handler.use(middleware);
 
 handler.get(async (req, res) => {
-    const {date,maxnumberofpeople,minnumberofpeople,tag,budget,purpose,genre}=req.query;
+    const {date,numberofpeople,tag,budget,purpose,genre}=req.query;
 
     let search={};
-
-    // if(tag !== 'undefined' && tag){
-    //     let tag_object_array=[];
-    //     const tag_array=tag.split(',');
-    //     {tag_array.map((tag_unit)=>{
-    //         console.log(tag_unit);
-    //         tag_object_array.push({"tag":tag_unit});
-    //         console.log(tag_object_array);
-    //     })}
-    //     const tags={"$and":tag_object_array};
-    //     search = Object.assign(search,tags);;
-    // }
     
     if (!isNaN(budget) && budget){
         const budgetTag = { "tag.budget.max":{"$gte":Number(budget)} ,"tag.budget.min":{"$lte":Number(budget)}};
@@ -36,31 +24,10 @@ handler.get(async (req, res) => {
         const purposeTag = {"tag.purpose": purpose};
         search = Object.assign(search,purposeTag);
     }
-    
-    if((isNaN(maxnumberofpeople) || !maxnumberofpeople) && (isNaN(minnumberofpeople) || !minnumberofpeople)){
+    if(!isNaN(numberofpeople)){
+        const purposeTag = {"tag.numberOfPeople": purpose};
+        search = Object.assign(search,Number(numberofpeople));
     }
-    else if(isNaN(maxnumberofpeople) || !maxnumberofpeople){
-        const people={"tag.numberOfPeople":{"$gte":Number(minnumberofpeople)}};
-        search = Object.assign(search,people);
-    }
-    else if(isNaN(minnumberofpeople) || !minnumberofpeople){
-        const people={"tag.numberOfPeople":{"$lte":Number(maxnumberofpeople)}};
-        search = Object.assign(search,people);
-    }
-    else if(minnumberofpeople<=maxnumberofpeople){
-        const people={"tag.numberOfPeople":{"$gte":Number(minnumberofpeople),"$lte":Number(maxnumberofpeople)}};
-        search = Object.assign(search,people);
-    }
-    else{
-        return;
-    }
-
-    // if(date !== 'undefined' && date){
-    //     const start = new Date(String(date)+" "+"00:00");
-    //     const end = new Date(String(date)+" "+"23:59");
-    //     const time = {"openTime":{"$gte":start,"$lte":end}};
-    //     search = Object.assign(search,time);
-    // }
 
     let doc = await req.db.collection('shopdatas').find(search).toArray();
     
