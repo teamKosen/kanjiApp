@@ -5,7 +5,9 @@ import TextField from '@material-ui/core/TextField';
 const filter = createFilterOptions();
 
 export default function Tagyarn(props) {
-  const { size, style, variant, className, setValue } = props;
+  const { size, style, variant, className, setValue,tag } = props;
+
+  console.log(tag[0]);
 
   return (
     <div>
@@ -40,7 +42,9 @@ export default function Tagyarn(props) {
           }
           return filtered;
         }}
+        // defaultValue={tag[0]}
         onChange={(e,v) => setValue(v.map(tag=>tag.title ? tag.title : tag))}
+        defaultValue={[tag[0],tag[1]]}
         renderInput={(params) => (
           <TextField
             {...params}

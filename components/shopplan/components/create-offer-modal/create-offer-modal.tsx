@@ -1,7 +1,6 @@
-import { TextField, Button,InputAdornment, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core'
+import { TextField, Button,InputAdornment, Dialog, DialogContent, DialogTitle } from '@material-ui/core'
 import {useStyles} from './create-offer-modal.style'
-import React, { useState, useEffect, FunctionComponent, useCallback } from 'react'
-import { red } from '@material-ui/core/colors'
+import React, { useState, useEffect, FunctionComponent } from 'react'
 import Tag from "./components/tag";
 
 import { useUser } from "../../../../lib/hooks";
@@ -75,7 +74,7 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
                         </div>
 
                         <div className={style.form}>
-                            <Tag style={{width:"80%"}} size="small" variant="outlined" setValue={setTags}/>
+                            <Tag style={{width:"80%"}} size="small" variant="outlined" setValue={setTags} tag={plandata?.tag}/>
                         </div>
 
                         <div className={style.form}>

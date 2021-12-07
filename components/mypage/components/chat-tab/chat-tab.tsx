@@ -1,8 +1,8 @@
 import style from './chat-tab.module.scss';
-import React, { useState, useEffect,FunctionComponent, useCallback } from 'react'
+import React, { useState, useEffect,FunctionComponent } from 'react'
 import io from 'socket.io-client'
 import dayjs from 'dayjs'
-import { Container, Button, InputBase, Box, Chip, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core'
+import { Container, Button, InputBase, Box, Chip } from '@material-ui/core'
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import { InsertEmoticon } from '@material-ui/icons';
 import { Send } from '@material-ui/icons'
@@ -105,13 +105,13 @@ export const ChatTab:FunctionComponent = () => {
                             <div key={index}>
                                 { userName === chat.userName ? (
                                     <div>
-                                        <div className={style.kaiwaImgLeft}>
+                                        <div className={style.kaiwaImgRight}>
                                             <img src="/asset/defaultKanji.jpeg" />
                                         </div>
-                                        <div className={style.kaiwaNameLeft}>
+                                        <div className={style.kaiwaNameRight}>
                                             {chat.userName || 'TEST BOT'}
                                         <br />
-                                            <div className={style.kaiwaTextLeft}>
+                                            <div className={style.kaiwaTextRight}>
                                                 {chat.message}
                                             </div>
                                         </div>
