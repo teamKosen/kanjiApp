@@ -4,8 +4,13 @@ import React,{FunctionComponent, useState, useCallback } from "react";
 import Link from 'next/link';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button , InputAdornment, InputAdornmentProps, OutlinedInput } from '@material-ui/core';
 import { CreateOfferModal } from "./components/create-offer-modal/create-offer-modal"
+<<<<<<< HEAD
 import {Sidebar} from "./components/sidebar_search"
 import { stringify } from 'querystring';
+=======
+import { useEffect } from 'react-transition-group/node_modules/@types/react';
+
+>>>>>>> f0bfbe2a098d69964f314f12d39ce8b102825d8f
 
 type Props={
     userplandatas:JSON;
@@ -41,6 +46,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const [selectedSort,setSelectedSort]=useState(0);
     const [isOpenCreatePlan, setIsOpenCreatePlan] = useState(false);
     const [selectPlandata, setSelectPlandata] = useState<SelectPlandata>();
+<<<<<<< HEAD
 
     const offer_pre:boolean[]=[];
     let leng:number=0;
@@ -50,6 +56,8 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     }
     const [offerState,setOfferState]=useState(offer_pre);
     const [offerIndex,setOfferIndex]=useState(0);
+=======
+>>>>>>> f0bfbe2a098d69964f314f12d39ce8b102825d8f
 
     const ApplyConditions = useCallback(() => {
         const request = async () => {
@@ -73,6 +81,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const handleCreatePlanOpen = async () => {
         setIsOpenCreatePlan(true);
     }
+<<<<<<< HEAD
     const OfferStateSwitch=(index:number)=>{
         const osp=offerState.map((x,i)=>i===index ? false :x);
         setOfferState(osp);
@@ -83,6 +92,13 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
     const handleCreatePlanClose = () => {
         setIsOpenCreatePlan(false);
     }
+=======
+
+    const handleCreatePlanClose = async () => {
+        setIsOpenCreatePlan(false);
+    }
+
+>>>>>>> f0bfbe2a098d69964f314f12d39ce8b102825d8f
     const SelectBudget=async(e)=>{
         setbudget(e.target.value);
     }
@@ -148,6 +164,25 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                     </Table>
                 </TableContainer>
             </div>
+<<<<<<< HEAD
+=======
+            <div className={classes.plan}>
+            {planlist.map((plandata) => {
+                return(
+                    <Card key={plandata._id} className={classes.planContent}>
+                        <Button onClick={() => {
+                            handleCreatePlanOpen();
+                            setSelectPlandata(plandata);
+                            console.log(selectPlandata?.tag);
+                        }}>
+                            <CardContent><Post plan={plandata}/></CardContent>
+                        </Button>
+                    </Card>
+                )
+            })}
+
+            </div>
+>>>>>>> f0bfbe2a098d69964f314f12d39ce8b102825d8f
             <CreateOfferModal
                 handleCreatePlanClose={handleCreatePlanClose} 
                 handleCreatePlanOpen={handleCreatePlanOpen} 
