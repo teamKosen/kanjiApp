@@ -60,11 +60,11 @@ export const Detail:FunctionComponent<Props> = (props) => {
                                                     <>
                                                         {(offerdata.shopId === user._id) && (offerdata.offerState === currentOfferState) ? (
                                                             <TableRow key={offerdata._id}>
-                                                                <TableCell>-</TableCell>
+                                                                <TableCell>{offerdata.title}</TableCell>
                                                                 <TableCell>
                                                                     <Link href={`/mypage/${offerdata._id}`}>
                                                                         <a>
-                                                                            {offerdata.shopname}
+                                                                            {offerdata.userName}
                                                                         </a>
                                                                     </Link>
                                                                 </TableCell>
