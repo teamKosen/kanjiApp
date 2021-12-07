@@ -2,7 +2,7 @@ import {useStyles} from './shopplan.style'
 import {Post} from "./components/post"
 import React,{FunctionComponent, useState, useCallback } from "react";
 import Link from 'next/link';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Card, CardContent,FormControl,InputLabel,Select,MenuItem,TextField, Button , InputAdornment, InputAdornmentProps, OutlinedInput } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button , InputAdornment, InputAdornmentProps, OutlinedInput } from '@material-ui/core';
 import { CreateOfferModal } from "./components/create-offer-modal/create-offer-modal"
 import {Sidebar} from "./components/sidebar_search"
 import { stringify } from 'querystring';

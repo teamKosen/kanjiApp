@@ -58,6 +58,8 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
         }
     }, [errorMsg]);
 
+    console.log(plandata?.openTime.substring(11,16));
+
     return (
         <div>
             <Dialog
@@ -69,7 +71,7 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
                     <form onSubmit={handleSubmit}>
                         {errorMsg != "ok" ? <p style={{color: "red"}}>{errorMsg}</p> : null}
                         <div className={style.form}>
-                            <TextField style={{width:"80%"}} size="small" variant="outlined" id="title" name="title" type="text" label="タイトル"/>
+                            <TextField style={{width:"80%"}} size="small" variant="outlined" id="title" name="title" type="text" label="タイトル" value={plandata?.title} />
                         </div>
 
                         <div className={style.form}>
@@ -77,24 +79,24 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
                         </div>
 
                         <div className={style.form}>
-                            <TextField size="small" variant="outlined" id="place" name="place" type="text" label="場所"/>
+                            <TextField size="small" variant="outlined" id="place" name="place" type="text" label="場所" value={plandata?.place}/>
                         </div> 
 
                         <div className={style.form}>
-                            <TextField size="small" variant="outlined" id="numberOfPeople" name="numberOfPeople" type="Number" label="人数" InputProps={{endAdornment:<InputAdornment position="end">人</InputAdornment>}}/>
-                            <TextField size="small" variant="outlined" id="budget" name="budget" type="Number" label="予算" InputProps={{endAdornment:<InputAdornment position="end">円</InputAdornment>}}/>
+                            <TextField size="small" variant="outlined" id="numberOfPeople" name="numberOfPeople" type="Number" label="人数" value={plandata?.numberOfPeople} InputProps={{endAdornment:<InputAdornment position="end">人</InputAdornment>}}/>
+                            <TextField size="small" variant="outlined" id="budget" name="budget" type="Number" label="予算" value = {plandata?.budget} InputProps={{endAdornment:<InputAdornment position="end">円</InputAdornment>}}/>
                         </div>
                         
                         <div className={style.form}>
                             <div style={{paddingBottom:"5px"}}>開催日時</div>
-                            <TextField label="日付" size="small" variant="outlined" id="openDate" name="openDate" type="date" InputLabelProps={{shrink: true}}/>
-                            <TextField label="時間" size="small" variant="outlined" id="openTime" name="openTime" type="time" InputLabelProps={{shrink: true}}/>
+                            <TextField label="日付" size="small" variant="outlined" id="openDate" name="openDate" type="date" defaultValue={plandata?.openTime.substring(0,10)} InputLabelProps={{shrink: true}}/>
+                            <TextField label="時間" size="small" variant="outlined" id="openTime" name="openTime" type="time" defaultValue={plandata?.openTime.substring(11,16)} InputLabelProps={{shrink: true}}/>
                         </div>
                         
                         <div className={style.form}>
                             <div style={{paddingBottom:"5px"}}>終了日時</div>
-                            <TextField label="日付" size="small" variant="outlined" id="closeDate" name="closeDate" type="date" InputLabelProps={{shrink: true}}/>
-                            <TextField label="時間" size="small" variant="outlined" id="closeTime" name="closeTime" type="time" InputLabelProps={{shrink: true}}/>
+                            <TextField label="日付" size="small" variant="outlined" id="closeDate" name="closeDate" type="date" defaultValue={plandata?.closeTime.substring(0,10)} InputLabelProps={{shrink: true}}/>
+                            <TextField label="時間" size="small" variant="outlined" id="closeTime" name="closeTime" type="time" defaultValue={plandata?.closeTime.substring(11,16)} InputLabelProps={{shrink: true}}/>
                         </div>
                         
                         <div className={style.form}>
