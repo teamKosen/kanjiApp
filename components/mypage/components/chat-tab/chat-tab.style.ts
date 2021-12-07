@@ -12,6 +12,7 @@ export const useStyles = makeStyles((theme) => ({
         borderColor: "black",
         borderRadius: "8px",
         minHeight: theme.spacing(90),
+        maxHeight: theme.spacing(2000),
     },
 
 }));

@@ -105,9 +105,6 @@ export const ChatTab:FunctionComponent = () => {
                             <div key={index}>
                                 { userName === chat.userName ? (
                                     <div>
-                                        <div className={style.kaiwaImgRight}>
-                                            <img src="/asset/defaultKanji.jpeg" />
-                                        </div>
                                         <div className={style.kaiwaNameRight}>
                                             {chat.userName || 'TEST BOT'}
                                         <br />
@@ -115,18 +112,21 @@ export const ChatTab:FunctionComponent = () => {
                                                 {chat.message}
                                             </div>
                                         </div>
+                                        <div className={style.kaiwaImgLeft}>
+                                            <img src="/asset/defaultKanji.jpeg" />
+                                        </div>
                                     </div>
                                 ) : (
                                     <div>
-                                        <div className={style.kaiwaNameRight}>
-                                            {chat.userName  || 'TEST BOT'}
-                                            <br />
-                                            <div className={style.kaiwaTextRight}>
-                                            {chat.message}
-                                            </div>
-                                        </div>
                                         <div className={style.kaiwaImgRight}>
                                             <img src="/asset/defaultshop.jpeg" />
+                                        </div>
+                                        <div className={style.kaiwaNameLeft}>
+                                            {chat.userName  || 'TEST BOT'}
+                                            <br />
+                                            <div className={style.kaiwaTextLeft}>
+                                            {chat.message}
+                                            </div>
                                         </div>
                                     </div>
                                 )}
