@@ -34,7 +34,7 @@
     vertical-align: top;
     margin-bottom: 10px;
     box-sizing: border-box;
-    text-align: right;
+    text-align: left;
     padding-top: 14px;
 }
 .kaiwaImgLeft img{
@@ -54,7 +54,7 @@
     box-sizing: border-box;}
 .kaiwaTextLeft{
     display:inline-block; 
-    background-color: white;
+    background-color: #FFD700;
     padding: 10px;
     border-radius: 10px;
     font-size: medium;
@@ -66,7 +66,7 @@
     height: 0;
     border-style: solid;
     border-width: 7px 15px 7px 0;
-    border-color: transparent white transparent transparent;
+    border-color: transparent #FFD700 transparent transparent;
     top:30px;
     left: -15px;
 }
@@ -90,7 +90,7 @@
     margin-bottom: 10px;
     box-sizing: border-box;
     padding-top: 14px;
-    text-align: left;
+    text-align: right;
 }
 .kaiwaImgRight img{
     width: 100%;
@@ -105,7 +105,7 @@
 .kaiwaTextRight{
     display: inline-block;
     text-align:left;
-    background-color:#FFD700;
+    background-color:white;
     padding: 10px;
     border-radius: 10px;
     font-size: medium;
@@ -117,7 +117,7 @@
     height: 0;
     border-style: solid;
     border-width: 7px 0 7px 15px;
-    border-color: transparent transparent transparent #FFD700;
+    border-color: transparent transparent transparent white;
     top: 30px;
     right: -15px;
 }
