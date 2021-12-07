@@ -46,8 +46,8 @@ export const Detail:FunctionComponent<Props> = (props) => {
                                         <TableCell>タイトル</TableCell>
                                         <TableCell>お客様</TableCell>
                                         <TableCell>日時</TableCell>
-                                        <TableCell>人数</TableCell>
-                                        <TableCell>予算</TableCell>
+                                        <TableCell>人数（人）</TableCell>
+                                        <TableCell>予算（円）</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
