@@ -126,14 +126,15 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                                 const closeTime:Date=new Date(plandata.closeTime);
                                 return(
                                     <TableRow key={plandata._id}>
-                                                <TableCell className={classes.tablecell}>{plandata.title}</TableCell>
+                                                {/* <TableCell className={classes.tablecell}>{plandata.title}</TableCell>
                                                 <TableCell className={classes.tablecell} padding="none">{plandata.place}</TableCell>
                                                 <TableCell className={classes.tablecell} padding="none">{plandata.budget}円</TableCell>
                                                 <TableCell className={classes.tablecell} padding="none">{plandata.numberOfPeople}人</TableCell>
                                                 <TableCell className={classes.tablecell} padding="none">{Number(plandata.budget)*Number(plandata.numberOfPeople)}円</TableCell>
                                                 <TableCell className={classes.tablecell} padding="none">{openTime.getMonth()+1}月{openTime.getDate()}日({dayOfWeek[openTime.getDay()]}) {('00'+openTime.getHours()).slice(-2)}:{('00'+openTime.getMinutes()).slice(-2)}～{('00'+closeTime.getHours()).slice(-2)}:{('00'+closeTime.getMinutes()).slice(-2)}</TableCell>
-                                                <TableCell className={classes.tablecell} padding="none">{offerState[index]==true ?<Button　className={classes.button_wait} onClick={()=>{SelectOfferIndex(index);handleCreatePlanOpen();setSelectPlandata(plandata);}}>オファーする</Button>:<Button className={classes.button_comp} disabled>オファー済み</Button>}</TableCell>
-                                                {/* <TableCell className={classes.tablecell}>{plandata.title}</TableCell>
+                                                <TableCell className={classes.tablecell} padding="none">{offerState[index]==true ?<Button　className={classes.button_wait} onClick={()=>{SelectOfferIndex(index);handleCreatePlanOpen();setSelectPlandata(plandata);}}>オファーする</Button>:<Button className={classes.button_comp} disabled>オファー済み</Button>}</TableCell> */}
+
+                                                <TableCell className={classes.tablecell}>{plandata.title}</TableCell>
                                                 <TableCell padding="none">
                                                 {limit>=604800?(<span className={classes.deadlineDay} >あと{Math.floor(limit/604800)}週間</span>):
                                                 limit>=86400?(<span className={classes.deadlineDay}>あと{Math.floor(limit/86400)}日</span>):
@@ -146,7 +147,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                                                 <TableCell className={classes.tablecell} padding="none">{plandata.numberOfPeople}人</TableCell>
                                                 <TableCell className={classes.tablecell} padding="none">{openTime.getMonth()+1}月{openTime.getDate()}日({dayOfWeek[openTime.getDay()]}) {('00'+openTime.getHours()).slice(-2)}:{('00'+openTime.getMinutes()).slice(-2)}～{('00'+closeTime.getHours()).slice(-2)}:{('00'+closeTime.getMinutes()).slice(-2)}</TableCell>
                                                 <TableCell className={classes.tablecell} padding="none">{plandata.budget}円</TableCell>
-                                                <TableCell className={classes.tablecell} padding="none">{offerState[index]==true ?<Button　className={classes.button_wait} onClick={()=>{SelectOfferIndex(index);handleCreatePlanOpen();setSelectPlandata(plandata);}}>オファーする</Button>:<Button className={classes.button_comp} disabled>オファー済み</Button>}</TableCell> */}
+                                                <TableCell className={classes.tablecell} padding="none">{offerState[index]==true ?<Button　className={classes.button_wait} onClick={()=>{SelectOfferIndex(index);handleCreatePlanOpen();setSelectPlandata(plandata);}}>オファーする</Button>:<Button className={classes.button_comp} disabled>オファー済み</Button>}</TableCell>
                                     </TableRow>
                                 )
                             })}
