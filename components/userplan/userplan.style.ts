@@ -62,7 +62,7 @@ export const useStyles = makeStyles((theme) => ({
       },
       table:{
         verticalAlign:"top",
-        width:"940px",
+        width:"960px",
         marginLeft:"10px",
         display:"inline-block",
       },

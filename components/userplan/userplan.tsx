@@ -17,7 +17,6 @@ export const Userplan:FunctionComponent<Props> = (props) => {
     const [planlist,updatePlanlist]=useState(planlist_pre);
     const [user, { mutate }] = useUser();
     const classes = useStyles();
-    var i=0;
     const leftList=[];
     const rightList=[];
     const centerList=[];
@@ -120,16 +119,15 @@ export const Userplan:FunctionComponent<Props> = (props) => {
                         </MenuItem>
                 </Select><div className={classes.sort_switch} >昇順<Switch color="default" onChange={SwitchSort} />降順</div>
                 </div>
-                  {planlist.map((plandata)=>{
+                  {planlist.map((plandata,i)=>{
                     if(plandata.userID==user._id){
-                        i++;
-                        if(i%3==1){
+                        if(i%3==0){
                             leftList.push(plandata);
                         }
-                        else if(i%3==2){
+                        else if(i%3==1){
                             centerList.push(plandata);
                         }
-                        else if(i%3==0){
+                        else if(i%3==2){
                             rightList.push(plandata);
                         }
                         else{}
