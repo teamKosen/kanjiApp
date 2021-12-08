@@ -35,14 +35,10 @@ export const useStyles = makeStyles((theme) => ({
     },
     label:{
       width:"100%",
-      height:"40px",
+      height:"auto",
       marginBottom:"9px",
       backgroundColor:"#F0EFEF",
-      fontFamily:"Roboto",
-      fontStyle:"normal",
-      fontWeight:"normal",
-      fontSize:"18px",
-      lineHeight:"40px",
+      lineHeight:"34px",
     },
     icon:{
       height:"18px",
@@ -59,5 +55,9 @@ export const useStyles = makeStyles((theme) => ({
       box:{
         paddingBottom:"20px",
         height:"auto",
+        fontFamily:"Roboto",
+      fontStyle:"normal",
+      fontWeight:"normal",
+      fontSize:"14px",
       },
 }));

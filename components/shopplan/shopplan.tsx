@@ -136,7 +136,7 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                                                 limit>0?(<span  className={classes.deadlineHour}>あと{limit}秒</span>):
                                                 (<span></span>)}
                                                 </TableCell>
-                                                <TableCell className={classes.tablecell} padding="none">博多駅</TableCell>
+                                                <TableCell className={classes.tablecell} padding="none">{plandata.place}</TableCell>
                                                 <TableCell className={classes.tablecell} padding="none">{plandata.numberOfPeople}人</TableCell>
                                                 <TableCell className={classes.tablecell} padding="none">{openTime.getMonth()+1}月{openTime.getDate()}日({dayOfWeek[openTime.getDay()]}) {('00'+openTime.getHours()).slice(-2)}:{('00'+openTime.getMinutes()).slice(-2)}～{('00'+closeTime.getHours()).slice(-2)}:{('00'+closeTime.getMinutes()).slice(-2)}</TableCell>
                                                 <TableCell className={classes.tablecell} padding="none">{plandata.budget}円</TableCell>
