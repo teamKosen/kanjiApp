@@ -189,6 +189,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                                 plan={pln}
                                 comment={cmnt}
                                 pictures={pict}
+                                place={shopdata.place}
                             />
                         </Card>
                         })}
@@ -215,6 +216,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                                 plan={pln}
                                 comment={cmnt}
                                 pictures={pict}
+                                place={shopdata.place}
                             />
                         </Card>
                         })}
