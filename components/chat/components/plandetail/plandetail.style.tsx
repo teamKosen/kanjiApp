@@ -4,7 +4,8 @@ import { Block, BorderColor } from "@material-ui/icons";
 export const useStyles = makeStyles((theme) => ({
 
     form:{
-        paddingBottom:"25px",
+        height: "auto",
+        marginBottom:"23px",
         paddingLeft: "120px",
     },
     button:{
@@ -22,7 +23,7 @@ export const useStyles = makeStyles((theme) => ({
         marginBottom: "300px",
         marginLeft: "205px",
         // marginRight: "auto",
-        marginTop: "20px",
+        marginTop: "40px",
     },
 
     label: {
@@ -60,6 +61,7 @@ export const useStyles = makeStyles((theme) => ({
         background: "#FFFFFF",
         [`& fieldset`]: {
           borderRadius: "10px",
+          paddingTop: "5px",
         },
         marginLeft: "5px",
       },
@@ -102,9 +104,10 @@ export const useStyles = makeStyles((theme) => ({
         height: "28px",
         marginRight:"7px",
         marginTop:"1.5px",
+        padding: "5px",
         display:"inline-block",
         fontSize: "18px",
-        lineHeight:"27px",
+        lineHeight:"18px",
         textDecoration:"none",
         color:"#FFFFFF",
         backgroundColor:"#444444",
