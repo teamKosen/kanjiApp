@@ -60,7 +60,7 @@ export default function Tagyarn(props) {
             {...params}
             className={className}
             variant={variant}
-            placeholder={"未入力"}
+            placeholder={"タグを追加..."}
           />
         )}
       />
