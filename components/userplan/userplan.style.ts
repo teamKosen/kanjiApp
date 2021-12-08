@@ -36,6 +36,14 @@ export const useStyles = makeStyles((theme) => ({
       margin:"0px 10px",
         width:"300px",
         display:"inline-block",
+      verticalAlign:"top",
+    },
+    planLine_test:{
+      margin:"0px 10px",
+        width:"300px",
+        display:"inline-block",
+      verticalAlign:"top",
+      //backgroundColor:"#000000",
     },
     sidebar:{
         width:"230px",
