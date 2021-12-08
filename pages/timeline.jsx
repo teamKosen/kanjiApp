@@ -43,7 +43,6 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     const router = useRouter();
     const [keyword, setKeyword] = useState('');
     const [shops, updateShops] = useState(shopdatas);
-    var i=0;
     const leftShops=[];
     const rightShops=[];
     const planlist= JSON.parse(JSON.stringify(plandatas));
@@ -127,9 +126,8 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
         <>
         <main>
             <div className= {style.timeline}>
-                {shops.map((shopdata) => {
-                    i++;
-                    if(i%2==1){
+                {shops.map((shopdata,i) => {
+                    if(i%2==0){
                         leftShops.push(shopdata);
                     }
                     else{
