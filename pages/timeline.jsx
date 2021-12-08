@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch'
 import style from '../styles/timeline.module.scss'
 import Tag from "../components/timeline/tag";
 import { Post } from '../components/timeline/post/post';
-import { Button ,Card,TextField } from '@material-ui/core';
+import { Button ,Card} from '@material-ui/core';
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
