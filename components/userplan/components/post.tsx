@@ -31,7 +31,7 @@ export const Post:FunctionComponent<Props> = (props) => {
             <div className={classes.title}>{plan.title}</div>
           </div>
           <div className={classes.line}>
-            <LocationOnIcon className={classes.icon} /><span>博多駅</span>
+            <LocationOnIcon className={classes.icon} /><span>{plan.place}</span>
           </div>
           <div className={classes.line}>
             <GroupIcon className={classes.icon} /><div className={classes.lineUnit}>{plan.numberOfPeople}人</div>

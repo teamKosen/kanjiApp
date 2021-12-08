@@ -11,6 +11,15 @@ export const useStyles = makeStyles((theme) => ({
      textAlign: "left",
      marginBottom:"10px",
     },
+    name_sub:{ 
+      fontFamily: "Roboto",
+      fontSize: "18px",
+      fontStyle: "normal",
+      fontWeight: "normal",
+      lineHeight: "24px",
+      textAlign: "left",
+      marginBottom:"10px",
+     },
     line:{
         width:"100em",
     },
@@ -43,7 +52,6 @@ export const useStyles = makeStyles((theme) => ({
         width:"300px",
         display:"inline-block",
       verticalAlign:"top",
-      //backgroundColor:"#000000",
     },
     sidebar:{
         width:"230px",

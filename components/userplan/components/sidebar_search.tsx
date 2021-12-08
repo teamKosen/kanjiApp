@@ -1,5 +1,5 @@
 import React,{FunctionComponent} from "react";
-import { TextField, Button} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 import {useStyles} from './sidebar_search.style'
 import Tag from "./tag";
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
