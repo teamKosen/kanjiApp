@@ -109,12 +109,20 @@ export const Shopplan:FunctionComponent<Props> = (props) => {
                     <Table >
                         <TableHead>
                             <TableRow>
-                                <TableCell className={classes.tablecellTitle}>プラン名</TableCell>
+                                {/* <TableCell className={classes.tablecellTitle}>プラン名</TableCell>
                                 <TableCell className={classes.tablecellTitle}>場所</TableCell>
                                 <TableCell className={classes.tablecellTitle}>予算</TableCell>
                                 <TableCell className={classes.tablecellTitle}>人数</TableCell>
                                 <TableCell className={classes.tablecellTitle}>総額</TableCell>
                                 <TableCell className={classes.tablecellTitle}>日時</TableCell>
+                                <TableCell className={classes.tablecellTitle}>オファー</TableCell> */}
+
+                                <TableCell className={classes.tablecellTitle}>プラン名</TableCell>
+                                <TableCell className={classes.tablecellTitle}>締切時間</TableCell>
+                                <TableCell className={classes.tablecellTitle}>場所</TableCell>
+                                <TableCell className={classes.tablecellTitle}>人数</TableCell>
+                                <TableCell className={classes.tablecellTitle}>日時</TableCell>
+                                <TableCell className={classes.tablecellTitle}>予算</TableCell>
                                 <TableCell className={classes.tablecellTitle}>オファー</TableCell>
                             </TableRow>
                         </TableHead>
