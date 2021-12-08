@@ -9,7 +9,7 @@ import {Plan} from './components/plan/plan';
 import { Picture } from './components/picture/picture'
 
 export const Post = (props) => {
-    const { name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress,plan,comment,menu,pictures } = props;
+    const { name, genre, purpose, open, park, payments, seatTypes, notSmokingSeat, phoneNumber, adress,plan,comment,menu,pictures,place } = props;
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -34,7 +34,7 @@ export const Post = (props) => {
                 </div>
                 <div className={style.postRight}>
                     <div className={style.postDetail}>
-                        <div><LocationIcon className={style.icon}/>博多駅place</div>
+                        <div><LocationIcon className={style.icon}/>{place}</div>
                     </div>
                     <div style={{marginTop:'10px'}}>
                         <div className={style.tagChip}>#{genre}</div>
