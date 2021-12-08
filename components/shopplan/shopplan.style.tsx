@@ -75,8 +75,13 @@ export const useStyles = makeStyles((theme) => ({
         marginLeft:"10px",
         display:"inline-block",
       },
+      tablecellTitle:{
+        fontSize:"18px",
+      },
       tablecell:{
         fontSize:"18px",
+        paddingLeft:"10px",
+        paddingRight:"10px",
       },
       tablecell_plan:{
         fontSize:"18px",
