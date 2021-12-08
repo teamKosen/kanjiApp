@@ -17,9 +17,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     plan:{
         marginRight: "auto",
-        //marginLeft: "auto",
         width: theme.spacing(60),
-        // backgroundColor: "green",
         padding: theme.spacing(2, 5),
         border: "solid 1px",
         BorderColor: "black",
@@ -46,7 +44,6 @@ export const useStyles = makeStyles((theme) => ({
       },
       form:{
         padding:"10px 0",
-        //verticalAlign:"middle",
         display:"flex",
         alignItems:"center",
         height:"2em",

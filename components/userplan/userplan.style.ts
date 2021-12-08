@@ -13,7 +13,6 @@ export const useStyles = makeStyles((theme) => ({
     },
     line:{
         width:"100em",
-        //display:"inline-block",
     },
     iteml:{
         textAlign: "left",
@@ -49,7 +48,6 @@ export const useStyles = makeStyles((theme) => ({
     },
     form:{
         padding:"10px 0",
-        //verticalAlign:"middle",
         display:"flex",
         alignItems:"center",
         height:"2em",

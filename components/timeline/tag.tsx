@@ -3,8 +3,6 @@ import TextField from '@material-ui/core/TextField';
 
 const filter = createFilterOptions();
 
-
-
 export default function Tagyarn(props) {
   const { setValue } = props;
   const taglist=['中華','和食','イタリアン','エスニック','打ち上げ','会食','合コン','同窓会'];
