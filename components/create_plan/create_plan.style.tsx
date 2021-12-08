@@ -54,7 +54,7 @@ export const useStyles = makeStyles((theme) =>
 
     boxdesign: {
       width: "100%",
-      height: "44px",
+      lineHeight: "44px",
       fontSize: "24px",
       background: "#FFFFFF",
       [`& fieldset`]: {
@@ -65,7 +65,7 @@ export const useStyles = makeStyles((theme) =>
 
     boxdesigndate: {
       width: "50%",
-      height: "44px",
+      lineHeight: "44px",
       fontSize: "24px",
       background: "#FFFFFF",
       [`& fieldset`]: {
@@ -76,7 +76,7 @@ export const useStyles = makeStyles((theme) =>
 
     boxdesigntime: {
       width: "50%",
-      height: "44px",
+      lineHeight: "44px",
       fontSize: "24px",
       background: "#FFFFFF",
       [`& fieldset`]: {
