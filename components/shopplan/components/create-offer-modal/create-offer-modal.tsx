@@ -69,7 +69,7 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
                     <form onSubmit={handleSubmit}>
                         {errorMsg != "ok" ? <p style={{color: "red"}}>{errorMsg}</p> : null}
                         <div className={style.form}>
-                            <TextField style={{width:"80%"}} size="small" variant="outlined" id="title" name="title" type="text" label="タイトル" value={plandata?.title} />
+                            <TextField style={{width:"80%"}} size="small" variant="outlined" id="title" name="title" type="text" label="タイトル" defaultValue={plandata?.title} />
                         </div>
 
                         <div className={style.form}>
@@ -77,12 +77,12 @@ export const CreateOfferModal:FunctionComponent<Props> = (props) => {
                         </div>
 
                         <div className={style.form}>
-                            <TextField size="small" variant="outlined" id="place" name="place" type="text" label="場所" value={plandata?.place}/>
+                            <TextField size="small" variant="outlined" id="place" name="place" type="text" label="場所" defaultValue={plandata?.place}/>
                         </div> 
 
                         <div className={style.form}>
-                            <TextField size="small" variant="outlined" id="numberOfPeople" name="numberOfPeople" type="Number" label="人数" value={plandata?.numberOfPeople} InputProps={{endAdornment:<InputAdornment position="end">人</InputAdornment>}}/>
-                            <TextField size="small" variant="outlined" id="budget" name="budget" type="Number" label="予算" value = {plandata?.budget} InputProps={{endAdornment:<InputAdornment position="end">円</InputAdornment>}}/>
+                            <TextField size="small" variant="outlined" id="numberOfPeople" name="numberOfPeople" type="Number" label="人数" defaultValue={plandata?.numberOfPeople} InputProps={{endAdornment:<InputAdornment position="end">人</InputAdornment>}}/>
+                            <TextField size="small" variant="outlined" id="budget" name="budget" type="Number" label="予算" defaultValue = {plandata?.budget} InputProps={{endAdornment:<InputAdornment position="end">円</InputAdornment>}}/>
                         </div>
                         
                         <div className={style.form}>
