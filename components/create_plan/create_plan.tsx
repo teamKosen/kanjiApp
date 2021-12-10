@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FunctionComponent } from "react";
-import Router from "next/router";
+import { useRouter } from 'next/router'
 import { useStyles } from "./create_plan.style";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -17,6 +17,7 @@ export const Create_Plan:FunctionComponent = () => {
     const [user, { mutate }] = useUser();
     const [errorMsg, setErrorMsg] = useState("");
     const [tag, setTags] = useState([]);
+    const router = useRouter()
 
     const handleSubmit = async (e) => {
         const today = new Date();
@@ -43,7 +44,14 @@ export const Create_Plan:FunctionComponent = () => {
             body: JSON.stringify(body),
         });
         setErrorMsg(await res.text());
+
     }
+
+    useEffect(()=>{
+        if(errorMsg == "ok"){
+            router.push('/userplan');  
+        }
+    }, [errorMsg]);
 
     return(
         <div className={style.root}>

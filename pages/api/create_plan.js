@@ -46,7 +46,8 @@ handler.post(async (req, res) => {
   const userplandatas = await req.db
     .collection("userplandatas")
     .insertOne({ title, tag, place, numberOfPeople:iPeople, budget:iBudget, openTime:open, closeTime:close, deadlineTime:deadline, create_at:create_at_date, comment, userName:user.name, userID:user._id })
-    .then(({ ops }) => ops[0]);
+    .then(({ ops }) => ops[0])
+    .then(()=>{res.send("ok")});
   req.logIn(userplandatas, (err) => {
     if (err) throw err;
   });

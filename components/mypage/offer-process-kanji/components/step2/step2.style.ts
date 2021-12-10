@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core";
 export const useStyles = makeStyles((theme) => ({
 
     step2Position: {
-      width: theme.spacing(80),
+      width: theme.spacing(70),
       marginRight: "auto",
       marginLeft: "auto",
     },
