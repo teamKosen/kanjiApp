@@ -117,7 +117,7 @@ export const useStyles = makeStyles((theme) => ({
 
     tagbox: {
         width: "220px",
-        height: "34px",
+        lineHeight: "34px",
         border:"1px solid #DCDCDC",
         background: "#FFFFFF",
         borderRadius: "10px",
