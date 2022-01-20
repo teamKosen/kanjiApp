@@ -9,6 +9,7 @@ handler.get(async (req, res) => {
     const {date,numberofpeople,tag,budget,purpose,genre}=req.query;
 
     let search={};
+    let sort={};
     
     if (!isNaN(budget) && budget){
         const budgetTag = { "tag.budget.max":{"$gte":Number(budget)} ,"tag.budget.min":{"$lte":Number(budget)}};
@@ -25,11 +26,16 @@ handler.get(async (req, res) => {
         search = Object.assign(search,purposeTag);
     }
     if(!isNaN(numberofpeople)){
-        const purposeTag = {"tag.numberOfPeople": purpose};
-        search = Object.assign(search,Number(numberofpeople));
+        const numberofpeopleTag = {"tag.numberOfPeople": numberofpeople};
+        search = Object.assign(search,Number(numberofpeopleTag));
     }
 
-    let doc = await req.db.collection('shopdatas').find(search).toArray();
+    if(tag !=='undefined' && tag){
+        const planTag={"plantag.tag":tag};
+        search = Object.assign(search,planTag);
+        sort = {"plantag.tag":1,"plantag.number":-1};
+    }
+    let doc = await req.db.collection('shopdatas_demo').find(search).sort(sort).toArray();
     
     res.json(doc);
 });
