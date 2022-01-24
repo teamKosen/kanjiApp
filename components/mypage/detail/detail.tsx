@@ -39,6 +39,7 @@ export const Detail:FunctionComponent<Props> = (props) => {
                 {currentOfferState === 1 ? <h2>オファー中</h2> : ""}
                 {currentOfferState === 2 ? <h2>交渉中</h2> : ""}
                 {currentOfferState === 3 ? <h2>決定</h2> : ""}
+                {currentOfferState === 4 ? <h2>来店済み</h2> : ""}
                     <TableContainer component={Paper}>
                             <Table>
                                 <TableHead>
