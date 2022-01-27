@@ -52,17 +52,6 @@
   margin: 10px 10px;
 }
 
-.nomalBottom {
-  display: flex;
-  font-size: 18px;
-  width:100%;
-}
-
-.cardPosition {
-  display: flex; 
-  flex-wrap: wrap;
-}
-
 .good {
   display: flex;
 }
@@ -71,18 +60,3 @@
   margin: 0 10px 0 20px;
 }
 
-.shopdetailOpenButton {
-  margin: 0px 20px 0px auto;
-}
-
-.shopdetailOpenButton:hover {
-  cursor: pointer;
-}
-
-.shopdetailCloseButton {
-  text-align:right;
-}
-
-.shopdetailCloseButton:hover {
-  cursor: pointer;
-}
