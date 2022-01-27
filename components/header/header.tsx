@@ -1,5 +1,4 @@
 import { FunctionComponent, useState, useCallback } from 'react';
-// import style from './header.module.scss';
 import { useStyles } from "./header.style";
 import { Button, InputBase, Drawer } from '@material-ui/core';
 import Image from 'next/image'
