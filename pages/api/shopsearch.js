@@ -35,7 +35,7 @@ handler.get(async (req, res) => {
         search = Object.assign(search,planTag);
         sort = {"plantag.tag":1,"plantag.number":-1};
     }
-    let doc = await req.db.collection('shopdatas_demo').find(search).sort(sort).toArray();
+    let doc = await req.db.collection('shopdatas').find(search).sort(sort).toArray();
     
     res.json(doc);
 });
