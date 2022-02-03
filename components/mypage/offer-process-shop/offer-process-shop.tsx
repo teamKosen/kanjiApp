@@ -29,7 +29,7 @@ export const OfferProcessShop:FunctionComponent<Props> = (props) => {
     const classes = useStyles();
 
     useEffect(() => {
-        if( offerplandetail.offerState === 3){
+        if( offerplandetail.offerState === 2){
             setCurrentProcess(1)
         }
     },[offerplandetail])
@@ -52,8 +52,7 @@ export const OfferProcessShop:FunctionComponent<Props> = (props) => {
                 </div>
             </div>
             <div>{offerplandetail.offerState === 1 ? <Step1 offerplandetail={offerplandetail}/> : ""}</div>
-            <div>{offerplandetail.offerState === 2 ? <Step1 offerplandetail={offerplandetail}/> : ""}</div>
-            <div>{offerplandetail.offerState === 3 ? <Step2 offerplandetail={offerplandetail}/> : ""}</div>
+            <div>{offerplandetail.offerState === 2 ? <Step2 offerplandetail={offerplandetail}/> : ""}</div>
         </div>
     )
 }
