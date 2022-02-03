@@ -1,4 +1,4 @@
-import React,{ FunctionComponent,useState,useCallback, useEffect} from "react";
+import React,{ FunctionComponent,useState,useCallback} from "react";
 import { useStyles } from './detail.style';
 import { useUser } from '../../../lib/hooks';
 import { SideMenu } from './components/side-menu/side-menu';
@@ -10,9 +10,8 @@ type Props = {
 };
 
 export const Detail:FunctionComponent<Props> = (props) => {
-    var { offerdatas } = props;
-    // const offerlist = JSON.parse(JSON.stringify(offerdatas));
-    const [ offerlist, setOfferlist ] = useState(JSON.parse(JSON.stringify(offerdatas)));
+    const { offerdatas } = props;
+    const offerlist=JSON.parse(JSON.stringify(offerdatas));
     const [user, { mutate }] = useUser();
 
     const [ offerIndex,setOfferIndex] = useState(true);
@@ -23,51 +22,7 @@ export const Detail:FunctionComponent<Props> = (props) => {
         setOfferIndex(!offerIndex);
     },[offerIndex])
 
-
-    const [errorMsg, setErrorMsg] = useState("");
-    const approve = async (offerplandetail) => {
-        try {
-            const body = {
-                id: offerplandetail._id,
-                offerState: 4,
-            }
-            const res = await fetch("/api/offerplan/offerplandetail",{
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body),
-            })
-            setErrorMsg(await res.text());
-        }catch(e){
-            console.error(e.message)
-        }
-    };
-
-    const changeEndPlanState = async () => {
-        offerlist.map((offerdata)=>{
-            var time:Date = new Date();
-            var offerCloseTime:Date = new Date(offerdata.closeTime);
-            if(time.getTime() > offerCloseTime.getTime()){
-                approve(offerdata);
-            }
-        })
-    }
-
-    const getOfferdatas = async () => {
-        const res = await fetch("http://localhost:3000/api/offerplan/offerplanalldatas");
-        const json = await res.json();
-        console.log(json);
-        setOfferlist(JSON.parse(JSON.stringify(json)));
-    }
-
     const dayOfWeek:string[]=["日","月","火","水","木","金","土"];
-
-    useEffect(() => {
-        changeEndPlanState();
-    },[]);
-
-    useEffect(() => {
-        getOfferdatas();
-    },[errorMsg])
 
     return (
         <div className={classes.detailForm}>
@@ -84,7 +39,6 @@ export const Detail:FunctionComponent<Props> = (props) => {
                 {currentOfferState === 1 ? <h2>オファー中</h2> : ""}
                 {currentOfferState === 2 ? <h2>交渉中</h2> : ""}
                 {currentOfferState === 3 ? <h2>決定</h2> : ""}
-                {currentOfferState === 4 ? <h2>来店済み</h2> : ""}
                     <TableContainer component={Paper}>
                             <Table>
                                 <TableHead>

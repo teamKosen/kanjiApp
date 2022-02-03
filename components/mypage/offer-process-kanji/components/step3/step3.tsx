@@ -30,7 +30,7 @@ export const Step3:FunctionComponent<Props> = (props) => {
     const closeTime:Date=new Date(offerplandetail.closeTime);
 
     const handleApprove = useCallback( async () => {
-        setcurrentOfferState(3)
+        setcurrentOfferState(2)
     },[]);
 
     useEffect(() => {
@@ -57,7 +57,7 @@ export const Step3:FunctionComponent<Props> = (props) => {
     return (
         <div className={classes.step3Position}>
             <div>
-                { currentOfferState === 3
+                { currentOfferState === 2 
                     ? <div className={classes.approveHeight}>
                         <h1 className={classes.approve}>オファーを承認しました！</h1>
                       </div> 
@@ -90,7 +90,7 @@ export const Step3:FunctionComponent<Props> = (props) => {
                 </tr>
             </table>
             <div>
-                { currentOfferState === 2
+                { currentOfferState === 1
                     ?  <div className={classes.approve}>
                             <h1>オファーを承認しますか？</h1>
                             <div className={classes.approveButton}>
