@@ -32,8 +32,8 @@ export const Post = (props) => {
                         <div><LocationIcon className={style.icon}/>{place}</div>
                     </div>
                     <div style={{marginTop:'10px'}}>
-                        <div className={style.tagChip}>#{genre}</div>
-                        <div className={style.tagChip}>#{purpose}</div>
+                        <div className={style.tagChip}>#{genre[0]}</div>
+                        <div className={style.tagChip}>#{purpose[0]}</div>
                     </div>
                 </div>
             </div>
