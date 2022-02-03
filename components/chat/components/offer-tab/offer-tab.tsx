@@ -16,6 +16,26 @@ export const OfferTab:FunctionComponent<Props> = (props) => {
     const classes = useStyles();
     const [userPlanlist, setUserPlanlist] = useState(JSON.parse(JSON.stringify(userPlandatas)));
 
+    const [errorMsg, setErrorMsg] = useState("");
+
+    const approve = async (offerplandetail) => {
+        try {
+            const body = {
+                id: offerplandetail._id,
+                offerState: 2,
+            }
+            const res = await fetch("/api/offerplan/offerplandetail",{
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body),
+            })
+            setErrorMsg(await res.text());
+        }catch(e){
+            console.error(e.message)
+        }
+    };
+
+
     return (
         <div className = {classes.offerTab}>
             <div className={classes.title}>オファー一覧</div>
@@ -31,7 +51,7 @@ export const OfferTab:FunctionComponent<Props> = (props) => {
                         
                         return (
                             <>
-                                <Card className={classes.offer} key={userPlandata._id}>
+                                <Card className={classes.offer} key={userPlandata._id} onClick={()=>{approve(userPlandata)}}>
                                     <CardContent className={classes.cardsContent}>
                                         <div>
                                             <div className={classes.offerTitle}>{userPlandata.shopname}</div>

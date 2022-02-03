@@ -48,6 +48,12 @@ export const SideMenu:FunctionComponent<Props> = (props) => {
                             </ListItemIcon>
                             <ListItemText primary="決定" />
                         </ListItem>
+                        <ListItem button className={classes.subtitle} onClick={() => setCurrentOfferState(4)}>
+                            <ListItemIcon>
+                                <StarRate className={classes.iconColor}/>
+                            </ListItemIcon>
+                            <ListItemText primary="来店済み" />
+                        </ListItem>
                     </List>
                 </Collapse>
             </List>
