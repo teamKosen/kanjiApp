@@ -121,7 +121,7 @@ export const Userplan:FunctionComponent<Props> = (props) => {
                 </Select><div className={classes.sort_switch} >昇順<Switch color="default" onChange={SwitchSort} />降順</div>
                 </div>
                   {planlist.map((plandata,)=>{
-                    if(plandata.userID==user._id){
+                    if(plandata.userID==user._id && plandata.planState==1){
                         i++;
                         if(i%3==1){
                             leftList.push(plandata);
