@@ -1,5 +1,5 @@
 import { Post } from "./components/post";
-import React, { useState, FunctionComponent,useCallback } from "react";
+import React, { useState, FunctionComponent, useCallback, useEffect } from "react";
 import { useUser } from "../../lib/hooks"
 import Link from 'next/link';
 import {useStyles} from './userplan.style'
@@ -74,6 +74,50 @@ export const Userplan:FunctionComponent<Props> = (props) => {
             setSwitchedSort(1);
         }
     }
+
+    const [ errorMsg, setErrorMsg ] = useState("");
+    const approve = async (plandetail) => {
+        try {
+            const body = {
+                id: plandetail._id,
+                planState: 2,
+            }
+            const res = await fetch("/api/userplandatas",{
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body),
+            })
+            setErrorMsg(await res.text());
+        }catch(e){
+            console.error(e.message)
+        }
+    };
+
+    const changeEndPlanState = async () => {
+        planlist.map((plandata)=>{
+            var time:Date = new Date();
+            var planCloseTime:Date = new Date(plandata.closeTime);
+            if(time.getTime() > planCloseTime.getTime()){
+                approve(plandata);
+                console.log("ok");
+            }
+        })
+    }
+
+    const getPlandatas = async () => {
+        const res = await fetch("http://localhost:3000/api/userplandatas");
+        const json = await res.json();
+        updatePlanlist(JSON.parse(JSON.stringify(json)));
+    }
+
+    useEffect(() => {
+        changeEndPlanState();
+    },[]);
+
+    useEffect(() => {
+        getPlandatas();
+    },[errorMsg]);
+
     return (
     <>
       <div style={{paddingTop: "100px",width:"1200px",marginLeft:"120px"}}>
@@ -120,7 +164,7 @@ export const Userplan:FunctionComponent<Props> = (props) => {
                         </MenuItem>
                 </Select><div className={classes.sort_switch} >昇順<Switch color="default" onChange={SwitchSort} />降順</div>
                 </div>
-                  {planlist.map((plandata,)=>{
+                  {planlist.map((plandata,)=>{  
                     if(plandata.userID==user._id && plandata.planState==1){
                         i++;
                         if(i%3==1){
