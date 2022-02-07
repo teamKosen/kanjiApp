@@ -10,7 +10,7 @@ handler.get(async (req, res) => {
     // const search = {"tag.purpose": "打ち上げ","tag.genre": "和食"};
 
     // let doc = await req.db.collection('shopdatas').find(search).toArray();
-    let doc = await req.db.collection('shopdatas_demo').find({}).toArray();
+    let doc = await req.db.collection('shopdatas').find({}).toArray();
     res.json(doc);
 });
 
