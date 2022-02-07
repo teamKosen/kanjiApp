@@ -1,11 +1,12 @@
 import { FunctionComponent, useState, useCallback } from 'react';
 import { useStyles } from "./header.style";
-import { Button, InputBase, Drawer } from '@material-ui/core';
+import { Button, InputBase, Drawer,IconButton,Badge } from '@material-ui/core';
 import Image from 'next/image'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { DrawerContent } from '../timeline/drawer-content/drawer-content';
 import { useUser } from '../../lib/hooks';
+import { NotificationImportant } from '@material-ui/icons';
 
 export const Header:FunctionComponent = () => {
     const style = useStyles();
@@ -17,6 +18,7 @@ export const Header:FunctionComponent = () => {
     const [currentGenre, setcurrentGenre] = useState();
     const [currentPurpose, setcurrentPurpose] = useState();
     const [isOpenDrawer, setDrawerState] = useState(false);
+    const [currentNotice, setCurrentNotice] = useState(0);
 
     const [user, { mutate }] = useUser();
 
@@ -83,6 +85,10 @@ export const Header:FunctionComponent = () => {
         mutate(null);
     };
 
+    const countCurrentNotice = useCallback(() => {
+        setCurrentNotice(currentNotice + 1);
+    },[currentNotice])
+
     return (
         <header className={style.header}>
             <Drawer
@@ -143,6 +149,13 @@ export const Header:FunctionComponent = () => {
                                             <Button　href="/mypage/detail">マイページ</Button>
                                         </li>
                                         <li className={style.insideFunctionLink_username}>{user.name}</li>
+                                        <li className={style.insideFunctionLink} >           
+                                            <IconButton onClick = {countCurrentNotice}>
+                                                <Badge badgeContent={currentNotice} color="error">
+                                                    <NotificationImportant fontSize="inherit" color="action" />
+                                                </Badge>
+                                            </IconButton>
+                                        </li>
                                     </ul>
                                 </li>
                             </>

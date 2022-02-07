@@ -49,16 +49,15 @@ export const useStyles = makeStyles((theme) => ({
         display: "flex",
         listStyle: "none",
         padding: "3px 0px", 
+        alignItems: "center",
     },
 
     insideFunctionLink: {
         marginRight: "20px",
     },
     
-
     insideFunctionLink_username: {
         marginRight: "20px",
-        marginTop: "8px",
     },
 
     headermain: {
