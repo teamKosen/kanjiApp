@@ -95,7 +95,7 @@ export const Userplan:FunctionComponent<Props> = (props) => {
 
     const changeEndPlanState = async () => {
         planlist.map((plandata)=>{
-            var time:Date = new Date();
+            var time:Date = new Date('2021-09-17 14:38:29');
             var planCloseTime:Date = new Date(plandata.closeTime);
             if(time.getTime() > planCloseTime.getTime()){
                 approve(plandata);
