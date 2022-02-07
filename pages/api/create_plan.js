@@ -25,9 +25,10 @@ handler.post(async (req, res) => {
     create_at,
     comment,
     user,
+    planState,
   } = req.body;
 
-  if (!title || !tag || !place || !numberOfPeople || !budget || !openDate || !openTime || !closeDate || !closeTime || !deadlineDate || !deadlineTime || !create_at || !user ) {
+  if (!title || !tag || !place || !numberOfPeople || !budget || !openDate || !openTime || !closeDate || !closeTime || !deadlineDate || !deadlineTime || !create_at || !user || !planState) {
     res.status(400).send("Missing field(s)");
     return;
   }
@@ -45,7 +46,21 @@ handler.post(async (req, res) => {
 
   const userplandatas = await req.db
     .collection("userplandatas")
-    .insertOne({ title, tag, place, numberOfPeople:iPeople, budget:iBudget, openTime:open, closeTime:close, deadlineTime:deadline, create_at:create_at_date, comment, userName:user.name, userID:user._id })
+    .insertOne({ 
+      title,
+      tag,
+      place,
+      numberOfPeople:iPeople,
+      budget:iBudget,
+      openTime:open,
+      closeTime:close,
+      deadlineTime:deadline,
+      create_at:create_at_date,
+      comment,
+      userName:user.name, 
+      userID:user._id,
+      planState,
+    })
     .then(({ ops }) => ops[0])
     .then(()=>{res.send("ok")});
   req.logIn(userplandatas, (err) => {

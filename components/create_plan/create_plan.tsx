@@ -37,6 +37,7 @@ export const Create_Plan:FunctionComponent = () => {
             create_at: today,
             comment: e.currentTarget.comment.value,
             user: user,
+            planState: 1,
         };
         const res = await fetch("api/create_plan", {
             method: "POST",
