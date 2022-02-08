@@ -1,22 +1,35 @@
-import { FunctionComponent, useState, useCallback } from 'react';
+import { FunctionComponent, useState, useCallback,useEffect} from 'react';
 import { useStyles } from "./notificater.style";
-import { Button, IconButton,Badge,Popper,Fade,Paper,Typography,PopperPlacementType } from '@material-ui/core';
+import { IconButton,Badge,Popper,Fade,Paper,Typography,PopperPlacementType} from '@material-ui/core';
 import { NotificationImportant } from '@material-ui/icons';
+
+type Props = {
+    user: any;
+    offerplanForuser: JSON;
+}
  
-export const Notificater:FunctionComponent = () => {
+export const Notificater:FunctionComponent<Props> = (props) => {
+    const { user,offerplanForuser } = props;
     const classes = useStyles();
 
     const [currentNotice, setCurrentNotice] = useState(0);
     const [open, setOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const [placement, setPlacement] = useState<PopperPlacementType>();
+    const [forUserOfferList, setForUserOfferList] = useState(JSON.parse(JSON.stringify(offerplanForuser)));
 
     const countCurrentNotice = useCallback((newPlacement) => (event) => {
         setAnchorEl(event.currentTarget);
-        setCurrentNotice(currentNotice + 1);
+        setCurrentNotice(0);
         setOpen((prev) => placement !== newPlacement || !prev);
         setPlacement(newPlacement);
     },[currentNotice,placement])
+
+    useEffect(() => {
+        setCurrentNotice(Object.keys(offerplanForuser).length);
+    },[offerplanForuser]);
+
+    console.log(currentNotice);
 
     return(
         <>
@@ -31,14 +44,11 @@ export const Notificater:FunctionComponent = () => {
                         <Paper className={classes.paperContainer}>
                             <Typography >
                                 <ul>
-                                    <li>通知1はこれ</li>
-                                    <li>通知2はこのはこ</li>
-                                    <li>通知3はちがう</li>
-                                    <li>通知4</li>
-                                    <li>通知1</li>
-                                    <li>通知2がいい</li>
-                                    <li>通知3はすごい</li>
-                                    <li>通知4</li>
+                                    {forUserOfferList.map((offer)=>{
+                                        return(
+                                            <li key={offer._id}>{offer.comment}</li>
+                                        );
+                                    })}
                                 </ul>
                             </Typography>
                         </Paper>
