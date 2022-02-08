@@ -7,10 +7,11 @@ import Tag from "./components/tag";
 import {TextField} from "@material-ui/core";
 import {Button} from "@material-ui/core";
 import {Radio} from '@material-ui/core';
+import {RadioProps} from '@material-ui/core';
 import {RadioGroup} from '@material-ui/core';
 import {FormControlLabel} from '@material-ui/core';
 import {FormControl} from '@material-ui/core';
-
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import FormGroup from '@mui/material/FormGroup';
 import Checkbox from '@mui/material/Checkbox';
@@ -35,7 +36,7 @@ export const Signup = () => {
   // call whenever user changes (ex. right after signing up successfully)
   useEffect(() => {
     // redirect to home if user is authenticated
-    if (user) Router.replace("/");
+    if (user) Router.replace("/timeline");
   }, [user]);
 
   const handleSubmit = async (e) => {
@@ -47,6 +48,10 @@ export const Signup = () => {
       password: e.currentTarget.password.value,
     };
     const shopBody = {
+      email: e.currentTarget.email.value,
+      name: e.currentTarget.name.value,
+      userType: e.currentTarget.userType.value,
+      password: e.currentTarget.password.value,
       shopName: e.currentTarget.shopName.value,
       adress: e.currentTarget.adress.value,
       place: e.currentTarget.place.value,
@@ -87,6 +92,13 @@ export const Signup = () => {
     } else {
       setErrorMsg(await userRes.text());
     }
+    if (shopRes.status === 201) {
+      const shopObj = await shopRes.json();
+      // writing our user object to the state
+      mutate(shopObj);
+    } else {
+      setErrorMsg(await shopRes.text());
+    }
   };
 
   const handleChangeuser = event => {
@@ -99,6 +111,44 @@ export const Signup = () => {
       [event.target.name]: event.target.checked,
     });
   };
+
+  //ラジオボタンデザイン
+  const BpIcon = styled('span')(({ theme }) => ({
+    borderRadius: '50%',
+    width: 20,
+    height: 20,
+    boxShadow: 'inset 0 0 0 2px rgba(16,22,26,.3), inset 0 -1px 0 rgba(16,22,26,.1)',
+    backgroundColor: '#FFFFFF',
+    backgroundImage:'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
+  }));
+  
+  const BpCheckedIcon = styled(BpIcon)({
+    backgroundColor: '#FFFFFF',
+    backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+    '&:before': {
+      display: 'block',
+      width: 20,
+      height: 20,
+      backgroundImage: 'radial-gradient(#000,#000 28%,transparent 32%)',
+      content: '""',
+    },
+    'input:hover ~ &': {
+      backgroundColor: '#c0c0c0',
+    },
+  });
+  
+  // Inspired by blueprintjs
+  function BpRadio(props: RadioProps) {
+    return (
+      <Radio
+        disableRipple
+        color="default"
+        checkedIcon={<BpCheckedIcon />}
+        icon={<BpIcon />}
+        {...props}
+      />
+    );
+  }
 
 
   return (
@@ -121,28 +171,30 @@ export const Signup = () => {
                 <div className={style.indispensable}>必須</div>
                 <TextField className={style.boxdesign}  size="small" variant="outlined" id="password" name="password" type="password" InputProps={{placeholder: "未入力"}}/>
             </div>
-            <FormControl className={style.form}>
+            <div className={style.form}>
               <div className={style.label}>ユーザータイプ</div>
               <div className={style.indispensable}>必須</div>
-              <RadioGroup
-                row
-                name="userType"
-                id= 'userType'
-                value={uservalue}
-                onChange={handleChangeuser}
-              >
-                <FormControlLabel
-                  value="幹事"
-                  control={<Radio />}
-                  label="幹事"
-                />
-                <FormControlLabel
-                  value="お店"
-                  control={<Radio />}
-                  label="お店"
-                />
-              </RadioGroup>
-            </FormControl>
+              <FormControl className={style.radioform}>
+                <RadioGroup
+                  row
+                  name="userType"
+                  id= 'userType'
+                  value={uservalue}
+                  onChange={handleChangeuser}
+                >
+                  <FormControlLabel
+                    value="幹事"
+                    control={<BpRadio />}
+                    label={<span className={style.radioLabel}>幹事</span>}
+                  />
+                  <FormControlLabel
+                    value="お店"
+                    control={<BpRadio />}
+                    label={<span className={style.radioLabel}>お店</span>}
+                  />
+                </RadioGroup>
+              </FormControl>
+            </div>
           </div>
         
           {errorMsg ? <p style={{ color: "red" }}>{errorMsg}</p> : null}
@@ -170,13 +222,13 @@ export const Signup = () => {
                   <div className={style.besideForm}>
                     <div className={style.moji}>平日</div>
                     <TextField className={style.boxdesigntime}  size="small" variant="outlined" id="weekdayOpen" name="weekdayOpen" type="time" InputLabelProps={{shrink: true}}/>
-                    <div className={style.moji}>～</div>
+                    <div className={style.mojito}>～</div>
                     <TextField className={style.boxdesigntime}  size="small" variant="outlined" id="weekdayClose" name="weekdayClose" type="time" InputLabelProps={{shrink: true}}/>
                   </div>
                   <div className={style.besideForm}>
                     <div className={style.moji}>休日</div>
                     <TextField className={style.boxdesigntime}  size="small" variant="outlined" id="weekendOpen" name="weekendOpen" type="time" InputLabelProps={{shrink: true}}/>
-                    <div className={style.moji}>～</div>
+                    <div className={style.mojito}>～</div>
                     <TextField className={style.boxdesigntime}  size="small" variant="outlined" id="weekendClose" name="weekendClose" type="time" InputLabelProps={{shrink: true}}/>
                   </div>
               </div>
@@ -199,28 +251,28 @@ export const Signup = () => {
               <div className={style.form}>
                   <div className={style.label}>支払い方法</div>
                   <div className={style.indispensable}>必須</div>
+                  <div className={style.multiple}>（複数選択可）</div>
 
-                  <FormGroup>
+                  <FormGroup row className={style.radioform}>
                     <FormControlLabel
                       control={
-                        <Checkbox checked={cash} onChange={handleChangepayment} name="cash" id="cash"/>
+                        <Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} checked={cash} onChange={handleChangepayment} name="cash" id="cash"/>
                       }
-                      label="現金"
+                      label={<span className={style.radioLabel}>現金</span>}
                     />
                     <FormControlLabel
                       control={
-                        <Checkbox checked={card} onChange={handleChangepayment} name="card" id="card"/>
+                        <Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} checked={card} onChange={handleChangepayment} name="card" id="card"/>
                       }
-                      label="カード"
+                      label={<span className={style.radioLabel}>カード</span>}
                     />
                     <FormControlLabel
                       control={
-                        <Checkbox checked={emoney} onChange={handleChangepayment} name="emoney" id="emoney"/>
+                        <Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} checked={emoney} onChange={handleChangepayment} name="emoney" id="emoney"/>
                       }
-                      label="電子マネー"
+                      label={<span className={style.radioLabel}>電子マネー</span>}
                     />
                   </FormGroup>
-
               </div>
               <div className={style.form}>
                   <div className={style.label}>駐車場</div>
@@ -238,18 +290,18 @@ export const Signup = () => {
               <div className={style.form}>
                   <div className={style.label}>予算</div>
                   <div className={style.indispensable}>必須</div>
-                  <div className={style.besideForm}>
+                  <div className={style.besideFormNumber}>
                     <TextField className={style.boxdesignBudget} size="small" variant="outlined" id="budgetMin" name="budgetMin" type="Number" InputProps={{placeholder: "未入力", }}/>
-                    <div className={style.moji}>～</div>
+                    <div className={style.mojito}>～</div>
                     <TextField className={style.boxdesignBudget} size="small" variant="outlined" id="budgetMax" name="budgetMax" type="Number" InputProps={{placeholder: "未入力", }}/>
                   </div>
               </div>
               <div className={style.form}>
                   <div className={style.label}>人数</div>
                   <div className={style.indispensable}>必須</div>
-                  <div className={style.besideForm}>
+                  <div className={style.besideFormNumber}>
                     <TextField className={style.boxdesignBudget} size="small" variant="outlined" id="numberOfPeopleMin" name="numberOfPeopleMin" type="Number" InputProps={{placeholder: "未入力", }}/>
-                    <div className={style.moji}>～</div>
+                    <div className={style.mojito}>～</div>
                     <TextField className={style.boxdesignBudget} size="small" variant="outlined" id="numberOfPeopleMax" name="numberOfPeopleMax" type="Number" InputProps={{placeholder: "未入力", }}/>
                   </div>
               </div>
@@ -265,17 +317,16 @@ export const Signup = () => {
               </div>
               <div className={style.form}>
                   <div className={style.label}>紹介文</div>
-                  <div className={style.indispensable}>必須</div>
-                  <TextField className={style.boxdesign}  size="small" variant="outlined" id="introduction" name="introduction" type="text" InputProps={{placeholder: "未入力"}}/>
+                  <TextField className={style.boxdesigncomment} multiline rows={5} size="small" variant="outlined" id="introduction" name="introduction" type="text" InputProps={{placeholder: "未入力"}}/>
               </div>
             </>
           ) : (
             <>
             </>
           )}
-          <div>
-              <Button className={style.button} type="submit">サインアップ</Button>
-          </div>
+          
+          <Button className={style.button} type="submit">サインアップ</Button>
+        
         </form>
       </div>
     </div>

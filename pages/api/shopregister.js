@@ -11,6 +11,10 @@ handler.use(middleware); // see how we're reusing our middleware
 // POST /api/shopregister
 handler.post(async (req, res) => {
   const {
+    email,
+    name,
+    userType,
+    password,
     shopName,
     adress,
     place,
@@ -35,7 +39,7 @@ handler.post(async (req, res) => {
     introduction,
   } = req.body;
 
-  if (!shopName || !place ) {
+  if (!email || !name || !userType || !password || !shopName || !place ) {
     res.status(400).send("Missing field(s)");
     return;
   }

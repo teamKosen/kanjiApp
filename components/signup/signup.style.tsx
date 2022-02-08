@@ -3,16 +3,20 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core";
 export const useStyles = makeStyles((theme) => 
   createStyles({
     root:{
-        marginTop: "40px",
-        paddingLeft: "375px",
-        paddingRight: "150px",
+      
+      marginTop: "40px",
+      paddingLeft: "360px",
+      paddingRight: "150px",
     },
     form:{
-      paddingBottom:"7px",
-      paddingLeft: "15px",
+      display: "block",
+      paddingBottom:"38px",
+      marginLeft: "30px",
       width:"900px",
+      height: "auto",
     },
     button:{
+      left: "270px",
       display: "flex",
       width: "400px",
       height: "70px",
@@ -25,9 +29,7 @@ export const useStyles = makeStyles((theme) =>
       borderRadius: "40px",
       boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
       marginBottom: "300px",
-      marginLeft: "auto",
-      marginRight: "auto",
-      marginTop: "20px",
+      marginTop: "10px",
     },
 
     label: {
@@ -50,8 +52,8 @@ export const useStyles = makeStyles((theme) =>
       borderRadius: "5px",
       marginBottom: "5px",
       marginLeft: "7px",
-      marginRight: "40%",
-      marginTop: "2px",
+      marginRight: "1px",
+      marginTop: "7px",
     },
 
     boxdesign: {
@@ -63,26 +65,23 @@ export const useStyles = makeStyles((theme) =>
       [`& fieldset`]: {
         borderRadius: "10px",
       },
-      marginBottom: "6px",
-    },
-
-    boxdesigndate: {
-      width: "50%",
-      lineHeight: "44px",
-      fontSize: "24px",
-      background: "#FFFFFF",
-      [`& fieldset`]: {
-        borderRadius: "10px",
-      },
-      marginBottom: "6px",
     },
 
     besideForm:{
       display: "inline-block",
+      width:"900px",
+      marginTop: "8px",
+      marginLeft: "30px",
+    },
+
+    besideFormNumber:{
+      display: "inline-block",
+      width:"900px",
+      marginBottom: "8px",
     },
 
     boxdesigntime: {
-      width: "339px",
+      width: "384px",
       height: "44px",
       lineHeight: "44px",
       fontSize: "24px",
@@ -90,10 +89,11 @@ export const useStyles = makeStyles((theme) =>
       [`& fieldset`]: {
         borderRadius: "10px",
       },
-      marginBottom: "6px",
     },
 
     boxdesignSeattype: {
+      position: "absolute",
+      left: "576px",
       width: "714px",
       height: "44px",
       lineHeight: "44px",
@@ -102,11 +102,10 @@ export const useStyles = makeStyles((theme) =>
       [`& fieldset`]: {
         borderRadius: "10px",
       },
-      marginBottom: "6px",
     },
 
     boxdesignBudget: {
-      width: "420px",
+      width: "428px",
       height: "44px",
       lineHeight: "44px",
       fontSize: "24px",
@@ -114,7 +113,6 @@ export const useStyles = makeStyles((theme) =>
       [`& fieldset`]: {
         borderRadius: "10px",
       },
-      marginBottom: "6px",
     },
 
     moji: {
@@ -122,12 +120,29 @@ export const useStyles = makeStyles((theme) =>
       fontFamily: "Roboto",
       fontSize: "24px",
       lineHeight: "40px",
-      marginLeft: "10px",
+      marginRight: "10px",
+    },
+
+    mojito: {
+      display: "inline-block",
+      fontFamily: "Roboto",
+      fontSize: "24px",
+      lineHeight: "40px",
+      marginLeft: "9px",
+      marginRight: "9px",
+    },
+
+    multiple: {
+      display: "inline-block",
+      fontFamily: "Roboto",
+      fontSize: "18px",
+      lineHeight: "40px",
       marginRight: "10px",
     },
 
     boxdesigncomment: {
       width: "100%",
+      height: "140px",
       fontSize: "24px",
       background: "#FFFFFF",
       [`& fieldset`]: {
@@ -141,6 +156,16 @@ export const useStyles = makeStyles((theme) =>
       color: "#FFD700",
       marginBottom: "-5px",
       marginRight: "7px",
-    }
+    },
+
+    radioform: {
+      width: "100%",
+      marginLeft: "30px",
+    },
+
+    radioLabel: {
+      fontSize: "24px",
+      marginRight: "7px",
+    },
   })
 );
