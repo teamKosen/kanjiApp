@@ -1,13 +1,12 @@
 import { useState } from "react";
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
+import { Password } from "@material-ui/icons";
 
 const filter = createFilterOptions();
 
 export default function Tagyarn(props) {
-  const { size, style, variant, className, setValue,tag } = props;
-
-  console.log(tag[0]);
+  const { size, style, variant, className, setValue, tag } = props;
 
   return (
     <div>
@@ -17,6 +16,7 @@ export default function Tagyarn(props) {
         style={style}
         options={[]}
         getOptionLabel={(option) => {
+          console.log(option);
           // Value selected with enter, right from the input
           if (typeof option === 'string') {
             return option;
@@ -44,7 +44,7 @@ export default function Tagyarn(props) {
         }}
         // defaultValue={tag[0]}
         onChange={(e,v) => setValue(v.map(tag=>tag.title ? tag.title : tag))}
-        defaultValue={[tag[0],tag[1]]}
+        defaultValue={tag}
         renderInput={(params) => (
           <TextField
             {...params}
