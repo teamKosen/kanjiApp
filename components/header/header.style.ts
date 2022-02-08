@@ -76,8 +76,14 @@ export const useStyles = makeStyles((theme) => ({
         width: "40%",
         marginBottom: "16px",
         marginLeft: "130px",
-        marginRight: "auto",
         alignItems: "center",
+    },
+
+    notificationPosition: {
+        marginTop: theme.spacing(2),
+        marginRight: "auto",
+        marginLeft: "50px",
+        zIndex: theme.zIndex.modal,
     },
 
     searchFieldInput: {
