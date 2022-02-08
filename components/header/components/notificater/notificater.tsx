@@ -29,8 +29,6 @@ export const Notificater:FunctionComponent<Props> = (props) => {
         setCurrentNotice(Object.keys(offerplanForuser).length);
     },[offerplanForuser]);
 
-    console.log(currentNotice);
-
     return(
         <>
             <IconButton onClick = {countCurrentNotice('bottom')}>
