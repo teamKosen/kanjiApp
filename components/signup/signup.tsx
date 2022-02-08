@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import { useUser } from "../../lib/hooks"
 import { useStyles } from "./signup.style";
+import Tag from "./components/tag";
 
 import {TextField} from "@material-ui/core";
 import {Button} from "@material-ui/core";
@@ -21,8 +22,10 @@ export const Signup = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [uservalue, setUservalue] = useState("");
   const [paymentvalue, setPaymentvalue] = useState("");
+  const [genretag, setGenretags] = useState([]);
+  const [purposetag, setPurposetags] = useState([]);
   const [state, setState] = useState({
-    cash: true,
+    cash: false,
     card: false,
     emoney: false,
   });
@@ -45,6 +48,7 @@ export const Signup = () => {
     };
     const shopBody = {
       shopName: e.currentTarget.shopName.value,
+      adress: e.currentTarget.adress.value,
       place: e.currentTarget.place.value,
       weekdayOpen: e.currentTarget.weekdayOpen.value,
       weekdayClose: e.currentTarget.weekdayClose.value,
@@ -62,8 +66,8 @@ export const Signup = () => {
       budgetMax: e.currentTarget.budgetMax.value,
       numberOfPeopleMin: e.currentTarget.numberOfPeopleMin.value,
       numberOfPeopleMax: e.currentTarget.numberOfPeopleMax.value,
-      genre: e.currentTarget.genre.value,
-      purpose: e.currentTarget.purpose.value,
+      genre: genretag,
+      purpose: purposetag,
       introduction: e.currentTarget.introduction.value,
     };
     const userRes = await fetch("/api/users", {
@@ -153,7 +157,12 @@ export const Signup = () => {
               <div className={style.form}>
                   <div className={style.label}>住所</div>
                   <div className={style.indispensable}>必須</div>
-                  <TextField className={style.boxdesign}  size="small" variant="outlined" id="place" name="place" type="text" InputProps={{placeholder: "未入力"}}/>
+                  <TextField className={style.boxdesign}  size="small" variant="outlined" id="adress" name="adress" type="text" InputProps={{placeholder: "未入力"}}/>
+              </div>
+              <div className={style.form}>
+                  <div className={style.label}>場所</div>
+                  <div className={style.indispensable}>必須</div>
+                  <TextField className={style.boxdesign}  size="small" variant="outlined" id="place" name="place" type="text" InputProps={{placeholder: "町の名前や目印"}}/>
               </div>
               <div className={style.form}>
                   <div className={style.label}>営業時間</div>
@@ -247,12 +256,12 @@ export const Signup = () => {
               <div className={style.form}>
                   <div className={style.label}>ジャンル</div>
                   <div className={style.indispensable}>必須</div>
-                  <TextField className={style.boxdesign}  size="small" variant="outlined" id="genre" name="genre" type="text" InputProps={{placeholder: "未入力"}}/>
+                  <Tag className={style.boxdesign} size="small" variant="outlined" setValue={setGenretags}/>
               </div>
               <div className={style.form}>
                   <div className={style.label}>目的</div>
                   <div className={style.indispensable}>必須</div>
-                  <TextField className={style.boxdesign}  size="small" variant="outlined" id="purpose" name="purpose" type="text" InputProps={{placeholder: "未入力"}}/>
+                  <Tag className={style.boxdesign} size="small" variant="outlined" setValue={setPurposetags}/>
               </div>
               <div className={style.form}>
                   <div className={style.label}>紹介文</div>

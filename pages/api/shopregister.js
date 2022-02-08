@@ -12,6 +12,7 @@ handler.use(middleware); // see how we're reusing our middleware
 handler.post(async (req, res) => {
   const {
     shopName,
+    adress,
     place,
     weekdayOpen,
     weekdayClose,
@@ -34,31 +35,42 @@ handler.post(async (req, res) => {
     introduction,
   } = req.body;
 
-  console.log(req.body)
-
-  if (!title || !tag || !place || !numberOfPeople || !budget || !openDate || !openTime || !closeDate || !closeTime || !deadlineDate || !deadlineTime || !create_at || !user ) {
+  if (!shopName || !place ) {
     res.status(400).send("Missing field(s)");
     return;
   }
 
-  const iPeople = Number(numberOfPeople);
-  const iBudget = Number(budget);
+  const open = [];
+  open.push('月～木 ' + weekdayOpen + '～' +weekdayClose);
+  open.push('金～日 ' + weekendOpen + '～' +weekendClose);
 
-  const open_str = openDate + " " + openTime;
-  const open=new Date(open_str);
-  const close_str = closeDate + " " + closeTime;
-  const close=new Date(close_str);
-  const deadline_str = deadlineDate + " " + deadlineTime;
-  const deadline=new Date(deadline_str);
-  const create_at_date=new Date(create_at);
+  const seatType = [];
+  seatType.push('カウンター' + '/' + counter + '席');
+  seatType.push('テーブル' + '/' + table + '席');
+  seatType.push('座敷' + '/' + zasiki + '席');
 
-  const userplandatas = await req.db
-    .collection("userplandatas")
-    .insertOne({ title, tag, place, numberOfPeople:iPeople, budget:iBudget, openTime:open, closeTime:close, deadlineTime:deadline, create_at:create_at_date, comment, userName:user.name, userID:user._id })
-    .then(({ ops }) => ops[0])
-    .then(()=>{res.send("ok")});
-  req.logIn(userplandatas, (err) => {
+  const payment = [];
+  if ( cash == true) {
+    payment.push("現金");
+  }
+  if ( card == true) {
+    payment.push("カード");
+  }
+  if ( emoney == true) {
+    payment.push("電子マネー");
+  }
+
+  const tag = { budget: { min: budgetMin, max: budgetMax}, numberOfPeople:{min: numberOfPeopleMin, max: numberOfPeopleMax}, genre: genre, purpose: purpose };
+
+  const shopdata = await req.db
+    .collection("shopdatas")
+    .insertOne({ name:shopName, open, park, payment, seatType, phoneNumber, place, adress, tag, introduction, })
+    .then(({ ops }) => ops[0]);
+  req.logIn(shopdata, (err) => {
     if (err) throw err;
+    res.status(201).json({
+      user: extractUser(req),
+    });
   });
 });
 
