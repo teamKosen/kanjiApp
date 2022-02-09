@@ -61,9 +61,9 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas,offerdatas}) =>
 
     const budgetList = [1000,2000,3000,4000];
     const numberOfPeopleList = [2,4,6,8];
-    const genreList = ["中華","和食","イタリアン","エスニック"];
+    const genreList = ["中華","和食","イタリアン","エスニック","フレンチ","洋食"];
     const purposeList = ["打ち上げ","会食","合コン","同窓会"];
-    const placeList=["博多","新飯塚","折尾","黒崎"];
+    const placeList=["小倉","博多","新飯塚","折尾","黒崎","福岡市中央区"];
     const [openDate, setopenDate] = useState();
     const [place,setplace]=useState();
     const [tag,settag]=useState();
@@ -102,12 +102,12 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas,offerdatas}) =>
     }
       const ApplyConditions = useCallback(() => {
         const request = async () => {
-            const res = await fetch(`http://localhost:3000/api/shopsearch?tag=${tag}&date=${openDate}&numberofpeople=${numberOfPeople}&budget=${budget}&purpose=${purpose}&genre=${genre}`);
+            const res = await fetch(`http://localhost:3000/api/shopsearch?tag=${tag}&date=${openDate}&numberofpeople=${numberOfPeople}&budget=${budget}&purpose=${purpose}&genre=${genre}&place=${place}`);
             const shops_pre= await res.json()
             updateShops(shops_pre);
         }
           request()
-        },[openDate,numberOfPeople,tag,budget,purpose,genre])
+        },[openDate,numberOfPeople,tag,budget,purpose,genre,place])
     useEffect(() => {
         const request = async () => {
             const res = await fetch(router.query.apiUrl);
