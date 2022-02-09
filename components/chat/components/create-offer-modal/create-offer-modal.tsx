@@ -1,7 +1,6 @@
 import { TextField, Button,InputAdornment, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core'
 import {useStyles} from './create-offer-modal.style'
-import React, { useState, useEffect,FunctionComponent, useCallback } from 'react'
-import { red } from '@material-ui/core/colors'
+import React, { FunctionComponent} from 'react'
 
 type Props = {
     handleCreatePlanOpen: () => void;

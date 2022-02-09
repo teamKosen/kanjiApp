@@ -39,15 +39,15 @@ export const Userplan:FunctionComponent<Props> = (props) => {
         }
           request()
         },[openDate,minNumberOfPeople,maxNumberOfPeople,tag,selectedSort,switchedSort,budget])
-        function SelectPlace(event,value){
-            setplace(value);
-        }
-        function SelectGenre(event,value){
-            setgenre(value);
-        }
-        function SelectPurpose(event,value){
-            setpurpose(value);
-        }  
+    function SelectPlace(event,value){
+        setplace(value);
+    }
+    function SelectGenre(event,value){
+        setgenre(value);
+    }
+    function SelectPurpose(event,value){
+        setpurpose(value);
+    }  
     const SelectOpenDate=async(e)=>{
         setopenDate(e.target.value);
     }

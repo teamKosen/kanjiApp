@@ -1,12 +1,13 @@
-import { FunctionComponent, useState, useCallback } from 'react';
-// import style from './header.module.scss';
+import { FunctionComponent, useState, useCallback,useEffect } from 'react';
 import { useStyles } from "./header.style";
-import { Button, InputBase, Drawer } from '@material-ui/core';
+import { Button, InputBase, Drawer} from '@material-ui/core';
 import Image from 'next/image'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { DrawerContent } from '../timeline/drawer-content/drawer-content';
 import { useUser } from '../../lib/hooks';
+import { Notificater } from './components/notificater/notificater';
+
 
 export const Header:FunctionComponent = () => {
     const style = useStyles();
@@ -18,6 +19,8 @@ export const Header:FunctionComponent = () => {
     const [currentGenre, setcurrentGenre] = useState();
     const [currentPurpose, setcurrentPurpose] = useState();
     const [isOpenDrawer, setDrawerState] = useState(false);
+    const [offerplanForuser, setOfferplanForuser] = useState<JSON>();
+    const [currentUserName, setCurrentUserName] = useState();
 
     const [user, { mutate }] = useUser();
 
@@ -83,6 +86,23 @@ export const Header:FunctionComponent = () => {
         });
         mutate(null);
     };
+
+    useEffect(() => {
+        if (user) {
+            setCurrentUserName(user.name);
+        }
+    },[user])
+
+    useEffect(() => {
+        const request = async () => {
+            const res = await fetch(`http://localhost:3000/api/offerplan/offerplanUserdatas?userName=${currentUserName}`);
+            const offerplanUserdatas = await res.json()
+            setOfferplanForuser(JSON.parse(JSON.stringify(offerplanUserdatas)));
+        }
+        if(user){
+            request();
+        }
+    },[currentUserName]);
 
     return (
         <header className={style.header}>
@@ -188,16 +208,25 @@ export const Header:FunctionComponent = () => {
                             className={style.searchButton}
                         >検索</Button>
                     </div>
-                    {user ? (
+                    { user ? 
+                    <>
+                        { user.userType === "幹事" ? (
+                            <>
+                                <div className={style.notificationPosition}>
+                                    <Notificater user={user} offerplanForuser={offerplanForuser}/>
+                                </div>  
+                            </>
+                        ) : (
+                            <>
+                            </>
+                        )}
                         <Button  
                             onClick={handleLogout} 
                             href="./signin"
                             className={style.logout}
                         >ログアウト</Button>
-                    ):null
-                    }
+                    </> : <></>}
                 </div>
-                
             </div>
         </header>
     );

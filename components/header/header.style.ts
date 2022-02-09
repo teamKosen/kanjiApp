@@ -49,16 +49,15 @@ export const useStyles = makeStyles((theme) => ({
         display: "flex",
         listStyle: "none",
         padding: "3px 0px", 
+        alignItems: "center",
     },
 
     insideFunctionLink: {
         marginRight: "20px",
     },
     
-
     insideFunctionLink_username: {
         marginRight: "20px",
-        marginTop: "8px",
     },
 
     headermain: {
@@ -77,8 +76,14 @@ export const useStyles = makeStyles((theme) => ({
         width: "40%",
         marginBottom: "16px",
         marginLeft: "130px",
-        marginRight: "auto",
         alignItems: "center",
+    },
+
+    notificationPosition: {
+        marginTop: theme.spacing(2),
+        marginRight: "auto",
+        marginLeft: "50px",
+        zIndex: theme.zIndex.modal,
     },
 
     searchFieldInput: {
