@@ -60,15 +60,18 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     const genreList = ["中華","和食","イタリアン","エスニック"];
     const purposeList = ["打ち上げ","会食","合コン","同窓会"];
     const placeList=["博多","新飯塚","折尾","黒崎"];
-    const [tag, setTags] = useState([]);
     const [openDate, setopenDate] = useState();
-    const [place,setplace]=useState()
+    const [place,setplace]=useState();
+    const [tag,settag]=useState();
     const [maxNumberOfPeople,setmaxNumberOfPeople]=useState();
     const [minNumberOfPeople,setminNumberOfPeople]=useState();
     const [numberOfPeople,setnumberOfPeople]=useState();
     const [budget,setbudget]=useState();
     const [genre,setgenre]=useState();
     const [purpose,setpurpose]=useState();
+    const SelectTag=async(e)=>{
+        settag(e.target.value);
+    }
     function SelectPlace(event,value){
         setplace(value);
     }
@@ -139,7 +142,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                 <div className={style.box}>
                     <div className={style.label}><LocalOfferIcon className={style.icon} />タグ</div>
                     <label htmlFor="tag" style={{width:"220px"}}>
-                        <Tag setValue={setTags}/>
+                        <Tag Select={SelectTag} item={tag} id_str="tag"/>
                     </label>
                 </div>
                 <div className={style.box}>
