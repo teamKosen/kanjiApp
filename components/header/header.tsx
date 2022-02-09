@@ -97,7 +97,7 @@ export const Header:FunctionComponent = () => {
         const request = async () => {
             const res = await fetch(`http://localhost:3000/api/offerplan/offerplanUserdatas?userName=${currentUserName}`);
             const offerplanUserdatas = await res.json()
-            setOfferplanForuser(offerplanUserdatas);
+            setOfferplanForuser(JSON.parse(JSON.stringify(offerplanUserdatas)));
         }
         if(user){
             request();

@@ -5,7 +5,7 @@ import { NotificationImportant } from '@material-ui/icons';
 
 type Props = {
     user: any;
-    offerplanForuser: JSON;
+    offerplanForuser: any;
 }
  
 export const Notificater:FunctionComponent<Props> = (props) => {
@@ -16,7 +16,7 @@ export const Notificater:FunctionComponent<Props> = (props) => {
     const [open, setOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const [placement, setPlacement] = useState<PopperPlacementType>();
-    const [forUserOfferList, setForUserOfferList] = useState(JSON.parse(JSON.stringify(offerplanForuser)));
+    const [forUserOfferList, setForUserOfferList] = useState();
 
     const countCurrentNotice = useCallback((newPlacement) => (event) => {
         setAnchorEl(event.currentTarget);
@@ -26,7 +26,10 @@ export const Notificater:FunctionComponent<Props> = (props) => {
     },[currentNotice,placement])
 
     useEffect(() => {
-        setCurrentNotice(Object.keys(offerplanForuser).length);
+        setForUserOfferList(offerplanForuser);
+        if(offerplanForuser){
+            setCurrentNotice(Object.keys(offerplanForuser).length);
+        }
     },[offerplanForuser]);
 
     return(
@@ -42,11 +45,14 @@ export const Notificater:FunctionComponent<Props> = (props) => {
                         <Paper className={classes.paperContainer}>
                             <Typography >
                                 <ul>
-                                    {forUserOfferList.map((offer)=>{
+                                    {/* {forUserOfferList.map((offer)=>{
                                         return(
                                             <li key={offer._id}>{offer.comment}</li>
                                         );
-                                    })}
+                                    })} */}
+                                    <li>こんにちは！寺田屋と申します。霜月殿の投稿を拝見しぜひとも我々のお店を紹介したくご連絡差し上げました。いろいろとプランを用意しているので是非...</li>
+                                    <li>こんにちは！近江屋です。お待ちしています！</li>
+                                    <li>お刺身おすすめです！</li>
                                 </ul>
                             </Typography>
                         </Paper>
