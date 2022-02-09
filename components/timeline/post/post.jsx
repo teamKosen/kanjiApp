@@ -1,11 +1,6 @@
 import style from './post.module.scss'
 import LocationIcon from '@material-ui/icons/LocationOn';
 import React, { useCallback, useState } from 'react';
-import { UserComment } from './components/user-comment/user-comment';
-import { Map } from './components/map/map';
-import { Shop_Detail } from './components/shop_detail/shop_detail';
-import { Menu } from './components/menu/menu';
-import {Plan} from './components/plan/plan';
 import { Picture } from './components/picture/picture'
 
 export const Post = (props) => {
@@ -37,36 +32,11 @@ export const Post = (props) => {
                         <div><LocationIcon className={style.icon}/>{place}</div>
                     </div>
                     <div style={{marginTop:'10px'}}>
-                        <div className={style.tagChip}>#{genre}</div>
-                        <div className={style.tagChip}>#{purpose}</div>
+                        <div className={style.tagChip}>#{genre[0]}</div>
+                        <div className={style.tagChip}>#{purpose[0]}</div>
                     </div>
                 </div>
             </div>
-            <div className={style.nomalBottom}>
-                <div className={style.shopdetailOpenButton} onClick={handleClick}>詳しくはコチラ</div>
-            </div>
-            { anchorEl ? 
-                <div>
-                    <div className={style.cardPosition}>
-                        <UserComment comment={comment}/>
-                        <Plan plan={plan}/>
-                      　<Menu 
-                            menu={menu}
-                        />
-                        {/* <Map /> */}
-                        <Shop_Detail
-                            open={open}
-                            park={park}
-                            payments={payments}
-                            seatTypes={seatTypes}
-                            notSmokingSeat={notSmokingSeat}
-                            phoneNumber={phoneNumber}
-                            adress={adress}
-                        />
-                    </div>
-                    <div className={style.shopdetailCloseButton} onClick={handleClose}>閉じる↑</div>
-                </div>
-            : ""}
         </div>
         );
 };

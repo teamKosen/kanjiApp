@@ -1,4 +1,5 @@
 import nextConnect from 'next-connect';
+import { convertCompilerOptionsFromJson, isConstructorDeclaration } from 'typescript';
 import middleware from '../../middleware/database';
 
 const handler = nextConnect();
@@ -17,16 +18,16 @@ handler.get(async (req, res) => {
     }
    
     if(genre !== 'undefined' && genre){
-        const genreTag = { "tag.genre": genre};
+        const genreTag = { "tag.genre": {"$in":[genre]}};
         search = Object.assign(search,genreTag);
     }
 
     if(purpose !== 'undefined' && purpose){
-        const purposeTag = {"tag.purpose": purpose};
+        const purposeTag = {"tag.purpose": {"$in":[purpose]}};
         search = Object.assign(search,purposeTag);
     }
     if(!isNaN(numberofpeople)){
-        const numberofpeopleTag = {"tag.numberOfPeople": numberofpeople};
+        const numberofpeopleTag = {"tag.numberOfPeople.max": {"$gte":Number(numberofpeople)},"tag.numberOfPeople.min":{"$lte":Number(numberofpeople)}};
         search = Object.assign(search,Number(numberofpeopleTag));
     }
 
@@ -35,6 +36,10 @@ handler.get(async (req, res) => {
         search = Object.assign(search,planTag);
         sort = {"plantag.tag":1,"plantag.number":-1};
     }
+    console.log("search");
+    console.log(search);
+    console.log("sort");
+    console.log(sort);
     let doc = await req.db.collection('shopdatas').find(search).sort(sort).toArray();
     
     res.json(doc);
