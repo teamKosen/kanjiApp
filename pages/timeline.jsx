@@ -144,7 +144,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas,offerdatas}) =>
                 })}
                 <div className={style.sidebar}>
                 <div className={style.box}>
-                    <div className={style.label}><LocalOfferIcon className={style.icon} />タグ{tag}</div>
+                    <div className={style.label}><LocalOfferIcon className={style.icon} />タグ</div>
                     <label htmlFor="tag" style={{width:"220px"}}>
                         <Tag Select={SelectTag} item={tag} id_str="tag"/>
                     </label>

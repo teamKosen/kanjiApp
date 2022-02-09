@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core";
 export const useStyles = makeStyles((theme) => ({
 //background-color: rgb(229, 237, 250);
     plan: {
-        margin:"10px",
+        margin:"38px 10px 0px 10px",
     },
     title:{
         display:"inline-block",
@@ -77,10 +77,18 @@ export const useStyles = makeStyles((theme) => ({
         lineHeight:"18px",
         fontSize:"18px",
     },
+    line_tag:{
+        marginTop:"5px",
+        verticalAlign:"middle",
+        display:"inline-block",
+        alignItems:"center",
+        lineHeight:"18px",
+        fontSize:"18px",
+    },
     line_title:{
         verticalAlign:"middle",
         display:"flex",
         alignItems:"center",
-        margin:"10px 0px 7px 0px"
+        margin:"0px 0px 7px 0px"
     },
 }));

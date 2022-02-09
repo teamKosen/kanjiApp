@@ -29,7 +29,7 @@ export const Post = (props) => {
                 <div className={style.imgPosition}>
                     <Picture
                         pictures={pictures}
-                />
+                    />
                 </div>
             </div>
             <DetailModal

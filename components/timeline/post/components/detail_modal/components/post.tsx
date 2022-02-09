@@ -36,7 +36,7 @@ export const Post:FunctionComponent<Props> = (props) => {
           <div className={classes.line}>
             <MoneyIcon className={classes.icon} /><span>{plan.budget}円</span>
           </div>
-          <p className={classes.line}>
+          <p className={classes.line_tag}>
               {plan.tag.map((tags)=>{
                   return<span key={tags}　className={classes.tag}>#{tags}</span>
               })}
