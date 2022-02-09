@@ -152,7 +152,7 @@ export const Header:FunctionComponent = () => {
                                 <li className={style.insidePageLink}>
                                     <ul className={style.insideFunctionLinks}>
                                         <li className={style.insideFunctionLink}>
-                                            <Link href="/timeline">お店一覧</Link>
+                                            <Button href="/timeline">お店一覧</Button>
                                         </li>
                                     </ul>
                                 </li>
@@ -188,11 +188,14 @@ export const Header:FunctionComponent = () => {
                             className={style.searchButton}
                         >検索</Button>
                     </div>
-                    <Button  
-                        onClick={handleLogout} 
-                        href="./signin"
-                        className={style.logout}
-                    >ログアウト</Button>
+                    {user ? (
+                        <Button  
+                            onClick={handleLogout} 
+                            href="./signin"
+                            className={style.logout}
+                        >ログアウト</Button>
+                    ):null
+                    }
                 </div>
                 
             </div>
