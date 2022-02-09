@@ -18,28 +18,10 @@ export const Picture:FunctionComponent<Props>=(props)=>{
             {pictures.map((picture) => {
                 if(i){
                     i=false;
-                    return(<img key={picture.picturePath} src={picture.picturePath} style={{width: "250px",height: "250px"}}/>)
+                    return(<img key={picture.picturePath} src={picture.picturePath} style={{width: "400px",height: "300px"}}/>)
                 }
                 else{}
             })}            
         </div>
     );
 }
-
-// export const Picture = (props) => {
-//     const { pictures } = props;
-//     var i:Boolean=true;
-//     const classes = useStyles();
-//     return (
-//         <div className={classes.imgPosition}>
-//             {pictures.map((picture) => {
-//                 if(i){
-//                     i=false;
-//                     console.log(picture.picturePath);
-//                     return(<img key={picture.picturePath} src={picture.picturePath} className={classes.imgSize}/>)
-//                 }
-//                 else{}
-//             })}            
-//         </div>
-//     );
-// };

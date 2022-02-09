@@ -3,7 +3,11 @@
   position: relative;
   width:auto;
   height:auto;
-  padding: 10px;
+  padding: 20px;
+  font-family:Roboto;
+}
+.post:hover {
+  cursor: pointer;
 }
 .postColumn{
   width:100%;
@@ -24,6 +28,7 @@
 }
 .postDetail{
   padding:0px;
+  font-size:18px;
 }
 .icon {
   height: 18px;
@@ -40,6 +45,7 @@
 	background-color: #444444;
 	border: 1px solid #444444;
 	border-radius: 2em;
+  font-size: 18px;
 }
 
 .imgPosition {
@@ -47,8 +53,8 @@
 }
   
 .imgSize {
-  width: 120px;
-  height: 120px;
+  width: 400px;
+  height: 300px;
   margin: 10px 10px;
 }
 

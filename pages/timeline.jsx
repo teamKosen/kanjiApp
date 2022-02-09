@@ -28,17 +28,21 @@ export async function getStaticProps(context) {
     const res_cmnt = await fetch("http://localhost:3000/api/commentdatas");
     const json_cmnt = await res_cmnt.json();
 
+    const res_ofr = await fetch("http://localhost:3000/api/offerplan/offerplanalldatas");
+    const json_ofr= await res_ofr.json();
+
     return {
       props: {
         shopdatas: json,
         picturedatas: json_pict,
         plandatas: json_pln,
         commentdatas:json_cmnt,
+        offerdatas:json_ofr,
       },
     };
 }
 
-const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
+const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas,offerdatas}) => {
 
     const router = useRouter();
     const [keyword, setKeyword] = useState('');
@@ -178,6 +182,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                             const pict = picturelist.filter(v=>v.shopId==shopdata._id);
                             return <Card key={shopdata.name} className={style.unitPost}>
                             <Post 
+                                offer={offerdatas}
                                 name={shopdata.name}
                                 genre={shopdata.tag.genre}
                                 purpose={shopdata.tag.purpose}
@@ -193,18 +198,20 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                                 comment={cmnt}
                                 pictures={pict}
                                 place={shopdata.place}
+                                id={shopdata._id}
                             />
                         </Card>
                         })}
                     </div>
                     <div className={style.postLine}>
                         {rightShops.map((shopdata) => {
+
                             const pln=planlist.filter(v=>v.shopID==shopdata._id);
                             const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
                             const pict = picturelist.filter(v=>v.shopId==shopdata._id);
-
                             return <Card key={shopdata.name} className={style.unitPost}>
                             <Post 
+                                offer={offerdatas}
                                 name={shopdata.name}
                                 genre={shopdata.tag.genre}
                                 purpose={shopdata.tag.purpose}
@@ -220,8 +227,9 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                                 comment={cmnt}
                                 pictures={pict}
                                 place={shopdata.place}
+                                id={shopdata._id}
                             />
-                        </Card>
+                            </Card>
                         })}
                     </div>
                 </div>
