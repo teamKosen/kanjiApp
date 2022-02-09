@@ -43,6 +43,10 @@ handler.post(async (req, res) => {
     res.status(400).send("Missing field(s)");
     return;
   }
+  // check if shop existed
+  if ((await req.db.collection("shopdatas").countDocuments({ adress })) > 0) {
+    res.status(403).send("The shop has already been used.");
+  }
 
   const open = [];
   open.push('月～木 ' + weekdayOpen + '～' +weekdayClose);
@@ -66,9 +70,10 @@ handler.post(async (req, res) => {
 
   const tag = { budget: { min: budgetMin, max: budgetMax}, numberOfPeople:{min: numberOfPeopleMin, max: numberOfPeopleMax}, genre: genre, purpose: purpose };
 
+  const plantag =[];
   const shopdata = await req.db
     .collection("shopdatas")
-    .insertOne({ name:shopName, open, park, payment, seatType, phoneNumber, place, adress, tag, introduction, })
+    .insertOne({ name:shopName, open, park, payment, seatType, phoneNumber, place, adress, tag, introduction, plantag })
     .then(({ ops }) => ops[0]);
   req.logIn(shopdata, (err) => {
     if (err) throw err;

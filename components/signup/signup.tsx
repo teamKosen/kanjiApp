@@ -41,65 +41,87 @@ export const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userBody = {
-      email: e.currentTarget.email.value,
-      name: e.currentTarget.name.value,
-      userType: e.currentTarget.userType.value,
-      password: e.currentTarget.password.value,
-    };
-    const shopBody = {
-      email: e.currentTarget.email.value,
-      name: e.currentTarget.name.value,
-      userType: e.currentTarget.userType.value,
-      password: e.currentTarget.password.value,
-      shopName: e.currentTarget.shopName.value,
-      adress: e.currentTarget.adress.value,
-      place: e.currentTarget.place.value,
-      weekdayOpen: e.currentTarget.weekdayOpen.value,
-      weekdayClose: e.currentTarget.weekdayClose.value,
-      weekendOpen: e.currentTarget.weekendOpen.value,
-      weekendClose: e.currentTarget.weekendClose.value,
-      counter: e.currentTarget.counter.value,
-      table: e.currentTarget.table.value,
-      zasiki: e.currentTarget.zasiki.value,
-      cash: e.currentTarget.cash.checked,
-      card: e.currentTarget.card.checked,
-      emoney: e.currentTarget.emoney.checked,
-      park: e.currentTarget.park.value,
-      phoneNumber: e.currentTarget.phoneNumber.value,
-      budgetMin: e.currentTarget.budgetMin.value,
-      budgetMax: e.currentTarget.budgetMax.value,
-      numberOfPeopleMin: e.currentTarget.numberOfPeopleMin.value,
-      numberOfPeopleMax: e.currentTarget.numberOfPeopleMax.value,
-      genre: genretag,
-      purpose: purposetag,
-      introduction: e.currentTarget.introduction.value,
-    };
-    const userRes = await fetch("/api/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userBody),
-    });
-    const shopRes = await fetch("/api/shopregister", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(shopBody),
-    });
-    if (userRes.status === 201) {
-      const userObj = await userRes.json();
-      // writing our user object to the state
-      mutate(userObj);
+    if ( e.currentTarget.userType.value == 'お店'){
+      const shopBody = {
+        email: e.currentTarget.email.value,
+        name: e.currentTarget.name.value,
+        userType: e.currentTarget.userType.value,
+        password: e.currentTarget.password.value,
+        shopName: e.currentTarget.shopName.value,
+        adress: e.currentTarget.adress.value,
+        place: e.currentTarget.place.value,
+        weekdayOpen: e.currentTarget.weekdayOpen.value,
+        weekdayClose: e.currentTarget.weekdayClose.value,
+        weekendOpen: e.currentTarget.weekendOpen.value,
+        weekendClose: e.currentTarget.weekendClose.value,
+        counter: e.currentTarget.counter.value,
+        table: e.currentTarget.table.value,
+        zasiki: e.currentTarget.zasiki.value,
+        cash: e.currentTarget.cash.checked,
+        card: e.currentTarget.card.checked,
+        emoney: e.currentTarget.emoney.checked,
+        park: e.currentTarget.park.value,
+        phoneNumber: e.currentTarget.phoneNumber.value,
+        budgetMin: e.currentTarget.budgetMin.value,
+        budgetMax: e.currentTarget.budgetMax.value,
+        numberOfPeopleMin: e.currentTarget.numberOfPeopleMin.value,
+        numberOfPeopleMax: e.currentTarget.numberOfPeopleMax.value,
+        genre: genretag,
+        purpose: purposetag,
+        introduction: e.currentTarget.introduction.value,
+      };
+      const userBody = {
+        email: shopBody.email,
+        name: shopBody.name,
+        userType: shopBody.userType,
+        password: shopBody.password,
+      };
+      const shopRes = await fetch("/api/shopregister", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(shopBody),
+      });
+      const userRes = await fetch("/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userBody),
+      });
+      if (shopRes.status === 201) {
+        const shopObj = await shopRes.json();
+        // writing our user object to the state
+        mutate(shopObj);
+      } else {
+        setErrorMsg(await shopRes.text());
+      }
+      if (userRes.status === 201) {
+        const userObj = await userRes.json();
+        // writing our user object to the state
+        mutate(userObj);
+      } else {
+        setErrorMsg(await userRes.text());
+      }
+
     } else {
-      setErrorMsg(await userRes.text());
-    }
-    if (shopRes.status === 201) {
-      const shopObj = await shopRes.json();
-      // writing our user object to the state
-      mutate(shopObj);
-    } else {
-      setErrorMsg(await shopRes.text());
-    }
-  };
+      const userBody = {
+        email: e.currentTarget.email.value,
+        name: e.currentTarget.name.value,
+        userType: e.currentTarget.userType.value,
+        password: e.currentTarget.password.value,
+      };
+      const userRes = await fetch("/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userBody),
+      });
+      if (userRes.status === 201) {
+        const userObj = await userRes.json();
+        // writing our user object to the state
+        mutate(userObj);
+      } else {
+        setErrorMsg(await userRes.text());
+      }
+    };
+  }
 
   const handleChangeuser = event => {
     setUservalue(event.target.value);
