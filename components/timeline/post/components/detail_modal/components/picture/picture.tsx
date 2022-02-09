@@ -18,7 +18,7 @@ export const Picture:FunctionComponent<Props>=(props)=>{
             {pictures.map((picture) => {
                 if(i){
                     i=false;
-                    return(<img key={picture.picturePath} src={picture.picturePath} style={{width: "400px",height: "300px"}}/>)
+                    return(<img key={picture.picturePath} src={picture.picturePath} style={{width: "600px",height: "450px"}}/>)
                 }
                 else{}
             })}            

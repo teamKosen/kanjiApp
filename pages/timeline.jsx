@@ -28,17 +28,21 @@ export async function getStaticProps(context) {
     const res_cmnt = await fetch("http://localhost:3000/api/commentdatas");
     const json_cmnt = await res_cmnt.json();
 
+    const res_ofr = await fetch("http://localhost:3000/api/offerplan/offerplanalldatas");
+    const json_ofr= await res_ofr.json();
+
     return {
       props: {
         shopdatas: json,
         picturedatas: json_pict,
         plandatas: json_pln,
         commentdatas:json_cmnt,
+        offerdatas:json_ofr,
       },
     };
 }
 
-const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
+const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas,offerdatas}) => {
 
     const router = useRouter();
     const [keyword, setKeyword] = useState('');
@@ -57,9 +61,9 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
 
     const budgetList = [1000,2000,3000,4000];
     const numberOfPeopleList = [2,4,6,8];
-    const genreList = ["中華","和食","イタリアン","エスニック"];
+    const genreList = ["中華","和食","イタリアン","エスニック","フレンチ","洋食"];
     const purposeList = ["打ち上げ","会食","合コン","同窓会"];
-    const placeList=["博多","新飯塚","折尾","黒崎"];
+    const placeList=["小倉","博多","新飯塚","折尾","黒崎","福岡市中央区"];
     const [openDate, setopenDate] = useState();
     const [place,setplace]=useState();
     const [tag,settag]=useState();
@@ -98,12 +102,12 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
     }
       const ApplyConditions = useCallback(() => {
         const request = async () => {
-            const res = await fetch(`http://localhost:3000/api/shopsearch?tag=${tag}&date=${openDate}&numberofpeople=${numberOfPeople}&budget=${budget}&purpose=${purpose}&genre=${genre}`);
+            const res = await fetch(`http://localhost:3000/api/shopsearch?tag=${tag}&date=${openDate}&numberofpeople=${numberOfPeople}&budget=${budget}&purpose=${purpose}&genre=${genre}&place=${place}`);
             const shops_pre= await res.json()
             updateShops(shops_pre);
         }
           request()
-        },[openDate,numberOfPeople,tag,budget,purpose,genre])
+        },[openDate,numberOfPeople,tag,budget,purpose,genre,place])
     useEffect(() => {
         const request = async () => {
             const res = await fetch(router.query.apiUrl);
@@ -178,6 +182,7 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                             const pict = picturelist.filter(v=>v.shopId==shopdata._id);
                             return <Card key={shopdata.name} className={style.unitPost}>
                             <Post 
+                                offer={offerdatas}
                                 name={shopdata.name}
                                 genre={shopdata.tag.genre}
                                 purpose={shopdata.tag.purpose}
@@ -193,18 +198,20 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                                 comment={cmnt}
                                 pictures={pict}
                                 place={shopdata.place}
+                                id={shopdata._id}
                             />
                         </Card>
                         })}
                     </div>
                     <div className={style.postLine}>
                         {rightShops.map((shopdata) => {
+
                             const pln=planlist.filter(v=>v.shopID==shopdata._id);
                             const cmnt=commentlist.filter(v=>v.shopID==shopdata._id);
                             const pict = picturelist.filter(v=>v.shopId==shopdata._id);
-
                             return <Card key={shopdata.name} className={style.unitPost}>
                             <Post 
+                                offer={offerdatas}
                                 name={shopdata.name}
                                 genre={shopdata.tag.genre}
                                 purpose={shopdata.tag.purpose}
@@ -220,8 +227,9 @@ const Timeline = ({shopdatas,plandatas,commentdatas,picturedatas}) => {
                                 comment={cmnt}
                                 pictures={pict}
                                 place={shopdata.place}
+                                id={shopdata._id}
                             />
-                        </Card>
+                            </Card>
                         })}
                     </div>
                 </div>

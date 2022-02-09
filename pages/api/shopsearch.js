@@ -7,7 +7,7 @@ const handler = nextConnect();
 handler.use(middleware);
 
 handler.get(async (req, res) => {
-    const {date,numberofpeople,tag,budget,purpose,genre}=req.query;
+    const {date,numberofpeople,tag,budget,purpose,genre,place}=req.query;
 
     let search={};
     let sort={};
@@ -21,7 +21,10 @@ handler.get(async (req, res) => {
         const genreTag = { "tag.genre": {"$in":[genre]}};
         search = Object.assign(search,genreTag);
     }
-
+    if(place !== 'undefined' && place){
+        const placeTag = { "place": place};
+        search = Object.assign(search,placeTag);
+    }
     if(purpose !== 'undefined' && purpose){
         const purposeTag = {"tag.purpose": {"$in":[purpose]}};
         search = Object.assign(search,purposeTag);
@@ -36,10 +39,6 @@ handler.get(async (req, res) => {
         search = Object.assign(search,planTag);
         sort = {"plantag.tag":1,"plantag.number":-1};
     }
-    console.log("search");
-    console.log(search);
-    console.log("sort");
-    console.log(sort);
     let doc = await req.db.collection('shopdatas').find(search).sort(sort).toArray();
     
     res.json(doc);
