@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import { Password } from "@material-ui/icons";
@@ -7,6 +7,10 @@ const filter = createFilterOptions();
 
 export default function Tagyarn(props) {
   const { size, style, variant, className, setValue, tag } = props;
+
+  useEffect(()=>{
+    setValue(tag);
+  },[]);
 
   return (
     <div>
