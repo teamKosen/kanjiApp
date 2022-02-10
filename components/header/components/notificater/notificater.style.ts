@@ -27,5 +27,57 @@ export const useStyles = makeStyles((theme) => ({
     paperContainer: {
         zIndex: 800,
         position: "relative",
-    }
+    },
+
+    title:{
+        width: "380px",
+        height: "20px",
+        paddingTop: "20px",
+        paddingBottom: "20px",
+        paddingLeft: "10px",
+        
+        fontFamily: "Roboto",
+        fontStyle: "normal",
+        fontWeight: "bold",
+        fontSize: "20px",
+        lineHeight: "28px",
+        display: "flex",
+        alignItems: "center",
+        
+        color: "#000000",
+    },
+
+    primary:{
+        fontFamily: "Roboto",
+        fontStyle: "normal",
+        fontWeight: "bold",
+        fontSize: "16px",
+        display: "flex",
+        color: "#000000",
+    },
+
+    secondary:{
+        paddingTop: "4px",
+
+        fontFamily: "Roboto",
+        fontStyle: "normal",
+        fontWeight: "normal",
+        fontSize: "14px",
+        display: "flex",
+        color: "#000000",
+    },
+
+    time:{
+        paddingTop: "4px",
+
+        fontFamily: "Roboto",
+        fontStyle: "normal",
+        fontWeight: "normal",
+        fontSize: "12px",
+        lineHeight: "16px",
+        display: "flex",
+        alignItems: "center",
+        color: "#000000",
+    },
+
  }));
